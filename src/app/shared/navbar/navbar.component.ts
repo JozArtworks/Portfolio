@@ -20,6 +20,16 @@ import { filter } from 'rxjs';
 
 export class NavbarComponent implements AfterViewInit {
 
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((event) => {
+        const url = (event as NavigationEnd).urlAfterRedirects;
+        this.currentUrl.set(url);
+        setTimeout(() => this.updateIndicator(), 10);
+      });
+  }
+
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
 
   activePos = signal({ left: 0, width: 0 });
@@ -27,6 +37,9 @@ export class NavbarComponent implements AfterViewInit {
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
   language = signal<'de' | 'en'>('de');
   isGerman = computed(() => this.language() === 'de');
+  isMobileView = false;
+  mobileMenuOpen = false;
+
 
   readonly translations = {
     de: {
@@ -47,29 +60,34 @@ export class NavbarComponent implements AfterViewInit {
     }
   };
 
-  get t() {
+  get translate() {
     return this.translations[this.language()];
   }
 
-
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(filter((e) => e instanceof NavigationEnd))
-      .subscribe((event) => {
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        this.currentUrl.set(url);
-        setTimeout(() => this.updateIndicator(), 10);
-      });
+  ngOnInit() {
+    this.checkViewport();
+    window.addEventListener('resize', this.checkViewport.bind(this));
   }
 
-  ngAfterViewInit(): void {
-    this.updateIndicator();
+  checkViewport() {
+    this.isMobileView = window.innerWidth <= 870;
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
   }
 
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
   }
 
+  ngAfterViewInit(): void {
+    this.updateIndicator();
+  }
 
   updateIndicator(): void {
     const active = this.navLinks.find((link) =>
