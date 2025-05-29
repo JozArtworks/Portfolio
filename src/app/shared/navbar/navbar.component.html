@@ -5,15 +5,17 @@
       [style.width.px]="activePos().width">
     </div>
     }
-    <li><a #navLink routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a #navLink routerLink="/about" routerLinkActive="active">Über mich</a></li>
-    <li><a #navLink routerLink="/skills" routerLinkActive="active">Tools</a></li>
-    <li><a #navLink routerLink="/projects" routerLinkActive="active">Projekte</a></li>
-    <li><a #navLink routerLink="/feedbacks" routerLinkActive="active">Referenzen</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active" class="contact-btn">KONTAKT</a></li>
-    <li class="lang-switch">
-      <button class="lang active">DE</button>
-      <button class="lang">EN</button>
-    </li>
+    <li><a #navLink routerLink="/home" routerLinkActive="active">{{ t.home }}</a></li>
+    <li><a #navLink routerLink="/about" routerLinkActive="active">{{ t.about }}</a></li>
+    <li><a #navLink routerLink="/skills" routerLinkActive="active">{{ t.skills }}</a></li>
+    <li><a #navLink routerLink="/projects" routerLinkActive="active">{{ t.projects }}</a></li>
+    <li><a #navLink routerLink="/feedbacks" routerLinkActive="active">{{ t.feedbacks }}</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active" class="contact-btn">{{ t.contact }}</a></li>
   </ul>
+  <div class="lang-switch">
+    <div class="lang-indicator" [class.move-right]="!isGerman()"></div>
+    <button class="lang" [class.active]="isGerman()" (click)="setLanguage('de')">DE</button>
+    <button class="lang" [class.active]="!isGerman()" (click)="setLanguage('en')">EN</button>
+  </div>
+
 </nav>

@@ -17,6 +17,7 @@ import { filter } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
+
 export class NavbarComponent implements AfterViewInit {
 
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
@@ -24,6 +25,32 @@ export class NavbarComponent implements AfterViewInit {
   activePos = signal({ left: 0, width: 0 });
   currentUrl = signal('');
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
+  language = signal<'de' | 'en'>('de');
+  isGerman = computed(() => this.language() === 'de');
+
+  readonly translations = {
+    de: {
+      home: 'Home',
+      about: 'Über mich',
+      skills: 'Tools',
+      projects: 'Projekte',
+      feedbacks: 'Referenzen',
+      contact: 'KONTAKT'
+    },
+    en: {
+      home: 'Home',
+      about: 'About me',
+      skills: 'Tools',
+      projects: 'Projects',
+      feedbacks: 'References',
+      contact: 'CONTACT'
+    }
+  };
+
+  get t() {
+    return this.translations[this.language()];
+  }
+
 
   constructor(private router: Router) {
     this.router.events
@@ -38,6 +65,11 @@ export class NavbarComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.updateIndicator();
   }
+
+  setLanguage(lang: 'de' | 'en') {
+    this.language.set(lang);
+  }
+
 
   updateIndicator(): void {
     const active = this.navLinks.find((link) =>

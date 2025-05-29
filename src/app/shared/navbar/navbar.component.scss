@@ -9,6 +9,7 @@
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 5px;
 }
 
 .nav-list {
@@ -57,7 +58,7 @@
   }
 
   .contact-btn {
-    background-color: #1aa187;
+    background-color: #129990;
     color: white;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -77,33 +78,61 @@
       background-color: #3DCFB6;
     }
   }
+}
 
-  .lang-switch {
+.lang-switch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  height: 38px;
+  width: 77px;
+  padding: 4px;
+  box-sizing: border-box;
+
+  .lang-indicator {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 0;
+    transform: translateX(0);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &.move-right {
+      transform: translateX(36px);
+    }
+  }
+
+  .lang {
+    z-index: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
     display: flex;
-    gap: 6px;
-    margin-left: 16px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.3s ease;
 
-    .lang {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s;
+    &:hover {
+      color: #3DCFB6;
+    }
 
-      &.active {
-        background: rgba(255, 255, 255, 0.2);
-        font-weight: bold;
-      }
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
+    &.active {
+      font-weight: 600;
+      color: #3DCFB6;
     }
   }
 }
