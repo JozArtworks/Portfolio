@@ -1,0 +1,5 @@
+<div class="lang-switch">
+  <div class="lang-indicator" [class.move-right]="!isGerman()"></div>
+  <button class="lang" [class.active]="isGerman()" (click)="setLanguage('de')">DE</button>
+  <button class="lang" [class.active]="!isGerman()" (click)="setLanguage('en')">EN</button>
+</div>

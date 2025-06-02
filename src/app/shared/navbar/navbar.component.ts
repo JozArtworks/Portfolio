@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
+import { LangSwitchComponent } from '../components/lang-switch/lang-switch.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, LangSwitchComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
@@ -35,11 +36,8 @@ export class NavbarComponent implements AfterViewInit {
   activePos = signal({ left: 0, width: 0 });
   currentUrl = signal('');
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
-  language = signal<'de' | 'en'>('de');
-  isGerman = computed(() => this.language() === 'de');
   isMobileView = false;
   mobileMenuOpen = false;
-
 
   readonly translations = {
     de: {
@@ -64,6 +62,12 @@ export class NavbarComponent implements AfterViewInit {
     return this.translations[this.language()];
   }
 
+  language = signal<'de' | 'en'>('de');
+  setLanguage(lang: 'de' | 'en') {
+    this.language.set(lang);
+  }
+
+
   ngOnInit() {
     this.checkViewport();
     window.addEventListener('resize', this.checkViewport.bind(this));
@@ -79,10 +83,6 @@ export class NavbarComponent implements AfterViewInit {
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
-  }
-
-  setLanguage(lang: 'de' | 'en') {
-    this.language.set(lang);
   }
 
   ngAfterViewInit(): void {
