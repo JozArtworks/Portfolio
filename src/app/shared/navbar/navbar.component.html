@@ -20,9 +20,15 @@
 }
 
 @if (isMobileView) {
-<button class="burger-menu" (click)="toggleMobileMenu()">
-  <img src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
-</button>
+<div class="box-link">
+  @for (icon of linksIcons; track icon.name) {
+  <img [src]="icon.icon" [alt]="icon.name" class="tool-icon" />
+  }
+  <button class="burger-menu" (click)="toggleMobileMenu()">
+    <img src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
+  </button>
+</div>
+
 }
 
 @if (mobileMenuOpen) {
@@ -33,7 +39,8 @@
     <li routerLinkActive="active"><a routerLink="/about" routerLinkActive="active">{{ translate.about }}</a></li>
     <li routerLinkActive="active"><a routerLink="/skills" routerLinkActive="active">{{ translate.skills }}</a></li>
     <li routerLinkActive="active"><a routerLink="/projects" routerLinkActive="active">{{ translate.projects }}</a></li>
-    <li routerLinkActive="active"><a routerLink="/feedbacks" routerLinkActive="active">{{ translate.feedbacks }}</a></li>
+    <li routerLinkActive="active"><a routerLink="/feedbacks" routerLinkActive="active">{{ translate.feedbacks }}</a>
+    </li>
     <li><a routerLink="/contact" routerLinkActive="active" class="contact-btn-mobile">{{ translate.contact }}</a></li>
   </ul>
   <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">

@@ -33,6 +33,12 @@ export class NavbarComponent implements AfterViewInit {
 
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
 
+  linksIcons = [
+    { name: 'GitHub', icon: 'assets/icons/white/github_white.png' },
+    { name: 'Mail', icon: 'assets/icons/white/mail_white.png' },
+    { name: 'Linkedin', icon: 'assets/icons/white/linked_white.png' },
+  ];
+
   activePos = signal({ left: 0, width: 0 });
   currentUrl = signal('');
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
