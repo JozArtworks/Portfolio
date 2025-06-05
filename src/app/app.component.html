@@ -1,10 +1,39 @@
-<section class="background-pic">
+<!-- <section [class]="['background-pic', getBackgroundClass()]">
+
   <div class="background-gradient">
-  <aside class="glass-background-style">
-    <app-header></app-header>
-    <main class="main-content">
-      <router-outlet></router-outlet>
-    </main>
-  </aside>
+
+    <aside class="glass-background-style">
+
+      <app-header></app-header>
+
+      <main class="main-content">
+
+        <router-outlet></router-outlet>
+
+      </main>
+
+    </aside>
+
   </div>
+
+</section> -->
+
+<section [class]="['background-pic', getBackgroundClass()]">
+
+  <div class="background-gradient">
+
+    <div class="glass-background-style">
+
+      <header>
+        <app-header></app-header>
+      </header>
+
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+
+    </div>
+
+  </div>
+
 </section>

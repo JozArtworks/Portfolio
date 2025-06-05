@@ -63,14 +63,23 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   language = signal<'de' | 'en'>('de');
+
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
+    setTimeout(() => this.updateIndicator(), 20); // nach DOM-Update triggern
   }
 
 
+
+  boundCheckViewport = this.checkViewport.bind(this);
+
   ngOnInit() {
     this.checkViewport();
-    window.addEventListener('resize', this.checkViewport.bind(this));
+    window.addEventListener('resize', this.boundCheckViewport);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
   }
 
   checkViewport() {

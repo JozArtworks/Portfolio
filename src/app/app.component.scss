@@ -44,6 +44,10 @@
   padding: 15px;
   padding-top: 5px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .glass-background-style::before {
@@ -66,4 +70,33 @@
 
   pointer-events: none;
   z-index: 1;
+}
+
+.bg-home {
+  background-image: url('../assets/images/BlackWhitePortfolioHeaderPics.png');
+}
+
+.bg-about {
+  background-image: url('../assets/images/blackWhitePicGlass.png');
+}
+
+.bg-skills {
+  background-image: url('../assets/images/BlackWhiteMouse.png');
+}
+
+.bg-projects {
+  background-image: url('../assets/images/BlackwhiteCodeWhitoutFace.png');
+}
+
+.bg-feedbacks {
+  background: linear-gradient(to bottom right, #3dcfb6, #096b68);
+}
+
+.bg-contact {
+  background: #222831;
+}
+
+.main-content {
+  width: 100%;
+  height: 100%;
 }
