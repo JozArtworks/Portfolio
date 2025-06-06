@@ -19,55 +19,30 @@
 </nav>
 }
 
-<!-- @if (isMobileView) {
+@if (isMobileView) {
 <div class="box-link">
   @for (icon of linksIcons; track icon.name) {
   <img [src]="icon.icon" [alt]="icon.name" class="tool-icon" />
   }
-  <button class="burger-menu" (click)="toggleMobileMenu()">
+
+  <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
     <img src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
   </button>
-</div>
 
-}
-
-@if (mobileMenuOpen) {
-
-<div class="mobile-menu-overlay">
-  <ul class="mobile-menu-list" (click)="$event.stopPropagation()">
-    <li routerLinkActive="active"><a routerLink="/home" routerLinkActive="active">{{ translate.home }}</a></li>
-    <li routerLinkActive="active"><a routerLink="/about" routerLinkActive="active">{{ translate.about }}</a></li>
-    <li routerLinkActive="active"><a routerLink="/skills" routerLinkActive="active">{{ translate.skills }}</a></li>
-    <li routerLinkActive="active"><a routerLink="/projects" routerLinkActive="active">{{ translate.projects }}</a></li>
-    <li routerLinkActive="active"><a routerLink="/feedbacks" routerLinkActive="active">{{ translate.feedbacks }}</a>
-    </li>
-    <li><a routerLink="/contact" routerLinkActive="active" class="contact-btn-mobile">{{ translate.contact }}</a></li>
-  </ul>
-  <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
-  </app-lang-switch>
-
-</div>
-} -->
-
-@if (isMobileView) {
-  <div class="box-link">
-    @for (icon of linksIcons; track icon.name) {
-      <img [src]="icon.icon" [alt]="icon.name" class="tool-icon" />
-    }
-
-    <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
-      <img src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
-    </button>
-
-    <div class="mobile-popout" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
-      <ul class="mobile-popout-list">
-        <li><a routerLink="/home">{{ translate.home }}</a></li>
-        <li><a routerLink="/about">{{ translate.about }}</a></li>
-        <li><a routerLink="/skills">{{ translate.skills }}</a></li>
-        <li><a routerLink="/projects">{{ translate.projects }}</a></li>
-        <li><a routerLink="/feedbacks">{{ translate.feedbacks }}</a></li>
-      </ul>
-      <a routerLink="/contact" class="contact-btn-mobile">{{ translate.contact }}</a>
+  <div class="mobile-popout" [class.open]="mobileMenuOpen">
+    <ul class="mobile-popout-list" (click)="toggleMobileMenu()">
+      <li><a routerLinkActive="active" routerLink="/home">{{ translate.home }}</a></li>
+      <li><a routerLinkActive="active" routerLink="/about">{{ translate.about }}</a></li>
+      <li><a routerLinkActive="active" routerLink="/skills">{{ translate.skills }}</a></li>
+      <li><a routerLinkActive="active" routerLink="/projects">{{ translate.projects }}</a></li>
+      <li><a routerLinkActive="active" routerLink="/feedbacks">{{ translate.feedbacks }}</a></li>
+    </ul>
+    <a routerLinkActive="active" (click)="toggleMobileMenu()" routerLink="/contact" class="contact-btn-mobile">{{
+      translate.contact }}</a>
+    <div class="mobile-lang-switch">
+      <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
+      </app-lang-switch>
     </div>
   </div>
+</div>
 }
