@@ -34,10 +34,12 @@ export class NavbarComponent implements AfterViewInit {
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
 
   linksIcons = [
-    { name: 'GitHub', icon: 'assets/icons/white/github_white.png' },
-    { name: 'Mail', icon: 'assets/icons/white/mail_white.png' },
-    { name: 'Linkedin', icon: 'assets/icons/white/linked_white.png' },
+    { name: 'GitHub', icon: 'assets/icons/white/github_white.png', link: 'https://github.com/JozArtworks', interactive: false },
+    { name: 'Mail', icon: 'assets/icons/white/mail_white.png', interactive: true },
+    { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png', link: 'https://www.linkedin.com/in/jonathan-michutta-527722210/', interactive: false },
   ];
+
+
 
   activePos = signal({ left: 0, width: 0 });
   currentUrl = signal('');
@@ -72,9 +74,14 @@ export class NavbarComponent implements AfterViewInit {
 
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
-    setTimeout(() => this.updateIndicator(), 20); // nach DOM-Update triggern
+    setTimeout(() => this.updateIndicator(), 20);
   }
 
+  ifMobileOpenToggle() {
+    if (this.isMobileView && this.mobileMenuOpen) {
+      this.toggleMobileMenu();
+    }
+  }
 
 
   boundCheckViewport = this.checkViewport.bind(this);
@@ -116,4 +123,30 @@ export class NavbarComponent implements AfterViewInit {
       });
     }
   }
+
+  activeIconName = '';
+  hoveredIconName = '';
+
+  setActiveIcon(name: string) {
+    this.activeIconName = this.activeIconName === name ? '' : name;
+  }
+
+  setHoveredIcon(name: string) {
+    this.hoveredIconName = name;
+  }
+
+  clearHoveredIcon() {
+    this.hoveredIconName = '';
+  }
+
+  getIconSrc(icon: { name: string; link?: string; interactive?: boolean }) {
+    const base = icon.name.toLowerCase();
+    const isHovered = this.hoveredIconName === icon.name;
+    const isActive = icon.interactive && this.activeIconName === icon.name;
+
+    const colorFolder = (isHovered || isActive) ? 'green' : 'white';
+    return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
+  }
+
+
 }

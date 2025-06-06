@@ -22,11 +22,30 @@
 @if (isMobileView) {
 <div class="box-link">
   @for (icon of linksIcons; track icon.name) {
-  <img [src]="icon.icon" [alt]="icon.name" class="tool-icon" />
+    @if (icon.link) {
+      <a [href]="icon.link" target="_blank" rel="noopener noreferrer">
+        <img
+          class="tool-icon"
+          [src]="getIconSrc(icon)"
+          [alt]="icon.name"
+          (click)="ifMobileOpenToggle()"
+          (mouseenter)="setHoveredIcon(icon.name)"
+          (mouseleave)="clearHoveredIcon()" />
+      </a>
+    } @else {
+      <img
+        class="tool-icon"
+        [src]="getIconSrc(icon)"
+        [alt]="icon.name"
+        (click)="setActiveIcon(icon.name); ifMobileOpenToggle()"
+        (mouseenter)="setHoveredIcon(icon.name)"
+        (mouseleave)="clearHoveredIcon()" />
+    }
   }
 
+
   <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
-    <img src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
+    <img class="menu-icon" src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
   </button>
 
   <div class="mobile-popout" [class.open]="mobileMenuOpen">

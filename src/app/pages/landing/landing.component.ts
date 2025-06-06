@@ -27,7 +27,7 @@ export class LandingComponent {
   linksIcons = [
     { name: 'GitHub', icon: 'assets/icons/white/github_white.png' },
     { name: 'Mail', icon: 'assets/icons/white/mail_white.png' },
-    { name: 'Linkedin', icon: 'assets/icons/white/linked_white.png' },
+    { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png' },
   ];
 
 
