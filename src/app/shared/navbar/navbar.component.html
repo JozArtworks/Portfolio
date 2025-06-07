@@ -7,12 +7,17 @@
     </div>
     }
     @for (item of navItems; track item.path) {
-      <li>
-        <a #navLink routerLink="{{ item.path }}" routerLinkActive="active">
-          {{ item.label() }}
-        </a>
-      </li>
+    <li>
+      <a #navLink routerLink="{{ item.path }}" routerLinkActive="active">
+        {{ item.label() }}
+      </a>
+    </li>
     }
+    <li>
+      <a routerLink="/contact" routerLinkActive="active" class="contact-btn">
+        {{ translate.contact }}
+      </a>
+    </li>
   </ul>
   <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
   </app-lang-switch>
@@ -24,9 +29,8 @@
 <div class="box-link">
   <app-links-img></app-links-img>
 
-  <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()"
-  >
-    <img class="menu-icon" src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
+  <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()">
+    <span></span>
   </button>
 
 
