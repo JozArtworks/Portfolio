@@ -64,4 +64,8 @@ export class LinksImgComponent {
     this.ifMobileOpenToggle();
   }
 
+  handleMailClick() {
+    this.mailClicked.emit();
+  }
+
 }

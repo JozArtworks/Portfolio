@@ -3,7 +3,8 @@
 
     <img src="assets/icons/white/logo_JM_white.png">
 
-    <app-navbar [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="onToggleMenu()">
+    <app-navbar (forceCloseMenu)="onForceCloseMenu()" (mailClicked)="onMailClicked()" [mobileMenuOpen]="mobileMenuOpen"
+      [isMobileView]="isMobileView" (toggleMenu)="onToggleMenu()">
     </app-navbar>
 
   </header>

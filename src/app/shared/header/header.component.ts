@@ -14,8 +14,19 @@ export class HeaderComponent {
   @Input() isMobileView = false;
   @Input() mobileMenuOpen = false;
   @Output() toggleMenu = new EventEmitter<void>();
+  @Output() mailClicked = new EventEmitter<void>();
+  @Output() forceCloseMenu = new EventEmitter<void>();
+
 
   onToggleMenu() {
     this.toggleMenu.emit();
+  }
+
+  onMailClicked() {
+    this.mailClicked.emit();
+  }
+
+  onForceCloseMenu() {
+    this.forceCloseMenu.emit();
   }
 }

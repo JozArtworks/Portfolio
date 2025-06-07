@@ -41,6 +41,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() mobileMenuOpen = false;
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
+  @Output() forceCloseMenu = new EventEmitter<void>();
+
 
 
   // === Reactive state ===
@@ -188,6 +190,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   showEmail = false;
 
   toggleEmail() {
+    if (this.isMobileView && this.mobileMenuOpen) {
+      this.forceCloseMenu.emit();
+    }
+
     this.showEmail = true;
     setTimeout(() => this.showEmail = false, 4000);
   }

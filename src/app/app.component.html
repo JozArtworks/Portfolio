@@ -1,8 +1,13 @@
 <section class="background-pic">
   <div class="background-gradient">
     <div class="glass-background-style">
-      <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView"
-        (toggleMenu)="toggleMobileMenu()"></app-header>
+      <app-header
+      [mobileMenuOpen]="mobileMenuOpen"
+      [isMobileView]="isMobileView"
+      (toggleMenu)="toggleMobileMenu()"
+      (forceCloseMenu)="mobileMenuOpen = false">
+    </app-header>
+
 
       <main class="main-content">
         <router-outlet></router-outlet>
