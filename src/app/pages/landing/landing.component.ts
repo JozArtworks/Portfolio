@@ -31,5 +31,12 @@ export class LandingComponent {
     { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png' },
   ];
 
+  showEmail = false;
+
+  toggleEmail() {
+    this.showEmail = true;
+    setTimeout(() => this.showEmail = false, 4000);
+  }
+
 
 }

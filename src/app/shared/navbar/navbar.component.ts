@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() isMobileView = false;
   @Input() mobileMenuOpen = false;
   @Output() toggleMenu = new EventEmitter<void>();
+  @Output() mailClicked = new EventEmitter<void>();
+
 
   // === Reactive state ===
   currentUrl = signal('');
@@ -181,5 +183,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     const isActive = icon.interactive && this.activeIconName === icon.name;
     const colorFolder = isHovered || isActive ? 'green' : 'white';
     return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
+  }
+
+  showEmail = false;
+
+  toggleEmail() {
+    this.showEmail = true;
+    setTimeout(() => this.showEmail = false, 4000);
   }
 }

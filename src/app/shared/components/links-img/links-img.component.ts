@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-links-img',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './links-img.component.scss'
 })
 export class LinksImgComponent {
+
+  @Output() mailClicked = new EventEmitter<void>();
+
 
   linksIcons = [
     { name: 'GitHub', icon: 'assets/icons/white/github_white.png', link: 'https://github.com/JozArtworks', interactive: false },
@@ -50,6 +54,14 @@ export class LinksImgComponent {
     if (this.isMobileView && this.mobileMenuOpen) {
       this.toggleMobileMenu();
     }
+  }
+
+  handleIconClick(iconName: string) {
+    if (iconName === 'Mail') {
+      this.mailClicked.emit();
+    }
+    this.setActiveIcon(iconName);
+    this.ifMobileOpenToggle();
   }
 
 }
