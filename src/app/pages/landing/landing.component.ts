@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [],
+  imports: [LinksImgComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

@@ -1,0 +1,116 @@
+:host {
+  position: fixed;
+  top: 60px;
+  right: 16px;
+  z-index: 10000; // höher als ALLES andere
+  pointer-events: auto;
+}
+
+
+
+a.contact-btn-mobile {
+  text-decoration: none;
+  text-align: center;
+  margin: 0;
+}
+
+.mobile-popout {
+  position: fixed;
+  top: 80px;
+  right: 33px;
+  width: 164px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    transform: translateY(5px);
+    pointer-events: auto;
+  }
+
+  .mobile-popout-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li a {
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: block;
+      text-align: center;
+
+      &.active {
+        color: #3DCFB6;
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .contact-btn-mobile {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #129990;
+    color: white;
+    font-weight: 500;
+    padding: 6px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+
+    &.active {
+      color: #096B68 !important;
+      background-color: #3DCFB6;
+    }
+  }
+}
+
+
+.mobile-lang-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 870px) {
+
+  .mobile-popout {
+    top: 92px;
+    right: 49px;
+    width: 163px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  .mobile-popout {
+    top: 77px;
+    right: 34px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+
+  .mobile-popout {
+    top: 70px;
+    right: 34px;
+    width: 141px;
+  }
+}

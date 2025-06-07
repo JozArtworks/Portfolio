@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar.component';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NavbarComponent, NavbarComponent],
+  imports: [NavbarComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 
+  @Input() isMobileView = false;
+  @Input() mobileMenuOpen = false;
+  @Output() toggleMenu = new EventEmitter<void>();
+
+  onToggleMenu() {
+    this.toggleMenu.emit();
+  }
 }

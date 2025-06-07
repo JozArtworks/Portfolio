@@ -6,12 +6,13 @@
       [style.width.px]="activePos().width">
     </div>
     }
-    <li><a #navLink routerLink="/home" routerLinkActive="active">{{ translate.home }}</a></li>
-    <li><a #navLink routerLink="/about" routerLinkActive="active">{{ translate.about }}</a></li>
-    <li><a #navLink routerLink="/skills" routerLinkActive="active">{{ translate.skills }}</a></li>
-    <li><a #navLink routerLink="/projects" routerLinkActive="active">{{ translate.projects }}</a></li>
-    <li><a #navLink routerLink="/feedbacks" routerLinkActive="active">{{ translate.feedbacks }}</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active" class="contact-btn">{{ translate.contact }}</a></li>
+    @for (item of navItems; track item.path) {
+      <li>
+        <a #navLink routerLink="{{ item.path }}" routerLinkActive="active">
+          {{ item.label() }}
+        </a>
+      </li>
+    }
   </ul>
   <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
   </app-lang-switch>
@@ -21,47 +22,13 @@
 
 @if (isMobileView) {
 <div class="box-link">
-  @for (icon of linksIcons; track icon.name) {
-    @if (icon.link) {
-      <a [href]="icon.link" target="_blank" rel="noopener noreferrer">
-        <img
-          class="tool-icon"
-          [src]="getIconSrc(icon)"
-          [alt]="icon.name"
-          (click)="ifMobileOpenToggle()"
-          (mouseenter)="setHoveredIcon(icon.name)"
-          (mouseleave)="clearHoveredIcon()" />
-      </a>
-    } @else {
-      <img
-        class="tool-icon"
-        [src]="getIconSrc(icon)"
-        [alt]="icon.name"
-        (click)="setActiveIcon(icon.name); ifMobileOpenToggle()"
-        (mouseenter)="setHoveredIcon(icon.name)"
-        (mouseleave)="clearHoveredIcon()" />
-    }
-  }
+  <app-links-img></app-links-img>
 
-
-  <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
+  <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()"
+  >
     <img class="menu-icon" src="./assets/icons/white/mobile_menu.svg" alt="Menu" />
   </button>
 
-  <div class="mobile-popout" [class.open]="mobileMenuOpen">
-    <ul class="mobile-popout-list" (click)="toggleMobileMenu()">
-      <li><a routerLinkActive="active" routerLink="/home">{{ translate.home }}</a></li>
-      <li><a routerLinkActive="active" routerLink="/about">{{ translate.about }}</a></li>
-      <li><a routerLinkActive="active" routerLink="/skills">{{ translate.skills }}</a></li>
-      <li><a routerLinkActive="active" routerLink="/projects">{{ translate.projects }}</a></li>
-      <li><a routerLinkActive="active" routerLink="/feedbacks">{{ translate.feedbacks }}</a></li>
-    </ul>
-    <a routerLinkActive="active" (click)="toggleMobileMenu()" routerLink="/contact" class="contact-btn-mobile">{{
-      translate.contact }}</a>
-    <div class="mobile-lang-switch">
-      <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
-      </app-lang-switch>
-    </div>
-  </div>
+
 </div>
 }

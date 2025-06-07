@@ -13,3 +13,9 @@ html, body {
   font-weight: 100;
 }
 
+app-mobile-popout {
+  position: fixed !important;
+  z-index: 10000 !important;
+  top: 60px;
+  right: 16px;
+}

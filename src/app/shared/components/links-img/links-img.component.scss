@@ -1,0 +1,32 @@
+.links-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 390px) {
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+
+}

@@ -2,7 +2,10 @@
   <header>
 
     <img src="assets/icons/white/logo_JM_white.png">
-    <app-navbar></app-navbar>
+
+    <app-navbar [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="onToggleMenu()">
+    </app-navbar>
+
   </header>
 
 

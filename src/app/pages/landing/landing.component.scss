@@ -31,7 +31,7 @@
 .box-tools {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 32px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  // box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 
   display: flex;
   justify-content: space-evenly;
@@ -68,40 +68,6 @@
 
 }
 
-// @media screen and (max-width: 680px) {
-
-//   .about-foot {
-//     align-items: flex-end;
-//     margin: 0;
-
-//   }
-
-//   .box-link {
-//     flex-direction: column;
-//     width: 48px;
-//     height: 130px;
-//   }
-
-//   .box-tools {
-//     flex-direction: column;
-//     width: 45px;
-//     height: 340px;
-//     gap: 5px;
-
-//     img {
-//       width: 20px;
-//       height: 20px;
-//       object-fit: cover;
-//     }
-//   }
-// }
-
-.title, .title h1, .title h2, .title h3 {
-  position: relative;
-  z-index: 0;
-}
-
-
 .title {
   display: flex;
   flex-direction: column;
@@ -117,7 +83,6 @@
 
   h1 {
     margin: 0;
-    // font-size: 126px;
     font-weight: 400;
     color: #FFFFFF;
     text-align: center;
@@ -168,3 +133,4 @@
 
 
 }
+
