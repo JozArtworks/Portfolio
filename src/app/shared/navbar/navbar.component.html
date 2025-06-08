@@ -39,9 +39,13 @@
 
 }
 
-<!-- <div class="mail-wrapper" [class.visible]="showEmail">
-  {{ 'front-dev@jonathan-michutta.de' }}
-</div> -->
+<div class="dialog-copy" [class.visible]="showCopyDialog">
+  <span>Kopiert</span>
+  <svg class="check-icon" viewBox="0 0 24 24">
+    <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
 
 <div class="mail-wrapper" [class.visible]="showEmail">
   <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>

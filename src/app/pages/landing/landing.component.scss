@@ -199,7 +199,37 @@
 
 }
 
+.dialog-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 91px;
+  right: 20px;
+  background: #3dcfb6;
+  color: #096B68;
+  padding: 8px 12px;
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  transition: right 0.5s ease, opacity 0.5s ease;
+  z-index: 1;
+  padding-left: 17px;
 
+  &.visible {
+    right: 35px;
+    opacity: 1;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
 
 
 

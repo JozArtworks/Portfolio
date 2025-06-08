@@ -17,6 +17,8 @@ import { filter } from 'rxjs';
 import { LangSwitchComponent } from '../components/lang-switch/lang-switch.component';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 
+import { SimpleChanges, OnChanges } from '@angular/core';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -43,13 +45,22 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
 
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['mobileMenuOpen']) {
+      const nowOpen = changes['mobileMenuOpen'].currentValue;
+      if (nowOpen && this.showEmail) {
+        this.showEmail = false;
+      }
+    }
+  }
 
   // === Reactive state ===
   currentUrl = signal('');
   activePos = signal({ left: 0, width: 0 });
   language = signal<'de' | 'en'>('de');
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
+  showCopyDialog = false;
+
 
   // === Translations ===
   readonly translations = {
@@ -204,17 +215,30 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   emailCopied = false;
 
-  copyEmail() {
-    const email = 'front-dev@jonathan-michutta.de';
-    navigator.clipboard.writeText(email).then(() => {
-      this.emailCopied = true;
+copyEmail() {
+  const email = 'front-dev@jonathan-michutta.de';
+  navigator.clipboard.writeText(email).then(() => {
+    this.emailCopied = true;
+    this.showEmail = false;
+    this.showCopyDialog = true;
 
+    setTimeout(() => {
+      this.showCopyDialog = false;
+      this.emailCopied = false;
+    }, 1000);
+  });
+}
+
+  handleIconClick(name: string) {
+    this.setActiveIcon(name);
+
+    if (this.isMobileView && this.mobileMenuOpen) {
+      this.forceCloseMenu.emit();
+    }
+
+    if (this.showEmail) {
       this.showEmail = false;
-
-
-
-
-    });
+    }
   }
 }
 

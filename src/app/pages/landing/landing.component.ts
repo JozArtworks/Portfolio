@@ -33,6 +33,7 @@ export class LandingComponent {
 
   showEmail = false;
   emailCopied = false;
+  showCopyDialog = false;
 
 
   toggleEmail() {
@@ -43,12 +44,17 @@ export class LandingComponent {
     const email = 'front-dev@jonathan-michutta.de';
     navigator.clipboard.writeText(email).then(() => {
       this.emailCopied = true;
-
       this.showEmail = false;
+      this.showCopyDialog = true;
 
-
+      setTimeout(() => {
+        this.emailCopied = false;
+        this.showCopyDialog = false;
+      }, 2000);
     });
   }
+
+
 
   @Input() isMobileView = false;
 

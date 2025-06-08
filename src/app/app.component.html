@@ -16,8 +16,12 @@
   </div>
 
   @if (isMobileView && mobileMenuOpen) {
-  <app-mobile-popout [mobileMenuOpen]="mobileMenuOpen" [translate]="translations[language]" [language]="language"
-    (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  <app-mobile-popout
+  [mobileMenuOpen]="mobileMenuOpen"
+  [translate]="translations[language]"
+  [language]="language"
+  (toggleMenu)="toggleMobileMenu()"
+  (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
 </section>
