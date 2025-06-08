@@ -1,14 +1,22 @@
 <div class="links-img">
   @for (icon of linksIcons; track icon.name) {
-  @if (icon.link) {
-  <a [href]="icon.link" target="_blank" rel="noopener noreferrer">
-    <img class="tool-icon" [src]="getIconSrc(icon)" [alt]="icon.name" (click)="ifMobileOpenToggle()"
-      (mouseenter)="setHoveredIcon(icon.name)" (mouseleave)="clearHoveredIcon()" />
-  </a>
-  } @else {
-  <img (click)="handleMailClick()" (click)="handleIconClick(icon.name)" class="tool-icon" [src]="getIconSrc(icon)" [alt]="icon.name"
-    (click)="setActiveIcon(icon.name); ifMobileOpenToggle()" (mouseenter)="setHoveredIcon(icon.name)"
-    (mouseleave)="clearHoveredIcon()" />
-  }
+    @if (icon.link) {
+      <a [href]="icon.link" target="_blank" rel="noopener noreferrer" >
+        <img
+          class="tool-icon"
+          [src]="getIconSrc(icon)"
+          [alt]="icon.name"
+          (mouseenter)="setHoveredIcon(icon.name)"
+          (mouseleave)="clearHoveredIcon()" />
+      </a>
+    } @else {
+      <img
+        class="tool-icon"
+        [src]="getIconSrc(icon)"
+        [alt]="icon.name"
+        (click)="handleIconClick(icon.name)"
+        (mouseenter)="setHoveredIcon(icon.name)"
+        (mouseleave)="clearHoveredIcon()" />
+    }
   }
 </div>

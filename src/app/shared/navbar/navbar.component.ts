@@ -143,6 +143,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
+
+    if (!this.isMobileView && this.showEmail) {
+      this.showEmail = false;
+    }
+
   }
 
   // === Nav indicator ===
@@ -194,7 +199,22 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.forceCloseMenu.emit();
     }
 
-    this.showEmail = true;
-    setTimeout(() => this.showEmail = false, 4000);
+    this.showEmail = !this.showEmail;
+  }
+
+  emailCopied = false;
+
+  copyEmail() {
+    const email = 'front-dev@jonathan-michutta.de';
+    navigator.clipboard.writeText(email).then(() => {
+      this.emailCopied = true;
+
+      this.showEmail = false;
+
+
+
+
+    });
   }
 }
+

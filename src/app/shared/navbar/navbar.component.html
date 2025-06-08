@@ -26,8 +26,8 @@
 }
 
 @if (isMobileView) {
-<div class="box-link">
-  <app-links-img (mailClicked)="toggleEmail()"></app-links-img>
+<div class="box-link-nav-mobile">
+  <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
 
   <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()">
     <span></span>
@@ -39,6 +39,19 @@
 
 }
 
-<div class="mail-wrapper" [class.visible]="showEmail">
+<!-- <div class="mail-wrapper" [class.visible]="showEmail">
   {{ 'front-dev@jonathan-michutta.de' }}
+</div> -->
+
+<div class="mail-wrapper" [class.visible]="showEmail">
+  <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>
+
+
+  <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied" aria-label="E-Mail kopieren">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
+      <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
+    </svg>
+  </button>
+
 </div>

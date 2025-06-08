@@ -8,9 +8,11 @@
   align-items: center;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.17);
   gap: 5px;
+
+
+
 }
 
 .nav-list {
@@ -27,7 +29,7 @@
     height: 38px;
     border-radius: 32px;
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
     z-index: 0;
     bottom: -1px;
@@ -128,7 +130,7 @@ a.contact-btn {
     &::after {
       content: '';
       position: absolute;
-      width: 18px;
+      width: 16px;
       height: 2px;
       background: white;
       border-radius: 2px;
@@ -178,26 +180,47 @@ a.contact-btn {
   }
 }
 
+.box-link-nav-mobile {
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 172px;
+  height: 47px;
+  border-radius: 32px;
+  background: rgba(19, 18, 18, 0.306);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.17);
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover img {
+    cursor: pointer;
+  }
+}
+
 @media screen and (max-width: 390px) {
 
-  .box-link {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  .box-link-nav-mobile {
     width: 149px;
     height: 40px;
-    border-radius: 32px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(16px);
-
 
     img {
       width: 25px;
       height: 25px;
     }
-
   }
 
   .burger-menu {
@@ -217,7 +240,7 @@ a.contact-btn {
       height: 2px;
 
       &::before {
-        width: 14px;
+        width: 12px;
         height: 2px;
       }
     }
@@ -245,4 +268,60 @@ a.contact-btn {
     right: 10px;
     opacity: 1;
   }
+}
+
+.mail-wrapper {
+  position: absolute;
+  top: 75px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.325);
+  border: 1px solid #129990;
+  color: white;
+  padding: 5px 8px 5px 20px;
+
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: right 0.5s ease, opacity 0.5s ease;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.visible {
+    right: 0px;
+    opacity: 1;
+  }
+
+  .mail-text {
+    margin-right: 7px;
+  }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    svg {
+      stroke: white;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.clicked svg {
+      stroke: #3DCFB6;
+    }
+  }
+
 }

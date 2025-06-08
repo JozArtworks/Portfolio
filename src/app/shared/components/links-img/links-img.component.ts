@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -12,19 +12,18 @@ export class LinksImgComponent {
 
   @Output() mailClicked = new EventEmitter<void>();
 
+  @Input() isEmailVisible = false;
+
+  hoveredIconName = '';
+  isMobileView = false;
+  mobileMenuOpen = false;
 
   linksIcons = [
-    { name: 'GitHub', icon: 'assets/icons/white/github_white.png', link: 'https://github.com/JozArtworks', interactive: false },
+    { name: 'GitHub', icon: 'assets/icons/white/github_white.png', link: 'https://github.com/JozArtworks' },
     { name: 'Mail', icon: 'assets/icons/white/mail_white.png'},
-    { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png', link: 'https://www.linkedin.com/in/jonathan-michutta-527722210/', interactive: false },
+    { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png', link: 'https://www.linkedin.com/in/jonathan-michutta-527722210/'},
   ];
 
-  activeIconName = '';
-  hoveredIconName = '';
-
-  setActiveIcon(name: string) {
-    this.activeIconName = this.activeIconName === name ? '' : name;
-  }
 
   setHoveredIcon(name: string) {
     this.hoveredIconName = name;
@@ -34,16 +33,17 @@ export class LinksImgComponent {
     this.hoveredIconName = '';
   }
 
-  isMobileView = false;
-  mobileMenuOpen = false;
 
-  getIconSrc(icon: { name: string; link?: string; interactive?: boolean }) {
+
+  getIconSrc(icon: { name: string }) {
     const base = icon.name.toLowerCase();
     const isHovered = this.hoveredIconName === icon.name;
-    const isActive = icon.interactive && this.activeIconName === icon.name;
+    const isActiveMail = icon.name === 'Mail' && this.isEmailVisible;
 
-    const colorFolder = (isHovered || isActive) ? 'green' : 'white';
-    return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
+
+    const folder = (isHovered || isActiveMail) ? 'green' : 'white';
+
+    return `assets/icons/${folder}/${base}_${folder}.png`;
   }
 
   toggleMobileMenu() {
@@ -60,12 +60,6 @@ export class LinksImgComponent {
     if (iconName === 'Mail') {
       this.mailClicked.emit();
     }
-    this.setActiveIcon(iconName);
-    this.ifMobileOpenToggle();
-  }
-
-  handleMailClick() {
-    this.mailClicked.emit();
   }
 
 }

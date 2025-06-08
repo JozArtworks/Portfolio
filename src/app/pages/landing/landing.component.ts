@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 
 @Component({
@@ -32,11 +32,40 @@ export class LandingComponent {
   ];
 
   showEmail = false;
+  emailCopied = false;
+
 
   toggleEmail() {
-    this.showEmail = true;
-    setTimeout(() => this.showEmail = false, 4000);
+    this.showEmail = !this.showEmail;
   }
 
+  copyEmail() {
+    const email = 'front-dev@jonathan-michutta.de';
+    navigator.clipboard.writeText(email).then(() => {
+      this.emailCopied = true;
+
+      this.showEmail = false;
+
+
+    });
+  }
+
+  @Input() isMobileView = false;
+
+  private boundCheckViewport = this.checkViewport.bind(this);
+
+  ngOnInit() {
+    this.checkViewport();
+    window.addEventListener('resize', this.boundCheckViewport);
+  }
+
+  checkViewport() {
+    this.isMobileView = window.innerWidth <= 870;
+
+    if (!this.isMobileView && this.showEmail) {
+      this.showEmail = false;
+    }
+
+  }
 
 }
