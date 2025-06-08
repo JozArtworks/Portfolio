@@ -4,6 +4,8 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { HeaderComponent } from './shared/header/header.component';
 import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-popout.component';
+import { HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,16 @@ export class AppComponent {
       this.currentRoute = event.urlAfterRedirects;
     });
   }
+
+  @HostListener('document:click', ['$event'])
+onDocumentClick(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+
+  if (this.mobileMenuOpen && !target.closest('app-mobile-popout') && !target.closest('.burger-menu')) {
+    this.mobileMenuOpen = false;
+  }
+}
+
 
   isMobileView = true;
   mobileMenuOpen = false;

@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostListener,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 
 @Component({
@@ -35,8 +41,29 @@ export class LandingComponent {
   emailCopied = false;
   showCopyDialog = false;
 
+  @ViewChild('mailWrapper') mailWrapperRef?: ElementRef;
+
+  private justToggledViaIcon = false;
+
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: MouseEvent) {
+    const clickedInsideMail = this.mailWrapperRef?.nativeElement.contains(event.target);
+
+    if (this.justToggledViaIcon) {
+      this.justToggledViaIcon = false;
+      return;
+    }
+
+    if (this.showEmail && !clickedInsideMail) {
+      this.showEmail = false;
+    }
+  }
+
+
 
   toggleEmail() {
+    this.justToggledViaIcon = true;
     this.showEmail = !this.showEmail;
   }
 
@@ -73,5 +100,6 @@ export class LandingComponent {
     }
 
   }
+
 
 }

@@ -11,6 +11,8 @@ import {
   EventEmitter,
   computed,
   signal,
+  ViewChild,
+  HostListener,
 } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
@@ -39,11 +41,27 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // === View + Inputs/Outputs ===
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
+  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
   @Input() isMobileView = false;
   @Input() mobileMenuOpen = false;
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
+
+
+@HostListener('document:click', ['$event'])
+handleClickOutside(event: MouseEvent) {
+  const mailWrapperEl = this.mailWrapperRef?.nativeElement;
+  const target = event.target as HTMLElement;
+
+  const clickedMailIcon = target.closest('.tool-icon[alt="Mail"]');
+  const clickedInsideWrapper = mailWrapperEl?.contains(target);
+
+  if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
+    this.showEmail = false;
+  }
+}
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['mobileMenuOpen']) {
@@ -210,7 +228,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.forceCloseMenu.emit();
     }
 
-    this.showEmail = !this.showEmail;
+    setTimeout(() => {
+      this.showEmail = !this.showEmail;
+    }, 0);
   }
 
   emailCopied = false;
@@ -240,5 +260,11 @@ copyEmail() {
       this.showEmail = false;
     }
   }
+
+
+
+
+
+
 }
 
