@@ -228,6 +228,10 @@ handleClickOutside(event: MouseEvent) {
       this.forceCloseMenu.emit();
     }
 
+    if (this.showCopyDialog) {
+      return;
+    }
+
     setTimeout(() => {
       this.showEmail = !this.showEmail;
     }, 0);

@@ -63,6 +63,9 @@ export class LandingComponent {
 
 
   toggleEmail() {
+    if (this.showCopyDialog) {
+      return;
+    }
     this.justToggledViaIcon = true;
     this.showEmail = !this.showEmail;
   }
