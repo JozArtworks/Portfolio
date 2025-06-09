@@ -5,6 +5,7 @@
   color: #fff;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 50px;
+  margin-bottom: 5px;
 
   .footer-content {
     display: flex;
@@ -29,8 +30,9 @@
       font-weight: 300;
 
       &:hover {
-        text-decoration: underline;
+        color: #3DCFB6;
       }
+
     }
   }
 
@@ -92,6 +94,223 @@
     mask-composite: exclude;
     z-index: -1;
     pointer-events: none;
+  }
+
+}
+
+.mail-wrapper {
+  position: absolute;
+  bottom: 105px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.325);
+  border: 1px solid #129990;
+  color: white;
+  padding: 5px 8px 5px 20px;
+  pointer-events: none;
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: right 0.5s ease, opacity 0.5s ease;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &.visible {
+    pointer-events: auto;
+    right: 30px;
+    opacity: 1;
+  }
+
+  .mail-text {
+
+    all: unset;
+    all: unset;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 7px;
+
+    &:hover {
+      cursor: pointer;
+      color: #3DCFB6;
+    }
+
+  }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    svg {
+      stroke: white;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.clicked svg {
+      stroke: #3DCFB6;
+    }
+  }
+
+}
+
+.dialog-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 110px;
+  right: 20px;
+  background: #3dcfb6;
+  color: #096B68;
+  padding: 8px 12px;
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  transition: right 0.5s ease, opacity 0.5s ease;
+  z-index: 1;
+  padding-left: 17px;
+
+  &.visible {
+    right: 35px;
+    opacity: 1;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (max-width: 870px) {
+
+  .dNone {
+    display: none;
+  }
+
+  .footer-links {
+    margin-right: 10px;
+  }
+
+}
+
+@media screen and (max-width: 720px) {
+
+  .footer {
+
+    .footer-links,
+    .footer-icons {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+    }
+
+  }
+}
+
+@media screen and (max-width: 615px) {
+
+  .footer {
+    padding: 10px 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        width: 50px;
+        height: auto;
+      }
+    }
+
+    .footer-links,
+    .footer-icons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      gap: 15px;
+      margin: 0;
+
+    }
+  }
+
+}
+
+@media screen and (max-width: 380px) {
+
+  .footer {
+    padding: 10px 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+
+      span {
+        font-size: 10px;
+      }
+
+      img {
+        width: 50px;
+        height: auto;
+      }
+    }
+
+    .footer-links,
+    .footer-icons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      gap: 15px;
+      margin: 0;
+
+      a {
+        font-size: 12px;
+      }
+
+    }
   }
 
 }
