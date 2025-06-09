@@ -1,7 +1,6 @@
 .footer {
   padding: 10px 13px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 14px;
   color: #fff;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 50px;
@@ -13,26 +12,8 @@
     align-items: center;
     gap: 16px;
 
-    span {
-      font-size: 12px;
-      margin-left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      margin-left: 0;
-
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
 
 
-    img {
-      width: 50px;
-      height: auto;
-    }
   }
 
   .footer-links,
@@ -44,6 +25,7 @@
       color: white;
       text-decoration: none;
       font-weight: 200;
+      font-size: 12px;
 
       &:hover {
         color: #3DCFB6;
@@ -223,6 +205,21 @@
   align-items: center;
   width: 100%;
   gap: 20px;
+
+  span {
+    font-size: 10px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 5px;
+
+    img {
+      width: 40px;
+      height: auto;
+      margin-right: 10px;
+    }
+  }
 }
 
 @media screen and (max-width: 870px) {
@@ -242,7 +239,7 @@
 
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 650px) {
 
 
 
@@ -251,12 +248,22 @@
     flex-direction: column-reverse;
     justify-content: space-evenly;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
+
+    span {
+      font-size: 10px;
+      margin-left: 0;
+
+      img {
+        width: 35px;
+        height: auto;
+      }
+    }
   }
 
   .footer {
     padding: 5px 18px;
-    padding-top: 10px;
+    padding-top: 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 14px;
     color: #fff;
@@ -269,20 +276,8 @@
       align-items: center;
       gap: 5px;
 
-      span {
-        font-size: 12px;
-        margin-left: 0;
 
-        img {
-          width: 35px;
-          height: auto;
-        }
-      }
 
-      img {
-        width: 50px;
-        height: auto;
-      }
     }
 
     .footer-links,
@@ -338,9 +333,13 @@
 
 @media screen and (max-width: 400px) {
 
+  .info-box {
+    gap: 1px;
+  }
+
   .footer {
     padding: 5px 15px;
-    padding-top: 10px;
+    padding-top: 11px;
 
     .footer-content {
 
@@ -351,6 +350,7 @@
         img {
           width: 25px;
           height: auto;
+          margin-right: 3px;
         }
       }
 
