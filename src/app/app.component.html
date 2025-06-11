@@ -1,12 +1,15 @@
 <section [class]="['background-pic', getBackgroundClass()]">
   <div class="background-gradient">
     <div class="glass-background-style">
-      <app-header
-      [mobileMenuOpen]="mobileMenuOpen"
-      [isMobileView]="isMobileView"
-      (toggleMenu)="toggleMobileMenu()"
-      (forceCloseMenu)="mobileMenuOpen = false">
-    </app-header>
+      @if (shouldShowHeader()) {
+        <app-header
+          [mobileMenuOpen]="mobileMenuOpen"
+          [isMobileView]="isMobileView"
+          (toggleMenu)="toggleMobileMenu()"
+          (forceCloseMenu)="mobileMenuOpen = false">
+        </app-header>
+      }
+
 
 
       <main class="main-content">
@@ -15,13 +18,14 @@
     </div>
   </div>
 
-  @if (isMobileView && mobileMenuOpen) {
-  <app-mobile-popout
-  [mobileMenuOpen]="mobileMenuOpen"
-  [translate]="translations[language]"
-  [language]="language"
-  (toggleMenu)="toggleMobileMenu()"
-  (setLanguage)="setLanguage($event)">
-  </app-mobile-popout>
+  @if (isMobileView && mobileMenuOpen && shouldShowHeader()) {
+    <app-mobile-popout
+      [mobileMenuOpen]="mobileMenuOpen"
+      [translate]="translations[language]"
+      [language]="language"
+      (toggleMenu)="toggleMobileMenu()"
+      (setLanguage)="setLanguage($event)">
+    </app-mobile-popout>
   }
+
 </section>

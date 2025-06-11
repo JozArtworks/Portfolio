@@ -98,4 +98,8 @@ onDocumentClick(event: MouseEvent) {
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
   }
+
+  shouldShowHeader(): boolean {
+    return !['/legal/imprint', '/legal/privacy-policy'].includes(this.currentRoute);
+  }
 }

@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class ImprintComponent {
 
+  constructor() {
+    console.log('📢 ImprintComponent geladen');
+  }
+
 }
