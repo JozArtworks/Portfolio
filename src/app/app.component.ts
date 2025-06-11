@@ -87,6 +87,9 @@ onDocumentClick(event: MouseEvent) {
   }
 
   getBackgroundClass() {
+    if (this.currentRoute.includes('/legal/imprint') || this.currentRoute.includes('/legal/privacy-policy')) {
+      return 'bg-imprint-policy';
+    }
     if (this.currentRoute.includes('/about')) return 'bg-about';
     if (this.currentRoute.includes('/skills')) return 'bg-skills';
     if (this.currentRoute.includes('/projects')) return 'bg-projects';
@@ -102,4 +105,9 @@ onDocumentClick(event: MouseEvent) {
   shouldShowHeader(): boolean {
     return !['/legal/imprint', '/legal/privacy-policy'].includes(this.currentRoute);
   }
+
+
+
+
+
 }
