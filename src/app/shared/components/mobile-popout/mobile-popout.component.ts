@@ -11,13 +11,27 @@ import { LangSwitchComponent } from '../lang-switch/lang-switch.component';
   styleUrl: './mobile-popout.component.scss',
 })
 export class MobilePopoutComponent {
+
   @Input() mobileMenuOpen = false;
   @Input() translate!: any;
   @Input() language: 'de' | 'en' = 'de';
+  @Input() animationState: 'open' | 'closing' | '' = '';
+
+
 
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() setLanguage = new EventEmitter<'de' | 'en'>();
 
+
+  ngOnChanges() {
+    if (!this.mobileMenuOpen) {
+      this.animationState = 'closing';
+
+      setTimeout(() => {
+        this.animationState = 'open';
+      }, 250);
+    }
+  }
 
   toggleMobileMenu() {
     this.toggleMenu.emit();

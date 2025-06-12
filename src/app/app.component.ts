@@ -24,6 +24,8 @@ export class AppComponent {
     });
   }
 
+
+
   @HostListener('document:click', ['$event'])
 onDocumentClick(event: MouseEvent) {
   const target = event.target as HTMLElement;
@@ -36,6 +38,7 @@ onDocumentClick(event: MouseEvent) {
 
   isMobileView = true;
   mobileMenuOpen = false;
+  animationState: 'open' | 'closing' | '' = '';
 
   translations = {
     de: {
@@ -99,7 +102,17 @@ onDocumentClick(event: MouseEvent) {
   }
 
   toggleMobileMenu() {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.mobileMenuOpen) {
+      this.animationState = 'closing';
+
+      setTimeout(() => {
+        this.mobileMenuOpen = false;
+        this.animationState = '';
+      }, 100);
+    } else {
+      this.mobileMenuOpen = true;
+      this.animationState = 'open';
+    }
   }
 
   shouldShowHeader(): boolean {

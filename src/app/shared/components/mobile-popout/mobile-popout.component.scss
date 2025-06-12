@@ -2,7 +2,7 @@
   position: fixed;
   top: 60px;
   right: 16px;
-  z-index: 10000; // höher als ALLES andere
+  z-index: 10000;
   pointer-events: auto;
 }
 
@@ -26,15 +26,19 @@ a.contact-btn-mobile {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   z-index: 9999;
 
-  opacity: 0;
-  transform: translateY(-5px);
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+
+
+
+
 
   &.open {
-    opacity: 1;
-    transform: translateY(5px);
+    animation: slideDownBounce 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     pointer-events: auto;
+  }
+
+  &.closing {
+    animation: slideUpFast 0.4s ease forwards;
+    pointer-events: none;
   }
 
   .mobile-popout-list {
@@ -53,6 +57,11 @@ a.contact-btn-mobile {
       border-radius: 8px;
       display: block;
       text-align: center;
+
+      &:hover {
+        color: #3DCFB6;
+        background: rgba(255, 255, 255, 0.474);
+      }
 
       &.active {
         color: #3DCFB6;
@@ -89,10 +98,34 @@ a.contact-btn-mobile {
   margin-top: 10px;
 }
 
+@keyframes slideDownBounce {
+  0% {
+    transform: translateY(-100%);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFast {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+
+
+
 @media screen and (max-width: 870px) {
 
   .mobile-popout {
-    top: 92px;
+    top: 95px;
     right: 49px;
     width: 163px;
   }
@@ -101,7 +134,7 @@ a.contact-btn-mobile {
 @media screen and (max-width: 800px) {
 
   .mobile-popout {
-    top: 77px;
+    top: 80px;
     right: 34px;
   }
 }
@@ -109,8 +142,9 @@ a.contact-btn-mobile {
 @media screen and (max-width: 390px) {
 
   .mobile-popout {
-    top: 70px;
+    top: 73px;
     right: 34px;
     width: 141px;
   }
 }
+

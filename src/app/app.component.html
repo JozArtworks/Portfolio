@@ -19,11 +19,12 @@
     </div>
   </div>
 
-  @if (isMobileView && mobileMenuOpen && shouldShowHeader()) {
+  @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
     <app-mobile-popout
       [mobileMenuOpen]="mobileMenuOpen"
       [translate]="translations[language]"
       [language]="language"
+      [animationState]="animationState"
       (toggleMenu)="toggleMobileMenu()"
       (setLanguage)="setLanguage($event)">
     </app-mobile-popout>
