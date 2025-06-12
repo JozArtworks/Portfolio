@@ -1,3 +1,30 @@
+@keyframes slideDownBounceMail {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpMail {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+
+
 .navbar {
   margin-top: 10px;
   background: rgba(0, 0, 0, 0.3);
@@ -310,9 +337,15 @@ a.contact-btn {
   justify-content: center;
   align-items: center;
 
+
   &.visible {
-    right: 0px;
-    opacity: 1;
+    animation: slideDownBounceMail 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    pointer-events: auto;
+  }
+
+  &.hiding {
+    animation: slideUpMail 0.3s ease forwards;
+    pointer-events: none;
   }
 
   .mail-text {

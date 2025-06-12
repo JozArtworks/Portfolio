@@ -39,11 +39,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  // === View + Inputs/Outputs ===
+
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
+
   @Input() isMobileView = false;
   @Input() mobileMenuOpen = false;
+
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
@@ -72,15 +74,19 @@ handleClickOutside(event: MouseEvent) {
     }
   }
 
-  // === Reactive state ===
+
   currentUrl = signal('');
   activePos = signal({ left: 0, width: 0 });
   language = signal<'de' | 'en'>('de');
   showIndicator = computed(() => !this.currentUrl().includes('/contact'));
   showCopyDialog = false;
+  emailCopied = false;
+  activeIconName = '';
+  hoveredIconName = '';
+  showEmail = false;
+  hidingEmail = false;
 
 
-  // === Translations ===
   readonly translations = {
     de: {
       home: 'Home',
@@ -109,7 +115,7 @@ handleClickOutside(event: MouseEvent) {
     setTimeout(() => this.updateIndicator(), 20);
   }
 
-  // === Navigation links ===
+
   navItems = [
     { path: '/home', label: () => this.translate.home },
     { path: '/about', label: () => this.translate.about },
@@ -118,7 +124,7 @@ handleClickOutside(event: MouseEvent) {
     { path: '/feedbacks', label: () => this.translate.feedbacks },
   ];
 
-  // === Social Icons ===
+
   linksIcons = [
     {
       name: 'GitHub',
@@ -139,7 +145,7 @@ handleClickOutside(event: MouseEvent) {
     },
   ];
 
-  // === Mobile toggle ===
+
   emitToggleMenu() {
     this.toggleMenu.emit();
   }
@@ -158,7 +164,7 @@ handleClickOutside(event: MouseEvent) {
     }
   }
 
-  // === Viewport handling ===
+
   private boundCheckViewport = this.checkViewport.bind(this);
 
   ngOnInit() {
@@ -179,7 +185,7 @@ handleClickOutside(event: MouseEvent) {
 
   }
 
-  // === Nav indicator ===
+
   ngAfterViewInit() {
     this.updateIndicator();
   }
@@ -197,9 +203,8 @@ handleClickOutside(event: MouseEvent) {
     }
   }
 
-  // === Hover states for icons ===
-  activeIconName = '';
-  hoveredIconName = '';
+
+
 
   setActiveIcon(name: string) {
     this.activeIconName = this.activeIconName === name ? '' : name;
@@ -221,23 +226,28 @@ handleClickOutside(event: MouseEvent) {
     return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
   }
 
-  showEmail = false;
+
 
   toggleEmail() {
     if (this.isMobileView && this.mobileMenuOpen) {
       this.forceCloseMenu.emit();
     }
-
     if (this.showCopyDialog) {
       return;
     }
-
-    setTimeout(() => {
-      this.showEmail = !this.showEmail;
-    }, 0);
+    if (this.showEmail) {
+      this.hidingEmail = true;
+      this.showEmail = false;
+      setTimeout(() => {
+        this.hidingEmail = false;
+      }, 300);
+    } else {
+      this.showEmail = true;
+    }
   }
 
-  emailCopied = false;
+
+
 
 copyEmail() {
   const email = 'front-dev@jonathan-michutta.de';
@@ -264,7 +274,6 @@ copyEmail() {
       this.showEmail = false;
     }
   }
-
 
 
 
