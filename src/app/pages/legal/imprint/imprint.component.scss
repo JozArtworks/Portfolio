@@ -1,0 +1,93 @@
+.imprint-box {
+  margin: 20px;
+  overflow-y: auto;
+
+  padding-right: 15px;
+
+  p {
+    color: white;
+  }
+}
+
+.imprint-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.imprint-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.imprint-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+}
+
+.imprint-box-header {
+  padding: 20px;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  color: white;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+.header-title {
+  display: flex;
+  margin-left: 15px;
+}
+
+.imprint-box-background {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  height: calc(100dvh - 225px);
+  max-height: calc(100dvh - 60px);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 80px clamp(10px, 5vw, 200px);
+}
+
+
+
+@media screen and (max-width: 1024px) {
+  .imprint-box-background {
+    height: auto;
+    margin: 0;
+    margin-top: 10px;
+    border-radius: 24px;
+  }
+}
+
+
+
+@media screen and (max-width: 430px) {
+.header-title {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 18px;
+    color: white;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: white;
+  }
+}
+
+}
