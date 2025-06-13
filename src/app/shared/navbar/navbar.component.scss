@@ -303,6 +303,7 @@ a.contact-btn {
   transition: right 0.5s ease, opacity 0.5s ease;
   z-index: 1;
   padding-left: 17px;
+  pointer-events: none;
 
   &.visible {
     right: 10px;
@@ -324,7 +325,7 @@ a.contact-btn {
   border: 1px solid #129990;
   color: white;
   padding: 5px 8px 5px 20px;
-
+pointer-events: none;
   border-radius: 32px;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
@@ -350,6 +351,11 @@ a.contact-btn {
 
   .mail-text {
     margin-right: 7px;
+
+    &:hover {
+      cursor: pointer;
+      color: #3DCFB6;
+    }
   }
 
   .copy-btn {
@@ -369,6 +375,7 @@ a.contact-btn {
 
     &:hover {
       background: rgba(255, 255, 255, 0.1);
+      pointer-events: all;
     }
 
     &.clicked svg {

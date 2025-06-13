@@ -28,66 +28,10 @@ import { SimpleChanges, OnChanges } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(event => {
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        this.currentUrl.set(url);
-        setTimeout(() => this.updateIndicator(), 10);
-      });
-  }
 
+export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit, OnChanges {
 
-  @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
-  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
-
-  @Input() isMobileView = false;
-  @Input() mobileMenuOpen = false;
-
-  @Output() toggleMenu = new EventEmitter<void>();
-  @Output() mailClicked = new EventEmitter<void>();
-  @Output() forceCloseMenu = new EventEmitter<void>();
-
-
-@HostListener('document:click', ['$event'])
-handleClickOutside(event: MouseEvent) {
-  const mailWrapperEl = this.mailWrapperRef?.nativeElement;
-  const target = event.target as HTMLElement;
-
-  const clickedMailIcon = target.closest('.tool-icon[alt="Mail"]');
-  const clickedInsideWrapper = mailWrapperEl?.contains(target);
-
-  if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
-    this.showEmail = false;
-  }
-}
-
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['mobileMenuOpen']) {
-      const nowOpen = changes['mobileMenuOpen'].currentValue;
-      if (nowOpen && this.showEmail) {
-        this.showEmail = false;
-      }
-    }
-  }
-
-
-  currentUrl = signal('');
-  activePos = signal({ left: 0, width: 0 });
-  language = signal<'de' | 'en'>('de');
-  showIndicator = computed(() => !this.currentUrl().includes('/contact'));
-  showCopyDialog = false;
-  emailCopied = false;
-  activeIconName = '';
-  hoveredIconName = '';
-  showEmail = false;
-  hidingEmail = false;
-
-
-  readonly translations = {
+    readonly translations = {
     de: {
       home: 'Home',
       about: 'Über mich',
@@ -106,17 +50,7 @@ handleClickOutside(event: MouseEvent) {
     },
   };
 
-  get translate() {
-    return this.translations[this.language()];
-  }
-
-  setLanguage(lang: 'de' | 'en') {
-    this.language.set(lang);
-    setTimeout(() => this.updateIndicator(), 20);
-  }
-
-
-  navItems = [
+    navItems = [
     { path: '/home', label: () => this.translate.home },
     { path: '/about', label: () => this.translate.about },
     { path: '/skills', label: () => this.translate.skills },
@@ -145,6 +79,92 @@ handleClickOutside(event: MouseEvent) {
     },
   ];
 
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        const url = (event as NavigationEnd).urlAfterRedirects;
+        this.currentUrl.set(url);
+        setTimeout(() => this.updateIndicator(), 10);
+      });
+  }
+
+    private boundCheckViewport = this.checkViewport.bind(this);
+
+  @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
+  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
+
+  @Input() isMobileView = false;
+  @Input() mobileMenuOpen = false;
+
+  @Output() toggleMenu = new EventEmitter<void>();
+  @Output() mailClicked = new EventEmitter<void>();
+  @Output() forceCloseMenu = new EventEmitter<void>();
+
+  currentUrl = signal('');
+  activePos = signal({ left: 0, width: 0 });
+  language = signal<'de' | 'en'>('de');
+  showIndicator = computed(() => !this.currentUrl().includes('/contact'));
+  showCopyDialog = false;
+  emailCopied = false;
+  activeIconName = '';
+  hoveredIconName = '';
+  showEmail = false;
+  hidingEmail = false;
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    const mailWrapperEl = this.mailWrapperRef?.nativeElement;
+    const target = event.target as HTMLElement;
+
+    const clickedMailIcon = target.closest('.tool-icon[alt="Mail"]');
+    const clickedInsideWrapper = mailWrapperEl?.contains(target);
+
+    if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
+      this.showEmail = false;
+    }
+  }
+
+  ngOnInit() {
+    this.checkViewport();
+    window.addEventListener('resize', this.boundCheckViewport);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
+  }
+
+    ngAfterViewInit() {
+    this.updateIndicator();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['mobileMenuOpen']) {
+      const nowOpen = changes['mobileMenuOpen'].currentValue;
+      if (nowOpen && this.showEmail) {
+        this.showEmail = false;
+      }
+    }
+  }
+
+
+
+
+
+
+
+  get translate() {
+    return this.translations[this.language()];
+  }
+
+  setLanguage(lang: 'de' | 'en') {
+    this.language.set(lang);
+    setTimeout(() => this.updateIndicator(), 20);
+  }
+
+
+
+
 
   emitToggleMenu() {
     this.toggleMenu.emit();
@@ -165,16 +185,9 @@ handleClickOutside(event: MouseEvent) {
   }
 
 
-  private boundCheckViewport = this.checkViewport.bind(this);
 
-  ngOnInit() {
-    this.checkViewport();
-    window.addEventListener('resize', this.boundCheckViewport);
-  }
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.boundCheckViewport);
-  }
+
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
@@ -186,9 +199,7 @@ handleClickOutside(event: MouseEvent) {
   }
 
 
-  ngAfterViewInit() {
-    this.updateIndicator();
-  }
+
 
   updateIndicator() {
     const active = this.navLinks.find(link =>
@@ -249,19 +260,19 @@ handleClickOutside(event: MouseEvent) {
 
 
 
-copyEmail() {
-  const email = 'front-dev@jonathan-michutta.de';
-  navigator.clipboard.writeText(email).then(() => {
-    this.emailCopied = true;
-    this.showEmail = false;
-    this.showCopyDialog = true;
+  copyEmail() {
+    const email = 'front-dev@jonathan-michutta.de';
+    navigator.clipboard.writeText(email).then(() => {
+      this.emailCopied = true;
+      this.showEmail = false;
+      this.showCopyDialog = true;
 
-    setTimeout(() => {
-      this.showCopyDialog = false;
-      this.emailCopied = false;
-    }, 1000);
-  });
-}
+      setTimeout(() => {
+        this.showCopyDialog = false;
+        this.emailCopied = false;
+      }, 1000);
+    });
+  }
 
   handleIconClick(name: string) {
     this.setActiveIcon(name);

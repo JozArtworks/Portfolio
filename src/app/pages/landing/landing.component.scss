@@ -158,8 +158,6 @@
   }
 
   .mail-text {
-
-    all: unset;
     all: unset;
     display: inline-block;
     color: white;
@@ -220,6 +218,7 @@
   transition: right 0.5s ease, opacity 0.5s ease;
   z-index: 1;
   padding-left: 17px;
+  pointer-events: none;
 
   &.visible {
     right: 35px;
