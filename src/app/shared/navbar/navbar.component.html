@@ -48,7 +48,10 @@
 </div>
 
 
-<div #mailWrapper class="mail-wrapper" [class.visible]="showEmail" [class.hiding]="hidingEmail">
+<div #mailWrapper class="mail-wrapper" [class]="{
+  'visible': showEmail && !hidingEmail,
+  'hiding': hidingEmail
+}">
 
 
   <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>

@@ -112,18 +112,25 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
   showEmail = false;
   hidingEmail = false;
 
-  @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent) {
-    const mailWrapperEl = this.mailWrapperRef?.nativeElement;
-    const target = event.target as HTMLElement;
+  readonly EMAIL_ANIMATION_DURATION = 250;
 
-    const clickedMailIcon = target.closest('.tool-icon[alt="Mail"]');
-    const clickedInsideWrapper = mailWrapperEl?.contains(target);
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickedInsideWrapper = target.closest('.mail-wrapper');
+    const clickedMailIcon = target.closest('.box-link-nav-mobile img');
 
     if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
-      this.showEmail = false;
+      this.hidingEmail = true;
+
+      setTimeout(() => {
+        this.showEmail = false;
+        this.hidingEmail = false;
+      }, this.EMAIL_ANIMATION_DURATION); // 250 ms
     }
   }
+
 
   ngOnInit() {
     this.checkViewport();
@@ -240,22 +247,18 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
 
 
   toggleEmail() {
-    if (this.isMobileView && this.mobileMenuOpen) {
-      this.forceCloseMenu.emit();
-    }
-    if (this.showCopyDialog) {
-      return;
-    }
     if (this.showEmail) {
       this.hidingEmail = true;
-      this.showEmail = false;
       setTimeout(() => {
+        this.showEmail = false;
         this.hidingEmail = false;
-      }, 300);
+      }, this.EMAIL_ANIMATION_DURATION);
     } else {
       this.showEmail = true;
     }
   }
+
+
 
 
 

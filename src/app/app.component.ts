@@ -25,15 +25,22 @@ export class AppComponent {
   }
 
 
-
   @HostListener('document:click', ['$event'])
-onDocumentClick(event: MouseEvent) {
-  const target = event.target as HTMLElement;
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
 
-  if (this.mobileMenuOpen && !target.closest('app-mobile-popout') && !target.closest('.burger-menu')) {
-    this.mobileMenuOpen = false;
+    const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
+
+    if (this.mobileMenuOpen && clickedOutsideMenu) {
+      this.animationState = 'closing';
+
+      setTimeout(() => {
+        this.mobileMenuOpen = false;
+        this.animationState = '';
+      }, 100);
+    }
   }
-}
+
 
 
   isMobileView = true;
