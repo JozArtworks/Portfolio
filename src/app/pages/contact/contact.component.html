@@ -5,7 +5,22 @@
       <h2 class="contact-headline">Kontakt</h2>
 
       <div class="contact-body">
-        <div class="box-left"></div>
+        <div class="box-left">
+          <h3 class="intro-headline">Lass uns gemeinsam etwas aufbauen</h3>
+
+          <h4 class="sub-headline">Ein Problem zu lösen?</h4>
+
+          <p>
+            Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
+            Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.
+          </p>
+
+          <p>
+            Du suchst einen Frontend Developer?<br />
+            <a class="highlight-link" href="#contact-form">Melde dich!</a>
+          </p>
+
+        </div>
         <div class="box-right">
 
           @if (success) {
@@ -29,6 +44,15 @@
             autocomplete="off"
             class="honeypot"
             [(ngModel)]="formData.honeypot"
+          />
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Dein Name"
+            required
+            [(ngModel)]="formData.name"
+            class="form-field"
           />
 
             <input

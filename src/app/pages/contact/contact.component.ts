@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ContactComponent {
   formData = {
+    name: '',
     email: '',
     message: '',
     privacyAccepted: false,
@@ -26,6 +27,7 @@ export class ContactComponent {
     this.isSending = true;
 
     const formData = new FormData();
+    formData.append('name', this.formData.name);
     formData.append('email', this.formData.email);
     formData.append('message', this.formData.message);
     formData.append('honeypot', this.formData.honeypot);
@@ -44,6 +46,7 @@ export class ContactComponent {
 
 
           this.formData = {
+            name: '',
             email: '',
             message: '',
             privacyAccepted: false,
