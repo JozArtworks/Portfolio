@@ -182,6 +182,7 @@
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
+    pointer-events: none;
 
     svg {
       stroke: white;
@@ -214,15 +215,17 @@
   font-family: 'Inter', sans-serif;
   font-weight: 800;
   white-space: nowrap;
-  opacity: 0;
   transition: right 0.5s ease, opacity 0.5s ease;
   z-index: 1;
   padding-left: 17px;
   pointer-events: none;
 
+  span {pointer-events: none;}
+
   &.visible {
     right: 35px;
     opacity: 1;
+    pointer-events: none;
   }
 
   .check-icon {
