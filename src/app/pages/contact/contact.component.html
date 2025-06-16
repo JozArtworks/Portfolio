@@ -6,7 +6,67 @@
 
       <div class="contact-body">
         <div class="box-left"></div>
-        <div class="box-right"></div>
+        <div class="box-right">
+
+          @if (success) {
+            <div class="success-toast">
+              Deine Nachricht wurde erfolgreich gesendet!
+            </div>
+          }
+
+          @if (error) {
+            <div class="error-toast">
+              Leider konnte deine Nachricht nicht gesendet werden. Bitte versuch es später erneut.
+            </div>
+          }
+
+          <form class="contact-form" (ngSubmit)="submitForm()" #form="ngForm" novalidate>
+
+            <input
+            type="text"
+            name="honeypot"
+            tabindex="-1"
+            autocomplete="off"
+            class="honeypot"
+            [(ngModel)]="formData.honeypot"
+          />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Deine Mail"
+              required
+              [(ngModel)]="formData.email"
+              class="form-field"
+            />
+
+            <textarea
+              name="message"
+              placeholder="Deine Nachricht..."
+              required
+              [(ngModel)]="formData.message"
+              class="form-field"
+              rows="5"
+            ></textarea>
+
+            <label class="privacy-check">
+              <input
+                type="checkbox"
+                name="privacy"
+                required
+                [(ngModel)]="formData.privacyAccepted"
+              />
+              Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen
+            </label>
+
+            <button [disabled]="!form.valid || !formData.privacyAccepted || isSending">
+              {{ isSending ? 'Wird gesendet…' : 'Senden ➤' }}
+            </button>
+          </form>
+
+
+
+        </div>
       </div>
     </div>
   </div>
