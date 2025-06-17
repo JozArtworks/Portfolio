@@ -1,3 +1,7 @@
+@import "../../../assets/styles/mixins.scss";
+@import "../../../assets/styles/variables.scss";
+@import "../../../assets/styles/font-types.scss";
+
 .contact-page {
   display: flex;
   flex-direction: column;
@@ -28,32 +32,29 @@
     .box-right {
       width: 100%;
       height: auto;
-      border-radius: 16px;
+      border-radius: 30px;
     }
 
     .box-left {
       background-color: #096B68;
-      padding: 20px;
+      padding: 10px;
       color: #c0f7f0;
 
+
       .intro-headline {
-        font-size: 28px;
         font-weight: 700;
         line-height: 1.2;
         margin-bottom: 16px;
       }
 
       .sub-headline {
-        font-size: 20px;
         font-weight: 600;
         color: #3DCFB6;
         margin-bottom: 12px;
       }
 
       p {
-        font-size: 16px;
         font-weight: 300;
-        margin-bottom: 16px;
       }
 
       .highlight-link {
@@ -74,13 +75,13 @@
   }
 
   .footer-section {
-    margin-top: 32px;
+    margin-top: 15px;
   }
 }
 
 .contact-window {
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border-radius: 40px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
@@ -92,6 +93,7 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  padding: 10px;
 
   .form-field {
     background: rgba(255, 255, 255, 0.05);
@@ -112,16 +114,56 @@
   }
 
   .privacy-check {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 
-    a {
-      color: #3DCFB6;
-      text-decoration: underline;
+    input[type='checkbox'] {
+      opacity: 0;
+      position: absolute;
+      width: 0;
+      height: 0;
     }
+
+    .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #3DCFB6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      aspect-ratio: 1;
+
+      &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: #3DCFB6;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+    }
+
+    input:checked + .custom-checkbox::after {
+      opacity: 1;
+    }
+  }
+
+
+  p {
+    font-size: 12px;
+    color: white;
+    margin: 0;
+  }
+
+  a {
+    color: #3DCFB6;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .submit-btn {
@@ -160,10 +202,24 @@
 }
 
 @keyframes fadeInOut {
-  0%   { opacity: 0; transform: translateY(-10px); }
-  10%  { opacity: 1; transform: translateY(0); }
-  90%  { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-10px); }
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 .honeypot {
@@ -183,10 +239,61 @@
   text-align: center;
 }
 
+.btn-send {
+  background: transparent;
+  border: 2px solid #3DCFB6;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 32px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  max-width: 180px;
+
+  img {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+    filter: brightness(0) invert(1); // weißes Icon, falls nötig
+  }
+
+  &:hover {
+    background: rgba(61, 207, 182, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+
 @media screen and (max-width: 768px) {
+
+  .box-left {
+    margin-top: 15px;
+  }
+
+  .contact-window {
+
+    padding: 10px;
+
+  }
 
   .contact-form {
     gap: 5px;
+
+    .form-field {
+      padding: 8px 15px;
+    }
+
   }
 
   h2 {
@@ -194,21 +301,25 @@
   }
 
   .contact-page {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-
-  .contact-content {
-    padding: 0;
-    margin: 0;
+    margin-top: 0;
     margin-bottom: 0;
-  }
+    padding-top: 0;
+    padding-bottom: 0;
 
-  .contact-headline {
-    margin-bottom: 0;
+    .contact-content {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 0;
+    }
+
+    .contact-headline {
+      margin-bottom: 0;
+    }
+
+    .contact-body {
+      gap: 15px;
+    }
   }
-}
 
   .contact-body {
     flex-direction: column;

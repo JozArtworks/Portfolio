@@ -9,3 +9,11 @@ h2 {
 h3 {
   font-size: clamp(0.9rem, 4vw, 2.5rem);
 }
+
+h4 {
+  font-size: clamp(0.9rem, 3vw, 1.8rem);
+}
+
+p {
+  font-size: clamp(0.7rem, 3vw, 0.8rem);
+}

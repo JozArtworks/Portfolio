@@ -13,78 +13,51 @@
           <p>
             Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
             Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.
-          </p>
-
-          <p>
+            <br><br>
             Du suchst einen Frontend Developer?<br />
-            <a class="highlight-link" href="#contact-form">Melde dich!</a>
+            Melde dich!
           </p>
 
         </div>
         <div class="box-right">
 
-          @if (success) {
-            <div class="success-toast">
-              Deine Nachricht wurde erfolgreich gesendet!
-            </div>
-          }
 
-          @if (error) {
-            <div class="error-toast">
-              Leider konnte deine Nachricht nicht gesendet werden. Bitte versuch es später erneut.
-            </div>
-          }
 
           <form class="contact-form" (ngSubmit)="submitForm()" #form="ngForm" novalidate>
 
-            <input
-            type="text"
-            name="honeypot"
-            tabindex="-1"
-            autocomplete="off"
-            class="honeypot"
-            [(ngModel)]="formData.honeypot"
-          />
+            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
+              [(ngModel)]="formData.honeypot" />
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Dein Name"
-            required
-            [(ngModel)]="formData.name"
-            class="form-field"
-          />
+            <input type="text" name="name" placeholder="Dein Name" required [(ngModel)]="formData.name"
+              class="form-field" />
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Deine Mail"
-              required
-              [(ngModel)]="formData.email"
-              class="form-field"
-            />
+            <input type="email" name="email" placeholder="Deine Mail" required [(ngModel)]="formData.email"
+              class="form-field" />
 
-            <textarea
-              name="message"
-              placeholder="Deine Nachricht..."
-              required
-              [(ngModel)]="formData.message"
-              class="form-field"
-              rows="5"
-            ></textarea>
+            <textarea name="message" placeholder="Deine Nachricht..." required [(ngModel)]="formData.message"
+              class="form-field" rows="5"></textarea>
 
-            <label class="privacy-check">
-              <input
-                type="checkbox"
-                name="privacy"
-                required
-                [(ngModel)]="formData.privacyAccepted"
-              />
-              Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen
-            </label>
+              <label class="privacy-check">
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  required
+                  [(ngModel)]="formData.privacyAccepted"
+                />
+                <span class="custom-checkbox"></span>
+                <p>
+                  Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der darin
+                  beschriebenen Verarbeitung meiner Daten zu.
+                </p>
+              </label>
 
-            <button [disabled]="!form.valid || !formData.privacyAccepted || isSending">
-              {{ isSending ? 'Wird gesendet…' : 'Senden ➤' }}
+
+            <button class="btn-send" [disabled]="!form.valid || !formData.privacyAccepted || isSending">
+              @if (isSending) {
+              Wird gesendet…
+              } @else {
+              Senden <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+              }
             </button>
           </form>
 
