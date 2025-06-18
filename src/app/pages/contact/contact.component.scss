@@ -33,12 +33,22 @@
       width: 100%;
       height: auto;
       border-radius: 30px;
+      background-color: rgba(0, 0, 0, 0.20);
+    }
+
+    .box-right {
+      padding: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .box-left {
-      background-color: #096B68;
-      padding: 10px;
-      color: #c0f7f0;
+      width: 100%;
+      max-width: 500px;
+      min-width: 150px;
+      height: 460px;
+      padding: 20px;
+
 
 
       .intro-headline {
@@ -55,6 +65,7 @@
 
       p {
         font-weight: 300;
+        color: white;
       }
 
       .highlight-link {
@@ -68,10 +79,6 @@
       }
     }
 
-
-    .box-right {
-      background-color: #096B68;
-    }
   }
 
   .footer-section {
@@ -91,14 +98,16 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 5px;
   width: 100%;
-  padding: 10px;
+  height: 100%;
+  padding: 0px 10px;
 
   .form-field {
     background: rgba(255, 255, 255, 0.05);
     border: none;
-    border-radius: 20px;
+    border-radius: 100px;
     padding: 12px 20px;
     color: white;
     font-family: 'Inter', sans-serif;
@@ -113,11 +122,24 @@
     }
   }
 
+  .name {
+    width: 280px;
+    height: 50px;
+  }
+
+  .email {
+    width: 480px;
+    min-width: 200px;
+    height: 50px;
+  }
+
   .privacy-check {
     position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-left: 10px;
+
 
     input[type='checkbox'] {
       opacity: 0;
@@ -129,13 +151,17 @@
     .custom-checkbox {
       width: 20px;
       height: 20px;
-      border: 2px solid #3DCFB6;
-      border-radius: 6px;
+      border: 1.5px solid #3DCFB6;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
       aspect-ratio: 1;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       &::after {
         content: '';
@@ -148,7 +174,7 @@
       }
     }
 
-    input:checked + .custom-checkbox::after {
+    input:checked+.custom-checkbox::after {
       opacity: 1;
     }
   }
@@ -158,11 +184,12 @@
     font-size: 12px;
     color: white;
     margin: 0;
+    pointer-events: none;
   }
 
   a {
     color: #3DCFB6;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
   }
 
@@ -188,56 +215,10 @@
   }
 }
 
-.success-toast {
-  background: #3dcfb6;
-  color: #096B68;
-  padding: 12px 20px;
-  border-radius: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  animation: fadeInOut 4s ease forwards;
-  text-align: center;
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  10% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
 .honeypot {
   display: none;
 }
 
-.error-toast {
-  background: #ff4d4d;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  animation: fadeInOut 4s ease forwards;
-  text-align: center;
-}
 
 .btn-send {
   background: transparent;
@@ -275,10 +256,33 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 870px) {
+
+  .privacy-check {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    p {
+      font-size: 8px;
+    }
+  }
+
+  .btn-send {
+    font-size: 12px;
+    padding: 6px 14px;
+    gap: 3px;
+    max-width: 130px;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
 
   .box-left {
-    margin-top: 15px;
+    margin-top: 5px;
   }
 
   .contact-window {
@@ -298,6 +302,7 @@
 
   h2 {
     margin: 0;
+    margin-left: 15px;
   }
 
   .contact-page {
@@ -305,6 +310,10 @@
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
+
+    .footer-section {
+      margin-top: 5px;
+    }
 
     .contact-content {
       padding: 0;
@@ -317,7 +326,7 @@
     }
 
     .contact-body {
-      gap: 15px;
+      gap: 5px;
     }
   }
 

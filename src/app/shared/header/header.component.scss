@@ -18,5 +18,9 @@ header {
 @media screen and (max-width: 870px) {
   header {
     align-items: flex-start;
+
+    img {
+      height: 60px;
+    }
   }
 }
