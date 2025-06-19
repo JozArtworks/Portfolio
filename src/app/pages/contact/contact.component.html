@@ -6,18 +6,21 @@
 
       <div class="contact-body">
         <div class="box-left">
-          <h3 class="intro-headline">Lass uns gemeinsam etwas aufbauen</h3>
-
-          <h4 class="sub-headline">Ein Problem zu lösen?</h4>
-
-          <p>
-            Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
-            Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.
-            <br><br>
-            Du suchst einen Frontend Developer?<br />
-            Melde dich!
-          </p>
-
+          <div>
+            <h3 class="intro-headline">Lass uns gemeinsam etwas aufbauen</h3>
+          </div>
+          <div>
+            <h4 class="sub-headline">Ein Problem zu lösen?</h4>
+          </div>
+          <div>
+            <p>
+              Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
+              Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.
+              <br><br>
+              Du suchst einen Frontend Developer?<br />
+              Melde dich!
+            </p>
+          </div>
         </div>
         <div class="box-right">
 
@@ -35,21 +38,16 @@
               class="form-field email" />
 
             <textarea name="message" placeholder="Deine Nachricht..." required [(ngModel)]="formData.message"
-              class="form-field" rows="5"></textarea>
+              class="form-field message" rows="5"></textarea>
 
-              <label class="privacy-check">
-                <input
-                  type="checkbox"
-                  name="privacy"
-                  required
-                  [(ngModel)]="formData.privacyAccepted"
-                />
-                <span class="custom-checkbox"></span>
-                <p>
-                  Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der darin
-                  beschriebenen Verarbeitung meiner Daten zu.
-                </p>
-              </label>
+            <label class="privacy-check">
+              <input type="checkbox" name="privacy" required [(ngModel)]="formData.privacyAccepted" />
+              <span class="custom-checkbox"></span>
+              <p>
+                Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der darin
+                beschriebenen Verarbeitung meiner Daten zu.
+              </p>
+            </label>
 
 
             <button class="btn-send" [disabled]="!form.valid || !formData.privacyAccepted || isSending">
