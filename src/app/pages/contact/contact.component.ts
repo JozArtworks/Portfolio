@@ -10,7 +10,7 @@ import { ViewChild } from '@angular/core';
   standalone: true,
   imports: [FooterComponent, FormsModule, RouterModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss', './contact-media.component.scss'],
 })
 export class ContactComponent {
   formData = {

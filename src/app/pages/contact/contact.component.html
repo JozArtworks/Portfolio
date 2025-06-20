@@ -8,7 +8,8 @@
           <h4 class="sub-headline">Ein Problem zu lösen?</h4>
           <p>
             Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
-            Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.<br /><br />
+            Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen
+            kann.<br /><br />
             Du suchst einen Frontend Developer?<br />
             <span>Melde dich!</span>
           </p>
@@ -16,89 +17,70 @@
 
         <div class="box-right">
           <form class="contact-form" #form="ngForm" novalidate>
-            <input
-              type="text"
-              name="honeypot"
-              tabindex="-1"
-              autocomplete="off"
-              class="honeypot"
-              [(ngModel)]="formData.honeypot"
-            />
+            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
+              [(ngModel)]="formData.honeypot" />
 
-            <input
-              type="text"
-              name="name"
-              placeholder="Dein Name"
-              required
-              [(ngModel)]="formData.name"
-              (ngModelChange)="onInputChange()"
-              class="form-field name"
-              #nameInput="ngModel"
-              [class.invalid]="!nameValid && (markTouched || nameInput.touched)"
-            />
+            <div class="input-wrapper">
+              <input type="text" name="name" placeholder="Dein Name" required [(ngModel)]="formData.name"
+                (ngModelChange)="onInputChange()" class="form-field name" #nameInput="ngModel"
+                [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
+              @if (!nameValid && (markTouched || nameInput.touched)) {
+              <p class="form-warning">Bitte gib deinen Namen ein!</p>
+              }
+            </div>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Deine Mail"
-              required
-              [(ngModel)]="formData.email"
-              (ngModelChange)="onInputChange()"
-              class="form-field email"
-              #emailInput="ngModel"
-              [class.invalid]="!emailValid && (markTouched || emailInput.touched)"
-            />
+            <div class="input-wrapper">
+              <input type="email" name="email" placeholder="Deine Mail" required [(ngModel)]="formData.email"
+                (ngModelChange)="onInputChange()" class="form-field email" #emailInput="ngModel"
+                [class.invalid]="!emailValid && (markTouched || emailInput.touched)" />
+              @if (!emailValid && (markTouched || emailInput.touched)) {
+              <p class="form-warning">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+              }
+            </div>
 
-            <textarea
-              name="message"
-              placeholder="Deine Nachricht..."
-              required
-              [(ngModel)]="formData.message"
-              (ngModelChange)="onInputChange()"
-              class="form-field message"
-              rows="5"
-              maxlength="250"
-              #messageInput="ngModel"
-              [class.invalid]="!messageValid && (markTouched || messageInput.touched)"
-            ></textarea>
+            <div class="input-wrapper">
+              <textarea name="message" placeholder="Deine Nachricht..." required [(ngModel)]="formData.message"
+                (ngModelChange)="onInputChange()" class="form-field message" rows="5" maxlength="250"
+                #messageInput="ngModel"
+                [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>
+              @if (!messageValid && (markTouched || messageInput.touched)) {
+              <p class="form-warning">Ups, da fehlt noch was!</p>
+              }
+            </div>
 
             <div class="privacy-check">
               <label [class.invalid]="!formData.privacyAccepted && privacyTouched">
-                <input
-                  type="checkbox"
-                  name="privacy"
-                  required
-                  [(ngModel)]="formData.privacyAccepted"
-                  (change)="onInputChange()"
-                  (blur)="privacyTouched = true"
-                  #privacyInput="ngModel"
-                />
+                <input type="checkbox" name="privacy" required [(ngModel)]="formData.privacyAccepted"
+                  (change)="onInputChange()" (blur)="privacyTouched = true" #privacyInput="ngModel" />
                 <span class="custom-checkbox"></span>
               </label>
-              <p>
-                Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der darin beschriebenen Verarbeitung meiner Daten zu.
-              </p>
+              <div class="input-wrapper">
+                <p>
+                  Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der
+                  darin
+                  beschriebenen Verarbeitung meiner Daten zu.
+                </p>
+                @if (!formData.privacyAccepted && privacyTouched) {
+                <p class="form-warning checkbox-warn">Datenschutz ist wichtig!</p>
+                }
+              </div>
             </div>
 
-            <button
-            class="btn-send"
-            [disabled]="isSending || !isFormValid || flyAnimation"
-            [class]="{ active: isFormValid }"
-            (click)="validateAndSubmit()"
-          >
-            @if (isSending) {
+            <button class="btn-send" [disabled]="isSending || !isFormValid || flyAnimation"
+              [class]="{ active: isFormValid }" (click)="validateAndSubmit()">
+              @if (isSending) {
               Wird gesendet
               <img src="assets/icons/white/send_white.png" alt="Send Icon" />
-            } @else if (success) {
+              } @else if (success) {
               Gesendet!
               <span class="fly-icon">
                 <img src="assets/icons/white/send_white.png" alt="Send Icon" />
               </span>
-            } @else {
+              } @else {
               Senden
               <img src="assets/icons/white/send_white.png" alt="Send Icon" />
-            }
-          </button>
+              }
+            </button>
 
           </form>
         </div>
