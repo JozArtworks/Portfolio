@@ -81,17 +81,25 @@
             </div>
 
             <button
-              class="btn-send"
-              [disabled]="isSending || !isFormValid"
-              [class]="{ active: isFormValid }"
-              (click)="validateAndSubmit()"
-            >
-              @if (isSending) {
-                Wird gesendet
-              } @else {
-                Senden <img src="assets/icons/white/send_white.png" alt="Send Icon" />
-              }
-            </button>
+            class="btn-send"
+            [disabled]="isSending || !isFormValid || flyAnimation"
+            [class]="{ active: isFormValid }"
+            (click)="validateAndSubmit()"
+          >
+            @if (isSending) {
+              Wird gesendet
+              <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+            } @else if (success) {
+              Gesendet!
+              <span class="fly-icon">
+                <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+              </span>
+            } @else {
+              Senden
+              <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+            }
+          </button>
+
           </form>
         </div>
       </div>

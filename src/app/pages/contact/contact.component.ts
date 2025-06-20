@@ -31,6 +31,8 @@ export class ContactComponent {
   messageValid = false;
   privacyValid = false;
   privacyTouched = false;
+  flyAnimation = false;
+
 
   @ViewChild('form') formRef!: NgForm;
 
@@ -88,7 +90,23 @@ export class ContactComponent {
         if (res.ok) {
           this.success = true;
           this.error = false;
+
+
+          this.flyAnimation = true;
+
+
+
+
+        setTimeout(() => {
+          this.flyAnimation = false;
           this.resetForm();
+
+
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
+        }, 1000);
+
         } else {
           this.handleError();
         }
@@ -98,6 +116,7 @@ export class ContactComponent {
         console.error('Netzwerkfehler:', err);
       });
   }
+
 
   private resetForm(): void {
     this.isSending = false;
