@@ -53,7 +53,7 @@
   .sub-headline {
     color: #3DCFB6;
     text-shadow: 0 0 10px black;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
   }
 
   p {
@@ -127,7 +127,7 @@
       background-color: rgba(255, 0, 0, 0.1) !important;
 
       &::placeholder {
-        color: #ff5c5c;
+        color: white;
         font-weight: 300;
       }
     }
@@ -147,10 +147,10 @@
   }
 
   input.form-field.invalid::-webkit-input-placeholder {
-    color: #ff5c5c;
+    color: white;
   }
   input.form-field.invalid::-moz-placeholder {
-    color: #ff5c5c;
+    color: white;
   }
 
 
@@ -172,7 +172,7 @@
   }
 
   .email {
-    max-width: 400px;
+    max-width: 500px;
     min-width: 80px;
     height: 45px;
   }
@@ -194,6 +194,11 @@
   width: 100%;
   display: flex;
   color: white;
+
+  p {
+    font-size: 11px;
+    font-weight: 200;
+  }
 
   a {
     color: #3DCFB6;

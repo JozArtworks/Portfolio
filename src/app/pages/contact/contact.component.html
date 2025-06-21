@@ -21,7 +21,8 @@
               [(ngModel)]="formData.honeypot" />
 
             <div class="input-wrapper">
-              <input type="text" name="name" placeholder="Dein Name" required [(ngModel)]="formData.name"
+              <input type="text" name="name" [placeholder]="namePlaceholder"
+              required [(ngModel)]="formData.name"
                 (ngModelChange)="onInputChange()" class="form-field name" #nameInput="ngModel"
                 [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
               @if (!nameValid && (markTouched || nameInput.touched)) {
@@ -30,16 +31,24 @@
             </div>
 
             <div class="input-wrapper">
-              <input type="email" name="email" placeholder="Deine Mail" required [(ngModel)]="formData.email"
-                (ngModelChange)="onInputChange()" class="form-field email" #emailInput="ngModel"
-                [class.invalid]="!emailValid && (markTouched || emailInput.touched)" />
+              <input
+              type="email"
+              name="email"
+              class="form-field email"
+              [placeholder]="emailPlaceholder"
+              [(ngModel)]="formData.email"
+              (ngModelChange)="onInputChange()"
+              #emailInput="ngModel"
+              [class.invalid]="!emailValid && (markTouched || emailInput.touched)"
+              required />
+
               @if (!emailValid && (markTouched || emailInput.touched)) {
               <p class="form-warning">Bitte gib eine gültige E-Mail-Adresse ein.</p>
               }
             </div>
 
             <div class="input-wrapper">
-              <textarea name="message" placeholder="Deine Nachricht..." required [(ngModel)]="formData.message"
+              <textarea name="message" [placeholder]="messagePlaceholder" required [(ngModel)]="formData.message"
                 (ngModelChange)="onInputChange()" class="form-field message" rows="5" maxlength="250"
                 #messageInput="ngModel"
                 [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>

@@ -1,6 +1,6 @@
 
 @media screen and (max-width: 870px) {
-  
+
   .contact-page {
     flex-direction: column;
     justify-content: space-between;
@@ -37,9 +37,6 @@
           margin-bottom: 0;
         }
 
-        p {
-          font-size: 14px;
-        }
       }
     }
 
@@ -62,11 +59,12 @@
     }
 
     .name {
+      max-width: 240px;
       height: 30px;
     }
 
     .email {
-      max-width: 500px;
+      max-width: 300px;
       height: 30px;
     }
 
@@ -90,7 +88,7 @@
     }
 
     p {
-      font-size: 8px;
+      font-size: 9px;
     }
 
     .btn-send {
@@ -108,15 +106,14 @@
 
   .input-wrapper {
     .form-warning {
-      bottom: 5px;
-      left: 130px;
+      display: none !important;
     }
   }
 }
 
 @media screen and (max-width: 500px) {
   .contact-window {
-    padding: 5px !important;
+    padding: 3px !important;
     border-radius: 20px;
   }
 }

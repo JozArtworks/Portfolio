@@ -26,13 +26,10 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 800px) {
-  .background-gradient {
-    padding: 15px;
-  }
-}
+
 
 .glass-background-style {
+  max-width: 1900px;
   position: relative;
   height: 100%;
   width: 100%;
@@ -104,4 +101,26 @@
 .main-content {
   width: 100%;
   height: 100%;
+}
+
+
+@media screen and (max-width: 800px) {
+  .background-gradient {
+    padding: 15px;
+  }
+
+  .glass-background-style {
+    padding: 5px;
+    padding-top: 0px;
+  }
+}
+
+
+
+@media screen and (max-width: 420px) {
+  .background-gradient {
+    padding: 5px;
+  }
+
+
 }

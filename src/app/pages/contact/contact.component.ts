@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +14,8 @@ import { ViewChild } from '@angular/core';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss', './contact-media.component.scss'],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit, OnDestroy {
+
   formData = {
     name: '',
     email: '',
@@ -33,9 +36,31 @@ export class ContactComponent {
   privacyTouched = false;
   flyAnimation = false;
 
+  isMobileView = false;
+
+
 
   @ViewChild('form') formRef!: NgForm;
 
+  @ViewChild('nameInput') nameInput!: NgModel;
+  @ViewChild('emailInput') emailInput!: NgModel;
+  @ViewChild('messageInput') messageInput!: NgModel;
+
+  resizeObserver: any;
+
+  ngOnInit() {
+    this.checkViewport();
+    this.resizeObserver = () => this.checkViewport();
+    window.addEventListener('resize', this.resizeObserver);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeObserver);
+  }
+
+  checkViewport(): void {
+    this.isMobileView = window.innerWidth <= 870;
+  }
 
   isValidName(name: string): boolean {
     const parts = name.trim().split(' ');
@@ -97,15 +122,15 @@ export class ContactComponent {
 
 
 
-        setTimeout(() => {
-          this.flyAnimation = false;
-          this.resetForm();
-
-
           setTimeout(() => {
-            location.reload();
-          }, 2000);
-        }, 1000);
+            this.flyAnimation = false;
+            this.resetForm();
+
+
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          }, 1000);
 
         } else {
           this.handleError();
@@ -146,4 +171,31 @@ export class ContactComponent {
     this.error = true;
     this.success = false;
   }
+
+  get namePlaceholder(): string {
+    if (!this.isMobileView) return 'Dein Name';
+    if (!this.nameValid && (this.markTouched || this.nameInput?.touched)) {
+      return 'Bitte gib deinen Namen ein!';
+    }
+    return 'Dein Name';
+  }
+
+  get emailPlaceholder(): string {
+    if (!this.isMobileView) return 'Deine Mail';
+    if (!this.emailValid && (this.markTouched || this.emailInput?.touched)) {
+      return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+    }
+    return 'Deine Mail';
+  }
+
+  get messagePlaceholder(): string {
+    if (!this.isMobileView) return 'Deine Nachricht...';
+    if (!this.messageValid && (this.markTouched || this.messageInput?.touched)) {
+      return 'Ups, da fehlt noch was!';
+    }
+    return 'Deine Nachricht...';
+  }
+
+
+
 }
