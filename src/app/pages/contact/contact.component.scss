@@ -128,7 +128,8 @@
 
       &::placeholder {
         color: white;
-        font-weight: 300;
+        font-weight: 200;
+        font-size: 12px;
       }
     }
   }
@@ -169,12 +170,16 @@
   .name {
     max-width: 280px;
     height: 45px;
+    font-family: 'inter', sans-serif;
+    font-weight: 100;
   }
 
   .email {
     max-width: 500px;
     min-width: 80px;
     height: 45px;
+    font-family: 'inter', sans-serif;
+    font-weight: 200;
   }
 
   .message {
@@ -182,6 +187,8 @@
     border-radius: 30px;
     resize: none;
     overflow-y: auto;
+    font-family: 'inter', sans-serif;
+    font-weight: 200;
   }
 
   .honeypot {
