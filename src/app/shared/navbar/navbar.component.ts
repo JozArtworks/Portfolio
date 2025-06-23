@@ -58,7 +58,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     { path: '/feedbacks', label: () => this.translate.feedbacks },
   ];
 
-
   linksIcons = [
     {
       name: 'GitHub',
@@ -114,7 +113,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
 
   readonly EMAIL_ANIMATION_DURATION = 250;
 
-
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -127,10 +125,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
       setTimeout(() => {
         this.showEmail = false;
         this.hidingEmail = false;
-      }, this.EMAIL_ANIMATION_DURATION); // 250 ms
+      }, this.EMAIL_ANIMATION_DURATION);
     }
   }
-
 
   ngOnInit() {
     this.checkViewport();
@@ -154,12 +151,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     }
   }
 
-
-
-
-
-
-
   get translate() {
     return this.translations[this.language()];
   }
@@ -168,10 +159,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     this.language.set(lang);
     setTimeout(() => this.updateIndicator(), 20);
   }
-
-
-
-
 
   emitToggleMenu() {
     this.toggleMenu.emit();
@@ -191,11 +178,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     }
   }
 
-
-
-
-
-
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
 
@@ -204,9 +186,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     }
 
   }
-
-
-
 
   updateIndicator() {
     const active = this.navLinks.find(link =>
@@ -220,9 +199,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
       this.activePos.set({ left: 0, width: 0 });
     }
   }
-
-
-
 
   setActiveIcon(name: string) {
     this.activeIconName = this.activeIconName === name ? '' : name;
@@ -244,8 +220,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
   }
 
-
-
   toggleEmail() {
     if (this.showEmail) {
       this.hidingEmail = true;
@@ -257,11 +231,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
       this.showEmail = true;
     }
   }
-
-
-
-
-
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
@@ -288,10 +257,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
       this.showEmail = false;
     }
   }
-
-
-
-
 
 }
 

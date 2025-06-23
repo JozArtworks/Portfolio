@@ -11,6 +11,9 @@ header {
   img {
     height: 85px;
     width: auto;
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
   }
 }
 
