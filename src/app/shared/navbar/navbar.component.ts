@@ -31,7 +31,7 @@ import { SimpleChanges, OnChanges } from '@angular/core';
 
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit, OnChanges {
 
-    readonly translations = {
+  readonly translations = {
     de: {
       home: 'Home',
       about: 'Über mich',
@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     },
   };
 
-    navItems = [
+  navItems = [
     { path: '/home', label: () => this.translate.home },
     { path: '/about', label: () => this.translate.about },
     { path: '/skills', label: () => this.translate.skills },
@@ -88,7 +88,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
       });
   }
 
-    private boundCheckViewport = this.checkViewport.bind(this);
+  private boundCheckViewport = this.checkViewport.bind(this);
+  private justToggledViaIcon = false;
 
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
@@ -113,21 +114,27 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
 
   readonly EMAIL_ANIMATION_DURATION = 250;
 
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const clickedInsideWrapper = target.closest('.mail-wrapper');
-    const clickedMailIcon = target.closest('.box-link-nav-mobile img');
-
-    if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
-      this.hidingEmail = true;
-
-      setTimeout(() => {
-        this.showEmail = false;
-        this.hidingEmail = false;
-      }, this.EMAIL_ANIMATION_DURATION);
-    }
+@HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+  if (this.justToggledViaIcon) {
+    this.justToggledViaIcon = false;
+    return;
   }
+
+  const target = event.target as HTMLElement;
+  const clickedInsideWrapper = target.closest('.mail-wrapper');
+  const clickedMailIcon = target.closest('.box-link-nav-mobile img');
+
+  if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
+    this.hidingEmail = true;
+
+    setTimeout(() => {
+      this.showEmail = false;
+      this.hidingEmail = false;
+    }, this.EMAIL_ANIMATION_DURATION);
+  }
+}
+
 
   ngOnInit() {
     this.checkViewport();
@@ -138,7 +145,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
-    ngAfterViewInit() {
+  ngAfterViewInit() {
     this.updateIndicator();
   }
 
@@ -220,17 +227,23 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
   }
 
-  toggleEmail() {
-    if (this.showEmail) {
-      this.hidingEmail = true;
-      setTimeout(() => {
-        this.showEmail = false;
-        this.hidingEmail = false;
-      }, this.EMAIL_ANIMATION_DURATION);
-    } else {
-      this.showEmail = true;
-    }
+toggleEmail() {
+  if (this.showCopyDialog) {
+    return;
   }
+
+  this.justToggledViaIcon = true;
+
+  if (this.showEmail) {
+    this.hidingEmail = true;
+    setTimeout(() => {
+      this.showEmail = false;
+      this.hidingEmail = false;
+    }, this.EMAIL_ANIMATION_DURATION);
+  } else {
+    this.showEmail = true;
+  }
+}
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
