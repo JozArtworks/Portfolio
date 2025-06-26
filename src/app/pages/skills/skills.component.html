@@ -1,1 +1,45 @@
-<p>skills works!</p>
+<section class="tools-page">
+  <div class="tools-content">
+    <div class="tools-window">
+      <h2 class="tools-headline">Tools</h2>
+
+      <div class="tools-body">
+
+        <div class="tools-icon">
+          @for (icon of toolIcons; track icon.name) {
+            <div class="tool-box">
+              <img [src]="icon.src" [alt]="icon.name" />
+              <p title="{{ icon.name }}">{{ icon.name }}</p>
+            </div>
+          }
+        </div>
+
+        <div class="tools-text">
+
+          <div class="box">
+            <p>
+              Ich arbeite mit modernen Frontend-Technologien, um performante, strukturierte und wartbare Anwendungen zu
+              entwickeln.<br><br>
+              Mein Fokus liegt auf sauberem Code, modularer Architektur und einem UI, das sich intuitiv anfühlt.<br><br>
+              Ich bin offen für neue Technologien und bilde mich regelmäßig weiter – denn gute Webentwicklung heißt für
+              mich:
+              mitdenken, mitwachsen und mitgestalten.
+            </p>
+          </div>
+
+          <div class="box">
+            <p>
+              Fehlt ein Tool?<br><br>
+              Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
