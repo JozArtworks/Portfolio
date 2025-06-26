@@ -25,5 +25,11 @@ export class SkillsComponent {
   { name: 'Vue', src: 'assets/icons/colors/vue_icon_color.png' },
 ];
 
+toolIconsDesign = [
+  { name: 'Figma', src: 'assets/icons/white/figame_white.png' },
+  { name: 'Photoshop', src: 'assets/icons/white/ps_white.png' },
+  { name: 'Illustrator', src: 'assets/icons/white/ai_white.png' },
+  { name: 'Indesign', src: 'assets/icons/white/id_white.png' },
+];
 
 }

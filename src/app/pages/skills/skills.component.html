@@ -5,13 +5,24 @@
 
       <div class="tools-body">
 
-        <div class="tools-icon">
-          @for (icon of toolIcons; track icon.name) {
+        <div class="box-left-icons">
+
+          <div class="tools-icon">
+            @for (icon of toolIcons; track icon.name) {
             <div class="tool-box">
               <img [src]="icon.src" [alt]="icon.name" />
-              <p title="{{ icon.name }}">{{ icon.name }}</p>
+              <p class="dNone" title="{{ icon.name }}">{{ icon.name }}</p>
             </div>
-          }
+            }
+          </div>
+          <div class="tools-icon">
+            @for (icondesign of toolIconsDesign; track icondesign.name) {
+            <div class="tool-box-design">
+              <img [src]="icondesign.src" [alt]="icondesign.name" />
+              <p class="dNone" title="{{ icondesign.name }}">{{ icondesign.name }}</p>
+            </div>
+            }
+          </div>
         </div>
 
         <div class="tools-text">
