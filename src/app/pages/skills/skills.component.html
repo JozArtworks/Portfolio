@@ -7,14 +7,36 @@
 
         <div class="box-left-icons">
 
-          <div class="tools-icon">
-            @for (icon of toolIcons; track icon.name) {
+          <!-- Zeile 1 -->
+          <div class="tools-icon-row">
+            @for (icon of toolIcons.slice(0, 5); track icon.name) {
             <div class="tool-box">
               <img [src]="icon.src" [alt]="icon.name" />
               <p class="dNone" title="{{ icon.name }}">{{ icon.name }}</p>
             </div>
             }
           </div>
+
+          <!-- Zeile 2 -->
+          <div class="tools-icon-row">
+            @for (icon of toolIcons.slice(5, 10); track icon.name) {
+            <div class="tool-box">
+              <img [src]="icon.src" [alt]="icon.name" />
+              <p class="dNone" title="{{ icon.name }}">{{ icon.name }}</p>
+            </div>
+            }
+          </div>
+
+          <!-- Zeile 3 -->
+          <div class="tools-icon-row">
+            @for (icon of toolIcons.slice(10, 13); track icon.name) {
+            <div class="tool-box">
+              <img [src]="icon.src" [alt]="icon.name" />
+              <p class="dNone" title="{{ icon.name }}">{{ icon.name }}</p>
+            </div>
+            }
+          </div>
+
           <div class="tools-icon">
             @for (icondesign of toolIconsDesign; track icondesign.name) {
             <div class="tool-box-design">
@@ -39,9 +61,9 @@
           </div>
 
           <div class="box">
-            <p>
-              Fehlt ein Tool?<br><br>
-              Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern.
+
+            <span>Fehlt ein Tool?</span>
+            <p>Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern.
             </p>
           </div>
 
