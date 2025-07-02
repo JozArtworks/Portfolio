@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="SVGRepo_iconCarrier" data-name="SVGRepo iconCarrier">
+    <g id="Layer_2" data-name="Layer 2">
+      <g id="invisible_box" data-name="invisible box">
+        <rect class="cls-1" x="-32" y="-45" width="864" height="864"/>
+      </g>
+      <g id="Q3_icons" data-name="Q3 icons">
+        <path class="cls-2" d="M400,783l-282.6-77.4L58,27h684l-59.4,678.6-282.6,77.4ZM184,649.8l216,59.4,216-59.4,46.8-550.8H137.2l46.8,550.8Z"/>
+        <path class="cls-2" d="M477.4,340.2v-64.8h-246.6l-10.8-86.4h360l-32.4,383.4-149.4,48.6-151.2-37.8-13.58-108.63h81l-2.62,43.83,86.4,16.2,79.2-16.2v-97.2h-246.6l-5.4-81h252Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

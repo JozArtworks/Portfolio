@@ -24,16 +24,19 @@
               </div>
               }
             </div>
-            
+
             <div class="tools-icon-line">
               @if (showExtraTools) {
               <div class="extra-tool-wrapper">
-                @for (extra of extraTools; track extra.name) {
-                <div class="extra-icon">
-                  <img [src]="extra.src" [attr.alt]="extra.name" />
-                  <p class="dNone">{{ extra.name }}</p>
+                <p class="extra-tools-headline dNone">I have a special interest in learning</p>
+                <div class="img-extra">
+                  @for (extra of extraTools; track extra.name) {
+                  <div class="extra-icon">
+                    <img [src]="extra.src" [attr.alt]="extra.name" />
+                    <p class="dNone">{{ extra.name }}</p>
+                  </div>
+                  }
                 </div>
-                }
               </div>
               }
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="SVGRepo_iconCarrier" data-name="SVGRepo iconCarrier">
+    <g id="Page-1">
+      <g id="Dribbble-Light-Preview">
+        <g id="icons">
+          <path id="object_connection-_ffffff_" data-name="object_connection-[#ffffff]" class="cls-1" d="M112,688h144v-144H112v144ZM40,760h288v-288H40v288ZM544,256h144V112h-144v144ZM472,328h288V40h-288v288ZM544,400v72h36v108h-108v-36h-72v144h72v-36h180v-180h36v-72h-144ZM328,256v-36h-108v108h36v72H112v-72h36v-180h180v-36h72v144h-72Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

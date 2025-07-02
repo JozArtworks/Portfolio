@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-miterlimit: 1.82;
+        stroke-width: .46px;
+      }
+    </style>
+  </defs>
+  <g id="SVGRepo_iconCarrier" data-name="SVGRepo iconCarrier">
+    <g>
+      <polygon class="cls-1" points="308.35 406.19 334.43 406.19 491.65 406.19 482.12 513.7 400 534.59 317.88 513.7 312.2 449.68 228.4 449.68 239.96 580.02 400 620.71 560.05 580.02 582.23 329.68 301.56 329.68 294.15 246.03 589.65 246.03 597.05 162.56 202.95 162.56 224.55 406.19 308.35 406.19"/>
+      <path class="cls-1" d="M54.84,23.85l1.44,15.57,61.35,662.63,282.37,71.79,282.37-71.79L745.16,23.85H54.84ZM614.6,644.15l-214.6,54.57-214.6-54.57L134.7,96.66h530.59l-50.69,547.48Z"/>
+    </g>
+  </g>
+</svg>
