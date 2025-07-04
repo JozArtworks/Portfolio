@@ -13,11 +13,19 @@
             <div class="projects-list">
               <div class="project-info">
                 <h3>{{ project.title }}</h3>
+                <div class="dNone">
+                  <p>{{ project.description }}</p>
+
+                </div>
+
               </div>
               <div class="project-icons">
-                <p>{{ project.description }}</p>
+                <div class="dBlock">
+                  <p>{{ project.description }}</p>
+
+                </div>
                 @for (icon of project.icons; track icon) {
-                <img [src]="icon" alt="Projekt Icon" />
+                <div class="project-small-icons"><img [src]="icon" alt="Projekt Icon" /></div>
                 }
               </div>
             </div>
