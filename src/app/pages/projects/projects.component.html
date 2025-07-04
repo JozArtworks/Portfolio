@@ -1,1 +1,31 @@
-<p>projects works!</p>
+<section class="projekt-page">
+  <div class="projekt-content">
+    <div class="projekt-window">
+      <h2 class="projekt-headline">Tools</h2>
+      <p>Entdecke eine Auswahl meiner Arbeiten – interagiere
+        mit den Projekten, um meine Fähigkeiten in Aktion zu erleben.</p>
+      <div class="projekt-body">
+
+
+        <div class="projekt-text">
+          <div class="box">
+            @for (project of projects; track project.title) {
+            <div class="projects-list">
+              <div class="project-info">
+                <h3>{{ project.title }}</h3>
+              </div>
+              <div class="project-icons">
+                <p>{{ project.description }}</p>
+                @for (icon of project.icons; track icon) {
+                <img [src]="icon" alt="Projekt Icon" />
+                }
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
