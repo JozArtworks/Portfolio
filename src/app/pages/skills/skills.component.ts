@@ -23,8 +23,8 @@ toggleExtraTools() {
 }
 
 extraTools = [
-  { name: 'React', src: 'assets/icons/colors/react_icon_color.png' },
-  { name: 'Vue Js', src: 'assets/icons/colors/vue_icon_color.png' },
+  { name: 'React', src: 'assets/icons/white/svg/logo_react.svg' },
+  { name: 'Vue Js', src: 'assets/icons/white/svg/logo_vue.svg' },
 ];
 
 
