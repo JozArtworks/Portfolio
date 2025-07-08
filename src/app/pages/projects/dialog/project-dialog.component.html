@@ -1,18 +1,30 @@
 <section class="dialog-page">
   <div class="dialog-content">
     <div class="dialog-window">
-      <div class="dialog-body">
+      <!-- <div class="dialog-body"> -->
         <div class="box">
-          <button class="close-button" (click)="onClose()">
-            <img src="./../../../../assets/icons/white/closed_white.png" alt="Close Dialog" /></button>
-          <div class="project-info">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.dialogDescription }}</p>
+
+          <div class="box-header">
+            <button class="close-button" (click)="onClose()">
+              <img src="./../../../../assets/icons/white/closed_white.png" alt="Close Dialog" />
+            </button>
           </div>
 
-          <div class="project-image">
-            <img [src]="project.image" alt="{{ project.title }}" />
+
+          <div class="info-box">
+
+            <div class="project-info">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.dialogDescription }}</p>
+            </div>
+
+            <div class="project-image">
+              <img [src]="project.image" alt="{{ project.title }}" />
+            </div>
+
           </div>
+
+
 
           <div class="project-icons">
             @for (icon of project.icons; track icon) {
@@ -20,32 +32,40 @@
             }
           </div>
 
-          <div class="project-buttons">
-            @if (project.github) {
-            <a class="btn" [href]="project.github" target="_blank" rel="noopener noreferrer">
-              GitHub<img src="./../../../../assets/icons/white/github_white.png" alt="GitHub" /></a>
-            }
-
-            @if (project.live) {
-            <a class="btn" [href]="project.live" target="_blank" rel="noopener noreferrer">Live Test</a>
-            }
-          </div>
-
-          <div class="dialog-nav">
-            @if (!isFirst) {
-            <button class="nav-button left" (click)="previousProject()">
-              <img src="./../../../../assets/icons/white/left_white.png" alt="Previous Project" />
-            </button>
-            }
-
-            @if (!isLast) {
-            <button class="nav-button right" (click)="nextProject()">
-              <img src="./../../../../assets/icons/white/right_white.png" alt="Next Project" />
-            </button>
-            }
-          </div>
         </div>
+
+
+
+
+        <div class="project-buttons">
+          @if (project.github) {
+          <a class="btn" [href]="project.github" target="_blank" rel="noopener noreferrer">
+            GitHub<img src="./../../../../assets/icons/white/github_white.png" alt="GitHub" /></a>
+          }
+
+          @if (project.live) {
+          <a class="btn" [href]="project.live" target="_blank" rel="noopener noreferrer">Live Test</a>
+          }
+        </div>
+        <div class="dialog-nav">
+          @if (!isFirst) {
+          <button class="nav-button left" (click)="previousProject()">
+            <img src="./../../../../assets/icons/white/left_white.png" alt="Previous Project" />
+          </button>
+          }
+
+          @if (!isLast) {
+          <button class="nav-button right" (click)="nextProject()">
+            <img src="./../../../../assets/icons/white/right_white.png" alt="Next Project" />
+          </button>
+          }
+        </div>
+
+
+
+
+
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </section>
