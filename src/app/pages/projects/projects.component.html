@@ -1,39 +1,46 @@
-<section class="projekt-page">
-  <div class="projekt-content">
-    <div class="projekt-window">
-      <h2 class="projekt-headline">Tools</h2>
-      <p>Entdecke eine Auswahl meiner Arbeiten – interagiere
-        mit den Projekten, um meine Fähigkeiten in Aktion zu erleben.</p>
-      <div class="projekt-body">
-
-
-        <div class="projekt-text">
-          <div class="box">
-            @for (project of projects; track project.title) {
-            <div class="projects-list">
-              <div class="project-info">
-                <h3>{{ project.title }}</h3>
-                <div class="dNone">
-                  <p>{{ project.description }}</p>
-
+<!-- Projekte-Liste -->
+@if (!dialogOpen) {
+  <section class="projekt-page">
+    <div class="projekt-content">
+      <div class="projekt-window">
+        <h2 class="projekt-headline">Projekte</h2>
+        <p>Entdecke eine Auswahl meiner Arbeiten – interagiere
+          mit den Projekten, um meine Fähigkeiten in Aktion zu erleben.</p>
+        <div class="projekt-body">
+          <div class="projekt-text">
+            <div class="box">
+              @for (project of projects; track project.title) {
+                <div class="projects-list" (click)="openDialog(project)">
+                  <div class="project-info">
+                    <h3>{{ project.title }}</h3>
+                    <div class="dNone">
+                      <p>{{ project.description }}</p>
+                    </div>
+                  </div>
+                  <div class="project-icons">
+                    <div class="dBlock">
+                      <p>{{ project.description }}</p>
+                    </div>
+                    @for (icon of project.icons; track icon) {
+                      <div class="project-small-icons"><img [src]="icon" alt="Projekt Icon" /></div>
+                    }
+                  </div>
                 </div>
-
-              </div>
-              <div class="project-icons">
-                <div class="dBlock">
-                  <p>{{ project.description }}</p>
-
-                </div>
-                @for (icon of project.icons; track icon) {
-                <div class="project-small-icons"><img [src]="icon" alt="Projekt Icon" /></div>
-                }
-              </div>
+              }
             </div>
-            }
           </div>
         </div>
 
       </div>
     </div>
-  </div>
-</section>
+  </section>
+}
+@if (dialogOpen && selectedProject) {
+  <section class="dialog-section">
+    <app-project-dialog
+      [project]="selectedProject"
+      [show]="dialogOpen"
+      (close)="closeDialog()"
+    />
+  </section>
+}
