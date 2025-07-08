@@ -38,9 +38,11 @@
 @if (dialogOpen && selectedProject) {
   <section class="dialog-section">
     <app-project-dialog
+      [allProjects]="projects"
       [project]="selectedProject"
       [show]="dialogOpen"
       (close)="closeDialog()"
+      (changeProject)="openDialog($event)"
     />
   </section>
 }

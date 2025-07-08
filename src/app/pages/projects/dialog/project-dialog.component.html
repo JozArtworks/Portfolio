@@ -33,6 +33,20 @@
           }
         </div>
 
+        <div class="dialog-nav">
+          @if (!isFirst) {
+          <button class="nav-button left" (click)="previousProject()">
+            <img src="assets/icons/arrow-left.svg" alt="Previous Project" />
+          </button>
+          }
+
+          @if (!isLast) {
+          <button class="nav-button right" (click)="nextProject()">
+            <img src="assets/icons/arrow-right.svg" alt="Next Project" />
+          </button>
+          }
+        </div>
+
       </div>
     </div>
   </div>
