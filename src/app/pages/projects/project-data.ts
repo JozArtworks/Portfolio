@@ -10,6 +10,14 @@ export const PROJECTS: Project[] = [
       'assets/icons/white/svg/logo_firebase.svg',
       'assets/icons/white/svg/logo_scrum.svg'
     ],
+    iconsDialoge: [
+      'assets/icons/white/svg/logo_firebase.svg',
+      'assets/icons/white/svg/logo_angular.svg',
+      'assets/icons/white/svg/logo_typescript.svg',
+      'assets/icons/white/svg/logo_html.svg',
+      'assets/icons/white/svg/logo_css.svg',
+      'assets/icons/white/svg/logo_scrum.svg',
+    ],
     github: 'https://github.com/JozArtworks/DA_Join',
     live: 'https://jonathan-michutta.de/join/'
   },
@@ -20,7 +28,9 @@ export const PROJECTS: Project[] = [
     image: 'assets/images/web_image/pokedex_image.png',
     icons: [
       'assets/icons/white/svg/logo_api.svg',
-      'assets/icons/white/svg/logo_typescript.svg'
+    ],
+    iconsDialoge: [
+      'assets/icons/white/svg/logo_oop.svg',
     ],
     github: 'https://github.com/JozArtworks/pokedex',
     live: 'https://jonathan-michutta.de/pokedex/'
@@ -31,8 +41,10 @@ export const PROJECTS: Project[] = [
     dialogDescription: 'Jump-, Run- und Wurfspiel mit objektorientierter Programmiertem Ansatz. Hilf Pepe, Münzen und Tabascosoße zu finden, um gegen das verrückte Huhn zu gewinnen.',
     image: 'assets/images/web_image/elpolloloco_image.png',
     icons: [
-      'assets/icons/white/svg/logo_keyboard.svg',
       'assets/icons/white/svg/logo_oop.svg'
+    ],
+    iconsDialoge: [
+      'assets/icons/white/svg/logo_oop.svg',
     ],
     github: 'https://github.com/JozArtworks/ElPolloLoco',
     live: 'https://jonathan-michutta.de/elPolloLoco/'
@@ -43,7 +55,11 @@ export const PROJECTS: Project[] = [
     dialogDescription: 'Persönliches Portfolio mit Fokus auf UI-Design und sanften Animationen. Struktur, Stil und Bewegung sorgen für ein klares Nutzererlebnis.',
     image: 'assets/images/web_image/portfolio_image.png',
     icons: [
-      'assets/icons/white/svg/logo_angular.svg'
+      'assets/icons/white/svg/logo_angular.svg',
+      'assets/icons/white/svg/logo_typescript.svg',
+    ],
+    iconsDialoge: [
+      'assets/icons/white/svg/logo_oop.svg',
     ],
     github: 'https://github.com/JozArtworks/Portfolio',
     live: 'https://deinprojekt-url.com'

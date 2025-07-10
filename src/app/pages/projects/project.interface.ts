@@ -4,6 +4,7 @@ export interface Project {
   dialogDescription: string;
   image: string;
   icons: string[];
+  iconsDialoge: string[];
   github?: string;
   live?: string;
 }
