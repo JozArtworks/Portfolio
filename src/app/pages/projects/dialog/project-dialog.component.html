@@ -1,7 +1,7 @@
 <section class="dialog-page">
   <div class="dialog-content">
     <div class="dialog-window">
-      <!-- <div class="dialog-body"> -->
+
       <div class="box">
 
         <div class="box-header">
@@ -10,21 +10,15 @@
           </button>
         </div>
 
-
         <div class="info-box">
-
           <div class="project-info">
             <h3>{{ project.title }}</h3>
             <p>{{ project.dialogDescription }}</p>
           </div>
-
           <div class="project-image">
             <img [src]="project.image" alt="{{ project.title }}" />
           </div>
-
         </div>
-
-
 
         <div class="project-icons">
           @for (icon of project.iconsDialoge; track icon) {
@@ -34,22 +28,8 @@
 
       </div>
 
-
-
-
-      <div class="project-buttons">
-        @if (project.github) {
-        <a class="btn-git" [href]="project.github" target="_blank" rel="noopener noreferrer">
-          GitHub<img src="./../../../../assets/icons/white/github_white.png" alt="GitHub" /></a>
-        }
-
-        @if (project.live) {
-        <a class="btn-live" [href]="project.live" target="_blank" rel="noopener noreferrer">Live Test</a>
-        }
-      </div>
-
-
       <div class="dialog-nav">
+
         @if (!isFirst) {
         <button class="nav-button left" (click)="previousProject()">
           <img src="./../../../../assets/icons/white/left_white.png" alt="Previous Project" />
@@ -58,20 +38,37 @@
         <span class="nav-placeholder"></span>
         }
 
+        <div class="project-buttons">
+
+          @if (project.github) {
+          <div class="border-git">
+            <a class="btn-git" [href]="project.github" target="_blank" rel="noopener noreferrer">
+              GitHub
+              <img src="./../../../../assets/icons/white/github_white.png" alt="GitHub" />
+            </a>
+          </div>
+          }
+
+          @if (project.live && project.title !== 'Portfolio') {
+          <div class="border-live">
+            <a class="btn-live" [href]="project.live" target="_blank" rel="noopener noreferrer">
+              Live Test
+            </a>
+          </div>
+          }
+
+        </div>
+
         @if (!isLast) {
-        <button class="nav-button right" (click)="nextProject()">
+        <button class="nav-button" (click)="nextProject()">
           <img src="./../../../../assets/icons/white/right_white.png" alt="Next Project" />
         </button>
         } @else {
         <span class="nav-placeholder"></span>
         }
+
       </div>
-
-
-
-
 
     </div>
   </div>
-  <!-- </div> -->
 </section>

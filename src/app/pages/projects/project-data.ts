@@ -30,7 +30,11 @@ export const PROJECTS: Project[] = [
       'assets/icons/white/svg/logo_api.svg',
     ],
     iconsDialoge: [
-      'assets/icons/white/svg/logo_oop.svg',
+      'assets/icons/white/svg/logo_html.svg',
+      'assets/icons/white/svg/logo_css.svg',
+      'assets/icons/white/svg/logo_javascript.svg',
+      'assets/icons/white/svg/logo_api.svg'
+
     ],
     github: 'https://github.com/JozArtworks/pokedex',
     live: 'https://jonathan-michutta.de/pokedex/'
@@ -44,6 +48,9 @@ export const PROJECTS: Project[] = [
       'assets/icons/white/svg/logo_oop.svg'
     ],
     iconsDialoge: [
+      'assets/icons/white/svg/logo_html.svg',
+      'assets/icons/white/svg/logo_css.svg',
+      'assets/icons/white/svg/logo_javascript.svg',
       'assets/icons/white/svg/logo_oop.svg',
     ],
     github: 'https://github.com/JozArtworks/ElPolloLoco',
@@ -59,7 +66,10 @@ export const PROJECTS: Project[] = [
       'assets/icons/white/svg/logo_typescript.svg',
     ],
     iconsDialoge: [
-      'assets/icons/white/svg/logo_oop.svg',
+      'assets/icons/white/svg/logo_angular.svg',
+      'assets/icons/white/svg/logo_typescript.svg',
+      'assets/icons/white/svg/logo_html.svg',
+      'assets/icons/white/svg/logo_css.svg'
     ],
     github: 'https://github.com/JozArtworks/Portfolio',
     live: 'https://deinprojekt-url.com'
