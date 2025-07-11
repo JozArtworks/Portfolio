@@ -22,18 +22,24 @@
   }
 
   .projekt-headline {
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
     color: #3DCFB6;
     text-shadow: 0 0 10px black;
     width: 100%;
-
-
   }
+}
+
+.subtitle-project {
+
+  margin: 20px;
+
 }
 
 .projekt-body {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -46,15 +52,16 @@
   color: #FFFFFF;
   gap: 10px;
   width: 100%;
-  max-width: 600px;
 
   .box {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     background-color: rgba(0, 0, 0, 0.218);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
-    gap: 15px
+    gap: 10px
   }
 }
 
@@ -63,12 +70,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
   gap: 5px;
-  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
 
   &:hover {
@@ -79,6 +86,7 @@
   h3 {
     margin: 0;
     font-weight: 600;
+    text-shadow: 0 0 10px black;
   }
 
   p {
@@ -95,21 +103,24 @@
 
 .project-icons {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
 
   .project-small-icons {
-    background-color: #3DCFB6;
-    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
     aspect-ratio: 1;
-    padding: 4px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   img {
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
   }
 }
@@ -118,17 +129,18 @@
 .projekt-window {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 40px;
-  padding: 15px;
+  padding: 20px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: calc(100dvh - 64px);
 
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
 
   h2.projekt-headline {
     width: 100%;
+
   }
 
   p {
@@ -201,5 +213,22 @@
 
   }
 
+
+}
+
+@media screen and (max-width: 455px) {
+
+    .dNone {
+    display: none;
+  }
+
+  .projects-list {
+  padding: 10px 18px;
+    border-radius: 25px;
+
+
+
+
+}
 
 }
