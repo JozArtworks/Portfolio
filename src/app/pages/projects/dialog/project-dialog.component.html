@@ -44,10 +44,12 @@
         <div class="project-buttons">
 
           @if (project.github) {
-          <div class="border-git">
+          <div class="border-git" (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
             <a [href]="project.github" target="_blank" rel="noopener noreferrer">
-              GitHub
-              <img src="./../../../../assets/icons/white/github_white.png" alt="GitHub" />
+              Github
+              <img [src]="isGitHovered
+        ? 'assets/icons/green/svg/logo_github_green.svg'
+        : 'assets/icons/white/svg/logo_github_white.svg'" alt="GitHub" />
             </a>
           </div>
           }

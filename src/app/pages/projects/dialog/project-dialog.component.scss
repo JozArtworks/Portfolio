@@ -201,60 +201,6 @@ button {
   margin-left: 30px;
 }
 
-// .border-git {
-//   border: 2px solid rgba(255, 255, 255, 0.289);
-//   border-radius: 20px;
-//   background-color: rgba(0, 0, 0, 0.348);
-
-//   a {
-//     text-decoration: none;
-//     color: white;
-//     font-size: clamp(12px, 3vw, 1rem);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 10px 20px;
-
-//     img {
-//       margin-left: 10px;
-//       width: 15px;
-//       height: auto;
-//     }
-
-//     &:hover {
-//       color: #3DCFB6;
-//     }
-//   }
-
-//   &:hover {
-//     border-color: #3DCFB6;
-//   }
-// }
-
-// .border-live {
-//   border: 2px solid rgba(255, 255, 255, 0.289);
-//   border-radius: 20px;
-//   padding: 10px 20px;
-//   background-color: rgba(0, 0, 0, 0.348);
-
-//   a {
-//     text-decoration: none;
-//     color: white;
-//     font-size: clamp(12px, 3vw, 1rem);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-//     &:hover {
-//       color: #3DCFB6;
-//     }
-//   }
-
-//   &:hover {
-//     border-color: #3DCFB6;
-//   }
-// }
-
 .border-git,
 .border-live {
   border: 2px solid rgba(255, 255, 255, 0.289);
@@ -265,6 +211,7 @@ button {
     text-decoration: none;
     color: white;
     font-size: clamp(12px, 3vw, 1rem);
+    font-weight: 300;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -272,11 +219,10 @@ button {
 
     img {
       margin-left: 10px;
-      width: 15px;
+      width: 20px;
       height: auto;
     }
   }
-
 
   &:hover {
     border-color: #3DCFB6;
@@ -286,11 +232,6 @@ button {
     }
   }
 }
-
-
-
-
-
 
 @media screen and (max-width: 410px) {
   .border-live {

@@ -78,4 +78,7 @@ export class ProjectDialogComponent {
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
 
+  isGitHovered = false;
+
+
 }
