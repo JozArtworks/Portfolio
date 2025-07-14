@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="422120872028529900" datatype="html">
+        <source>Über mich</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9082692465724291237" datatype="html">
+        <source> Mit einem Hintergrund in Mediengestaltung und einem Blick für Struktur und Ästhetik entwickle ich Webanwendungen, die technisch durchdacht und visuell klar sind. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="432397793063373123" datatype="html">
+        <source> Ich liebe die Verbindung von Code und Design: sauberes HTML/CSS, performante Architekturen mit Angular und ein UI, das sich für Nutzer intuitiv und stimmig anfühlt. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3322829879037909837" datatype="html">
+        <source> Was mich antreibt, ist die Idee, aus Komplexität einfache und elegante Lösungen zu formen. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7311182403427851065" datatype="html">
+        <source> Technologien verändern sich – mein Anspruch bleibt: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{ currentSlogan }}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7829734732948629857" datatype="html">
+        <source>Mit einem Hintergrund in Mediengestaltung und einem Blick für Struktur und Ästhetik entwickle ich Webanwendungen, die technisch durchdacht und visuell klar sind.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Ich liebe die Verbindung von Code und Design: sauberes HTML/CSS, performante Architekturen mit Angular und ein UI, das sich für Nutzer intuitiv und stimmig anfühlt.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Was mich antreibt, ist die Idee, aus Komplexität einfache und elegante Lösungen zu formen. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/about-me/about-me.component.html</context>
+          <context context-type="linenumber">29,35</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

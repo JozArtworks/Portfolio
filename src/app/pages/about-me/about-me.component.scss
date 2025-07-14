@@ -2,6 +2,17 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
+.inline-image {
+  float: left;
+  width: 120px;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(61, 207, 182, 0.4);
+  shape-outside: margin-box;
+}
+
 .dNone {
   display: none;
 }
