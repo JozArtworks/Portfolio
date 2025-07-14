@@ -21,29 +21,61 @@ export class ProjectDialogComponent {
     this.close.emit();
   }
 
-nextProject() {
-  if (!this.isLast) {
-    const next = this.allProjects[this.currentIndex + 1];
-    this.changeProject.emit(next);
+  resetHoverIcons() {
+    this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+    this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
   }
-}
 
-previousProject() {
-  if (!this.isFirst) {
-    const prev = this.allProjects[this.currentIndex - 1];
-    this.changeProject.emit(prev);
+  nextProject() {
+    if (!this.isLast) {
+      const next = this.allProjects[this.currentIndex + 1];
+      this.resetHoverIcons();
+      this.changeProject.emit(next);
+    }
   }
-}
+
+  previousProject() {
+    if (!this.isFirst) {
+      const prev = this.allProjects[this.currentIndex - 1];
+      this.resetHoverIcons();
+      this.changeProject.emit(prev);
+    }
+  }
 
   get currentIndex(): number {
-  return this.allProjects.findIndex(p => p.title === this.project.title);
-}
+    return this.allProjects.findIndex(p => p.title === this.project.title);
+  }
 
-get isFirst(): boolean {
-  return this.currentIndex === 0;
-}
+  get isFirst(): boolean {
+    return this.currentIndex === 0;
+  }
 
-get isLast(): boolean {
-  return this.currentIndex === this.allProjects.length - 1;
-}
+  get isLast(): boolean {
+    return this.currentIndex === this.allProjects.length - 1;
+  }
+
+  iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+
+  iconRight = 'assets/icons/white/svg/icon_right_white.svg'
+
+  iconClose = 'assets/icons/white/svg/icon_close_white.svg'
+
+  onHoverClose(hovered: boolean) {
+    this.iconClose = hovered
+      ? 'assets/icons/green/svg/icon_close_green.svg'
+      : 'assets/icons/white/svg/icon_close_white.svg';
+  }
+
+  onHoverLeft(hovered: boolean) {
+    this.iconLeft = hovered
+      ? 'assets/icons/green/svg/icon_left_green.svg'
+      : 'assets/icons/white/svg/icon_left_white.svg';
+  }
+
+  onHoverRight(hovered: boolean) {
+    this.iconRight = hovered
+      ? 'assets/icons/green/svg/icon_right_green.svg'
+      : 'assets/icons/white/svg/icon_right_white.svg';
+  }
+
 }

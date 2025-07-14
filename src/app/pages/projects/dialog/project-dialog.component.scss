@@ -2,27 +2,11 @@
 @import "../../../../assets/styles/variables.scss";
 @import "../../../../assets/styles/font-types.scss";
 
-button {
-  all: unset;
-  background-color: transparent;
-  box-shadow: none;
-  padding: 5px;
-
-  img {
-    width: 20px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .project-info {
   margin-right: 15px;
   margin-left: 15px;
   max-width: 330px;
-  min-height: 170
-  px;
+  min-height: 180px;
 
   h3 {
     color: white;
@@ -47,15 +31,19 @@ button {
 
 .project-icons {
   display: flex;
-  width: 50px;
-  height: auto;
   gap: 5px;
   border-radius: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+
 
   img {
-    border: 1px solid black;
+    border: 1px solid rgba(255, 255, 255, 0.314);
+    background-color: rgba(255, 255, 255, 0.179);
     padding: 5px;
     border-radius: 15px;
+    height: 45px;
+    width: auto;
   }
 }
 
@@ -136,56 +124,6 @@ button {
   justify-content: flex-end;
 }
 
-.project-buttons {
-  display: flex;
-  gap: 15px;
-  width: 100%;
-  margin-left: 30px;
-}
-
-.border-git {
-  border: 2px solid black;
-  border-radius: 12px;
-
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: clamp(12px, 3vw, 1rem);
-  }
-}
-
-.border-live {
-  border: 2px solid black;
-  border-radius: 12px;
-  padding: 10px 20px;
-
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: clamp(12px, 3vw, 1rem);
-  }
-}
-
-.btn-git {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-
-  img {
-    margin-left: 15px;
-    width: 15px;
-    height: auto;
-  }
-}
-
-.btn-live {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ===== MEDIA QUERIES ===== */
 
 @media screen and (max-width: 820px) {
   .dialog-nav {
@@ -238,6 +176,82 @@ button {
     .dialog-content {
       padding: 15px;
     }
+  }
+}
+
+button {
+  all: unset;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 5px;
+
+  img {
+    width: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.project-buttons {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-left: 30px;
+}
+
+.border-git {
+  border: 2px solid rgba(255, 255, 255, 0.289);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.348);
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: clamp(12px, 3vw, 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+
+    img {
+      margin-left: 10px;
+      width: 15px;
+      height: auto;
+    }
+
+    &:hover {
+      color: #3DCFB6;
+    }
+  }
+
+  &:hover {
+    border-color: #3DCFB6;
+  }
+}
+
+.border-live {
+  border: 2px solid rgba(255, 255, 255, 0.289);
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.348);
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: clamp(12px, 3vw, 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      color: #3DCFB6;
+    }
+  }
+
+  &:hover {
+    border-color: #3DCFB6;
   }
 }
 
