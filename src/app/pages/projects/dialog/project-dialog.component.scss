@@ -125,6 +125,61 @@
 }
 
 
+button {
+  all: unset;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 5px;
+
+  img {
+    width: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.project-buttons {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-left: 30px;
+}
+
+.border-git,
+.border-live {
+  border: 2px solid rgba(255, 255, 255, 0.289);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.348);
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: clamp(12px, 3vw, 0.9rem);
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+
+    img {
+      margin-left: 5px;
+      width: 15px;
+      height: auto;
+    }
+  }
+
+  &:hover {
+    border-color: #3DCFB6;
+
+    a {
+      color: #3DCFB6;
+    }
+  }
+}
+
+
 @media screen and (max-width: 820px) {
   .dialog-nav {
     margin: 10px 0;
@@ -179,71 +234,8 @@
   }
 }
 
-button {
-  all: unset;
-  background-color: transparent;
-  box-shadow: none;
-  padding: 5px;
-
-  img {
-    width: 20px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.project-buttons {
-  display: flex;
-  gap: 15px;
-  width: 100%;
-  margin-left: 30px;
-}
-
-.border-git,
-.border-live {
-  border: 2px solid rgba(255, 255, 255, 0.289);
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.348);
-
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: clamp(12px, 3vw, 1rem);
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-
-    img {
-      margin-left: 10px;
-      width: 20px;
-      height: auto;
-    }
-  }
-
-  &:hover {
-    border-color: #3DCFB6;
-
-    a {
-      color: #3DCFB6;
-    }
-  }
-}
 
 @media screen and (max-width: 410px) {
-  .border-live {
-    padding: 10px 10px;
-  }
-
-  .btn-git {
-    img {
-      margin-left: 8px;
-      width: 10px;
-    }
-  }
 
   .project-buttons {
     gap: 5px;

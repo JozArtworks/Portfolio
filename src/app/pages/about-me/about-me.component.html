@@ -1,43 +1,36 @@
 <section class="about-page">
   <div class="about-content">
     <div class="about-window">
-      <h2 class="about-headline" i18n>Über mich</h2>
+      <h2 class="about-headline">{{ 'about.title' | translate }}</h2>
       <div class="about-body">
         <div class="box-left dNone">
           <div class="text-with-image">
             <img src="./../../../assets/images/aboutmepic.png" alt="About Me" class="about-me-image inline-image" />
-            <p class="dNone" i18n>
-              Mit einem Hintergrund in Mediengestaltung und einem Blick für Struktur
-              und Ästhetik entwickle ich Webanwendungen, die technisch durchdacht und visuell klar sind.
+            <p class="dNone">
+              {{ 'about.intro1' | translate }}
             </p>
-            <p class="dNone" i18n>
-              Ich liebe die Verbindung von Code und Design: sauberes HTML/CSS, performante Architekturen mit Angular und
-              ein UI, das sich für Nutzer intuitiv und stimmig anfühlt.
+            <p class="dNone">
+              {{ 'about.intro2' | translate }}
             </p>
-            <p class="dNone" i18n>
-              Was mich antreibt, ist die Idee, aus Komplexität einfache und elegante Lösungen zu formen.
+            <p class="dNone">
+              {{ 'about.intro3' | translate }}
             </p>
-            <p class="tech-claim dNone" i18n>
-              Technologien verändern sich – mein Anspruch bleibt:
+            <p class="tech-claim dNone">
+              {{ 'about.claim' | translate }}
             </p>
-            <blockquote [class]="animationState" i18n>
+            <blockquote [class]="animationState">
               {{ currentSlogan }}
             </blockquote>
           </div>
         </div>
         <div class="box-right">
-          <p i18n>Mit einem Hintergrund in Mediengestaltung und einem Blick für Struktur und Ästhetik entwickle ich
-            Webanwendungen, die technisch durchdacht und visuell klar sind.<br><br>
-            Ich liebe die Verbindung von Code und Design: sauberes HTML/CSS, performante Architekturen mit Angular und
-            ein
-            UI, das sich für Nutzer intuitiv und stimmig anfühlt.<br><br>
-            Was mich antreibt, ist die Idee, aus Komplexität einfache und
-            elegante Lösungen zu formen.
-          </p>
+          <p>{{ 'about.intro1' | translate }}</p>
+          <p>{{ 'about.intro2' | translate }}</p>
+          <p>{{ 'about.intro3' | translate }}</p>
           <p class="tech-claim">
-            Technologien verändern sich – mein Anspruch bleibt:
+            {{ 'about.claim' | translate }}
           </p>
-          <blockquote [class]="animationState" i18n>
+          <blockquote [class]="animationState">
             {{ currentSlogan }}
           </blockquote>
         </div>

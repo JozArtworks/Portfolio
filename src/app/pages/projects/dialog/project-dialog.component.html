@@ -33,7 +33,7 @@
       <div class="dialog-nav">
 
         @if (!isFirst) {
-        <button class="nav-button left" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"
+        <button class="nav-button" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"
           (click)="previousProject()">
           <img [src]="iconLeft" alt="Previous Project" />
         </button>
@@ -65,9 +65,9 @@
         </div>
 
         @if (!isLast) {
-        <button class="nav-button right" (mouseenter)="onHoverRight(true)" (mouseleave)="onHoverRight(false)"
+        <button class="nav-button" (mouseenter)="onHoverRight(true)" (mouseleave)="onHoverRight(false)"
           (click)="nextProject()">
-          <img [src]="iconRight" alt="Previous Project" />
+          <img [src]="iconRight" alt="Next Project" />
         </button>
         } @else {
         <span class="nav-placeholder"></span>

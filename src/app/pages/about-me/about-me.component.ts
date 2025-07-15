@@ -1,39 +1,47 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core'; // beide hier zusammen
+
+
 
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './about-me.component.html',
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
 
-  slogans = [
-    '"Ordnung im Code ist kein Luxus. Es ist Verantwortung."',
-    '"Code ist Kommunikation."',
-    '"Frontend ist mehr als Technik – es ist Beziehung zum Nutzer."',
-    '"Wenn Code fließt, folgt das Design von selbst."',
-    '"Frontend ist kein Klickziel – sondern Systemschnittstelle."',
-    '"Technik ist kein Stilmittel. Sie ist Verantwortung."',
-    '"Der Nutzer sieht’s nicht. Aber der nächste Entwickler schon."',
-    '"Mein Stack? HTML, CSS, TypeScript – und eine Prise Intuition."',
-    '"Daten fließen, Layouts folgen – der Rest ist Fokus."'
-  ];
-
-  currentSlogan = this.slogans[0];
+  slogans: string[] = [];
+  currentSlogan = '';
   sloganIndex = 0;
   animationState: 'fade-in' | 'fade-out' = 'fade-in';
 
+  constructor(private translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.translate.get('about.slogans').subscribe((slogans: string[]) => {
+      this.slogans = slogans;
+      this.currentSlogan = this.slogans[0];
+      this.startSloganCycle();
+    });
+
+    this.translate.onLangChange.subscribe(() => {
+      this.translate.get('about.slogans').subscribe((slogans: string[]) => {
+        this.slogans = slogans;
+        this.sloganIndex = 0;
+        this.currentSlogan = slogans[0];
+      });
+    });
+  }
+
+  startSloganCycle() {
     setInterval(() => {
       this.animationState = 'fade-out';
       setTimeout(() => {
         this.sloganIndex = (this.sloganIndex + 1) % this.slogans.length;
         this.currentSlogan = this.slogans[this.sloganIndex];
         this.animationState = 'fade-in';
-
       }, 400);
     }, 7000);
   }

@@ -10,6 +10,7 @@ import { Project } from '../project.interface';
   styleUrls: ['./project-dialog.component.scss']
 })
 export class ProjectDialogComponent {
+
   @Input() project!: Project;
   @Input() show = false;
   @Input() allProjects: Project[] = [];
@@ -17,11 +18,17 @@ export class ProjectDialogComponent {
   @Output() close = new EventEmitter<void>();
   @Output() changeProject = new EventEmitter<Project>();
 
+  isGitHovered = false;
+
+  iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+  iconRight = 'assets/icons/white/svg/icon_right_white.svg'
+  iconClose = 'assets/icons/white/svg/icon_close_white.svg'
+
   onClose() {
     this.close.emit();
   }
 
-  resetHoverIcons() {
+  resetHoverIcons() { 
     this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
     this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
   }
@@ -54,11 +61,7 @@ export class ProjectDialogComponent {
     return this.currentIndex === this.allProjects.length - 1;
   }
 
-  iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
 
-  iconRight = 'assets/icons/white/svg/icon_right_white.svg'
-
-  iconClose = 'assets/icons/white/svg/icon_close_white.svg'
 
   onHoverClose(hovered: boolean) {
     this.iconClose = hovered
@@ -77,8 +80,6 @@ export class ProjectDialogComponent {
       ? 'assets/icons/green/svg/icon_right_green.svg'
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
-
-  isGitHovered = false;
 
 
 }

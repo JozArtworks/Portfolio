@@ -20,43 +20,26 @@ import { LangSwitchComponent } from '../components/lang-switch/lang-switch.compo
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 
 import { SimpleChanges, OnChanges } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule, LangSwitchComponent, LinksImgComponent],
+  imports: [RouterModule, LangSwitchComponent, LinksImgComponent, TranslateModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit, OnChanges {
 
-  readonly translations = {
-    de: {
-      home: 'Home',
-      about: 'Über mich',
-      skills: 'Tools',
-      projects: 'Projekte',
-      feedbacks: 'Referenzen',
-      contact: 'KONTAKT',
-    },
-    en: {
-      home: 'Home',
-      about: 'About me',
-      skills: 'Skills',
-      projects: 'Projects',
-      feedbacks: 'References',
-      contact: 'CONTACT',
-    },
-  };
-
-  navItems = [
-    { path: '/home', label: () => this.translate.home },
-    { path: '/about', label: () => this.translate.about },
-    { path: '/skills', label: () => this.translate.skills },
-    { path: '/projects', label: () => this.translate.projects },
-    { path: '/feedbacks', label: () => this.translate.feedbacks },
-  ];
+navItems = [
+  { path: '/home', key: 'nav.home' },
+  { path: '/about', key: 'nav.about' },
+  { path: '/skills', key: 'nav.skills' },
+  { path: '/projects', key: 'nav.projects' },
+  { path: '/feedbacks', key: 'nav.feedbacks' }
+];
 
   linksIcons = [
     {
@@ -78,7 +61,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private translate: TranslateService) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
@@ -158,12 +141,9 @@ onClickOutside(event: MouseEvent) {
     }
   }
 
-  get translate() {
-    return this.translations[this.language()];
-  }
-
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
+    this.translate.use(lang);
     setTimeout(() => this.updateIndicator(), 20);
   }
 

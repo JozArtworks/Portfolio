@@ -1,0 +1,28 @@
+{
+  "about": {
+    "title": "Über mich",
+    "intro1": "Mit einem Hintergrund in Mediengestaltung und einem Blick für Struktur und Ästhetik entwickle ich Webanwendungen, die technisch durchdacht und visuell klar sind.",
+    "intro2": "Ich liebe die Verbindung von Code und Design: sauberes HTML/CSS, performante Architekturen mit Angular und ein UI, das sich für Nutzer intuitiv und stimmig anfühlt.",
+    "intro3": "Was mich antreibt, ist die Idee, aus Komplexität einfache und elegante Lösungen zu formen.",
+    "claim": "Technologien verändern sich – mein Anspruch bleibt:",
+    "slogans": [
+      "„Ordnung im Code ist kein Luxus. Es ist Verantwortung.“",
+      "„Code ist Kommunikation.“",
+      "„Frontend ist mehr als Technik – es ist Beziehung zum Nutzer.“",
+      "„Wenn Code fließt, folgt das Design von selbst.“",
+      "„Frontend ist kein Klickziel – sondern Systemschnittstelle.“",
+      "„Technik ist kein Stilmittel. Sie ist Verantwortung.“",
+      "„Der Nutzer sieht’s nicht. Aber der nächste Entwickler schon.“",
+      "„Mein Stack? HTML, CSS, TypeScript – und eine Prise Intuition.“",
+      "„Daten fließen, Layouts folgen – der Rest ist Fokus.“"
+    ]
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Über mich",
+    "skills": "Tools",
+    "projects": "Projekte",
+    "feedbacks": "Referenzen",
+    "contact": "Kontakt"
+  }
+}

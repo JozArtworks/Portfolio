@@ -5,6 +5,8 @@ import { filter } from 'rxjs';
 import { HeaderComponent } from './shared/header/header.component';
 import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-popout.component';
 import { HostListener } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -16,12 +18,17 @@ import { HostListener } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(private router: Router) {
+  constructor(  private router: Router,
+  private translate: TranslateService,
+  private cdr: ChangeDetectorRef) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.urlAfterRedirects;
     });
+
+    this.translate.setDefaultLang(this.language);
+    this.translate.use(this.language);
   }
 
 
@@ -70,6 +77,8 @@ export class AppComponent {
 
   setLanguage(lang: 'de' | 'en') {
     this.language = lang;
+    this.translate.use(lang);
+    this.cdr.detectChanges();
   }
   title = 'portfolio';
 

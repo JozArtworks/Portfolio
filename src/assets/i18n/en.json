@@ -1,0 +1,28 @@
+{
+  "about": {
+    "title": "About me",
+    "intro1": "With a background in media design and an eye for structure and aesthetics, I develop web applications that are technically sound and visually clear.",
+    "intro2": "I love the combination of code and design: clean HTML/CSS, performant Angular architectures, and a UI that feels intuitive and cohesive for users.",
+    "intro3": "What drives me is the idea of turning complexity into simple and elegant solutions.",
+    "claim": "Technologies change – my standard remains:",
+    "slogans": [
+      "“Clean code isn't a luxury – it's a responsibility.”",
+      "“Code is communication.”",
+      "“Frontend is more than tech – it’s user relationship.”",
+      "“When code flows, design follows.”",
+      "“Frontend isn't a click-goal – it’s a system interface.”",
+      "“Tech isn’t a style – it’s accountability.”",
+      "“The user doesn’t see it. But the next developer will.”",
+      "“My stack? HTML, CSS, TypeScript – and a pinch of intuition.”",
+      "“Data flows, layouts follow – the rest is focus.”"
+    ]
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About me",
+    "skills": "Skills",
+    "projects": "Projects",
+    "feedbacks": "References",
+    "contact": "Contact"
+  }
+}
