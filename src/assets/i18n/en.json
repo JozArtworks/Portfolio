@@ -106,5 +106,67 @@
     "namePlaceholder": "Your name",
     "emailPlaceholder": "Your email",
     "messagePlaceholder": "Your message..."
+  },
+  "tools": {
+    "headline": "Skills",
+    "textBox1": "I work with modern frontend technologies to build performant, structured, and maintainable applications.<br><br>My focus lies on clean code, modular architecture, and a UI that feels intuitive.<br><br>I'm open to new technologies and regularly expand my knowledge – because good web development means thinking along, growing along, and helping shape the future.",
+    "missingHeadline": "Missing a tool?",
+    "missingText": "Feel free to reach out – I'm always happy to expand my skillset."
+  },
+  "feedback": {
+    "title": "References",
+    "patrick": {
+      "text": "Jon was always fully committed and open to any task. What I especially appreciated was how versatile he contributed – it made the collaboration not only productive but also very pleasant. The exchange was always open, warm, and collegial."
+    },
+    "stephanie": {
+      "text": "Jonathan was a very pleasant teammate who brought great stability to the team with his calm and structured manner. His strengths were especially in UI design, CSS, and Angular logic. I particularly valued how he always thought ahead and could clearly communicate technical contexts."
+    },
+    "jennifer": {
+      "text": "Jonathan was fully integrated from the start and fit into the team both professionally and personally. The collaboration was easy, productive, and characterized by mutual appreciation. I was especially impressed by how quickly he dove into complex topics while staying calm at all times."
+    },
+    "ha": {
+      "text": "Jon proved to be independent, committed, and solution-oriented. His media skills and creative approach significantly enriched the design and user experience of the project. With his positive attitude and dedication, he was truly an asset to the team."
+    },
+    "taher": {
+      "text": "I had the pleasure of working with Jonathan on a website project and was impressed by his enthusiasm for coding. He quickly understood new concepts and purposefully integrated them into the project. Calm, focused, and always aiming to find good solutions together."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Selection of my practical projects",
+    "join": {
+      "title": "Join",
+      "description": "Task manager with drag & drop",
+      "dialogDescription": "Task manager inspired by the Kanban system. Create and organize tasks via drag & drop, assign users and categories."
+    },
+    "pokedex": {
+      "title": "Pokedex",
+      "description": "Interactive app with API data",
+      "dialogDescription": "Interactive Pokédex app with live API data. Displays names, types and images – filterable and searchable."
+    },
+    "elpollo": {
+      "title": "El Pollo Loco",
+      "description": "Gaming with OOP",
+      "dialogDescription": "Jump, run and throw game with object-oriented programming. Help Pepe collect coins and hot sauce to defeat the crazy chicken."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "UI design & animation",
+      "dialogDescription": "Personal portfolio focused on UI design and smooth animations. Structure, style and motion ensure a clear user experience."
+    }
+  },
+  "footer": {
+    "copyright": "© Code & Design by Jonathan Michutta 2025",
+    "imprint": "Imprint",
+    "privacy": "Privacy Policy",
+    "copied": "Copied",
+    "email": "front-dev@jonathan-michutta.de",
+    "copyAria": "Copy email"
+  },
+  "landing": {
+    "title": "Frontend Developer",
+    "subtitle": "& Media Designer",
+    "copied": "Copied",
+    "copyAria": "Copy email"
   }
 }

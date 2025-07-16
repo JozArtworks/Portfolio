@@ -106,5 +106,67 @@
     "namePlaceholder": "Dein Name",
     "emailPlaceholder": "Deine Mail",
     "messagePlaceholder": "Deine Nachricht..."
+  },
+  "tools": {
+    "headline": "Tools",
+    "textBox1": "Ich arbeite mit modernen Frontend-Technologien, um performante, strukturierte und wartbare Anwendungen zu entwickeln.<br><br>Mein Fokus liegt auf sauberem Code, modularer Architektur und einem UI, das sich intuitiv anfühlt.<br><br>Ich bin offen für neue Technologien und bilde mich regelmäßig weiter – denn gute Webentwicklung heißt für mich: mitdenken, mitwachsen und mitgestalten.",
+    "missingHeadline": "Fehlt ein Tool?",
+    "missingText": "Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern."
+  },
+  "feedback": {
+    "title": "Referenzen",
+    "patrick": {
+      "text": "Jon war immer mit vollem Einsatz dabei und offen für jede Aufgabe. Besonders schätzenswert fand ich, wie vielseitig er sich eingebracht hat – das hat die Zusammenarbeit nicht nur produktiv, sondern auch sehr angenehm gemacht. Der Austausch war dabei stets offen, herzlich und kollegial."
+    },
+    "stephanie": {
+      "text": "Jonathan war ein sehr angenehmer Teamkollege, der durch seine ruhige, strukturierte Art viel Stabilität ins Team gebracht hat. Seine Stärken lagen vor allem im Bereich UI-Design, CSS und Angular-Logik. Besonders geschätzt habe ich, dass er immer mitgedacht hat und technische Zusammenhänge klar kommunizieren konnte."
+    },
+    "jennifer": {
+      "text": "Jonathan war von Anfang an voll integriert und hat sich sowohl fachlich als auch menschlich super ins Team eingefügt. Der Austausch war unkompliziert, produktiv und von gegenseitiger Wertschätzung geprägt. Besonders beeindruckt hat mich, wie schnell er sich in komplexe Themen eingearbeitet hat und stets die Ruhe bewahrte."
+    },
+    "ha": {
+      "text": "Jon hat sich als selbstständig, engagiert und lösungsorientiert erwiesen. Seine Medienkompetenz und sein kreativer Ansatz haben das Design und die Nutzererfahrung des Projekts deutlich bereichert. Mit seiner positiven Einstellung und seinem Einsatz war er eine echte Bereicherung für das Team."
+    },
+    "taher": {
+      "text": "Ich hatte das Vergnügen, mit Jonathan an einem Website-Projekt zu arbeiten, und war beeindruckt von seiner Begeisterung fürs Coden. Er hat neue Konzepte schnell verstanden und sie zielsicher ins Projekt eingebracht. Ruhig, fokussiert und immer mit dem Ziel, gemeinsam gute Lösungen zu finden."
+    }
+  },
+  "projects": {
+    "title": "Projekte",
+    "subtitle": "Auswahl meiner praktischen Projekte",
+    "join": {
+      "title": "Join",
+      "description": "Task-Manager mit Drag & Drop",
+      "dialogDescription": "Task-Manager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben per Drag & Drop, weise Nutzer und Kategorien zu."
+    },
+    "pokedex": {
+      "title": "Pokedex",
+      "description": "Interaktive App mit API-Daten",
+      "dialogDescription": "Interaktive Pokédex-App mit Live-API-Daten. Zeigt Namen, Typen und Bilder – filterbar und durchsuchbar."
+    },
+    "elpollo": {
+      "title": "El Pollo Loco",
+      "description": "Gaming mit OOP",
+      "dialogDescription": "Jump-, Run- und Wurfspiel mit objektorientierter Programmierung. Hilf Pepe, Münzen und Tabascosoße zu sammeln, um das verrückte Huhn zu besiegen."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "UI-Design & Animation",
+      "dialogDescription": "Persönliches Portfolio mit Fokus auf UI-Design und sanften Animationen. Struktur, Stil und Bewegung sorgen für ein klares Nutzererlebnis."
+    }
+  },
+  "footer": {
+    "copyright": "© Code & Design von Jonathan Michutta 2025",
+    "imprint": "Impressum",
+    "privacy": "Datenschutzerklärung",
+    "copied": "Kopiert",
+    "email": "front-dev@jonathan-michutta.de",
+    "copyAria": "E-Mail kopieren"
+  },
+  "landing": {
+    "title": "Webentwickler (Frontend)",
+    "subtitle": "& Mediengestalter",
+    "copied": "Kopiert",
+    "copyAria": "E-Mail kopieren"
   }
 }

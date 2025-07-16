@@ -6,11 +6,12 @@ import {
   ElementRef,
 } from '@angular/core';
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [LinksImgComponent],
+  imports: [LinksImgComponent, TranslateModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

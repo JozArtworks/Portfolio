@@ -2,10 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Project } from '../project.interface';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-project-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './project-dialog.component.html',
   styleUrls: ['./project-dialog.component.scss']
 })
@@ -28,7 +30,7 @@ export class ProjectDialogComponent {
     this.close.emit();
   }
 
-  resetHoverIcons() { 
+  resetHoverIcons() {
     this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
     this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
   }

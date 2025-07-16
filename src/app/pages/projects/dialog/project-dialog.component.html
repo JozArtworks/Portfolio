@@ -14,11 +14,11 @@
 
         <div class="info-box">
           <div class="project-info">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.dialogDescription }}</p>
+            <h3>{{ project.title | translate }}</h3>
+            <p>{{ project.dialogDescription | translate }}</p>
           </div>
           <div class="project-image">
-            <img [src]="project.image" alt="{{ project.title }}" />
+            <img [src]="project.image" alt="{{ project.title | translate }}" />
           </div>
         </div>
 

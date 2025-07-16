@@ -5,8 +5,8 @@
     <div class="title">
       <h1>JONATHAN MICHUTTA</h1>
       <div class="subtitle">
-        <h2><span class="code-angle">&lt;</span> FRONTEND DEVELOPER /></h2>
-        <h3>& Mediengestalter</h3>
+        <h2><span class="code-angle">&lt;</span> {{ 'landing.title' | translate }} /></h2>
+        <h3>{{ 'landing.subtitle' | translate }}</h3>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
 
 
   <div class="dialog-copy" [class.visible]="showCopyDialog">
-    <span>Kopiert</span>
+    <span>{{ 'landing.copied' | translate }}</span>
     <svg class="check-icon" viewBox="0 0 24 24">
       <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
         stroke-linejoin="round" />
@@ -42,7 +42,7 @@
     </a>
 
 
-    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied" aria-label="E-Mail kopieren">
+    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied" [attr.aria-label]="'landing.copyAria' | translate">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
         <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />

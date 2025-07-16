@@ -1,7 +1,7 @@
 <section class="tools-page">
   <div class="tools-content">
     <div class="tools-window">
-      <h2 class="tools-headline">Tools</h2>
+      <h2 class="tools-headline">{{ 'tools.headline' | translate }}</h2>
 
       <div class="tools-body">
         <div class="box-left-icons">
@@ -28,7 +28,6 @@
             <div class="tools-icon-line">
               @if (showExtraTools) {
               <div class="extra-tool-wrapper">
-                <!-- <p class="extra-tools-headline dNone">I have a special interest in learning</p> -->
                 <div class="img-extra">
                   @for (extra of extraTools; track extra.name) {
                   <div class="extra-icon">
@@ -68,18 +67,12 @@
 
         <div class="tools-text">
           <div class="box">
-            <p>
-              Ich arbeite mit modernen Frontend-Technologien, um performante, strukturierte und wartbare Anwendungen zu
-              entwickeln.<br><br>
-              Mein Fokus liegt auf sauberem Code, modularer Architektur und einem UI, das sich intuitiv anfühlt.<br><br>
-              Ich bin offen für neue Technologien und bilde mich regelmäßig weiter – denn gute Webentwicklung heißt für
-              mich: mitdenken, mitwachsen und mitgestalten.
-            </p>
+<p [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
 
           <div class="box">
-            <span>Fehlt ein Tool?</span>
-            <p>Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern.</p>
+            <span>{{ 'tools.missingHeadline' | translate }}</span>
+            <p>{{ 'tools.missingText' | translate }}</p>
           </div>
         </div>
       </div>

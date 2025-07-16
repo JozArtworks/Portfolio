@@ -2,9 +2,9 @@ import { Project } from './project.interface';
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Join',
-    description: 'Task-Manager mit Drag & Drop',
-    dialogDescription: 'Task-Manager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben per Drag & Drop, weise Nutzer und Kategorien zu.',
+    title: 'projects.join.title',
+    description: 'projects.join.description',
+    dialogDescription: 'projects.join.dialogDescription',
     image: 'assets/images/web_image/join_image.png',
     icons: [
       'assets/icons/white/svg/logo_firebase.svg',
@@ -22,9 +22,9 @@ export const PROJECTS: Project[] = [
     live: 'https://jonathan-michutta.de/join/'
   },
   {
-    title: 'Pokedex',
-    description: 'Interaktive App mit API-Daten',
-    dialogDescription: 'Interaktive Pokedex-App mit Live-API-Daten. Zeigt Namen, Typen und Bilder - filterbar und durchsuchbar.',
+    title: 'projects.pokedex.title',
+    description: 'projects.pokedex.description',
+    dialogDescription: 'projects.pokedex.dialogDescription',
     image: 'assets/images/web_image/pokedex_image.png',
     icons: [
       'assets/icons/white/svg/logo_api.svg',
@@ -40,9 +40,9 @@ export const PROJECTS: Project[] = [
     live: 'https://jonathan-michutta.de/pokedex/'
   },
   {
-    title: 'El Pollo Loco',
-    description: 'Gaming mit OOP',
-    dialogDescription: 'Jump-, Run- und Wurfspiel mit objektorientierter Programmiertem Ansatz. Hilf Pepe, Münzen und Tabascosoße zu finden, um gegen das verrückte Huhn zu gewinnen.',
+    title: 'projects.elpollo.title',
+    description: 'projects.elpollo.description',
+    dialogDescription: 'projects.elpollo.dialogDescription',
     image: 'assets/images/web_image/elpolloloco_image.png',
     icons: [
       'assets/icons/white/svg/logo_oop.svg'
@@ -57,9 +57,9 @@ export const PROJECTS: Project[] = [
     live: 'https://jonathan-michutta.de/elPolloLoco/'
   },
   {
-    title: 'Portfolio',
-    description: 'UI-Design & Animation',
-    dialogDescription: 'Persönliches Portfolio mit Fokus auf UI-Design und sanften Animationen. Struktur, Stil und Bewegung sorgen für ein klares Nutzererlebnis.',
+    title: 'projects.portfolio.title',
+    description: 'projects.portfolio.description',
+    dialogDescription: 'projects.portfolio.dialogDescription',
     image: 'assets/images/web_image/portfolio_image.png',
     icons: [
       'assets/icons/white/svg/logo_angular.svg',

@@ -4,10 +4,12 @@ import { PROJECTS } from './project-data';
 import { Project } from './project.interface';
 import { ProjectDialogComponent } from './dialog/project-dialog.component';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-projekte',
   standalone: true,
-  imports: [CommonModule, ProjectDialogComponent],
+  imports: [CommonModule, ProjectDialogComponent, TranslateModule],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })

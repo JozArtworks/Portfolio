@@ -9,10 +9,12 @@ import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, LinksImgComponent, RouterModule],
+  imports: [CommonModule, LinksImgComponent, RouterModule, TranslateModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
