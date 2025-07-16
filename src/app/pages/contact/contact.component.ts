@@ -7,14 +7,20 @@ import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FooterComponent, FormsModule, RouterModule],
+  imports: [FooterComponent, FormsModule, RouterModule, TranslateModule],
+
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss', './contact-media.component.scss'],
 })
 export class ContactComponent implements OnInit, OnDestroy {
+
+  constructor(private translate: TranslateService) {}
+
 
   formData = {
     name: '',
@@ -91,7 +97,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.onInputChange();
 
     if (!this.isFormValid) {
-      console.warn("Formular nicht vollständig oder fehlerhaft.");
       return;
     }
 
@@ -173,27 +178,27 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   get namePlaceholder(): string {
-    if (!this.isMobileView) return 'Dein Name';
+    if (!this.isMobileView) return this.translate.instant('contact.namePlaceholder');
     if (!this.nameValid && (this.markTouched || this.nameInput?.touched)) {
-      return 'Bitte gib deinen Namen ein!';
+      return this.translate.instant('contact.nameError');
     }
-    return 'Dein Name';
+    return this.translate.instant('contact.namePlaceholder');
   }
 
   get emailPlaceholder(): string {
-    if (!this.isMobileView) return 'Deine Mail';
+    if (!this.isMobileView) return this.translate.instant('contact.emailPlaceholder');
     if (!this.emailValid && (this.markTouched || this.emailInput?.touched)) {
-      return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      return this.translate.instant('contact.emailError');
     }
-    return 'Deine Mail';
+    return this.translate.instant('contact.emailPlaceholder');
   }
 
   get messagePlaceholder(): string {
-    if (!this.isMobileView) return 'Deine Nachricht...';
+    if (!this.isMobileView) return this.translate.instant('contact.messagePlaceholder');
     if (!this.messageValid && (this.markTouched || this.messageInput?.touched)) {
-      return 'Ups, da fehlt noch was!';
+      return this.translate.instant('contact.messageError');
     }
-    return 'Deine Nachricht...';
+    return this.translate.instant('contact.messagePlaceholder');
   }
 
 

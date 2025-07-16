@@ -1,18 +1,12 @@
 <section class="contact-page">
   <div class="contact-content">
     <div class="contact-window">
-      <h2 class="contact-headline">Kontakt</h2>
+      <h2 class="contact-headline">{{ 'contact.title' | translate }}</h2>
       <div class="contact-body">
         <div class="box-left">
-          <h3 class="intro-headline">Lass uns gemeinsam etwas aufbauen</h3>
-          <h4 class="sub-headline">Ein Problem zu lösen?</h4>
-          <p>
-            Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />
-            Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen
-            kann.<br /><br />
-            Du suchst einen Frontend Developer?<br />
-            <span>Melde dich!</span>
-          </p>
+          <h3 class="intro-headline">{{ 'contact.introHeadline' | translate }}</h3>
+          <h4 class="sub-headline">{{ 'contact.subHeadline' | translate }}</h4>
+          <p [innerHTML]="'contact.introText' | translate"></p>
         </div>
 
         <div class="box-right">
@@ -21,29 +15,21 @@
               [(ngModel)]="formData.honeypot" />
 
             <div class="input-wrapper">
-              <input type="text" name="name" [placeholder]="namePlaceholder"
-              required [(ngModel)]="formData.name"
+              <input type="text" name="name" [placeholder]="namePlaceholder" required [(ngModel)]="formData.name"
                 (ngModelChange)="onInputChange()" class="form-field name" #nameInput="ngModel"
                 [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
               @if (!nameValid && (markTouched || nameInput.touched)) {
-              <p class="form-warning">Bitte gib deinen Namen ein!</p>
+              <p class="form-warning">{{ 'contact.nameError' | translate }}</p>
               }
             </div>
 
             <div class="input-wrapper">
-              <input
-              type="email"
-              name="email"
-              class="form-field email"
-              [placeholder]="emailPlaceholder"
-              [(ngModel)]="formData.email"
-              (ngModelChange)="onInputChange()"
-              #emailInput="ngModel"
-              [class.invalid]="!emailValid && (markTouched || emailInput.touched)"
-              required />
+              <input type="email" name="email" class="form-field email" [placeholder]="emailPlaceholder"
+                [(ngModel)]="formData.email" (ngModelChange)="onInputChange()" #emailInput="ngModel"
+                [class.invalid]="!emailValid && (markTouched || emailInput.touched)" required />
 
               @if (!emailValid && (markTouched || emailInput.touched)) {
-              <p class="form-warning">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+              <p class="form-warning">{{ 'contact.emailError' | translate }}</p>
               }
             </div>
 
@@ -53,7 +39,7 @@
                 #messageInput="ngModel"
                 [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>
               @if (!messageValid && (markTouched || messageInput.touched)) {
-              <p class="form-warning">Ups, da fehlt noch was!</p>
+              <p class="form-warning">{{ 'contact.messageError' | translate }}</p>
               }
             </div>
 
@@ -65,12 +51,10 @@
               </label>
               <div class="input-wrapper">
                 <p>
-                  Ich habe die <a routerLink="/legal/privacy-policy">Datenschutzerklärung</a> gelesen und stimme der
-                  darin
-                  beschriebenen Verarbeitung meiner Daten zu.
+                  {{ 'contact.privacyText' | translate }} <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a> {{ 'contact.privacyTextEnd' | translate }}
                 </p>
                 @if (!formData.privacyAccepted && privacyTouched) {
-                <p class="form-warning checkbox-warn">Datenschutz ist wichtig!</p>
+                <p class="form-warning checkbox-warn">{{ 'contact.privacyWarning' | translate }}</p>
                 }
               </div>
             </div>
@@ -78,15 +62,15 @@
             <button class="btn-send" [disabled]="isSending || !isFormValid || flyAnimation"
               [class]="{ active: isFormValid }" (click)="validateAndSubmit()">
               @if (isSending) {
-              Wird gesendet
+              {{ 'contact.sending' | translate }}
               <img src="assets/icons/white/send_white.png" alt="Send Icon" />
               } @else if (success) {
-              Gesendet!
+              {{ 'contact.sent' | translate }}
               <span class="fly-icon">
                 <img src="assets/icons/white/send_white.png" alt="Send Icon" />
               </span>
               } @else {
-              Senden
+              {{ 'contact.send' | translate }}
               <img src="assets/icons/white/send_white.png" alt="Send Icon" />
               }
             </button>

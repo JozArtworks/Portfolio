@@ -87,5 +87,24 @@
       "text": "Personal data is stored only as long as necessary for the respective purpose or if legal retention obligations apply. I reserve the right to change this privacy policy if necessary to reflect changes in the law or in the online offering."
     },
     "lastUpdate": "Last updated: June 2025"
+  },
+  "contact": {
+    "title": "Contact",
+    "introHeadline": "Let’s build something together",
+    "subHeadline": "A problem to solve?",
+    "introText": "I’m happy to receive inquiries – just tell me which area you need support in.<br />Show me your project – and I’ll show you how I can create real value with clean code.<br /><br />Looking for a Frontend Developer?<br /><span>Get in touch!</span>",
+    "nameError": "Please enter your name!",
+    "emailError": "Please enter a valid email address.",
+    "messageError": "Oops, something is missing!",
+    "privacyText": "I have read the",
+    "privacyTextEnd": "and I agree to the data processing described therein.",
+    "privacyLink": "privacy policy",
+    "privacyWarning": "Privacy matters!",
+    "sending": "Sending",
+    "sent": "Sent!",
+    "send": "Send",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message..."
   }
 }

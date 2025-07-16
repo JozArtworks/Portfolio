@@ -25,7 +25,6 @@
     "feedbacks": "Referenzen",
     "contact": "Kontakt"
   },
-
   "imprint": {
     "title": "Impressum",
     "subtitle": "Angaben gemäß §5 TMG",
@@ -88,6 +87,24 @@
       "text": "Personenbezogene Daten werden nur solange gespeichert, wie es für den jeweiligen Zweck erforderlich ist bzw. gesetzliche Aufbewahrungspflichten bestehen. Änderungen der Datenschutzerklärung: Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf zu ändern, um sie an geänderte Rechtslagen oder Änderungen des Onlineangebots anzupassen."
     },
     "lastUpdate": "Stand: Juni 2025"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "introHeadline": "Lass uns gemeinsam etwas aufbauen",
+    "subHeadline": "Ein Problem zu lösen?",
+    "introText": "Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.<br /><br />Du suchst einen Frontend Developer?<br /><span>Melde dich!</span>",
+    "nameError": "Bitte gib deinen Namen ein!",
+    "emailError": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "messageError": "Ups, da fehlt noch was!",
+    "privacyText": "Ich habe die",
+    "privacyLink": "Datenschutzerklärung",
+    "privacyTextEnd": "gelesen und stimme der darin beschriebenen Verarbeitung meiner Daten zu.",
+    "privacyWarning": "Datenschutz ist wichtig!",
+    "sending": "Wird gesendet",
+    "sent": "Gesendet!",
+    "send": "Senden",
+    "namePlaceholder": "Dein Name",
+    "emailPlaceholder": "Deine Mail",
+    "messagePlaceholder": "Deine Nachricht..."
   }
-  
 }
