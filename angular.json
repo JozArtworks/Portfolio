@@ -26,7 +26,22 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "google8a49b26011a4c286.html",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": ""
+              }
             ],
             "styles": [
               "src/styles.scss"

@@ -24,5 +24,68 @@
     "projects": "Projects",
     "feedbacks": "References",
     "contact": "Contact"
+  },
+  "imprint": {
+    "title": "Imprint",
+    "subtitle": "Information according to §5 TMG",
+    "name": "Jonathan Michutta",
+    "role": "Frontend Developer & Media Designer",
+    "address": "(Munich – address on request)",
+    "contactHeader": "Contact:",
+    "email": "front-dev@jonathan-michutta.de",
+    "website": "https://www.jonathan-michutta.de",
+    "phone": "(Phone number on request)",
+    "responsibleHeader": "Responsible for content according to §55 Abs.2 RStV:",
+    "copyrightHeader": "Copyright:",
+    "copyrightText": "All content on this website (texts, images, graphics, logo, and code) is subject to German copyright law. Reproduction, editing, distribution, or use beyond the scope of copyright law requires written permission from the creator. Downloads and copies of this site are permitted only for private, non-commercial use.",
+    "liabilityHeader": "Liability for Content:",
+    "liabilityText": "As a service provider, I am responsible for my own content on these pages according to §7 Abs.1 TMG and general laws. According to §§8 to 10 TMG, I am not obligated to monitor transmitted or stored third-party information or investigate circumstances indicating illegal activity. Upon becoming aware of such violations, I will remove the content immediately.",
+    "designHeader": "Design & Implementation:",
+    "designText": "Jonathan Michutta\nAll design elements of this website – especially logo, structure, and UI style – were independently designed and implemented.",
+    "iconNote": "Note on icons:\nSome of the icons used are based on templates provided during my training at the Development Academy. They are used solely to illustrate the technologies and are not intended for commercial use or trademark representation."
+  },
+  "privacy": {
+    "headline": "Privacy Policy",
+    "intro": "This privacy policy informs you about the type, scope and purpose of the processing of personal data (hereinafter referred to as \"data\") within our online offering and the associated websites, functions and content.",
+    "responsible": {
+      "title": "Responsible party:",
+      "name": "Jonathan Michutta",
+      "location": "Munich, Germany",
+      "email": "front-dev@jonathan-michutta.de"
+    },
+    "access": {
+      "title": "Access Data",
+      "intro": "When visiting this website, the following data is automatically collected:",
+      "ip": "IP address",
+      "date": "Date and time of the request",
+      "browser": "Browser type and operating system",
+      "pages": "Visited pages (URL)"
+    },
+    "usage": "This data is used exclusively to ensure the secure operation of the site and for statistical evaluation. No combination with other data sources takes place.",
+    "contact": "If you contact me via form, your data (e.g. name, email address, message) will be stored for the purpose of processing your request. This data will not be passed on without your consent.<br><br>The processing is based on your consent according to Art. 6 (1) lit. a GDPR. You can revoke this consent at any time, for example by email.",
+    "honeypot": "To protect against automated spam entries, I use a so-called honeypot field. This field is invisible to regular visitors and is often automatically filled in by bots. Such submissions are automatically discarded and not stored.",
+    "deletion": "The data is used exclusively to process your message and will be deleted afterward, unless legal retention obligations exist.",
+    "cookies": {
+      "title": "Cookies:",
+      "text": "This website does not use cookies that require user consent."
+    },
+    "legal": {
+      "title": "Legal Basis of Processing:",
+      "text": "Processing is carried out in accordance with Art. 6 (1) lit. f GDPR (legitimate interest in the secure provision of the website) and Art. 6 (1) lit. a GDPR (consent, e.g. for the contact form)."
+    },
+    "rights": {
+      "title": "Your Rights",
+      "intro": "You have the right to:",
+      "access": "Request information about your stored data (Art. 15 GDPR)",
+      "correction": "Request correction of inaccurate data (Art. 16 GDPR)",
+      "deletion": "Request deletion or restriction of processing (Art. 17 & 18 GDPR)",
+      "objection": "Object to processing (Art. 21 GDPR)",
+      "complaint": "File a complaint with a supervisory authority"
+    },
+    "storage": {
+      "title": "Storage Duration:",
+      "text": "Personal data is stored only as long as necessary for the respective purpose or if legal retention obligations apply. I reserve the right to change this privacy policy if necessary to reflect changes in the law or in the online offering."
+    },
+    "lastUpdate": "Last updated: June 2025"
   }
 }
