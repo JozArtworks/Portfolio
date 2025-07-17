@@ -25,12 +25,14 @@ export class LangSwitchComponent {
     const savedLang = localStorage.getItem('language') as 'de' | 'en';
     if (savedLang) {
       this.currentLanguage = savedLang;
+      this.translate.use(savedLang);
       this.languageChanged.emit(savedLang);
     }
   }
 
   setLanguage(lang: 'de' | 'en') {
     localStorage.setItem('language', lang);
+    this.translate.use(lang);
     this.languageChanged.emit(lang);
   }
 }

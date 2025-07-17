@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-
+import { linksIcons, LinkIcon } from '../../../shared/data/links-icons.data';
 
 @Component({
   selector: 'app-links-img',
@@ -18,11 +18,7 @@ export class LinksImgComponent {
   isMobileView = false;
   mobileMenuOpen = false;
 
-  linksIcons = [
-    { name: 'GitHub', icon: 'assets/icons/white/github_white.png', link: 'https://github.com/JozArtworks' },
-    { name: 'Mail', icon: 'assets/icons/white/mail_white.png'},
-    { name: 'Linkedin', icon: 'assets/icons/white/linkedin_white.png', link: 'https://www.linkedin.com/in/jonathan-michutta-527722210/'},
-  ];
+linksIcons: LinkIcon[] = linksIcons;
 
 
   setHoveredIcon(name: string) {

@@ -168,5 +168,37 @@
     "subtitle": "& Media Designer",
     "copied": "Copied",
     "copyAria": "Copy email"
+  },
+  "tools-alt-landing": {
+    "api": {
+      "alt": "API – Interface programming"
+    },
+    "javascript": {
+      "alt": "JavaScript – Web development programming language"
+    },
+    "html": {
+      "alt": "HTML – Structuring web page content"
+    },
+    "git": {
+      "alt": "Git – Version control system for code"
+    },
+    "scrum": {
+      "alt": "Scrum – Agile project management framework"
+    },
+    "css": {
+      "alt": "CSS – Styling and layout of websites"
+    },
+    "typescript": {
+      "alt": "TypeScript – Typed extension of JavaScript"
+    },
+    "firebase": {
+      "alt": "Firebase – Backend platform by Google"
+    },
+    "angular": {
+      "alt": "Angular – Web framework for frontend applications"
+    },
+    "material": {
+      "alt": "Material Design – Design system by Google"
+    }
   }
 }

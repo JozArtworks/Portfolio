@@ -168,5 +168,37 @@
     "subtitle": "& Mediengestalter",
     "copied": "Kopiert",
     "copyAria": "E-Mail kopieren"
+  },
+  "tools-alt-landing": {
+    "api": {
+      "alt": "API – Schnittstellenprogrammierung"
+    },
+    "javascript": {
+      "alt": "JavaScript – Programmiersprache für Webentwicklung"
+    },
+    "html": {
+      "alt": "HTML – Strukturierung von Webseiteninhalten"
+    },
+    "git": {
+      "alt": "Git – Versionskontrollsystem für Code"
+    },
+    "scrum": {
+      "alt": "Scrum – agiles Projektmanagement-Framework"
+    },
+    "css": {
+      "alt": "CSS – Gestaltung und Layout von Webseiten"
+    },
+    "typescript": {
+      "alt": "TypeScript – typisierte Erweiterung von JavaScript"
+    },
+    "firebase": {
+      "alt": "Firebase – Backend-Plattform von Google"
+    },
+    "angular": {
+      "alt": "Angular – Webframework für Frontend-Anwendungen"
+    },
+    "material": {
+      "alt": "Material Design – Designsystem von Google"
+    }
   }
 }
