@@ -1,10 +1,11 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { linksIcons, LinkIcon } from '../../../shared/data/links-icons.data';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-links-img',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './links-img.component.html',
   styleUrl: './links-img.component.scss'
 })
@@ -13,13 +14,16 @@ export class LinksImgComponent {
   @Output() mailClicked = new EventEmitter<void>();
 
   @Input() isEmailVisible = false;
+  @Input() showCopyDialog = false;
+
+  @Input() context: 'home' | 'contact' = 'home';
+
 
   hoveredIconName = '';
   isMobileView = false;
   mobileMenuOpen = false;
 
-linksIcons: LinkIcon[] = linksIcons;
-
+  linksIcons: LinkIcon[] = linksIcons;
 
   setHoveredIcon(name: string) {
     this.hoveredIconName = name;
@@ -29,17 +33,13 @@ linksIcons: LinkIcon[] = linksIcons;
     this.hoveredIconName = '';
   }
 
-
-
-  getIconSrc(icon: { name: string }) {
-    const base = icon.name.toLowerCase();
+  getIconSrc(icon: LinkIcon): string {
     const isHovered = this.hoveredIconName === icon.name;
     const isActiveMail = icon.name === 'Mail' && this.isEmailVisible;
-
-
-    const folder = (isHovered || isActiveMail) ? 'green' : 'white';
-
-    return `assets/icons/${folder}/${base}_${folder}.png`;
+    if (isHovered || isActiveMail) {
+      return icon.hoverIcon || icon.icon;
+    }
+    return icon.icon;
   }
 
   toggleMobileMenu() {
@@ -56,6 +56,7 @@ linksIcons: LinkIcon[] = linksIcons;
     if (iconName === 'Mail') {
       this.mailClicked.emit();
     }
+    this.clearHoveredIcon();
   }
 
 }

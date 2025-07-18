@@ -20,22 +20,18 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class FooterComponent {
 
-
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     const mailWrapperEl = this.mailWrapperRef?.nativeElement;
     const target = event.target as HTMLElement;
-
-    const clickedMailIcon = target.closest('.tool-icon[alt="Mail"]');
+    const clickedMailIcon = target.closest('.tool-icon[data-icon="Mail"]');
     const clickedInsideWrapper = mailWrapperEl?.contains(target);
-
     if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
       this.showEmail = false;
     }
   }
-
 
   showEmail = false;
   showCopyDialog = false;
@@ -47,23 +43,18 @@ export class FooterComponent {
     this.checkViewport();
   }
 
-
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
   private boundCheckViewport!: () => void;
 
-
   checkViewport() {
     const isMobile = window.innerWidth <= 870;
-
     if (!isMobile && this.showEmail) {
       this.showEmail = false;
     }
   }
-
-
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
@@ -71,7 +62,6 @@ export class FooterComponent {
       this.emailCopied = true;
       this.showEmail = false;
       this.showCopyDialog = true;
-
       setTimeout(() => {
         this.showCopyDialog = false;
         this.emailCopied = false;
@@ -79,20 +69,11 @@ export class FooterComponent {
     });
   }
 
-
-
   toggleEmail() {
-
-
     if (this.showCopyDialog) {
       return;
     }
-
-
-      this.showEmail = !this.showEmail;
-
+    this.showEmail = !this.showEmail;
   }
-
-
 
 }

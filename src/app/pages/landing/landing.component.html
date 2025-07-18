@@ -14,7 +14,8 @@
         }
       </div>
       <div class="box-link dNone">
-        <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
+        <app-links-img context="home" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog"
+          (mailClicked)="toggleEmail()"></app-links-img>
       </div>
     </div>
   </div>
@@ -29,12 +30,15 @@
     <a class="mail-text" aria-label="E-Mail senden an Jonathan" href="mailto:front-dev@jonathan-michutta.de">
       front-dev&#64;jonathan-michutta.de
     </a>
-    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
-      [attr.aria-label]="'landing.copyAria' | translate">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
-        <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
-      </svg>
-    </button>
+    <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">
+      <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
+        [attr.aria-label]="'landing.copyAria' | translate">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
+          <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
+        </svg>
+      </button>
+      <span class="tooltip-text">{{ 'landing.copyTooltip' | translate }}</span>
+    </div>
   </div>
 </section>

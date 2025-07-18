@@ -9,6 +9,7 @@ img {
   height: 30px;
   width: 30px;
   object-fit: contain;
+  vertical-align: middle;
 
   &:hover {
     cursor: pointer;
@@ -21,12 +22,75 @@ a {
   justify-content: center;
 }
 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+
+  .tool-icon {
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: right;
+    border-radius: 12px;
+    padding: 4px 8px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    font-size: 12px;
+    font-weight: 300;
+    transform: translateX(0);
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 10px;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.2) transparent transparent transparent;
+    }
+  }
+
+  &:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.tooltip-container.tooltip-disabled .tooltip-text {
+  display: none !important;
+}
+
+.tooltip-container.home .tooltip-text {
+  bottom: 160%;
+}
+
+.tooltip-container.contact .tooltip-text {
+  bottom: 195%;
+}
+
+@media (hover: none) and (pointer: coarse),
+screen and (max-width: 870px) {
+  .tooltip-container .tooltip-text {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 390px) {
 
   img {
     width: 25px;
     height: 25px;
   }
-
 
 }

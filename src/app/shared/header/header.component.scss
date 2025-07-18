@@ -9,11 +9,11 @@ header {
   align-items: flex-start;
 
   img {
-    height: 75px;
+    height: 55px;
     width: auto;
-    user-select: none;
-    pointer-events: none;
-    -webkit-user-drag: none;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 10px;
   }
 }
 
@@ -22,7 +22,7 @@ header {
     align-items: flex-start;
 
     img {
-      height: 60px;
+      height: 35px;
     }
   }
 }

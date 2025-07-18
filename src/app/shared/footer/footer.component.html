@@ -2,7 +2,7 @@
   <div class="footer-content">
 
     <div class="info-box">
-      <span><img src="assets/icons/white/logo_JM_white.png">{{ 'footer.copyright' | translate }}</span>
+      <span><img src="assets/icons/white/svg/logo_jm.svg">{{ 'footer.copyright' | translate }}</span>
 
       <div class="data-box">
         <div class="footer-links">
@@ -14,7 +14,7 @@
       </div>
 
       <div class="box-link dNone">
-        <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
+        <app-links-img context="contact" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog" (mailClicked)="toggleEmail()"></app-links-img>
       </div>
     </div>
   </div>
@@ -39,11 +39,15 @@
   <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>
 
 
-  <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied" [attr.aria-label]="'footer.copyAria' | translate">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
-      <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
-    </svg>
-  </button>
+    <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">
+      <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
+        [attr.aria-label]="'landing.copyAria' | translate">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
+          <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
+        </svg>
+      </button>
+      <span class="tooltip-text">{{ 'landing.copyTooltip' | translate }}</span>
+    </div>
 
 </div>

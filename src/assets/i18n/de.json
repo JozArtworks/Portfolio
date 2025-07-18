@@ -167,7 +167,8 @@
     "title": "Webentwickler (Frontend)",
     "subtitle": "& Mediengestalter",
     "copied": "Kopiert",
-    "copyAria": "E-Mail kopieren"
+    "copyAria": "E-Mail kopieren",
+    "copyTooltip": "E-Mail-Adresse kopieren"
   },
   "tools-alt-landing": {
     "api": {
@@ -200,5 +201,10 @@
     "material": {
       "alt": "Material Design – Designsystem von Google"
     }
+  },
+  "links": {
+    "github": "Besuche mein GitHub-Profil",
+    "mail": "E-Mail an mich senden",
+    "linkedin": "Profil auf LinkedIn öffnen"
   }
 }

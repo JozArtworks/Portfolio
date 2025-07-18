@@ -167,7 +167,8 @@
     "title": "Frontend Developer",
     "subtitle": "& Media Designer",
     "copied": "Copied",
-    "copyAria": "Copy email"
+    "copyAria": "Copy email",
+    "copyTooltip": "Copy e-mail address"
   },
   "tools-alt-landing": {
     "api": {
@@ -200,5 +201,10 @@
     "material": {
       "alt": "Material Design – Design system by Google"
     }
+  },
+  "links": {
+    "github": "Visit my GitHub profile",
+    "mail": "Send me an email",
+    "linkedin": "Open my LinkedIn profile"
   }
 }

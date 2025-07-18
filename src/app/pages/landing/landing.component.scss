@@ -2,6 +2,64 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+
+  .tool-icon {
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: right;
+    border-radius: 12px;
+    padding: 4px 8px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    font-size: 12px;
+    font-weight: 300;
+    transform: translateX(0);
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    bottom: 48px;
+
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 10px;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.2) transparent transparent transparent;
+    }
+  }
+
+  &:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+
+.tooltip-container.tooltip-disabled .tooltip-text {
+  display: none !important;
+}
+
+@media (hover: none) and (pointer: coarse),
+screen and (max-width: 870px) {
+  .tooltip-container .tooltip-text {
+    display: none !important;
+  }
+}
+
 .main-landing {
   display: flex;
   align-items: center;
@@ -41,6 +99,9 @@
     width: 30px;
     height: 30px;
     object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
   }
 }
 
