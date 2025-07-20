@@ -3,9 +3,11 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+
   80% {
     transform: translateY(10px);
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -17,13 +19,12 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100%);
     opacity: 0;
   }
 }
-
-
 
 .navbar {
   margin-top: 10px;
@@ -37,9 +38,6 @@
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.17);
   gap: 5px;
-
-
-
 }
 
 .nav-list {
@@ -243,6 +241,7 @@ a.contact-btn {
   .mail-wrapper {
     right: 45px;
   }
+
 }
 
 @media screen and (max-width: 390px) {
@@ -325,7 +324,7 @@ a.contact-btn {
   border: 1px solid #129990;
   color: white;
   padding: 5px 8px 5px 20px;
-pointer-events: none;
+  pointer-events: none;
   border-radius: 32px;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
@@ -337,7 +336,6 @@ pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   &.visible {
     animation: slideDownBounceMail 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;

@@ -1,41 +1,33 @@
 <section class="imprint-box-background">
   <div class="imprint-box-header">
-<a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
-  <img [src]="iconLeft" alt="Back" />
-</a>
-
+    <a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
+      <img [src]="iconLeft" alt="Back" />
+    </a>
     <div class="header-title">
       <p class="title"><strong>{{ 'imprint.title' | translate }}</strong></p>
       <p class="subtitle"> - {{ 'imprint.subtitle' | translate }}</p>
     </div>
-      <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
-  </app-lang-switch>
+    <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
+    </app-lang-switch>
   </div>
-
   <div class="imprint-box">
     <p>
       {{ 'imprint.name' | translate }}<br>
       {{ 'imprint.role' | translate }}<br>
       {{ 'imprint.address' | translate }}<br><br>
-
       <strong>{{ 'imprint.contactHeader' | translate }}</strong><br>
       {{ 'imprint.email' | translate }}<br>
       {{ 'imprint.website' | translate }}<br>
       {{ 'imprint.phone' | translate }}<br><br>
-
       <strong>{{ 'imprint.responsibleHeader' | translate }}</strong><br><br>
       {{ 'imprint.name' | translate }}<br>
       {{ 'imprint.email' | translate }}<br><br>
-
       <strong>{{ 'imprint.copyrightHeader' | translate }}</strong><br>
       {{ 'imprint.copyrightText' | translate }}<br><br>
-
       <strong>{{ 'imprint.liabilityHeader' | translate }}</strong><br>
       {{ 'imprint.liabilityText' | translate }}<br><br>
-
       <strong>{{ 'imprint.designHeader' | translate }}</strong><br>
       {{ 'imprint.designText' | translate}}<br><br>
-
       {{ 'imprint.iconNote' | translate }}
     </p>
   </div>

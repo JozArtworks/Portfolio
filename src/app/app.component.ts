@@ -9,8 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ScrollPageComponent } from './scroll-page/scroll-page.component';
 import { signal } from '@angular/core';
-
-
+import { SectionObserverService } from './../assets/services/section-observer.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,7 +21,8 @@ export class AppComponent {
 
   constructor(private router: Router,
     private translate: TranslateService,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,
+    private sectionObserver: SectionObserverService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
@@ -40,7 +40,6 @@ export class AppComponent {
     this.toggleMobileMenu();
   }
 
-
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -53,8 +52,6 @@ export class AppComponent {
       }, 100);
     }
   }
-
-
 
   isMobileView = true;
   mobileMenuOpen = false;
@@ -91,10 +88,9 @@ export class AppComponent {
   currentRoute = '';
   currentSection = signal('home');
 
-onSectionChanged(sectionId: string) {
-  this.currentSection.set(sectionId);
-}
-
+  onSectionChanged(sectionId: string) {
+    this.currentSection.set(sectionId);
+  }
 
   boundCheckViewport!: () => void;
 
@@ -106,6 +102,10 @@ onSectionChanged(sectionId: string) {
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
+  }
+
+  ngAfterViewInit() {
+    this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks']);
   }
 
   checkViewport() {
@@ -131,7 +131,6 @@ onSectionChanged(sectionId: string) {
   toggleMobileMenu() {
     if (this.mobileMenuOpen) {
       this.animationState = 'closing';
-
       setTimeout(() => {
         this.mobileMenuOpen = false;
         this.animationState = '';
@@ -145,9 +144,5 @@ onSectionChanged(sectionId: string) {
   shouldShowHeader(): boolean {
     return !['/legal/imprint', '/legal/privacy-policy'].includes(this.currentRoute);
   }
-
-
-
-
 
 }

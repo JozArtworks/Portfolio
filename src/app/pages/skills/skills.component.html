@@ -2,10 +2,8 @@
   <div class="tools-content">
     <div class="tools-window">
       <h2 class="tools-headline">{{ 'tools.headline' | translate }}</h2>
-
       <div class="tools-body">
         <div class="box-left-icons">
-
           <div class="tools-icon-groups">
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(0, 5); track icon.name) {
@@ -15,7 +13,6 @@
               </div>
               }
             </div>
-
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(5, 10); track icon.name) {
               <div class="tool-box">
@@ -24,7 +21,6 @@
               </div>
               }
             </div>
-
             <div class="tools-icon-line">
               @if (showExtraTools) {
               <div class="extra-tool-wrapper">
@@ -38,7 +34,6 @@
                 </div>
               </div>
               }
-
               @for (icon of toolIcons.slice(10, 13); track icon.name) {
               <div class="tool-box" [class.school-box]="icon.name === 'school'" (click)="onIconClick(icon)">
                 <img [src]="icon.src" [attr.alt]="icon.name ? icon.name : 'School'" />
@@ -47,13 +42,8 @@
                 }
               </div>
               }
-
             </div>
-
-
-
           </div>
-
           <div class="tools-icon-line">
             @for (icondesign of toolIconsDesign; track icondesign.name) {
             <div class="tool-box tool-box-design">
@@ -62,14 +52,11 @@
             </div>
             }
           </div>
-
         </div>
-
         <div class="tools-text">
           <div class="box">
-<p [innerHTML]="'tools.textBox1' | translate"></p>
+            <p [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
-
           <div class="box">
             <span>{{ 'tools.missingHeadline' | translate }}</span>
             <p>{{ 'tools.missingText' | translate }}</p>

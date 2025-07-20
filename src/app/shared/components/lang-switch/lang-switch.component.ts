@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
 import { TranslateService } from '@ngx-translate/core';
-
 
 @Component({
   selector: 'app-lang-switch',
@@ -12,7 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class LangSwitchComponent {
 
   constructor(private translate: TranslateService) { }
-
 
   @Input() currentLanguage: 'de' | 'en' = 'de';
   @Output() languageChanged = new EventEmitter<'de' | 'en'>();

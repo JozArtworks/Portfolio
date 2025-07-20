@@ -6,8 +6,6 @@
   pointer-events: auto;
 }
 
-
-
 a.contact-btn-mobile {
   text-decoration: none;
   text-align: center;
@@ -25,11 +23,6 @@ a.contact-btn-mobile {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   z-index: 9999;
-
-
-
-
-
 
   &.open {
     animation: slideDownBounce 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -103,9 +96,11 @@ a.contact-btn-mobile {
   0% {
     transform: translateY(-100%);
   }
+
   80% {
     transform: translateY(10px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -115,16 +110,13 @@ a.contact-btn-mobile {
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-200%);
   }
 }
 
-
-
-
 @media screen and (max-width: 870px) {
-
   .mobile-popout {
     top: 95px;
     right: 42px;
@@ -133,7 +125,6 @@ a.contact-btn-mobile {
 }
 
 @media screen and (max-width: 800px) {
-
   .mobile-popout {
     top: 75px;
     right: 23px;
@@ -141,7 +132,6 @@ a.contact-btn-mobile {
 }
 
 @media screen and (max-width: 420px) {
-
   .mobile-popout {
     top: 65px;
     right: 15px;
@@ -149,11 +139,9 @@ a.contact-btn-mobile {
 }
 
 @media screen and (max-width: 390px) {
-
   .mobile-popout {
     top: 60px;
     right: 15px;
     width: 141px;
   }
 }
-

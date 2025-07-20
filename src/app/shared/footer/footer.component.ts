@@ -3,14 +3,11 @@ import {
   ViewChild,
   ElementRef,
   HostListener,
-
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
-
 import { TranslateModule } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -19,6 +16,12 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+
+  private boundCheckViewport!: () => void;
+
+  showEmail = false;
+  showCopyDialog = false;
+  emailCopied = false;
 
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
 
@@ -33,10 +36,6 @@ export class FooterComponent {
     }
   }
 
-  showEmail = false;
-  showCopyDialog = false;
-  emailCopied = false;
-
   ngOnInit() {
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
@@ -46,8 +45,6 @@ export class FooterComponent {
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
-
-  private boundCheckViewport!: () => void;
 
   checkViewport() {
     const isMobile = window.innerWidth <= 870;
@@ -75,5 +72,4 @@ export class FooterComponent {
     }
     this.showEmail = !this.showEmail;
   }
-
 }

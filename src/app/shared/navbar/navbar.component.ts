@@ -13,19 +13,16 @@ import {
   ViewChild,
   HostListener,
 } from '@angular/core';
-
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { filter } from 'rxjs';
+import { NavigationEnd } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LangSwitchComponent } from '../components/lang-switch/lang-switch.component';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
-
-import { SimpleChanges, OnChanges } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
-
 import { signal, effect } from '@angular/core';
-
-
+import { inject, runInInjectionContext } from '@angular/core';
+import { EnvironmentInjector } from '@angular/core';
+import { SectionObserverService } from '../../../assets/services/section-observer.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -34,52 +31,60 @@ import { signal, effect } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 
-export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private router: Router, private translate: TranslateService) {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(event => {
-        if (this.justScrolled()) return;
-
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        this.currentUrl.set(url);
-        setTimeout(() => this.updateIndicator(), 10);
-      });
-  }
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    private sectionObserver: SectionObserverService
+  ) { }
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
-    if (this.observer) this.observer.disconnect();
   }
 
   ngAfterViewInit() {
-    this.observeSections();
     setTimeout(() => {
+      this.sectionObserver.observeSections(this.sectionIds);
+    });
+    setTimeout(() => {
+      runInInjectionContext(this.injector, () => {
+        effect(() => {
+          console.log('Aktuelle Section:', this.currentUrl());
+          this.updateIndicator();
+        }, { allowSignalWrites: true });
+      });
+    });
+  }
+
+  setupEffect() {
+    effect(() => {
+      const section = this.currentUrl();
       this.updateIndicator();
-    }, 100);
+    }, { allowSignalWrites: true });
   }
 
   ngOnInit() {
     this.checkViewport();
     window.addEventListener('resize', this.boundCheckViewport);
-
-    effect(() => {
-      const section = this.sectionFromScroll();
-      if (section && !this.justScrolled()) {
-        this.currentUrl.set(section);
-        requestAnimationFrame(() => {
-          this.updateIndicator();
-        });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects || event.url;
+        const isScroll = url === '/' || url.startsWith('/#');
+        this.isScrollPage.set(isScroll);
       }
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['currentSection'] && !this.justScrolled()) {
-      const newVal = changes['currentSection'].currentValue;
-      this.sectionFromScroll.set(newVal);
-    }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects || event.url;
+        const isScroll = url === '/' || url.startsWith('/#');
+        this.isScrollPage.set(isScroll);
+        if (!isScroll) {
+          const cleanPath = url.split('/')[1];
+          this.sectionObserver.setCurrentSection(cleanPath);
+        }
+      }
+    });
   }
 
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
@@ -96,7 +101,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
   private boundCheckViewport = this.checkViewport.bind(this);
   private justToggledViaIcon = false;
 
-  currentUrl = signal('');
   activePos = signal({ left: 0, width: 0 });
   language = signal<'de' | 'en'>('de');
   showCopyDialog = false;
@@ -105,15 +109,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
   hoveredIconName = '';
   showEmail = false;
   hidingEmail = false;
-  justScrolled = signal(false);
-  observer!: IntersectionObserver;
-  sectionFromScroll = signal('');
-
+  currentUrl = this.sectionObserver.currentSection;
   sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks'];
-
+  isScrollPage = signal(false);
+  injector = inject(EnvironmentInjector);
   showIndicator = computed(() => {
     const current = this.currentUrl();
-    return this.sectionIds.includes(current);
+    return this.sectionIds.includes(current) && this.isScrollPage();
   });
 
   readonly EMAIL_ANIMATION_DURATION = 250;
@@ -147,49 +149,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     },
   ];
 
-  scrollToSection(id: string) {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  onNavClick(sectionId: string, event: Event) {
-    event.preventDefault();
-    this.justScrolled.set(true);
-    this.scrollToSection(sectionId);
-    this.currentUrl.set(sectionId);
-    setTimeout(() => {
-      this.justScrolled.set(false);
-      this.updateIndicator();
-    }, 300);
-  }
-
-  observeSections() {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.5
-    };
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.justScrolled()) {
-          const id = entry.target.getAttribute('id');
-          if (id && this.sectionIds.includes(id)) {
-            this.currentUrl.set(id);
-            requestAnimationFrame(() => {
-              this.updateIndicator();
-            });
-          }
-        }
-      });
-    }, options);
-    this.sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) this.observer.observe(el);
-    });
-  }
-
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
     if (this.justToggledViaIcon) {
@@ -208,15 +167,18 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     }
   }
 
-  onRouteClick() {
-    this.currentUrl.set('/contact');
-    this.updateIndicator();
+  onNavClick(path: string, event: MouseEvent) {
+    event.preventDefault();
+    const el = document.getElementById(path);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.ifMobileOpenToggle();
   }
 
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
-    this.translate.use(lang);
-    setTimeout(() => this.updateIndicator(), 20);
+    this.translate.use(lang).subscribe(() => this.updateIndicator());
   }
 
   emitToggleMenu() {
@@ -239,15 +201,17 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
+
     if (!this.isMobileView && this.showEmail) {
       this.showEmail = false;
     }
   }
 
   updateIndicator() {
+    if (!this.navLinks || this.navLinks.length === 0) return;
     const activeLink = this.navLinks.find(link => {
       const sectionId = link.nativeElement.getAttribute('data-section-id');
-      return sectionId === this.currentUrl().replace(/^\/?#/, '');
+      return sectionId === this.currentUrl();
     });
     this.navLinks.forEach(link => {
       const sectionId = link.nativeElement.getAttribute('data-section-id');
@@ -321,3 +285,4 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     }
   }
 }
+

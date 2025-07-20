@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Project } from '../project.interface';
-
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -63,8 +62,6 @@ export class ProjectDialogComponent {
     return this.currentIndex === this.allProjects.length - 1;
   }
 
-
-
   onHoverClose(hovered: boolean) {
     this.iconClose = hovered
       ? 'assets/icons/green/svg/icon_close_green.svg'
@@ -82,6 +79,4 @@ export class ProjectDialogComponent {
       ? 'assets/icons/green/svg/icon_right_green.svg'
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
-
-
 }

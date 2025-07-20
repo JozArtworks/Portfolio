@@ -31,9 +31,7 @@
 }
 
 .subtitle-project {
-
   margin: 20px;
-
 }
 
 .projekt-body {
@@ -41,10 +39,6 @@
   justify-content: center;
   align-items: center;
 }
-
-
-
-
 
 .projekt-text {
   display: flex;
@@ -77,10 +71,9 @@
   gap: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 
-
   &:hover {
     transform: translateY(-2px);
-      background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
   }
 
@@ -126,7 +119,6 @@
   }
 }
 
-
 .projekt-window {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 40px;
@@ -135,13 +127,11 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: calc(100dvh - 64px);
-
   max-width: 700px;
   width: 100%;
 
   h2.projekt-headline {
     width: 100%;
-
   }
 
   p {
@@ -153,18 +143,10 @@
     font-weight: 300;
     color: #ddd;
   }
-
-
 }
 
 @media screen and (max-width: 820px) {
-
-
-
-
-
   .projekt-page {
-
 
     .projekt-content {
       padding: 0;
@@ -176,7 +158,6 @@
     }
 
     .projekt-body {
-
       gap: 10px;
 
       .box {
@@ -197,7 +178,6 @@
 }
 
 @media screen and (max-width: 500px) {
-
   .dNone {
     display: block;
   }
@@ -209,27 +189,16 @@
   .projekt-window {
     padding: 10px !important;
     border-radius: 20px;
-
-
-
   }
-
-
 }
 
 @media screen and (max-width: 455px) {
-
-    .dNone {
+  .dNone {
     display: none;
   }
 
   .projects-list {
-  padding: 10px 18px;
+    padding: 10px 18px;
     border-radius: 25px;
-
-
-
-
-}
-
+  }
 }

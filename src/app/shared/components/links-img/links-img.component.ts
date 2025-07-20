@@ -15,14 +15,11 @@ export class LinksImgComponent {
 
   @Input() isEmailVisible = false;
   @Input() showCopyDialog = false;
-
   @Input() context: 'home' | 'contact' = 'home';
-
 
   hoveredIconName = '';
   isMobileView = false;
   mobileMenuOpen = false;
-
   linksIcons: LinkIcon[] = linksIcons;
 
   setHoveredIcon(name: string) {
@@ -58,5 +55,4 @@ export class LinksImgComponent {
     }
     this.clearHoveredIcon();
   }
-
 }

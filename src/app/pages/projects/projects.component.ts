@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PROJECTS } from './project-data';
 import { Project } from './project.interface';
 import { ProjectDialogComponent } from './dialog/project-dialog.component';
-
 import { TranslateModule } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-projects',
   standalone: true,

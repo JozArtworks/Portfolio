@@ -5,11 +5,8 @@ import { SkillsComponent } from '../pages/skills/skills.component';
 import { ProjectsComponent } from '../pages/projects/projects.component';
 import { FeedbacksComponent } from '../pages/feedbacks/feedbacks.component';
 import { ContactComponent } from '../pages/contact/contact.component';
-
 import { LandingComponent } from '../pages/landing/landing.component';
-
 import { Output, EventEmitter } from '@angular/core';
-
 @Component({
   selector: 'app-scroll-page',
   standalone: true,
@@ -26,11 +23,10 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./scroll-page.component.scss']
 })
 export class ScrollPageComponent {
+
   currentSection = signal('home');
 
   @HostListener('window:scroll', [])
-
-
   @Output() sectionChanged = new EventEmitter<string>();
 
   @HostListener('window:scroll', [])
@@ -47,6 +43,5 @@ export class ScrollPageComponent {
         }
       }
     }
-
   }
 }

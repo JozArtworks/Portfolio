@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LangSwitchComponent } from '../lang-switch/lang-switch.component';
-
 @Component({
   selector: 'app-mobile-popout',
   standalone: true,

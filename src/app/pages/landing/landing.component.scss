@@ -29,7 +29,6 @@
     pointer-events: none;
     bottom: 48px;
 
-
     &::after {
       content: '';
       position: absolute;
@@ -47,7 +46,6 @@
     opacity: 1;
   }
 }
-
 
 .tooltip-container.tooltip-disabled .tooltip-text {
   display: none !important;

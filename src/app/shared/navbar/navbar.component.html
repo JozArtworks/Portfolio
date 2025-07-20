@@ -22,7 +22,6 @@
 @if (isMobileView) {
 <div class="box-link-nav-mobile">
   <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
-
   <button class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()">
     <span></span>
   </button>
@@ -35,7 +34,6 @@
       stroke-linejoin="round" />
   </svg>
 </div>
-
 <div #mailWrapper class="mail-wrapper" [class]="{
   'visible': showEmail && !hidingEmail,
   'hiding': hidingEmail

@@ -10,11 +10,9 @@
       <li><a href="#" (click)="onClick('projects', $event)">{{ translate.projects }}</a></li>
       <li><a href="#" (click)="onClick('feedbacks', $event)">{{ translate.feedbacks }}</a></li>
     </ul>
-
     <a href="#" (click)="onClick('contact', $event)" class="contact-btn-mobile">
       {{ translate.contact }}
     </a>
-
     <div class="mobile-lang-switch">
       <app-lang-switch
         [currentLanguage]="language"

@@ -1,45 +1,36 @@
 <section class="privacy-box-background">
   <div class="privacy-box-header">
-<a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
-  <img [src]="iconLeft" alt="Back" />
-</a>
-
+    <a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
+      <img [src]="iconLeft" alt="Back" />
+    </a>
     <p><strong>{{ 'privacy.headline' | translate }}</strong></p>
     <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
     </app-lang-switch>
   </div>
   <div class="privacy-box">
     <p [innerHTML]="'privacy.intro' | translate"></p>
-
     <p><strong>{{ 'privacy.responsible.title' | translate }}</strong><br />
       {{ 'privacy.responsible.name' | translate }}<br />
       {{ 'privacy.responsible.location' | translate }}<br />
       {{ 'privacy.responsible.email' | translate }}<br /><br /></p>
-
     <p><strong>{{ 'privacy.access.title' | translate }}</strong><br />
       {{ 'privacy.access.intro' | translate }}</p>
-
     <ul aria-label="Zugriffsdaten">
       <li>{{ 'privacy.access.ip' | translate }}</li>
       <li>{{ 'privacy.access.date' | translate }}</li>
       <li>{{ 'privacy.access.browser' | translate }}</li>
       <li>{{ 'privacy.access.pages' | translate }}</li>
     </ul><br />
-
     <p [innerHTML]="'privacy.usage' | translate"></p>
     <p [innerHTML]="'privacy.contact' | translate"></p>
     <p [innerHTML]="'privacy.honeypot' | translate"></p>
     <p [innerHTML]="'privacy.deletion' | translate"></p>
-
     <p><strong>{{ 'privacy.cookies.title' | translate }}</strong><br />
       {{ 'privacy.cookies.text' | translate }}<br /><br /></p>
-
     <p><strong>{{ 'privacy.legal.title' | translate }}</strong><br />
       {{ 'privacy.legal.text' | translate }}<br /><br /></p>
-
     <p><strong>{{ 'privacy.rights.title' | translate }}</strong><br />
       {{ 'privacy.rights.intro' | translate }}</p>
-
     <ul>
       <li>{{ 'privacy.rights.access' | translate }}</li>
       <li>{{ 'privacy.rights.correction' | translate }}</li>
@@ -47,10 +38,8 @@
       <li>{{ 'privacy.rights.objection' | translate }}</li>
       <li>{{ 'privacy.rights.complaint' | translate }}</li>
     </ul><br />
-
     <p><strong>{{ 'privacy.storage.title' | translate }}</strong><br />
       {{ 'privacy.storage.text' | translate }}</p>
-
     <p><em>{{ 'privacy.lastUpdate' | translate }}</em></p>
   </div>
 </section>

@@ -1,26 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
-
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [FooterComponent, FormsModule, RouterModule, TranslateModule],
-
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss', './contact-media.component.scss'],
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
-  constructor(private translate: TranslateService) {}
-
+  constructor(private translate: TranslateService) { }
 
   formData = {
     name: '',
@@ -34,25 +29,19 @@ export class ContactComponent implements OnInit, OnDestroy {
   error = false;
   isSending = false;
   markTouched = false;
-
   nameValid = false;
   emailValid = false;
   messageValid = false;
   privacyValid = false;
   privacyTouched = false;
   flyAnimation = false;
-
   isMobileView = false;
-
-
+  resizeObserver: any;
 
   @ViewChild('form') formRef!: NgForm;
-
   @ViewChild('nameInput') nameInput!: NgModel;
   @ViewChild('emailInput') emailInput!: NgModel;
   @ViewChild('messageInput') messageInput!: NgModel;
-
-  resizeObserver: any;
 
   ngOnInit() {
     this.checkViewport();
@@ -95,23 +84,19 @@ export class ContactComponent implements OnInit, OnDestroy {
   validateAndSubmit(): void {
     this.markTouched = true;
     this.onInputChange();
-
     if (!this.isFormValid) {
       return;
     }
-
     this.submitForm();
   }
 
   submitForm(): void {
     this.isSending = true;
-
     const formData = new FormData();
     formData.append('name', this.formData.name);
     formData.append('email', this.formData.email);
     formData.append('message', this.formData.message);
     formData.append('honeypot', this.formData.honeypot);
-
     fetch('/mail.php', {
       method: 'POST',
       body: formData
@@ -120,23 +105,14 @@ export class ContactComponent implements OnInit, OnDestroy {
         if (res.ok) {
           this.success = true;
           this.error = false;
-
-
           this.flyAnimation = true;
-
-
-
-
           setTimeout(() => {
             this.flyAnimation = false;
             this.resetForm();
-
-
             setTimeout(() => {
               location.reload();
             }, 2000);
           }, 1000);
-
         } else {
           this.handleError();
         }
@@ -147,7 +123,6 @@ export class ContactComponent implements OnInit, OnDestroy {
       });
   }
 
-
   private resetForm(): void {
     this.isSending = false;
     this.formData = {
@@ -157,19 +132,15 @@ export class ContactComponent implements OnInit, OnDestroy {
       privacyAccepted: false,
       honeypot: ''
     };
-
     this.nameValid = false;
     this.emailValid = false;
     this.messageValid = false;
     this.privacyValid = false;
     this.markTouched = false;
     this.privacyTouched = false;
-
     this.formRef.resetForm();
-
     setTimeout(() => this.success = false, 4000);
   }
-
 
   private handleError(): void {
     this.isSending = false;
@@ -200,7 +171,5 @@ export class ContactComponent implements OnInit, OnDestroy {
     }
     return this.translate.instant('contact.messagePlaceholder');
   }
-
-
 
 }

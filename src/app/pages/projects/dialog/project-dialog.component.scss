@@ -36,7 +36,6 @@
   margin-left: 15px;
   margin-bottom: 15px;
 
-
   img {
     border: 1px solid rgba(255, 255, 255, 0.314);
     background-color: rgba(255, 255, 255, 0.179);
@@ -124,7 +123,6 @@
   justify-content: flex-end;
 }
 
-
 button {
   all: unset;
   background-color: transparent;
@@ -178,7 +176,6 @@ button {
     }
   }
 }
-
 
 @media screen and (max-width: 820px) {
   .dialog-nav {
@@ -234,9 +231,7 @@ button {
   }
 }
 
-
 @media screen and (max-width: 410px) {
-
   .project-buttons {
     gap: 5px;
   }

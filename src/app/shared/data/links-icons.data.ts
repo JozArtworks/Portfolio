@@ -6,7 +6,6 @@ export interface LinkIcon {
   altKey: string;
 }
 
-
 export const linksIcons: LinkIcon[] = [
   {
     name: 'GitHub',

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { TranslateModule } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-feedbacks',
   standalone: true,
@@ -9,6 +7,4 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './feedbacks.component.html',
   styleUrl: './feedbacks.component.scss'
 })
-export class FeedbacksComponent {
-
-}
+export class FeedbacksComponent { }

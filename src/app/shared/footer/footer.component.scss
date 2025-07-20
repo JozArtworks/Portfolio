@@ -25,7 +25,6 @@
     pointer-events: none;
     bottom: 48px;
 
-
     &::after {
       content: '';
       position: absolute;
@@ -74,7 +73,6 @@
         color: #3DCFB6;
         cursor: pointer;
       }
-
     }
   }
 
@@ -137,7 +135,6 @@
     z-index: -1;
     pointer-events: none;
   }
-
 }
 
 .mail-wrapper {
@@ -161,7 +158,6 @@
   justify-content: center;
   align-items: center;
 
-
   &.visible {
     pointer-events: auto;
     right: 30px;
@@ -182,7 +178,6 @@
       cursor: pointer;
       color: #3DCFB6;
     }
-
   }
 
   .copy-btn {
@@ -208,7 +203,6 @@
       stroke: #3DCFB6;
     }
   }
-
 }
 
 .dialog-copy {
@@ -286,8 +280,6 @@
 
 @media screen and (max-width: 650px) {
 
-
-
   .info-box {
     display: flex;
     flex-direction: column-reverse;
@@ -320,9 +312,6 @@
       justify-content: space-around;
       align-items: center;
       gap: 5px;
-
-
-
     }
 
     .footer-links,
@@ -332,9 +321,9 @@
       align-items: center;
       gap: 15px;
       margin: 0;
-
     }
   }
+
 }
 
 @media screen and (max-width: 400px) {
@@ -349,7 +338,6 @@
 
     .footer-content {
 
-
       span {
         font-size: 9px;
 
@@ -359,8 +347,6 @@
           margin-right: 3px;
         }
       }
-
-
     }
 
     .footer-links,
@@ -375,7 +361,6 @@
       a {
         font-size: 10px;
       }
-
     }
   }
 

@@ -94,8 +94,6 @@
   background: linear-gradient(to bottom right, #096b68, #222831);
 }
 
-
-
 .main-content {
   width: 100%;
   flex: 1;
@@ -105,8 +103,8 @@
   scroll-snap-type: y mandatory;
 }
 
-
 @media screen and (max-width: 800px) {
+
   .background-gradient {
     padding: 15px;
   }
@@ -115,14 +113,13 @@
     padding: 5px;
     padding-top: 0px;
   }
+
 }
 
-
-
 @media screen and (max-width: 420px) {
+
   .background-gradient {
     padding: 5px;
   }
-
 
 }

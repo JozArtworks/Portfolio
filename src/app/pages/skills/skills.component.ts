@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TranslateModule } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-skills',
   standalone: true,
@@ -12,24 +10,22 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class SkillsComponent {
 
-showExtraTools = false;
+  showExtraTools = false;
 
-onIconClick(icon: any) {
-  if (icon.name === 'school') {
-    this.toggleExtraTools();
+  onIconClick(icon: any) {
+    if (icon.name === 'school') {
+      this.toggleExtraTools();
+    }
   }
-}
 
-toggleExtraTools() {
-  this.showExtraTools = !this.showExtraTools;
-}
+  toggleExtraTools() {
+    this.showExtraTools = !this.showExtraTools;
+  }
 
-extraTools = [
-  { name: 'React', src: 'assets/icons/white/svg/logo_react.svg' },
-  { name: 'Vue Js', src: 'assets/icons/white/svg/logo_vue.svg' },
-];
-
-
+  extraTools = [
+    { name: 'React', src: 'assets/icons/white/svg/logo_react.svg' },
+    { name: 'Vue Js', src: 'assets/icons/white/svg/logo_vue.svg' },
+  ];
 
   toolIcons = [
     { name: 'Firebase', src: 'assets/icons/white/svg/logo_firebase.svg' },
@@ -52,6 +48,5 @@ extraTools = [
     { name: '', src: 'assets/icons/white/svg/logo_illustrator.svg' },
     { name: '', src: 'assets/icons/white/svg/logo_indesign.svg' },
   ];
-
 }
 
