@@ -1,33 +1,23 @@
-
 <section [class]="['background-pic', getBackgroundClass()]">
   <div class="background-gradient">
     <div class="glass-background-style">
       @if (shouldShowHeader()) {
-        <app-header
-          [mobileMenuOpen]="mobileMenuOpen"
-          [isMobileView]="isMobileView"
-          (toggleMenu)="toggleMobileMenu()"
-          (forceCloseMenu)="mobileMenuOpen = false">
-        </app-header>
+      <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()"
+        (forceCloseMenu)="mobileMenuOpen = false" [currentSection]="currentSection()">
+      </app-header>
       }
-
-
-
       <main class="main-content">
+        @if (currentRoute === '/') {
+        <app-scroll-page (sectionChanged)="onSectionChanged($event)"></app-scroll-page>
+        } @else {
         <router-outlet></router-outlet>
+        }
       </main>
     </div>
   </div>
-
   @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
-    <app-mobile-popout
-      [mobileMenuOpen]="mobileMenuOpen"
-      [translate]="translations[language]"
-      [language]="language"
-      [animationState]="animationState"
-      (toggleMenu)="toggleMobileMenu()"
-      (setLanguage)="setLanguage($event)">
-    </app-mobile-popout>
+  <app-mobile-popout [mobileMenuOpen]="mobileMenuOpen" [translate]="translations[language]" [language]="language"
+    [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  </app-mobile-popout>
   }
-
 </section>

@@ -7,7 +7,7 @@ import { ProjectDialogComponent } from './dialog/project-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-projekte',
+  selector: 'app-projects',
   standalone: true,
   imports: [CommonModule, ProjectDialogComponent, TranslateModule],
   templateUrl: './projects.component.html',

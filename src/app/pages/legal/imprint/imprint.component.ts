@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { signal } from '@angular/core';
 import { LangSwitchComponent } from '../../../shared/components/lang-switch/lang-switch.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-imprint',
@@ -13,7 +14,7 @@ import { LangSwitchComponent } from '../../../shared/components/lang-switch/lang
 })
 export class ImprintComponent {
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService, private router: Router) { }
 
   language = signal<'de' | 'en'>('de');
 
@@ -30,5 +31,18 @@ export class ImprintComponent {
       ? 'assets/icons/green/svg/icon_left_green.svg'
       : 'assets/icons/white/svg/icon_left_white.svg';
   }
+
+  scrollToContact(event: Event) {
+  event.preventDefault();
+  this.router.navigate(['/']).then(() => {
+    setTimeout(() => {
+      const el = document.getElementById('contact');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  });
+}
+
 
 }

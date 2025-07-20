@@ -1,7 +1,9 @@
 <section class="imprint-box-background">
   <div class="imprint-box-header">
-    <a routerLink="/contact" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"><img
-        [src]="iconLeft" alt="Back" /></a>
+<a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
+  <img [src]="iconLeft" alt="Back" />
+</a>
+
     <div class="header-title">
       <p class="title"><strong>{{ 'imprint.title' | translate }}</strong></p>
       <p class="subtitle"> - {{ 'imprint.subtitle' | translate }}</p>

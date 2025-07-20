@@ -51,7 +51,8 @@
               </label>
               <div class="input-wrapper">
                 <p>
-                  {{ 'contact.privacyText' | translate }} <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a> {{ 'contact.privacyTextEnd' | translate }}
+                  {{ 'contact.privacyText' | translate }} <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink'
+                    | translate }}</a> {{ 'contact.privacyTextEnd' | translate }}
                 </p>
                 @if (!formData.privacyAccepted && privacyTouched) {
                 <p class="form-warning checkbox-warn">{{ 'contact.privacyWarning' | translate }}</p>
@@ -63,15 +64,15 @@
               [class]="{ active: isFormValid }" (click)="validateAndSubmit()">
               @if (isSending) {
               {{ 'contact.sending' | translate }}
-              <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+              <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
               } @else if (success) {
               {{ 'contact.sent' | translate }}
               <span class="fly-icon">
-                <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+                <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
               </span>
               } @else {
               {{ 'contact.send' | translate }}
-              <img src="assets/icons/white/send_white.png" alt="Send Icon" />
+              <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
               }
             </button>
 

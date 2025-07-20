@@ -3,21 +3,23 @@
     'open': animationState === 'open',
     'closing': animationState === 'closing'
   }">
-  <ul class="mobile-popout-list">
-    <li><a routerLink="/home" routerLinkActive="active" (click)="toggleMobileMenu()">{{ translate.home }}</a></li>
-    <li><a routerLink="/about" routerLinkActive="active" (click)="toggleMobileMenu()">{{ translate.about }}</a></li>
-    <li><a routerLink="/skills" routerLinkActive="active" (click)="toggleMobileMenu()">{{ translate.skills }}</a></li>
-    <li><a routerLink="/projects" routerLinkActive="active" (click)="toggleMobileMenu()">{{ translate.projects }}</a></li>
-    <li><a routerLink="/feedbacks" routerLinkActive="active" (click)="toggleMobileMenu()">{{ translate.feedbacks }}</a></li>
-  </ul>
+    <ul class="mobile-popout-list">
+      <li><a href="#" (click)="onClick('home', $event)">{{ translate.home }}</a></li>
+      <li><a href="#" (click)="onClick('about', $event)">{{ translate.about }}</a></li>
+      <li><a href="#" (click)="onClick('skills', $event)">{{ translate.skills }}</a></li>
+      <li><a href="#" (click)="onClick('projects', $event)">{{ translate.projects }}</a></li>
+      <li><a href="#" (click)="onClick('feedbacks', $event)">{{ translate.feedbacks }}</a></li>
+    </ul>
 
-  <a routerLink="/contact" routerLinkActive="active" (click)="toggleMobileMenu()" class="contact-btn-mobile">
-    {{ translate.contact }}
-  </a>
+    <a href="#" (click)="onClick('contact', $event)" class="contact-btn-mobile">
+      {{ translate.contact }}
+    </a>
 
-  <div class="mobile-lang-switch">
-    <app-lang-switch [currentLanguage]="language" (languageChanged)="changeLanguage($event)">
-    </app-lang-switch>
+    <div class="mobile-lang-switch">
+      <app-lang-switch
+        [currentLanguage]="language"
+        (languageChanged)="changeLanguage($event)">
+      </app-lang-switch>
+    </div>
   </div>
-</div>
 }

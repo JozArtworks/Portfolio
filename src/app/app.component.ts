@@ -7,40 +7,46 @@ import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-
 import { HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { ScrollPageComponent } from './scroll-page/scroll-page.component';
+import { signal } from '@angular/core';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
-  constructor(  private router: Router,
-  private translate: TranslateService,
-  private cdr: ChangeDetectorRef) {
+  constructor(private router: Router,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.urlAfterRedirects;
     });
-
     this.translate.setDefaultLang(this.language);
     this.translate.use(this.language);
+  }
+
+  handleMobileNavClick(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.toggleMobileMenu();
   }
 
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-
     const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
-
     if (this.mobileMenuOpen && clickedOutsideMenu) {
       this.animationState = 'closing';
-
       setTimeout(() => {
         this.mobileMenuOpen = false;
         this.animationState = '';
@@ -83,6 +89,11 @@ export class AppComponent {
   title = 'portfolio';
 
   currentRoute = '';
+  currentSection = signal('home');
+
+onSectionChanged(sectionId: string) {
+  this.currentSection.set(sectionId);
+}
 
 
   boundCheckViewport!: () => void;

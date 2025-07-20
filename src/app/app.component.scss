@@ -26,8 +26,6 @@
   box-sizing: border-box;
 }
 
-
-
 .glass-background-style {
   max-width: 1900px;
   position: relative;
@@ -102,6 +100,9 @@
   width: 100%;
   flex: 1;
   height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 

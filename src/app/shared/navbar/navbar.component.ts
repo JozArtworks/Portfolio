@@ -10,10 +10,10 @@ import {
   Output,
   EventEmitter,
   computed,
-  signal,
   ViewChild,
   HostListener,
 } from '@angular/core';
+
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { LangSwitchComponent } from '../components/lang-switch/lang-switch.component';
@@ -23,6 +23,9 @@ import { SimpleChanges, OnChanges } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { signal, effect } from '@angular/core';
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -31,15 +34,98 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navbar.component.scss'],
 })
 
-export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnInit, OnChanges {
+export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
-navItems = [
-  { path: '/home', key: 'nav.home' },
-  { path: '/about', key: 'nav.about' },
-  { path: '/skills', key: 'nav.skills' },
-  { path: '/projects', key: 'nav.projects' },
-  { path: '/feedbacks', key: 'nav.feedbacks' }
-];
+  constructor(private router: Router, private translate: TranslateService) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        if (this.justScrolled()) return;
+
+        const url = (event as NavigationEnd).urlAfterRedirects;
+        this.currentUrl.set(url);
+        setTimeout(() => this.updateIndicator(), 10);
+      });
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
+    if (this.observer) this.observer.disconnect();
+  }
+
+  ngAfterViewInit() {
+    this.observeSections();
+    setTimeout(() => {
+      this.updateIndicator();
+    }, 100);
+  }
+
+  ngOnInit() {
+    this.checkViewport();
+    window.addEventListener('resize', this.boundCheckViewport);
+
+    effect(() => {
+      const section = this.sectionFromScroll();
+      if (section && !this.justScrolled()) {
+        this.currentUrl.set(section);
+        requestAnimationFrame(() => {
+          this.updateIndicator();
+        });
+      }
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['currentSection'] && !this.justScrolled()) {
+      const newVal = changes['currentSection'].currentValue;
+      this.sectionFromScroll.set(newVal);
+    }
+  }
+
+  @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
+  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
+
+  @Input() isMobileView = false;
+  @Input() mobileMenuOpen = false;
+  @Input() currentSection = '';
+
+  @Output() toggleMenu = new EventEmitter<void>();
+  @Output() mailClicked = new EventEmitter<void>();
+  @Output() forceCloseMenu = new EventEmitter<void>();
+
+  private boundCheckViewport = this.checkViewport.bind(this);
+  private justToggledViaIcon = false;
+
+  currentUrl = signal('');
+  activePos = signal({ left: 0, width: 0 });
+  language = signal<'de' | 'en'>('de');
+  showCopyDialog = false;
+  emailCopied = false;
+  activeIconName = '';
+  hoveredIconName = '';
+  showEmail = false;
+  hidingEmail = false;
+  justScrolled = signal(false);
+  observer!: IntersectionObserver;
+  sectionFromScroll = signal('');
+
+  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks'];
+
+  showIndicator = computed(() => {
+    const current = this.currentUrl();
+    return this.sectionIds.includes(current);
+  });
+
+  readonly EMAIL_ANIMATION_DURATION = 250;
+
+  navItems = [
+    { path: 'home', key: 'nav.home' },
+    { path: 'about', key: 'nav.about' },
+    { path: 'skills', key: 'nav.skills' },
+    { path: 'projects', key: 'nav.projects' },
+    { path: 'feedbacks', key: 'nav.feedbacks' },
+    { path: 'contact', key: 'nav.contact', isContact: true }
+  ];
 
   linksIcons = [
     {
@@ -61,84 +147,70 @@ navItems = [
     },
   ];
 
-  constructor(private router: Router, private translate: TranslateService) {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(event => {
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        this.currentUrl.set(url);
-        setTimeout(() => this.updateIndicator(), 10);
-      });
-  }
-
-  private boundCheckViewport = this.checkViewport.bind(this);
-  private justToggledViaIcon = false;
-
-  @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
-  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
-
-  @Input() isMobileView = false;
-  @Input() mobileMenuOpen = false;
-
-  @Output() toggleMenu = new EventEmitter<void>();
-  @Output() mailClicked = new EventEmitter<void>();
-  @Output() forceCloseMenu = new EventEmitter<void>();
-
-  currentUrl = signal('');
-  activePos = signal({ left: 0, width: 0 });
-  language = signal<'de' | 'en'>('de');
-  showIndicator = computed(() => !this.currentUrl().includes('/contact'));
-  showCopyDialog = false;
-  emailCopied = false;
-  activeIconName = '';
-  hoveredIconName = '';
-  showEmail = false;
-  hidingEmail = false;
-
-  readonly EMAIL_ANIMATION_DURATION = 250;
-
-@HostListener('document:click', ['$event'])
-onClickOutside(event: MouseEvent) {
-  if (this.justToggledViaIcon) {
-    this.justToggledViaIcon = false;
-    return;
-  }
-
-  const target = event.target as HTMLElement;
-  const clickedInsideWrapper = target.closest('.mail-wrapper');
-  const clickedMailIcon = target.closest('.box-link-nav-mobile img');
-
-  if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
-    this.hidingEmail = true;
-
-    setTimeout(() => {
-      this.showEmail = false;
-      this.hidingEmail = false;
-    }, this.EMAIL_ANIMATION_DURATION);
-  }
-}
-
-
-  ngOnInit() {
-    this.checkViewport();
-    window.addEventListener('resize', this.boundCheckViewport);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.boundCheckViewport);
-  }
-
-  ngAfterViewInit() {
-    this.updateIndicator();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['mobileMenuOpen']) {
-      const nowOpen = changes['mobileMenuOpen'].currentValue;
-      if (nowOpen && this.showEmail) {
-        this.showEmail = false;
-      }
+  scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  onNavClick(sectionId: string, event: Event) {
+    event.preventDefault();
+    this.justScrolled.set(true);
+    this.scrollToSection(sectionId);
+    this.currentUrl.set(sectionId);
+    setTimeout(() => {
+      this.justScrolled.set(false);
+      this.updateIndicator();
+    }, 300);
+  }
+
+  observeSections() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
+    };
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.justScrolled()) {
+          const id = entry.target.getAttribute('id');
+          if (id && this.sectionIds.includes(id)) {
+            this.currentUrl.set(id);
+            requestAnimationFrame(() => {
+              this.updateIndicator();
+            });
+          }
+        }
+      });
+    }, options);
+    this.sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) this.observer.observe(el);
+    });
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    if (this.justToggledViaIcon) {
+      this.justToggledViaIcon = false;
+      return;
+    }
+    const target = event.target as HTMLElement;
+    const clickedInsideWrapper = target.closest('.mail-wrapper');
+    const clickedMailIcon = target.closest('.box-link-nav-mobile img');
+    if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
+      this.hidingEmail = true;
+      setTimeout(() => {
+        this.showEmail = false;
+        this.hidingEmail = false;
+      }, this.EMAIL_ANIMATION_DURATION);
+    }
+  }
+
+  onRouteClick() {
+    this.currentUrl.set('/contact');
+    this.updateIndicator();
   }
 
   setLanguage(lang: 'de' | 'en') {
@@ -167,20 +239,23 @@ onClickOutside(event: MouseEvent) {
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
-
     if (!this.isMobileView && this.showEmail) {
       this.showEmail = false;
     }
-
   }
 
   updateIndicator() {
-    const active = this.navLinks.find(link =>
-      link.nativeElement.classList.contains('active')
-    );
-
-    if (active) {
-      const el = active.nativeElement;
+    const activeLink = this.navLinks.find(link => {
+      const sectionId = link.nativeElement.getAttribute('data-section-id');
+      return sectionId === this.currentUrl().replace(/^\/?#/, '');
+    });
+    this.navLinks.forEach(link => {
+      const sectionId = link.nativeElement.getAttribute('data-section-id');
+      const isActive = sectionId === this.currentUrl();
+      link.nativeElement.classList.toggle('active', isActive);
+    });
+    if (activeLink) {
+      const el = activeLink.nativeElement;
       this.activePos.set({ left: el.offsetLeft, width: el.offsetWidth });
     } else {
       this.activePos.set({ left: 0, width: 0 });
@@ -207,23 +282,21 @@ onClickOutside(event: MouseEvent) {
     return `assets/icons/${colorFolder}/${base}_${colorFolder}.png`;
   }
 
-toggleEmail() {
-  if (this.showCopyDialog) {
-    return;
+  toggleEmail() {
+    if (this.showCopyDialog) {
+      return;
+    }
+    this.justToggledViaIcon = true;
+    if (this.showEmail) {
+      this.hidingEmail = true;
+      setTimeout(() => {
+        this.showEmail = false;
+        this.hidingEmail = false;
+      }, this.EMAIL_ANIMATION_DURATION);
+    } else {
+      this.showEmail = true;
+    }
   }
-
-  this.justToggledViaIcon = true;
-
-  if (this.showEmail) {
-    this.hidingEmail = true;
-    setTimeout(() => {
-      this.showEmail = false;
-      this.hidingEmail = false;
-    }, this.EMAIL_ANIMATION_DURATION);
-  } else {
-    this.showEmail = true;
-  }
-}
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
@@ -231,7 +304,6 @@ toggleEmail() {
       this.emailCopied = true;
       this.showEmail = false;
       this.showCopyDialog = true;
-
       setTimeout(() => {
         this.showCopyDialog = false;
         this.emailCopied = false;
@@ -241,15 +313,11 @@ toggleEmail() {
 
   handleIconClick(name: string) {
     this.setActiveIcon(name);
-
     if (this.isMobileView && this.mobileMenuOpen) {
       this.forceCloseMenu.emit();
     }
-
     if (this.showEmail) {
       this.showEmail = false;
     }
   }
-
 }
-

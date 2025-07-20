@@ -8,22 +8,17 @@
     }
     @for (item of navItems; track item.path) {
     <li>
-      <a #navLink routerLink="{{ item.path }}" routerLinkActive="active">
+      <a href="#" [attr.data-section-id]="item.path" (click)="onNavClick(item.path, $event)"
+        [class.active]="currentUrl() === item.path" [class.contact-btn]="item.isContact" #navLink>
         {{ item.key | translate }}
       </a>
     </li>
     }
-    <li>
-      <a routerLink="/contact" routerLinkActive="active" class="contact-btn">
-        {{ 'nav.contact' | translate }}
-      </a>
-    </li>
   </ul>
   <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
   </app-lang-switch>
 </nav>
 }
-
 @if (isMobileView) {
 <div class="box-link-nav-mobile">
   <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
@@ -33,10 +28,9 @@
   </button>
 </div>
 }
-
 <div class="dialog-copy" [class.visible]="showCopyDialog">
   <span>{{ 'landing.copied' | translate }}</span>
-  <svg class="check-icon" viewBox="0 0 24 24">
+  <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
       stroke-linejoin="round" />
   </svg>
@@ -47,13 +41,11 @@
   'hiding': hidingEmail
 }">
   <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>
-
-  <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
+  <button type="button" class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
     [attr.aria-label]="'landing.copyAria' | translate">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
       <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
     </svg>
   </button>
-
 </div>

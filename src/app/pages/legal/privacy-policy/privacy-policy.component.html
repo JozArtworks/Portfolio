@@ -1,7 +1,9 @@
 <section class="privacy-box-background">
   <div class="privacy-box-header">
-    <a routerLink="/contact" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"><img
-        [src]="iconLeft" alt="Back" /></a>
+<a href="#" (click)="scrollToContact($event)" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)">
+  <img [src]="iconLeft" alt="Back" />
+</a>
+
     <p><strong>{{ 'privacy.headline' | translate }}</strong></p>
     <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
     </app-lang-switch>

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -12,12 +10,12 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
+  @Input() currentSection = 'home';
   @Input() isMobileView = false;
   @Input() mobileMenuOpen = false;
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
-
 
   onToggleMenu() {
     this.toggleMenu.emit();
