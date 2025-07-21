@@ -2,6 +2,44 @@
 @import "../../../../assets/styles/variables.scss";
 @import "../../../../assets/styles/font-types.scss";
 
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  animation: dialogFadeIn 0.25s ease-in-out;
+}
+
+.global-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dialog-section::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); // halbtransparentes Schwarz
+  z-index: 99;
+}
+
 .project-info {
   margin-right: 15px;
   margin-left: 15px;

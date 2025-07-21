@@ -10,10 +10,13 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ScrollPageComponent } from './scroll-page/scroll-page.component';
 import { signal } from '@angular/core';
 import { SectionObserverService } from './../assets/services/section-observer.service';
+import { DialogStateService } from './../assets/services/dialog-state.service';
+import { ProjectDialogService } from './../assets/services/project-dialog.service';
+import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent, ProjectDialogComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -24,7 +27,9 @@ export class AppComponent {
   constructor(private router: Router,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private sectionObserver: SectionObserverService) {
+    private sectionObserver: SectionObserverService,
+    private dialogState: DialogStateService,
+    public projectDialog: ProjectDialogService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
@@ -55,6 +60,7 @@ export class AppComponent {
     }
   }
 
+  dialogIsOpen = signal(false);
   isMobileView = true;
   mobileMenuOpen = false;
   animationState: 'open' | 'closing' | '' = '';
@@ -154,5 +160,18 @@ export class AppComponent {
     return !['/imprint', '/privacy-policy'].includes(this.currentRoute);
   }
 
+  isDialogOpen() {
+    return this.dialogState.dialogOpen();
+  }
+
+  openGlobalDialog() {
+    this.projectDialog.dialogOpen.set(true);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeGlobalDialog() {
+    this.projectDialog.dialogOpen.set(false);
+    document.body.style.overflow = 'auto';
+  }
 
 }

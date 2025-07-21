@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Project } from '../project.interface';
 import { TranslateModule } from '@ngx-translate/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-project-dialog',
@@ -79,4 +80,10 @@ export class ProjectDialogComponent {
       ? 'assets/icons/green/svg/icon_right_green.svg'
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
+
+  @HostListener('document:keydown.escape', ['$event'])
+onEscape(event: KeyboardEvent) {
+  this.onClose();
+}
+
 }

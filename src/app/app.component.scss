@@ -1,6 +1,27 @@
 @import "../assets/styles/mixins.scss";
 @import "../assets/styles/variables.scss";
 
+.global-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: #00000056;
+  z-index: 99;
+  pointer-events: all;
+  animation: fadeIn 0.25s;
+}
+
+.main-content {
+  -webkit-overflow-scrolling: touch;
+}
+
+.blur-scroll {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+
 .background-pic {
   position: relative;
   min-height: 100dvh;
