@@ -2,14 +2,18 @@
 <nav class="navbar">
   <ul class="nav-list">
     @if (showIndicator()) {
-    <div class="active-indicator" [style.transform]="'translateX(' + activePos().left + 'px)'"
-      [style.width.px]="activePos().width">
-    </div>
+<div class="active-indicator"
+     [class.hidden]="!showIndicator()"
+     [style.transform]="'translateX(' + activePos().left + 'px)'"
+     [style.width.px]="activePos().width">
+</div>
+
     }
     @for (item of navItems; track item.path) {
     <li>
       <a href="#" [attr.data-section-id]="item.path" (click)="onNavClick(item.path, $event)"
-        [class.active]="currentUrl() === item.path" [class.contact-btn]="item.isContact" #navLink>
+        [class.active]="isLinkActive(item.path)"
+        [class.contact-btn]="item.isContact" #navLink>
         {{ item.key | translate }}
       </a>
     </li>

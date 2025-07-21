@@ -19,6 +19,8 @@ import { SectionObserverService } from './../assets/services/section-observer.se
 })
 export class AppComponent {
 
+
+
   constructor(private router: Router,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -98,15 +100,17 @@ export class AppComponent {
     this.checkViewport();
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
+    
   }
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
-  ngAfterViewInit() {
-    this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks']);
-  }
+ngAfterViewInit() {
+  this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
+}
+
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;

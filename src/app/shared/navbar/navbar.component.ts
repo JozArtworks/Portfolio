@@ -110,13 +110,15 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   showEmail = false;
   hidingEmail = false;
   currentUrl = this.sectionObserver.currentSection;
-  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks'];
+  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
   isScrollPage = signal(false);
   injector = inject(EnvironmentInjector);
-  showIndicator = computed(() => {
-    const current = this.currentUrl();
-    return this.sectionIds.includes(current) && this.isScrollPage();
-  });
+showIndicator = computed(() => {
+  const url = this.currentUrl();
+  return ['home', 'about', 'skills', 'projects', 'feedbacks'].includes(url);
+});
+
+
 
   readonly EMAIL_ANIMATION_DURATION = 250;
 
@@ -176,6 +178,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.ifMobileOpenToggle();
   }
 
+isLinkActive(path: string): boolean {
+  const current = this.sectionObserver.currentSection();
+  return current === path;
+}
+
+
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
     this.translate.use(lang).subscribe(() => {
@@ -183,6 +191,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.updateIndicator();
       }, 100);
     });
+  }
+
+  isContactPage(): boolean {
+    return this.router.url === '/contact';
   }
 
   emitToggleMenu() {
