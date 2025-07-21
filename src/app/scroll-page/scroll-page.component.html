@@ -1,5 +1,7 @@
 <section id="home">
-  <app-landing></app-landing>
+<app-landing [scrolledAway]="sectionObserver.currentSection() !== 'home'" />
+
+
 </section>
 
 <section id="about">

@@ -11,7 +11,7 @@ html, body {
   width: 100%;
   font-family: 'Inter', sans-serif;
   font-weight: 100;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 app-mobile-popout {

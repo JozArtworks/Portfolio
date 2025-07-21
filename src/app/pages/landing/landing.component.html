@@ -8,12 +8,12 @@
       </div>
     </div>
     <div class="about-foot">
-      <div class="box-tools">
+      <div class="box-tools" [class.slide-out]="scrolledAway">
         @for (icon of toolsIcons; track icon.name) {
         <img [src]="icon.icon" [alt]="icon.alt | translate" class="tool-icon" />
         }
       </div>
-      <div class="box-link dNone">
+      <div class="box-link" [class.slide-in]="scrolledAway">
         <app-links-img context="home" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog"
           (mailClicked)="toggleEmail()"></app-links-img>
       </div>

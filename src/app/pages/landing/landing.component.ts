@@ -8,6 +8,7 @@ import {
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { toolsIcons, ToolIcon } from '../../shared/data/tools-icons.data';
+import { signal } from '@angular/core';
 @Component({
   selector: 'app-landing',
   standalone: true,
@@ -16,6 +17,9 @@ import { toolsIcons, ToolIcon } from '../../shared/data/tools-icons.data';
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
+
+  @Input() scrolledAway = false;
+
 
   toolsIcons: ToolIcon[] = toolsIcons;
   showEmail = false;
@@ -81,5 +85,7 @@ export class LandingComponent {
       this.showEmail = false;
     }
   }
+
+
 
 }

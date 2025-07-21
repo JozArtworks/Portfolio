@@ -74,6 +74,7 @@ screen and (max-width: 870px) {
   flex-direction: column;
   height: 100%;
   width: 100%;
+  padding: 10px;
 }
 
 .about-foot {
@@ -83,6 +84,24 @@ screen and (max-width: 870px) {
   width: 100%;
   margin-right: 5px;
 }
+
+.box-tools {
+  transition: transform 0.8s ease;
+}
+
+.box-tools.slide-out {
+  transform: translateX(-150%);
+}
+
+.box-link {
+  transition: transform 0.8s ease;
+  transform: translateX(0);
+}
+
+.box-link.slide-in {
+  transform: translateX(150%);
+}
+
 
 .box-tools {
   border: 1px solid rgba(255, 255, 255, 0.25);
