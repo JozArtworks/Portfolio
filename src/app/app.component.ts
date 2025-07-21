@@ -100,16 +100,20 @@ export class AppComponent {
     this.checkViewport();
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
-    
+
+  }
+
+  shouldScroll(): boolean {
+    return this.currentRoute === '/';
   }
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
-ngAfterViewInit() {
-  this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
-}
+  ngAfterViewInit() {
+    this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
+  }
 
 
   checkViewport() {
@@ -121,9 +125,10 @@ ngAfterViewInit() {
   }
 
   getBackgroundClass() {
-    if (this.currentRoute.includes('/legal/imprint') || this.currentRoute.includes('/legal/privacy-policy')) {
+    if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
       return 'bg-imprint-policy';
     }
+
     if (this.currentRoute.includes('/about')) return 'bg-about';
     if (this.currentRoute.includes('/skills')) return 'bg-skills';
     if (this.currentRoute.includes('/projects')) return 'bg-projects';
@@ -146,7 +151,8 @@ ngAfterViewInit() {
   }
 
   shouldShowHeader(): boolean {
-    return !['/legal/imprint', '/legal/privacy-policy'].includes(this.currentRoute);
+    return !['/imprint', '/privacy-policy'].includes(this.currentRoute);
   }
+
 
 }

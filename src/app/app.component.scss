@@ -98,9 +98,16 @@
   width: 100%;
   flex: 1;
   height: 100%;
-  overflow-y: auto;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+
+  &.scrollable {
+    overflow-y: auto;
+  }
+
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
 @media screen and (max-width: 800px) {
