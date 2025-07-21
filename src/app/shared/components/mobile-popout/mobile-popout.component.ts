@@ -2,10 +2,11 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LangSwitchComponent } from '../lang-switch/lang-switch.component';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-mobile-popout',
   standalone: true,
-  imports: [CommonModule, RouterModule, LangSwitchComponent],
+  imports: [CommonModule, RouterModule, LangSwitchComponent, TranslateModule],
   templateUrl: './mobile-popout.component.html',
   styleUrl: './mobile-popout.component.scss',
 })
@@ -20,9 +21,22 @@ export class MobilePopoutComponent implements OnChanges {
   @Output() setLanguage = new EventEmitter<'de' | 'en'>();
   @Output() navClicked = new EventEmitter<string>();
 
-  onClick(section: string, event: Event) {
+  navItems = [
+    { path: 'home', key: 'nav.home' },
+    { path: 'about', key: 'nav.about' },
+    { path: 'skills', key: 'nav.skills' },
+    { path: 'projects', key: 'nav.projects' },
+    { path: 'feedbacks', key: 'nav.feedbacks' },
+    { path: 'contact', key: 'nav.contact', isContact: true }
+  ];
+
+  onNavClick(path: string, event: MouseEvent) {
     event.preventDefault();
-    this.navClicked.emit(section);
+    const el = document.getElementById(path);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.toggleMenu.emit();
   }
 
   ngOnChanges() {

@@ -4,15 +4,15 @@
     'closing': animationState === 'closing'
   }">
     <ul class="mobile-popout-list">
-      <li><a href="#" (click)="onClick('home', $event)">{{ translate.home }}</a></li>
-      <li><a href="#" (click)="onClick('about', $event)">{{ translate.about }}</a></li>
-      <li><a href="#" (click)="onClick('skills', $event)">{{ translate.skills }}</a></li>
-      <li><a href="#" (click)="onClick('projects', $event)">{{ translate.projects }}</a></li>
-      <li><a href="#" (click)="onClick('feedbacks', $event)">{{ translate.feedbacks }}</a></li>
+      @for (item of navItems; track item.path) {
+        <li>
+          <a href="#" (click)="onNavClick(item.path, $event)" [class.contact-btn-mobile]="item.isContact">
+            {{ item.key | translate }}
+          </a>
+        </li>
+      }
     </ul>
-    <a href="#" (click)="onClick('contact', $event)" class="contact-btn-mobile">
-      {{ translate.contact }}
-    </a>
+
     <div class="mobile-lang-switch">
       <app-lang-switch
         [currentLanguage]="language"

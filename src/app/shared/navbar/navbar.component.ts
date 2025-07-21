@@ -50,7 +50,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       runInInjectionContext(this.injector, () => {
         effect(() => {
-          console.log('Aktuelle Section:', this.currentUrl());
           this.updateIndicator();
         }, { allowSignalWrites: true });
       });
@@ -67,6 +66,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.checkViewport();
     window.addEventListener('resize', this.boundCheckViewport);
+    this.sectionObserver.setCurrentSection('home');
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.urlAfterRedirects || event.url;
@@ -178,7 +178,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
-    this.translate.use(lang).subscribe(() => this.updateIndicator());
+    this.translate.use(lang).subscribe(() => {
+      setTimeout(() => {
+        this.updateIndicator();
+      }, 100);
+    });
   }
 
   emitToggleMenu() {
@@ -201,7 +205,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
-
     if (!this.isMobileView && this.showEmail) {
       this.showEmail = false;
     }

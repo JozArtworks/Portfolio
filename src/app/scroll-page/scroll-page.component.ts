@@ -26,7 +26,7 @@ export class ScrollPageComponent {
 
   currentSection = signal('home');
 
-  @HostListener('window:scroll', [])
+  // @HostListener('window:scroll', [])
   @Output() sectionChanged = new EventEmitter<string>();
 
   @HostListener('window:scroll', [])
