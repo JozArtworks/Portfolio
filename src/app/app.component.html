@@ -1,13 +1,16 @@
 <section [class]="['background-pic', getBackgroundClass()]">
+  <div class="background-fader" [class.active]="isFading"></div>
+
   <div class="background-gradient">
+
     <div class="glass-background-style">
 
       @if (shouldShowHeader()) {
       <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()"
-        (forceCloseMenu)="mobileMenuOpen = false" [currentSection]="currentSection()"></app-header>
+        (forceCloseMenu)="mobileMenuOpen = false"></app-header>
 
       <main class="main-content scrollable" [class.blur-scroll]="projectDialog.dialogOpen()">
-        <app-scroll-page (sectionChanged)="onSectionChanged($event)" />
+        <app-scroll-page />
       </main>
 
 

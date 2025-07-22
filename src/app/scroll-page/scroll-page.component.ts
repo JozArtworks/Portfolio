@@ -1,4 +1,4 @@
-import { Component, HostListener, AfterViewInit, Signal, signal } from '@angular/core';
+import { Component, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutMeComponent } from '../pages/about-me/about-me.component';
 import { SkillsComponent } from '../pages/skills/skills.component';

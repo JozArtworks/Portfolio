@@ -94,11 +94,9 @@ export class AppComponent {
   title = 'portfolio';
 
   currentRoute = '';
-  currentSection = signal('home');
 
-  onSectionChanged(sectionId: string) {
-    this.currentSection.set(sectionId);
-  }
+
+
 
   boundCheckViewport!: () => void;
 
@@ -130,18 +128,45 @@ export class AppComponent {
     }
   }
 
-  getBackgroundClass() {
-    if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
-      return 'bg-imprint-policy';
+lastSection = '';
+
+getBackgroundClass() {
+  if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
+    return 'bg-imprint-policy';
+  }
+
+  if (this.currentRoute === '/') {
+    const section = this.sectionObserver.currentSection();
+
+    if (section !== this.lastSection) {
+      this.triggerFade();
+      this.lastSection = section;
     }
 
-    if (this.currentRoute.includes('/about')) return 'bg-about';
-    if (this.currentRoute.includes('/skills')) return 'bg-skills';
-    if (this.currentRoute.includes('/projects')) return 'bg-projects';
-    if (this.currentRoute.includes('/feedbacks')) return 'bg-feedbacks';
-    if (this.currentRoute.includes('/contact')) return 'bg-contact';
-    return 'bg-home';
+    switch (section) {
+      case 'about': return 'bg-about';
+      case 'skills': return 'bg-skills';
+      case 'projects': return 'bg-projects';
+      case 'feedbacks': return 'bg-feedbacks';
+      case 'contact': return 'bg-contact';
+      default: return 'bg-home';
+    }
   }
+
+  return 'bg-home';
+}
+
+isFading = false;
+
+triggerFade() {
+  this.isFading = true;
+  setTimeout(() => {
+    this.isFading = false;
+  }, 400);
+}
+
+
+
 
   toggleMobileMenu() {
     if (this.mobileMenuOpen) {
