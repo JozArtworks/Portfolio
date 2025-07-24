@@ -7,4 +7,5 @@ export interface Project {
   iconsDialoge: string[];
   github?: string;
   live?: string;
+  key?: string;
 }

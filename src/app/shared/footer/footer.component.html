@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" [class.visible]="isVisible" #footerElement>
   <div class="footer-content">
     <div class="info-box">
       <span><img src="assets/icons/white/svg/logo_jm.svg">{{ 'footer.copyright' | translate }}</span>

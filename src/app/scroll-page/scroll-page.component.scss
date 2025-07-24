@@ -1,4 +1,13 @@
-section {
-  scroll-snap-align: start;
+.section-box {
   height: 100%;
+  scroll-snap-align: start;
+  opacity: 0.3;
+  transform: scale(0.96) translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.in-view {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 1;
+  }
 }

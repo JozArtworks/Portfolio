@@ -1,11 +1,12 @@
-<section class="about-page">
+<section class="about-page" aria-labelledby="about-heading">
   <div class="about-content">
     <div class="about-window">
-      <h2 class="about-headline">{{ 'about.title' | translate }}</h2>
+      <h2 id="about-heading" class="about-headline">{{ 'about.title' | translate }}</h2>
       <div class="about-body">
         <div class="box-left dNone">
           <div class="text-with-image">
-            <img src="./../../../assets/images/aboutmepic.png" alt="About Me" class="about-me-image inline-image" />
+            <img src="./../../../assets/images/aboutmepic.png" [alt]="'about.alt' | translate "
+              class="about-me-image inline-image" />
             <p class="dNone">
               {{ 'about.intro1' | translate }}
             </p>
@@ -18,7 +19,7 @@
             <p class="tech-claim dNone">
               {{ 'about.claim' | translate }}
             </p>
-            <blockquote [class]="animationState">
+            <blockquote [class]="animationState" aria-live="polite">
               {{ currentSlogan }}
             </blockquote>
           </div>
@@ -30,7 +31,7 @@
           <p class="tech-claim">
             {{ 'about.claim' | translate }}
           </p>
-          <blockquote [class]="animationState">
+          <blockquote [class]="animationState" aria-live="polite">
             {{ currentSlogan }}
           </blockquote>
         </div>

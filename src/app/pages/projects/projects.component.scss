@@ -2,19 +2,21 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
-
-
-.dNone {
+.mobileOnly {
   display: none;
 }
 
-.projekt-page {
+.desktopOnly {
+  display: block;
+}
+
+.project-page {
   display: flex;
   flex-direction: column;
   min-height: calc(100dvh - 200px);
   height: 100%;
 
-  .projekt-content {
+  .project-content {
     flex: 1 1 auto;
     display: flex;
     align-items: center;
@@ -23,7 +25,7 @@
     width: 100%;
   }
 
-  .projekt-headline {
+  .project-headline {
     margin-left: 20px;
     margin-top: 10px;
     color: #3DCFB6;
@@ -36,13 +38,13 @@
   margin: 20px;
 }
 
-.projekt-body {
+.project-body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.projekt-text {
+.project-text {
   display: flex;
   flex-direction: column;
   color: #FFFFFF;
@@ -121,7 +123,7 @@
   }
 }
 
-.projekt-window {
+.project-window {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 40px;
   padding: 20px;
@@ -132,7 +134,7 @@
   max-width: 700px;
   width: 100%;
 
-  h2.projekt-headline {
+  h2.project-headline {
     width: 100%;
   }
 
@@ -148,18 +150,19 @@
 }
 
 @media screen and (max-width: 820px) {
-  .projekt-page {
+  
+  .project-page {
 
-    .projekt-content {
+    .project-content {
       padding: 0;
     }
 
-    .projekt-headline {
+    .project-headline {
       margin-bottom: 5px;
       margin-top: 5px;
     }
 
-    .projekt-body {
+    .project-body {
       gap: 10px;
 
       .box {
@@ -172,7 +175,7 @@
     }
   }
 
-  .projekt-window {
+  .project-window {
     padding: 10px !important;
     border-radius: 20px;
     margin: 0 10px;
@@ -180,24 +183,28 @@
 }
 
 @media screen and (max-width: 500px) {
-  .dNone {
+
+  .mobileOnly {
     display: block;
   }
 
-  .dBlock {
+  .desktopOnly {
     display: none;
   }
 
-  .projekt-window {
+  .project-window {
     padding: 10px !important;
     border-radius: 20px;
   }
 }
 
 @media screen and (max-width: 455px) {
-  .dNone {
+
+  .desktopOnly,
+  .mobileOnly {
     display: none;
   }
+
 
   .projects-list {
     padding: 10px 18px;

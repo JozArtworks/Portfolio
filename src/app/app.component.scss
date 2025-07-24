@@ -1,19 +1,6 @@
 @import "../assets/styles/mixins.scss";
 @import "../assets/styles/variables.scss";
 
-.global-dialog-overlay {
-  position: fixed;
-  inset: 0;
-  background: #00000056;
-  z-index: 99;
-  pointer-events: all;
-  animation: fadeIn 0.25s;
-}
-
-.main-content {
-  -webkit-overflow-scrolling: touch;
-}
-
 .blur-scroll {
   opacity: 0;
   pointer-events: none;
@@ -26,7 +13,6 @@
   backdrop-filter: blur(2px);
 }
 
-
 .background-pic {
   position: relative;
   min-height: 100dvh;
@@ -38,7 +24,6 @@
   justify-content: center;
   align-items: center;
   transition: background-image 0.6s ease-in-out, background-color 0.6s ease-in-out, opacity 0.4s ease;
-
 }
 
 .background-gradient {
@@ -123,6 +108,7 @@
 }
 
 .main-content {
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   flex: 1;
   height: 100%;

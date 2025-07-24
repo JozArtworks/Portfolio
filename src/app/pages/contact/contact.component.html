@@ -75,5 +75,5 @@
       </div>
     </div>
   </div>
-  <app-footer class="footer-section"></app-footer>
+  <app-footer class="footer-section" [scrolledAway]="sectionObserver.currentSection() !== 'contact'"></app-footer>
 </section>

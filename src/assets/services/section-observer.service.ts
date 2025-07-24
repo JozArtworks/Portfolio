@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SectionObserverService {
 
   private observer!: IntersectionObserver;
@@ -18,49 +15,46 @@ export class SectionObserverService {
     return this.justScrolledSignal;
   }
 
-  setCurrentSection(sectionId: string) {
-  this.currentSectionSignal.set(sectionId);
-}
+  setCurrentSection(sectionId: string): void {
+    this.currentSectionSignal.set(sectionId);
+  }
 
-  observeSections(sectionIds: string[]) {
+  observeSections(sectionIds: string[]): void {
     if (this.observer) this.observer.disconnect();
-
     this.observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !this.justScrolledSignal()) {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !this.justScrolled()) {
             const id = entry.target.getAttribute('id');
             if (id && sectionIds.includes(id)) {
-              this.currentSectionSignal.set(id);
+              this.setCurrentSection(id);
             }
           }
-        });
+        }
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5,
+        threshold: 0.5
       }
     );
 
-    sectionIds.forEach((id) => {
+    sectionIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) this.observer.observe(el);
     });
   }
 
-  scrollToSection(sectionId: string) {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      this.justScrolledSignal.set(true);
-      el.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        this.justScrolledSignal.set(false);
-        this.currentSectionSignal.set(sectionId);
-      }, 300);
-    }
+  scrollToSection(sectionId: string, duration: number = 400): void {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    this.justScrolledSignal.set(true);
+    target.scrollIntoView({ behavior: 'smooth' });
+
+    setTimeout(() => {
+      this.justScrolledSignal.set(false);
+      this.setCurrentSection(sectionId);
+    }, duration);
   }
-
-  
 }
-

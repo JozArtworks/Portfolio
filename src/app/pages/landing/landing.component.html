@@ -1,14 +1,14 @@
 <section class="main-landing">
   <div class="main">
     <div class="title">
-      <h1>JONATHAN MICHUTTA</h1>
+      <h1 tabindex="0" aria-label="Jonathan Michutta – Frontend Developer & Mediengestalter">JONATHAN MICHUTTA</h1>
       <div class="subtitle">
-        <h2><span class="code-angle">&lt;</span> {{ 'landing.title' | translate }} /></h2>
+        <h2><span class="code-angle" aria-hidden="true">&lt;</span> {{ 'landing.title' | translate }} /></h2>
         <h3>{{ 'landing.subtitle' | translate }}</h3>
       </div>
     </div>
     <div class="about-foot">
-      <div class="box-tools" [class.slide-out]="scrolledAway">
+      <div class="box-tools" role="region" tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate" [class.slide-out]="scrolledAway">
         @for (icon of toolsIcons; track icon.name) {
         <img [src]="icon.icon" [alt]="icon.alt | translate" class="tool-icon" />
         }
@@ -27,7 +27,8 @@
     </svg>
   </div>
   <div #mailWrapper class="mail-wrapper" [class.visible]="showEmail">
-    <a class="mail-text" aria-label="E-Mail senden an Jonathan" href="mailto:front-dev@jonathan-michutta.de">
+    <a class="mail-text" [attr.aria-label]="'landing.mailLabel' | translate"
+      href="mailto:front-dev@jonathan-michutta.de">
       front-dev&#64;jonathan-michutta.de
     </a>
     <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">

@@ -1,13 +1,18 @@
 import {
   Component,
-  ViewChild,
   ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
   HostListener,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -15,13 +20,18 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent {
+export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
+
+  @Input() scrolledAway = false;
 
   private boundCheckViewport!: () => void;
+  private observer!: IntersectionObserver;
 
   showEmail = false;
   showCopyDialog = false;
   emailCopied = false;
+  @ViewChild('footerElement') footerElementRef!: ElementRef;
+  isVisible = false;
 
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
 
@@ -42,9 +52,7 @@ export class FooterComponent {
     this.checkViewport();
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.boundCheckViewport);
-  }
+
 
   checkViewport() {
     const isMobile = window.innerWidth <= 870;
@@ -52,6 +60,37 @@ export class FooterComponent {
       this.showEmail = false;
     }
   }
+
+ngAfterViewInit() {
+  if (!this.footerElementRef) return;
+
+  this.observer = new IntersectionObserver(
+    ([entry]) => {
+      this.isVisible = entry.isIntersecting;
+    },
+    { threshold: 0.2 }
+  );
+
+  this.observer.observe(this.footerElementRef.nativeElement);
+}
+
+
+ngOnDestroy() {
+  window.removeEventListener('resize', this.boundCheckViewport);
+
+  if (this.observer) {
+    this.observer.disconnect();
+  }
+}
+
+  ngOnChanges(changes: SimpleChanges): void {
+  if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
+    this.showEmail = false;
+    this.showCopyDialog = false;
+  }
+}
+
+
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';

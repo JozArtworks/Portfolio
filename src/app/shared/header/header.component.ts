@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -9,6 +10,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  constructor(private router: Router) { }
 
   @Input() currentSection = 'home';
   @Input() isMobileView = false;
@@ -28,4 +31,18 @@ export class HeaderComponent {
   onForceCloseMenu() {
     this.forceCloseMenu.emit();
   }
+
+    scrollToHome(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/']).then(() => {
+      setTimeout(() => {
+        const el = document.getElementById('home');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    });
+  }
+
+
 }

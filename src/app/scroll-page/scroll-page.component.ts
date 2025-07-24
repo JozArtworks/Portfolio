@@ -1,4 +1,4 @@
-import { Component, HostListener, AfterViewInit } from '@angular/core';
+import { Component, HostListener, AfterViewInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutMeComponent } from '../pages/about-me/about-me.component';
 import { SkillsComponent } from '../pages/skills/skills.component';
@@ -8,8 +8,6 @@ import { ContactComponent } from '../pages/contact/contact.component';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { Output, EventEmitter } from '@angular/core';
 import { SectionObserverService } from './../../assets/services/section-observer.service';
-
-
 @Component({
   selector: 'app-scroll-page',
   standalone: true,
@@ -28,16 +26,15 @@ import { SectionObserverService } from './../../assets/services/section-observer
 export class ScrollPageComponent implements AfterViewInit {
 
 
-constructor(public sectionObserver: SectionObserverService) {}
+  constructor(public sectionObserver: SectionObserverService) { }
 
+  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
 
-  // @HostListener('window:scroll', [])
   @Output() sectionChanged = new EventEmitter<string>();
 
   @HostListener('window:scroll', [])
   onScroll() {
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
-    for (const id of sectionIds) {
+    for (const id of this.sectionIds) {
       const el = document.getElementById(id);
       if (el) {
         const rect = el.getBoundingClientRect();
@@ -51,7 +48,8 @@ constructor(public sectionObserver: SectionObserverService) {}
   }
 
   ngAfterViewInit(): void {
-  const sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
-  this.sectionObserver.observeSections(sectionIds);
-}
+    this.sectionObserver.observeSections(this.sectionIds);
+  }
+
+
 }

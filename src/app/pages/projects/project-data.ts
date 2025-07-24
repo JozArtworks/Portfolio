@@ -57,6 +57,7 @@ export const PROJECTS: Project[] = [
     live: 'https://jonathan-michutta.de/elPolloLoco/'
   },
   {
+    key: 'portfolio',
     title: 'projects.portfolio.title',
     description: 'projects.portfolio.description',
     dialogDescription: 'projects.portfolio.dialogDescription',
@@ -72,6 +73,5 @@ export const PROJECTS: Project[] = [
       'assets/icons/white/svg/logo_css.svg'
     ],
     github: 'https://github.com/JozArtworks/Portfolio',
-    live: 'https://deinprojekt-url.com'
   }
 ];

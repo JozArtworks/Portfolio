@@ -1,14 +1,7 @@
-import {
-  Component,
-  Input,
-  HostListener,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, Input, HostListener, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { toolsIcons, ToolIcon } from '../../shared/data/tools-icons.data';
-import { signal } from '@angular/core';
 @Component({
   selector: 'app-landing',
   standalone: true,
@@ -16,21 +9,36 @@ import { signal } from '@angular/core';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
-export class LandingComponent {
+export class LandingComponent implements OnChanges {
 
   @Input() scrolledAway = false;
 
+  @ViewChild('mailWrapper') mailWrapperRef?: ElementRef;
 
   toolsIcons: ToolIcon[] = toolsIcons;
   showEmail = false;
   emailCopied = false;
   showCopyDialog = false;
 
+  private isMobileView = false;
   private justToggledViaIcon = false;
   private boundCheckViewport = this.checkViewport.bind(this);
 
-  @Input() isMobileView = false;
-  @ViewChild('mailWrapper') mailWrapperRef?: ElementRef;
+  ngOnInit() {
+    this.checkViewport();
+    window.addEventListener('resize', this.boundCheckViewport);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
+      this.showEmail = false;
+      this.showCopyDialog = false;
+    }
+  }
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {
@@ -70,22 +78,11 @@ export class LandingComponent {
     });
   }
 
-  ngOnInit() {
-    this.checkViewport();
-    window.addEventListener('resize', this.boundCheckViewport);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.boundCheckViewport);
-  }
-
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
     if (!this.isMobileView && this.showEmail) {
       this.showEmail = false;
     }
   }
-
-
 
 }

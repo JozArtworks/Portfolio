@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SectionObserverService } from './../../../assets/services/section-observer.service';
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -15,7 +16,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService, public sectionObserver: SectionObserverService) { }
 
   formData = {
     name: '',
@@ -65,6 +66,10 @@ export class ContactComponent implements OnInit, OnDestroy {
   isValidEmail(email: string): boolean {
     return /\S+@\S+\.\S+/.test(email.trim());
   }
+
+  get currentSection() {
+  return this.sectionObserver.currentSection();
+}
 
   isValidMessage(message: string): boolean {
     return message.trim().length >= 50;

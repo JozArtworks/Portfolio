@@ -15,7 +15,8 @@
       "„Der Nutzer sieht’s nicht. Aber der nächste Entwickler schon.“",
       "„Mein Stack? HTML, CSS, TypeScript – und eine Prise Intuition.“",
       "„Daten fließen, Layouts folgen – der Rest ist Fokus.“"
-    ]
+    ],
+    "alt": "Porträtfoto von Jonathan Michutta"
   },
   "nav": {
     "home": "Home",
@@ -167,8 +168,10 @@
     "title": "Webentwickler (Frontend)",
     "subtitle": "& Mediengestalter",
     "copied": "Kopiert",
-    "copyAria": "E-Mail kopieren",
-    "copyTooltip": "E-Mail-Adresse kopieren"
+    "copyAria": "E-Mail-Adresse in Zwischenablage kopieren",
+    "copyTooltip": "E-Mail-Adresse kopieren",
+    "mailLabel": "E-Mail senden an Jonathan",
+    "toolsLabel": "Technologien, die ich verwende"
   },
   "tools-alt-landing": {
     "api": {
@@ -200,6 +203,30 @@
     },
     "material": {
       "alt": "Material Design – Designsystem von Google"
+    },
+    "school": {
+      "alt": "Lernen & kontinuierliche Weiterbildung"
+    },
+    "oop": {
+      "alt": "Objektorientierte Programmierung"
+    },
+    "react": {
+      "alt": "React – JavaScript-Bibliothek für UI-Komponenten"
+    },
+    "vue": {
+      "alt": "Vue.js – progressives JavaScript-Framework"
+    },
+    "figma": {
+      "alt": "Figma – Design- und Prototyping-Tool"
+    },
+    "photoshop": {
+      "alt": "Adobe Photoshop – Bildbearbeitung und Grafikdesign"
+    },
+    "illustrator": {
+      "alt": "Adobe Illustrator – Vektorgrafiken und Logos"
+    },
+    "indesign": {
+      "alt": "Adobe InDesign – Layout für Print und Digital"
     }
   },
   "links": {

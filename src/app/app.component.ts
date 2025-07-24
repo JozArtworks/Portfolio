@@ -8,9 +8,7 @@ import { HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ScrollPageComponent } from './scroll-page/scroll-page.component';
-import { signal } from '@angular/core';
 import { SectionObserverService } from './../assets/services/section-observer.service';
-import { DialogStateService } from './../assets/services/dialog-state.service';
 import { ProjectDialogService } from './../assets/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 @Component({
@@ -20,51 +18,10 @@ import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.c
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
 export class AppComponent {
 
-
-
-  constructor(private router: Router,
-    private translate: TranslateService,
-    private cdr: ChangeDetectorRef,
-    private sectionObserver: SectionObserverService,
-    private dialogState: DialogStateService,
-    public projectDialog: ProjectDialogService) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.currentRoute = event.urlAfterRedirects;
-    });
-    this.translate.setDefaultLang(this.language);
-    this.translate.use(this.language);
-  }
-
-  handleMobileNavClick(sectionId: string) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    this.toggleMobileMenu();
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
-    if (this.mobileMenuOpen && clickedOutsideMenu) {
-      this.animationState = 'closing';
-      setTimeout(() => {
-        this.mobileMenuOpen = false;
-        this.animationState = '';
-      }, 100);
-    }
-  }
-
-  dialogIsOpen = signal(false);
-  isMobileView = true;
-  mobileMenuOpen = false;
-  animationState: 'open' | 'closing' | '' = '';
-
+  language: 'de' | 'en' = 'de';
   translations = {
     de: {
       home: 'Home',
@@ -84,31 +41,37 @@ export class AppComponent {
     }
   };
 
-  language: 'de' | 'en' = 'de';
-
-  setLanguage(lang: 'de' | 'en') {
-    this.language = lang;
-    this.translate.use(lang);
-    this.cdr.detectChanges();
-  }
-  title = 'portfolio';
+  isMobileView = true;
+  mobileMenuOpen = false;
+  animationState: 'open' | 'closing' | '' = '';
 
   currentRoute = '';
+  lastSection = '';
+  isFading = false;
 
+  title = 'portfolio';
 
+  private boundCheckViewport: () => void = () => { };
 
-
-  boundCheckViewport!: () => void;
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
+    private sectionObserver: SectionObserverService,
+    public projectDialog: ProjectDialogService) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.currentRoute = event.urlAfterRedirects;
+    });
+    this.translate.setDefaultLang(this.language);
+    this.translate.use(this.language);
+  }
 
   ngOnInit() {
     this.checkViewport();
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
-
-  }
-
-  shouldScroll(): boolean {
-    return this.currentRoute === '/';
   }
 
   ngOnDestroy() {
@@ -119,6 +82,36 @@ export class AppComponent {
     this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
+    if (this.mobileMenuOpen && clickedOutsideMenu) {
+      this.animationState = 'closing';
+      setTimeout(() => {
+        this.mobileMenuOpen = false;
+        this.animationState = '';
+      }, 100);
+    }
+  }
+
+  handleMobileNavClick(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.toggleMobileMenu();
+  }
+
+  setLanguage(lang: 'de' | 'en') {
+    this.language = lang;
+    this.translate.use(lang);
+    this.cdr.detectChanges();
+  }
+
+  shouldScroll(): boolean {
+    return this.currentRoute === '/';
+  }
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
@@ -128,45 +121,34 @@ export class AppComponent {
     }
   }
 
-lastSection = '';
-
-getBackgroundClass() {
-  if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
-    return 'bg-imprint-policy';
+  getBackgroundClass() {
+    if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
+      return 'bg-imprint-policy';
+    }
+    if (this.currentRoute === '/') {
+      const section = this.sectionObserver.currentSection();
+      if (section !== this.lastSection) {
+        this.triggerFade();
+        this.lastSection = section;
+      }
+      switch (section) {
+        case 'about': return 'bg-about';
+        case 'skills': return 'bg-skills';
+        case 'projects': return 'bg-projects';
+        case 'feedbacks': return 'bg-feedbacks';
+        case 'contact': return 'bg-contact';
+        default: return 'bg-home';
+      }
+    }
+    return 'bg-home';
   }
 
-  if (this.currentRoute === '/') {
-    const section = this.sectionObserver.currentSection();
-
-    if (section !== this.lastSection) {
-      this.triggerFade();
-      this.lastSection = section;
-    }
-
-    switch (section) {
-      case 'about': return 'bg-about';
-      case 'skills': return 'bg-skills';
-      case 'projects': return 'bg-projects';
-      case 'feedbacks': return 'bg-feedbacks';
-      case 'contact': return 'bg-contact';
-      default: return 'bg-home';
-    }
+  triggerFade() {
+    this.isFading = true;
+    setTimeout(() => {
+      this.isFading = false;
+    }, 400);
   }
-
-  return 'bg-home';
-}
-
-isFading = false;
-
-triggerFade() {
-  this.isFading = true;
-  setTimeout(() => {
-    this.isFading = false;
-  }, 400);
-}
-
-
-
 
   toggleMobileMenu() {
     if (this.mobileMenuOpen) {
@@ -185,18 +167,14 @@ triggerFade() {
     return !['/imprint', '/privacy-policy'].includes(this.currentRoute);
   }
 
-  isDialogOpen() {
-    return this.dialogState.dialogOpen();
+  closeGlobalDialog() {
+    this.projectDialog.close();
+    document.body.style.overflow = 'auto';
   }
 
   openGlobalDialog() {
-    this.projectDialog.dialogOpen.set(true);
+    this.projectDialog.open();
     document.body.style.overflow = 'hidden';
-  }
-
-  closeGlobalDialog() {
-    this.projectDialog.dialogOpen.set(false);
-    document.body.style.overflow = 'auto';
   }
 
 }

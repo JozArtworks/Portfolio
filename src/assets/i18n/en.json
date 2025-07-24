@@ -15,7 +15,8 @@
       "“The user doesn’t see it. But the next developer will.”",
       "“My stack? HTML, CSS, TypeScript – and a pinch of intuition.”",
       "“Data flows, layouts follow – the rest is focus.”"
-    ]
+    ],
+    "alt": "Portrait photo of Jonathan Michutta"
   },
   "nav": {
     "home": "Home",
@@ -200,6 +201,30 @@
     },
     "material": {
       "alt": "Material Design – Design system by Google"
+    },
+    "school": {
+      "alt": "Learning – Continuing education and fundamentals"
+    },
+    "oop": {
+      "alt": "OOP – Object-oriented programming principles"
+    },
+    "react": {
+      "alt": "React – JavaScript library for building user interfaces"
+    },
+    "vue": {
+      "alt": "Vue.js – Progressive JavaScript framework"
+    },
+    "figma": {
+      "alt": "Figma – Interface design and prototyping tool"
+    },
+    "photoshop": {
+      "alt": "Photoshop – Image editing and compositing"
+    },
+    "illustrator": {
+      "alt": "Illustrator – Vector graphics and illustrations"
+    },
+    "indesign": {
+      "alt": "InDesign – Layout and publishing software"
     }
   },
   "links": {

@@ -1,58 +1,33 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Project } from '../project.interface';
 import { TranslateModule } from '@ngx-translate/core';
-import { HostListener } from '@angular/core';
-
+import { Project } from '../project.interface';
+import { ProjectDialogService } from './../../../../assets/services/project-dialog.service';
 @Component({
   selector: 'app-project-dialog',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './project-dialog.component.html',
-  styleUrls: ['./project-dialog.component.scss']
+  styleUrls: ['./project-dialog.component.scss'],
 })
+
 export class ProjectDialogComponent {
+  
+  constructor(public dialog: ProjectDialogService) { }
 
   @Input() project!: Project;
-  @Input() show = false;
   @Input() allProjects: Project[] = [];
+  @Input() show = false;
 
-  @Output() close = new EventEmitter<void>();
-  @Output() changeProject = new EventEmitter<Project>();
+  iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+  iconRight = 'assets/icons/white/svg/icon_right_white.svg';
+  iconClose = 'assets/icons/white/svg/icon_close_white.svg';
 
   isGitHovered = false;
 
-  iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
-  iconRight = 'assets/icons/white/svg/icon_right_white.svg'
-  iconClose = 'assets/icons/white/svg/icon_close_white.svg'
-
-  onClose() {
-    this.close.emit();
-  }
-
-  resetHoverIcons() {
-    this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
-    this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
-  }
-
-  nextProject() {
-    if (!this.isLast) {
-      const next = this.allProjects[this.currentIndex + 1];
-      this.resetHoverIcons();
-      this.changeProject.emit(next);
-    }
-  }
-
-  previousProject() {
-    if (!this.isFirst) {
-      const prev = this.allProjects[this.currentIndex - 1];
-      this.resetHoverIcons();
-      this.changeProject.emit(prev);
-    }
-  }
 
   get currentIndex(): number {
-    return this.allProjects.findIndex(p => p.title === this.project.title);
+    return this.dialog.allProjects().findIndex(p => p.title === this.project.title);
   }
 
   get isFirst(): boolean {
@@ -60,7 +35,25 @@ export class ProjectDialogComponent {
   }
 
   get isLast(): boolean {
-    return this.currentIndex === this.allProjects.length - 1;
+    return this.currentIndex === this.dialog.allProjects().length - 1;
+  }
+
+  onClose() {
+    this.dialog.close();
+  }
+
+  previousProject() {
+    if (!this.isFirst) {
+      const prev = this.dialog.allProjects()[this.currentIndex - 1];
+      this.dialog.change(prev);
+    }
+  }
+
+  nextProject() {
+    if (!this.isLast) {
+      const next = this.dialog.allProjects()[this.currentIndex + 1];
+      this.dialog.change(next);
+    }
   }
 
   onHoverClose(hovered: boolean) {
@@ -75,15 +68,38 @@ export class ProjectDialogComponent {
       : 'assets/icons/white/svg/icon_left_white.svg';
   }
 
+  @HostListener('document:keydown.arrowleft', ['$event'])
+  onArrowLeft(event: KeyboardEvent) {
+    if (!this.show) return;
+    event.preventDefault();
+    this.previousProject();
+  }
+
+
   onHoverRight(hovered: boolean) {
     this.iconRight = hovered
       ? 'assets/icons/green/svg/icon_right_green.svg'
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
 
+  @HostListener('document:keydown.arrowright', ['$event'])
+  onArrowRight(event: KeyboardEvent) {
+    if (!this.show) return;
+    event.preventDefault();
+    this.nextProject();
+  }
+
   @HostListener('document:keydown.escape', ['$event'])
-onEscape(event: KeyboardEvent) {
-  this.onClose();
-}
+  onEscape(event: KeyboardEvent) {
+    this.onClose();
+  }
+
+  ngAfterViewInit() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  ngOnDestroy() {
+    document.body.style.overflow = 'auto';
+  }
 
 }

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import {
+  toolsIcons,
+  extraTools,
+  toolsIconsDesign,
+} from './../../shared/data/tools-icons.data';
 @Component({
   selector: 'app-skills',
   standalone: true,
@@ -12,6 +17,10 @@ export class SkillsComponent {
 
   showExtraTools = false;
 
+  toolIcons = toolsIcons;
+  extraTools = extraTools;
+  toolIconsDesign = toolsIconsDesign;
+
   onIconClick(icon: any) {
     if (icon.name === 'school') {
       this.toggleExtraTools();
@@ -22,31 +31,11 @@ export class SkillsComponent {
     this.showExtraTools = !this.showExtraTools;
   }
 
-  extraTools = [
-    { name: 'React', src: 'assets/icons/white/svg/logo_react.svg' },
-    { name: 'Vue Js', src: 'assets/icons/white/svg/logo_vue.svg' },
-  ];
+  onKeyDown(event: KeyboardEvent, icon: any) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.onIconClick(icon);
+      event.preventDefault();
+    }
+  }
 
-  toolIcons = [
-    { name: 'Firebase', src: 'assets/icons/white/svg/logo_firebase.svg' },
-    { name: 'Angular', src: 'assets/icons/white/svg/logo_angular.svg' },
-    { name: 'TypeScript', src: 'assets/icons/white/svg/logo_typescript.svg' },
-    { name: 'CSS', src: 'assets/icons/white/svg/logo_css.svg' },
-    { name: 'HTML', src: 'assets/icons/white/svg/logo_html.svg' },
-    { name: 'Scrum', src: 'assets/icons/white/svg/logo_scrum.svg' },
-    { name: 'API', src: 'assets/icons/white/svg/logo_api.svg' },
-    { name: 'Git', src: 'assets/icons/white/svg/logo_git.svg' },
-    { name: 'Material', src: 'assets/icons/white/svg/logo_material.svg' },
-    { name: 'JavaScript', src: 'assets/icons/white/svg/logo_javascript.svg' },
-    { name: 'school', src: 'assets/icons/white/svg/logo_learn.svg' },
-    { name: 'OOP', src: 'assets/icons/white/svg/logo_oop.svg' },
-  ];
-
-  toolIconsDesign = [
-    { name: '', src: 'assets/icons/white/svg/logo_figma.svg' },
-    { name: '', src: 'assets/icons/white/svg/logo_photoshop.svg' },
-    { name: '', src: 'assets/icons/white/svg/logo_illustrator.svg' },
-    { name: '', src: 'assets/icons/white/svg/logo_indesign.svg' },
-  ];
 }
-

@@ -1,26 +1,29 @@
 import { Injectable, signal } from '@angular/core';
-import { Project } from './../../../src/app/pages/projects/project.interface';
+import { Project } from './../../app/pages/projects/project.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectDialogService {
-  dialogOpen = signal(false);
-  currentProject = signal<Project | null>(null);
-  allProjects = signal<Project[]>([]);
 
-  open(project: Project, all: Project[]) {
-    this.currentProject.set(project);
-    this.allProjects.set(all);
-    this.dialogOpen.set(true);
-    document.body.style.overflow = 'hidden';
+  private dialogOpenSignal = signal(false);
+  private allProjectsSignal = signal<Project[]>([]);
+  private currentProjectSignal = signal<Project | null>(null);
+
+  dialogOpen = () => this.dialogOpenSignal();
+  allProjects = () => this.allProjectsSignal();
+  currentProject = () => this.currentProjectSignal();
+
+
+  open(project?: Project, allProjects?: Project[]) {
+    if (project) this.currentProjectSignal.set(project);
+    if (allProjects) this.allProjectsSignal.set(allProjects);
+    this.dialogOpenSignal.set(true);
   }
 
   close() {
-    this.dialogOpen.set(false);
-    this.currentProject.set(null);
-    document.body.style.overflow = 'auto';
+    this.dialogOpenSignal.set(false);
   }
 
   change(project: Project) {
-    this.currentProject.set(project);
+    this.currentProjectSignal.set(project);
   }
 }
