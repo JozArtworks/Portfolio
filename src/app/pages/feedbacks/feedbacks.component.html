@@ -4,46 +4,19 @@
       <h2 class="feedback-headline" tabindex="0">{{ 'feedback.title' | translate }}</h2>
       <div class="feedback-body">
         <div class="box">
+          @for (entry of feedbacks; track entry.key) {
           <div class="box-content" tabindex="0">
-            <p tabindex="0">{{ 'feedback.patrick.text' | translate }}</p>
+            <p tabindex="0">{{ 'feedback.' + entry.key + '.text' | translate }}</p>
             <div class="feedback-author-box">
-              <a href="https://www.linkedin.com/in/patrick-frey-690000164/" target="_blank"
-                rel="noopener noreferrer"><img src="./../../../assets/icons/white/svg/logo_linkedin.svg"
-                  alt="linkedin" /></a>
-              <p class="feedback-author" tabindex="0">Patrick Frey - Join</p>
+              @if (entry.linkedin) {
+              <a [href]="entry.linkedin" target="_blank" rel="noopener noreferrer">
+                <img src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="linkedin" />
+              </a>
+              }
+              <p class="feedback-author" tabindex="0">{{ entry.name }} – {{ entry.source }}</p>
             </div>
           </div>
-          <div class="box-content">
-            <p tabindex="0">{{ 'feedback.stephanie.text' | translate }}</p>
-            <div class="feedback-author-box">
-              <a href="https://www.linkedin.com/in/stephanie-englberger/" target="_blank" rel="noopener noreferrer"><img
-                  src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="linkedin" /></a>
-              <p class="feedback-author" tabindex="0">Stephanie Englberger - Join</p>
-            </div>
-          </div>
-          <div class="box-content">
-            <p tabindex="0">{{ 'feedback.jennifer.text' | translate }}</p>
-            <div class="feedback-author-box">
-              <a href="https://www.linkedin.com/in/jennifer-thomas-595735360/" target="_blank"
-                rel="noopener noreferrer"><img src="./../../../assets/icons/white/svg/logo_linkedin.svg"
-                  alt="linkedin" /></a>
-              <p class="feedback-author" tabindex="0">Jennifer Thomas - Join</p>
-            </div>
-          </div>
-          <div class="box-content">
-            <p tabindex="0">{{ 'feedback.ha.text' | translate }}</p>
-            <div class="feedback-author-box">
-              <a href="https://www.linkedin.com/in/dao-cong-viet-ha/" target="_blank" rel="noopener noreferrer"><img
-                  src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="linkedin" /></a>
-              <p class="feedback-author" tabindex="0">Ha Dao / Kochwelt</p>
-            </div>
-          </div>
-          <div class="box-content">
-            <p tabindex="0">{{ 'feedback.taher.text' | translate }}</p>
-            <div class="feedback-author-box">
-              <p class="feedback-author" tabindex="0">Taher Abdel Megid / Kochwelt</p>
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>

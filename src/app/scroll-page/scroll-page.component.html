@@ -1,28 +1,25 @@
 @for (id of sectionIds; track id) {
-  <section
-    [id]="id"
-    class="section-box"
-    [class.in-view]="sectionObserver.currentSection() === id"
-  >
-    @switch (id) {
-      @case ('home') {
-        <app-landing [scrolledAway]="sectionObserver.currentSection() !== 'home'" />
-      }
-      @case ('about') {
-        <app-about-me />
-      }
-      @case ('skills') {
-        <app-skills />
-      }
-      @case ('projects') {
-        <app-projects />
-      }
-      @case ('feedbacks') {
-        <app-feedbacks />
-      }
-      @case ('contact') {
-        <app-contact />
-      }
-    }
-  </section>
+<section [id]="id" class="section-box" [class.in-view]="sectionObserver.currentSection() === id">
+  @switch (id) {
+  @case ('home') {
+  <app-landing [scrolledAway]="sectionObserver.currentSection() !== 'home'" />
+  }
+  @case ('about') {
+  <app-about-me />
+  }
+  @case ('skills') {
+  <app-skills />
+  }
+  @case ('projects') {
+  <app-projects />
+  }
+  @case ('feedbacks') {
+  <app-feedback></app-feedback>
+
+  }
+  @case ('contact') {
+  <app-contact />
+  }
+  }
+</section>
 }

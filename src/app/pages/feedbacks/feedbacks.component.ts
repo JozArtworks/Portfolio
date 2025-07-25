@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { FEEDBACKS } from './../../shared/data/feedbacks.data';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+
 @Component({
-  selector: 'app-feedbacks',
+  selector: 'app-feedback',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './feedbacks.component.html',
-  styleUrl: './feedbacks.component.scss'
+  styleUrls: ['./feedbacks.component.scss'],
 })
-export class FeedbacksComponent { }
+export class FeedbacksComponent {
+  feedbacks = FEEDBACKS;
+}
