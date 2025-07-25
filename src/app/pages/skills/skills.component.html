@@ -1,34 +1,47 @@
-<section class="tools-page">
+<section class="tools-page" aria-labelledby="tools-heading">
   <div class="tools-content">
     <div class="tools-window">
-      <h2 class="tools-headline">{{ 'tools.headline' | translate }}</h2>
+
+      @if (hoveredTooltipText && isMobileView) {
+      <div class="floating-tooltip fixed-tooltip" role="tooltip">
+        {{ hoveredTooltipText }}
+      </div>
+      }
+
+      <h2 class="tools-headline" id="tools-heading">
+        {{ 'tools.headline' | translate }}
+      </h2>
+
       <div class="tools-body">
         <div class="box-left-icons">
           <div class="tools-icon-groups">
 
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(0, 5); track icon.icon) {
-              <div class="tool-box">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" [attr.title]="icon.alt | translate" />
+              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
+                (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
+                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
             </div>
 
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(5, 10); track icon.icon) {
-              <div class="tool-box">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" [attr.title]="icon.alt | translate" />
+              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
+                (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
+                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
             </div>
 
             <div class="tools-icon-line">
               @if (showExtraTools) {
-              <div class="extra-tool-wrapper">
+              <div class="extra-tool-wrapper" aria-label="Extra Tools">
                 <div class="img-extra">
                   @for (extra of extraTools; track extra.icon) {
-                  <div class="extra-icon">
-                    <img [src]="extra.icon" [attr.alt]="extra.alt | translate" [attr.title]="extra.alt | translate" />
+                  <div class="extra-icon" tabindex="0" role="img" [attr.aria-label]="extra.alt | translate"
+                    (mouseenter)="onTooltipEnter($event, extra.alt, '')" (mouseleave)="onMouseLeaveTooltip()">
+                    <img [src]="extra.icon" [attr.alt]="extra.alt | translate" />
                   </div>
                   }
                 </div>
@@ -38,36 +51,41 @@
               @for (icon of toolIcons.slice(10); track icon.icon) {
               @if (icon.name === 'school') {
               <div class="tool-box school-box" role="button" tabindex="0" [attr.aria-pressed]="showExtraTools"
-                (click)="onIconClick(icon)" (keydown)="onKeyDown($event, icon)">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" [attr.title]="icon.alt | translate" />
+                [attr.aria-label]="icon.alt | translate" (click)="onIconClick(icon)" (keydown)="onKeyDown($event, icon)"
+                (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
+                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+                @if (showQuestionCursor && isMobileView) {
+                <div class="cursor-questionmark fixed-mark" aria-hidden="true">?</div>
+                }
               </div>
               } @else {
-              <div class="tool-box" (click)="onIconClick(icon)">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" [attr.title]="icon.alt | translate" />
+              <div class="tool-box" role="img" tabindex="0" [attr.aria-label]="icon.alt | translate"
+                (click)="onIconClick(icon)" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
+                (mouseleave)="onMouseLeaveTooltip()">
+                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
               }
             </div>
-
-          </div>
-
-          <div class="tools-icon-line">
-            @for (icondesign of toolIconsDesign; track icondesign.icon) {
-            <div class="tool-box tool-box-design">
-              <img [src]="icondesign.icon" [attr.alt]="icondesign.alt | translate"
-                [attr.title]="icondesign.alt | translate" />
+            <div class="tools-icon-line">
+              @for (icondesign of toolIconsDesign; track icondesign.icon) {
+              <div class="tool-box tool-box-design" tabindex="0" role="img"
+                [attr.aria-label]="icondesign.alt | translate" (mouseenter)="onTooltipEnter($event, icondesign.alt, '')"
+                (mouseleave)="onMouseLeaveTooltip()">
+                <img [src]="icondesign.icon" [attr.alt]="icondesign.alt | translate" />
+              </div>
+              }
             </div>
-            }
-          </div>
 
+          </div>
         </div>
 
         <div class="tools-text">
-          <div class="box">
-            <p [innerHTML]="'tools.textBox1' | translate"></p>
+          <div class="box" aria-labelledby="tools-box1">
+            <p id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
-          <div class="box">
-            <span>{{ 'tools.missingHeadline' | translate }}</span>
+          <div class="box" aria-labelledby="tools-box2">
+            <span id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
             <p>{{ 'tools.missingText' | translate }}</p>
           </div>
         </div>
