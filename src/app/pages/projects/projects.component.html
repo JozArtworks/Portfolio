@@ -1,30 +1,38 @@
-<section class="project-page">
+<section class="project-page" aria-labelledby="projects-heading">
   <div class="project-content">
     <div class="project-window">
-      <h2 class="project-headline">{{ 'projects.title' | translate }}</h2>
-      <p class="subtitle-project">{{ 'projects.subtitle' | translate }}</p>
+      <header>
+        <h2 id="projects-heading" class="project-headline">
+          {{ 'projects.title' | translate }}
+        </h2>
+        <p class="subtitle-project">{{ 'projects.subtitle' | translate }}</p>
+      </header>
       <div class="project-body">
         <div class="project-text">
           <div class="box">
             @for (project of projects; track project.title) {
-              <div class="projects-list" (click)="openDialog(project)">
-                <div class="project-info">
-                  <h3>{{ project.title | translate }}</h3>
-                  <div class="mobileOnly ">
-                    <p>{{ project.description | translate }}</p>
-                  </div>
-                </div>
-                <div class="project-icons">
-                  <div class="desktopOnly">
-                    <p>{{ project.description | translate }}</p>
-                  </div>
-                  @for (icon of project.icons; track icon) {
-                    <div class="project-small-icons">
-                      <img [src]="icon" alt="Projekt Icon" />
-                    </div>
-                  }
+            <article class="projects-list" tabindex="0" role="button"
+              [attr.aria-labelledby]="'project-title' + project.title" (click)="openDialog(project)"
+              (keydown.enter)="openDialog(project)" (keydown.space)="openDialog(project)">
+              <div class="project-info">
+                <h3 [attr.id]="'project-title' + project.title">
+                  {{ project.title | translate }}
+                </h3>
+                <div class="mobileOnly">
+                  <p>{{ project.description | translate }}</p>
                 </div>
               </div>
+              <div class="project-icons" aria-hidden="true">
+                <div class="desktopOnly">
+                  <p>{{ project.description | translate }}</p>
+                </div>
+                @for (icon of project.icons; track icon) {
+                <div class="project-small-icons">
+                  <img [src]="icon" [attr.aria-hidden]="true" alt="" />
+                </div>
+                }
+              </div>
+            </article>
             }
           </div>
         </div>

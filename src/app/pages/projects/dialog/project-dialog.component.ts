@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter, Signal, computed, HostListener } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Project } from '../project.interface';
 import { ProjectDialogService } from './../../../../assets/services/project-dialog.service';
+import { ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-project-dialog',
   standalone: true,
@@ -12,8 +13,27 @@ import { ProjectDialogService } from './../../../../assets/services/project-dial
 })
 
 export class ProjectDialogComponent {
-  
+
   constructor(public dialog: ProjectDialogService) { }
+
+  private previouslyFocusedElement: HTMLElement | null = null;
+
+  ngAfterViewInit() {
+    this.previouslyFocusedElement = document.activeElement as HTMLElement;
+    if (this.dialogRef?.nativeElement) {
+      this.dialogRef.nativeElement.focus();
+    }
+  }
+
+  onClose() {
+    this.dialog.close();
+    if (this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.blur();
+    }
+  }
+
+
+  @ViewChild('dialogRef') dialogRef!: ElementRef;
 
   @Input() project!: Project;
   @Input() allProjects: Project[] = [];
@@ -25,7 +45,6 @@ export class ProjectDialogComponent {
 
   isGitHovered = false;
 
-
   get currentIndex(): number {
     return this.dialog.allProjects().findIndex(p => p.title === this.project.title);
   }
@@ -36,10 +55,6 @@ export class ProjectDialogComponent {
 
   get isLast(): boolean {
     return this.currentIndex === this.dialog.allProjects().length - 1;
-  }
-
-  onClose() {
-    this.dialog.close();
   }
 
   previousProject() {
@@ -68,13 +83,13 @@ export class ProjectDialogComponent {
       : 'assets/icons/white/svg/icon_left_white.svg';
   }
 
-  @HostListener('document:keydown.arrowleft', ['$event'])
+  @HostListener('window:keydown.arrowleft', ['$event'])
+
   onArrowLeft(event: KeyboardEvent) {
     if (!this.show) return;
     event.preventDefault();
     this.previousProject();
   }
-
 
   onHoverRight(hovered: boolean) {
     this.iconRight = hovered
@@ -82,7 +97,7 @@ export class ProjectDialogComponent {
       : 'assets/icons/white/svg/icon_right_white.svg';
   }
 
-  @HostListener('document:keydown.arrowright', ['$event'])
+  @HostListener('window:keydown.arrowright', ['$event'])
   onArrowRight(event: KeyboardEvent) {
     if (!this.show) return;
     event.preventDefault();
@@ -94,12 +109,30 @@ export class ProjectDialogComponent {
     this.onClose();
   }
 
-  ngAfterViewInit() {
-    document.body.style.overflow = 'hidden';
-  }
-
   ngOnDestroy() {
     document.body.style.overflow = 'auto';
+    if (this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.focus();
+    }
   }
+
+  focusFirst() {
+    const focusable = this.getFocusableElements();
+    focusable[0]?.focus();
+  }
+
+  focusLast() {
+    const focusable = this.getFocusableElements();
+    focusable[focusable.length - 1]?.focus();
+  }
+
+  private getFocusableElements(): HTMLElement[] {
+    const dialog = this.dialogRef?.nativeElement as HTMLElement;
+    if (!dialog) return [];
+    return Array.from(dialog.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    ));
+  }
+
 
 }

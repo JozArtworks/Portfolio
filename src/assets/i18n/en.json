@@ -231,5 +231,15 @@
     "github": "Visit my GitHub profile",
     "mail": "Send me an email",
     "linkedin": "Open my LinkedIn profile"
+  },
+  "dialog": {
+    "alt": {
+      "close": "Close dialog",
+      "previous": "Previous project",
+      "next": "Next project",
+      "github": "GitHub link for project",
+      "icon": "Icon for project {{project}}",
+      "live": "Open live demo of project"
+    }
   }
 }

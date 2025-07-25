@@ -1,16 +1,19 @@
-<div class="global-dialog-overlay" (click)="onClose()"></div>
-<div class="dialog-window" role="dialog" aria-modal="true" tabindex="-1">
+<div class="global-dialog-overlay" (click)="onClose()" role="presentation" aria-hidden="true"
+  (keydown.enter)="onClose()" (keydown.space)="onClose()"></div>
+<div tabindex="0" (focus)="focusLast()" class="focus-trap-start"></div>
+<div class="dialog-window" role="dialog" aria-modal="true" tabindex="-1" #dialogRef
+  [attr.aria-labelledby]="'dialog-title' + project.title" [attr.aria-describedby]="'dialog-desc' + project.title">
   <div class="box">
     <div class="box-header">
-      <button class="close-button" aria-label="Dialog schließen" (mouseenter)="onHoverClose(true)"
-        (mouseleave)="onHoverClose(false)" (click)="onClose()">
-        <img [src]="iconClose" alt="Close Dialog" />
+      <button tabindex="0" class="close-button" [attr.aria-label]="'dialog.alt.close' | translate"
+        (mouseenter)="onHoverClose(true)" (mouseleave)="onHoverClose(false)" (click)="onClose()">
+        <img [src]="iconClose" [alt]="'dialog.alt.close' | translate" />
       </button>
     </div>
     <div class="info-box">
       <div class="project-info">
-        <h3>{{ project.title | translate }}</h3>
-        <p>{{ project.dialogDescription | translate }}</p>
+        <h3 [id]="'dialog-title' + project.title">{{ project.title | translate }}</h3>
+        <p [id]="'dialog-desc' + project.title">{{ project.dialogDescription | translate }}</p>
       </div>
       <div class="project-image">
         <img [src]="project.image" alt="{{ project.title | translate }}" />
@@ -18,15 +21,15 @@
     </div>
     <div class="project-icons">
       @for (icon of project.iconsDialoge; track icon) {
-      <img [src]="icon" [alt]="'Icon für Projekt ' + (project.title | translate)" />
+      <img [src]="icon" [alt]="'dialog.alt.icon' | translate:{ project: (project.title | translate) }" />
       }
     </div>
   </div>
   <div class="dialog-nav">
     @if (!isFirst) {
-    <button class="nav-button" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"
+    <button tabindex="0" class="nav-button" (mouseenter)="onHoverLeft(true)" (mouseleave)="onHoverLeft(false)"
       (click)="previousProject()">
-      <img [src]="iconLeft" alt="Previous Project" />
+      <img [src]="iconLeft" [alt]="'dialog.alt.previous' | translate" />
     </button>
     } @else {
     <span class="nav-placeholder"></span>
@@ -34,29 +37,32 @@
     <div class="project-buttons">
       @if (project.github) {
       <div class="border-git" (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
-        <a [href]="project.github" target="_blank" rel="noopener noreferrer">
+        <a [href]="project.github" target="_blank" rel="noopener noreferrer"
+          [attr.aria-label]="'dialog.alt.github' | translate">
           Github
           <img [src]="isGitHovered
-        ? 'assets/icons/green/svg/logo_github_green.svg'
-        : 'assets/icons/white/svg/logo_github_white.svg'" alt="GitHub" />
+  ? 'assets/icons/green/svg/logo_github_green.svg'
+  : 'assets/icons/white/svg/logo_github_white.svg'" [alt]="'dialog.alt.github' | translate" />
         </a>
       </div>
       }
       @if (project.live && project.title !== 'Portfolio') {
       <div class="border-live">
-        <a [href]="project.live" target="_blank" rel="noopener noreferrer">
+        <a [href]="project.live" target="_blank" rel="noopener noreferrer"
+          [attr.aria-label]="'dialog.alt.live' | translate">
           Live Test
         </a>
       </div>
       }
     </div>
     @if (!isLast) {
-    <button class="nav-button" (mouseenter)="onHoverRight(true)" (mouseleave)="onHoverRight(false)"
+    <button tabindex="0" class="nav-button" (mouseenter)="onHoverRight(true)" (mouseleave)="onHoverRight(false)"
       (click)="nextProject()">
-      <img [src]="iconRight" alt="Next Project" />
+      <img [src]="iconRight" [alt]="'dialog.alt.next' | translate" />
     </button>
     } @else {
     <span class="nav-placeholder"></span>
     }
   </div>
 </div>
+<div tabindex="0" (focus)="focusFirst()" class="focus-trap-end"></div>

@@ -233,5 +233,15 @@
     "github": "Besuche mein GitHub-Profil",
     "mail": "E-Mail an mich senden",
     "linkedin": "Profil auf LinkedIn öffnen"
+  },
+  "dialog": {
+    "alt": {
+      "close": "Dialog schließen",
+      "previous": "Vorheriges Projekt",
+      "next": "Nächstes Projekt",
+      "github": "GitHub-Link für Projekt",
+      "icon": "Icon für Projekt {{project}}",
+      "live": "Live-Demo des Projekts aufrufen"
+    }
   }
 }

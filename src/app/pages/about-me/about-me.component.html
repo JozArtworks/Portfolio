@@ -1,37 +1,37 @@
 <section class="about-page" aria-labelledby="about-heading">
   <div class="about-content">
     <div class="about-window">
-      <h2 id="about-heading" class="about-headline">{{ 'about.title' | translate }}</h2>
+      <h2 tabindex="0" id="about-heading" class="about-headline">{{ 'about.title' | translate }}</h2>
       <div class="about-body">
         <div class="box-left dNone">
           <div class="text-with-image">
             <img src="./../../../assets/images/aboutmepic.png" [alt]="'about.alt' | translate "
               class="about-me-image inline-image" />
-            <p class="dNone">
+            <p class="dNone" tabindex="0">
               {{ 'about.intro1' | translate }}
             </p>
-            <p class="dNone">
+            <p class="dNone" tabindex="0">
               {{ 'about.intro2' | translate }}
             </p>
-            <p class="dNone">
+            <p class="dNone" tabindex="0">
               {{ 'about.intro3' | translate }}
             </p>
-            <p class="tech-claim dNone">
+            <p class="tech-claim dNone" tabindex="0">
               {{ 'about.claim' | translate }}
             </p>
-            <blockquote [class]="animationState" aria-live="polite">
+            <blockquote [class]="animationState" aria-live="polite" tabindex="0">
               {{ currentSlogan }}
             </blockquote>
           </div>
         </div>
         <div class="box-right">
-          <p>{{ 'about.intro1' | translate }}</p>
-          <p>{{ 'about.intro2' | translate }}</p>
-          <p>{{ 'about.intro3' | translate }}</p>
-          <p class="tech-claim">
+          <p tabindex="0">{{ 'about.intro1' | translate }}</p>
+          <p tabindex="0">{{ 'about.intro2' | translate }}</p>
+          <p tabindex="0">{{ 'about.intro3' | translate }}</p>
+          <p class="tech-claim" tabindex="0">
             {{ 'about.claim' | translate }}
           </p>
-          <blockquote [class]="animationState" aria-live="polite">
+          <blockquote [class]="animationState" aria-live="polite" tabindex="0">
             {{ currentSlogan }}
           </blockquote>
         </div>
