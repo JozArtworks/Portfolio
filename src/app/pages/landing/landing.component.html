@@ -9,7 +9,7 @@
     </div>
     <div class="about-foot">
       <div class="box-tools" role="region" tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate" [class.slide-out]="scrolledAway">
-        @for (icon of toolsIcons; track icon.name) {
+        @for (icon of filteredToolsIcons; track icon.name) {
         <img [src]="icon.icon" [alt]="icon.alt | translate" class="tool-icon" />
         }
       </div>

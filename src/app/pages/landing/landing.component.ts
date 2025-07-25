@@ -65,6 +65,10 @@ export class LandingComponent implements OnChanges {
     this.showEmail = !this.showEmail;
   }
 
+  get filteredToolsIcons(): ToolIcon[] {
+    return this.toolsIcons.filter((_, i) => i !== this.toolsIcons.length - 2);
+  }
+
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
     navigator.clipboard.writeText(email).then(() => {
