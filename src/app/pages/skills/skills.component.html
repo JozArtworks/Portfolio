@@ -1,21 +1,17 @@
 <section class="tools-page" aria-labelledby="tools-heading">
   <div class="tools-content">
     <div class="tools-window">
-
       @if (hoveredTooltipText && isMobileView) {
       <div class="floating-tooltip fixed-tooltip" role="tooltip">
         {{ hoveredTooltipText }}
       </div>
       }
-
       <h2 class="tools-headline" id="tools-heading">
         {{ 'tools.headline' | translate }}
       </h2>
-
       <div class="tools-body">
         <div class="box-left-icons">
           <div class="tools-icon-groups">
-
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(0, 5); track icon.icon) {
               <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
@@ -24,7 +20,6 @@
               </div>
               }
             </div>
-
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(5, 10); track icon.icon) {
               <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
@@ -33,7 +28,6 @@
               </div>
               }
             </div>
-
             <div class="tools-icon-line">
               @if (showExtraTools) {
               <div class="extra-tool-wrapper" aria-label="Extra Tools">
@@ -47,7 +41,6 @@
                 </div>
               </div>
               }
-
               @for (icon of toolIcons.slice(10); track icon.icon) {
               @if (icon.name === 'school') {
               <div class="tool-box school-box" role="button" tabindex="0" [attr.aria-pressed]="showExtraTools"
@@ -76,10 +69,8 @@
               </div>
               }
             </div>
-
           </div>
         </div>
-
         <div class="tools-text">
           <div class="box" aria-labelledby="tools-box1">
             <p id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
@@ -89,7 +80,6 @@
             <p>{{ 'tools.missingText' | translate }}</p>
           </div>
         </div>
-
       </div>
     </div>
   </div>
