@@ -1,7 +1,7 @@
 <section class="contact-page">
   <div class="contact-content">
     <div class="contact-window">
-      <h2 class="contact-headline">{{ 'contact.title' | translate }}</h2>
+      <h2 id="contactFormTitle" class="visually-hidden">{{ 'contact.title' | translate }}</h2>
       <div class="contact-body">
         <div class="box-left">
           <h3 class="intro-headline">{{ 'contact.introHeadline' | translate }}</h3>
@@ -9,64 +9,118 @@
           <p [innerHTML]="'contact.introText' | translate"></p>
         </div>
         <div class="box-right">
-          <form class="contact-form" #form="ngForm" novalidate>
-            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
-              [(ngModel)]="formData.honeypot" />
+          <form (ngSubmit)="validateAndSubmit()" class="contact-form" #form="ngForm" novalidate role="form" aria-labelledby="contactFormTitle">
+            <input
+            type="text"
+            name="honeypot"
+            tabindex="-1"
+            autocomplete="off"
+            class="honeypot"
+            [(ngModel)]="formData.honeypot" />
             <div class="input-wrapper">
-              <input type="text" name="name" [placeholder]="namePlaceholder" required [(ngModel)]="formData.name"
-                (ngModelChange)="onInputChange()" class="form-field name" #nameInput="ngModel"
-                [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
+              <label
+              for="nameInputId"
+              class="visually-hidden">{{ 'contact.nameLabel' | translate }}
+            </label>
+              <input
+              id="nameInputId"
+              type="text"
+              name="name"
+              [placeholder]="namePlaceholder"
+              required
+              aria-required="true"
+              [attr.aria-invalid]="!nameValid && (markTouched || nameInput.touched)"
+              [attr.aria-describedby]="!nameValid && (markTouched || nameInput.touched) ? 'nameError' : null"
+              [(ngModel)]="formData.name"
+              (ngModelChange)="onInputChange()"
+              class="form-field name"
+              #nameInput="ngModel"
+              [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
               @if (!nameValid && (markTouched || nameInput.touched)) {
-              <p class="form-warning">{{ 'contact.nameError' | translate }}</p>
+              <p id="nameError" class="form-warning" aria-live="polite">{{ 'contact.nameError' | translate }}</p>
               }
             </div>
             <div class="input-wrapper">
-              <input type="email" name="email" class="form-field email" [placeholder]="emailPlaceholder"
-                [(ngModel)]="formData.email" (ngModelChange)="onInputChange()" #emailInput="ngModel"
-                [class.invalid]="!emailValid && (markTouched || emailInput.touched)" required />
-
+              <label for="emailInputId" class="visually-hidden">{{ 'contact.emailLabel' | translate }}</label>
+              <input
+              id="emailInputId"
+              type="email"
+              name="email"
+              aria-required="true"
+              [attr.aria-invalid]="!emailValid && (markTouched || emailInput.touched)"
+              [attr.aria-describedby]="!emailValid && (markTouched || emailInput.touched) ? 'emailError' : null"
+              class="form-field email"
+              [placeholder]="emailPlaceholder"
+              [(ngModel)]="formData.email" (ngModelChange)="onInputChange()" #emailInput="ngModel"
+              [class.invalid]="!emailValid && (markTouched || emailInput.touched)"
+              required />
               @if (!emailValid && (markTouched || emailInput.touched)) {
-              <p class="form-warning">{{ 'contact.emailError' | translate }}</p>
+              <p id="emailError" class="form-warning" aria-live="polite">{{ 'contact.emailError' | translate }}</p>
               }
             </div>
             <div class="input-wrapper">
-              <textarea name="message" [placeholder]="messagePlaceholder" required [(ngModel)]="formData.message"
-                (ngModelChange)="onInputChange()" class="form-field message" rows="5" maxlength="250"
-                #messageInput="ngModel"
-                [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>
+              <label for="messageInputId" class="visually-hidden">{{ 'contact.messageLabel' | translate }}</label>
+              <textarea
+              id="messageInputId"
+              aria-required="true"
+              [attr.aria-invalid]="!messageValid && (markTouched || messageInput.touched)"
+              [attr.aria-describedby]="!messageValid && (markTouched || messageInput.touched) ? 'messageError' : null"
+              name="message"
+              [placeholder]="messagePlaceholder"
+              required
+              [(ngModel)]="formData.message"
+              (ngModelChange)="onInputChange()"
+              class="form-field message"
+              rows="5"
+              maxlength="250"
+              #messageInput="ngModel"
+              [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>
               @if (!messageValid && (markTouched || messageInput.touched)) {
-              <p class="form-warning">{{ 'contact.messageError' | translate }}</p>
+              <p id="messageError" class="form-warning" aria-live="polite">{{ 'contact.messageError' | translate }}</p>
               }
             </div>
             <div class="privacy-check">
-              <label [class.invalid]="!formData.privacyAccepted && privacyTouched">
-                <input type="checkbox" name="privacy" required [(ngModel)]="formData.privacyAccepted"
-                  (change)="onInputChange()" (blur)="privacyTouched = true" #privacyInput="ngModel" />
-                <span class="custom-checkbox"></span>
+              <label for="privacyCheckbox" [class.invalid]="!formData.privacyAccepted && privacyTouched">
+                <input
+                id="privacyCheckbox"
+                type="checkbox"
+                name="privacy"
+                aria-required="true"
+                [attr.aria-invalid]="!formData.privacyAccepted && privacyTouched"
+                [attr.aria-describedby]="!formData.privacyAccepted && privacyTouched ? 'privacyError' : null"
+                required
+                [(ngModel)]="formData.privacyAccepted"
+                (change)="onInputChange()" (blur)="privacyTouched = true" #privacyInput="ngModel" />
+                <span class="custom-checkbox" aria-hidden="true"></span>
               </label>
               <div class="input-wrapper">
-                <p>
-                  {{ 'contact.privacyText' | translate }} <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink'
-                    | translate }}</a> {{ 'contact.privacyTextEnd' | translate }}
+                <p id="privacyText">
+                  {{ 'contact.privacyText' | translate }}
+                <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a>
+                {{ 'contact.privacyTextEnd' | translate }}
                 </p>
                 @if (!formData.privacyAccepted && privacyTouched) {
-                <p class="form-warning checkbox-warn">{{ 'contact.privacyWarning' | translate }}</p>
+                <p id="privacyError" class="form-warning" aria-live="polite">{{ 'contact.privacyWarning' | translate }}</p>
                 }
               </div>
             </div>
-            <button class="btn-send" [disabled]="isSending || !isFormValid || flyAnimation"
-              [class]="{ active: isFormValid }" (click)="validateAndSubmit()">
+            <button
+            type="submit"
+            [attr.aria-label]="'contact.sendAriaLabel' | translate"
+            class="btn-send"
+            [disabled]="isSending || !isFormValid || flyAnimation"
+            [class]="{ active: isFormValid }">
               @if (isSending) {
               {{ 'contact.sending' | translate }}
-              <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
+              <img src="assets/icons/white/svg/logo_arrow.svg" alt="{{ 'contact.sendIconAlt' | translate }}" />
               } @else if (success) {
               {{ 'contact.sent' | translate }}
               <span class="fly-icon">
-                <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
+                <img src="assets/icons/white/svg/logo_arrow.svg" alt="{{ 'contact.sendIconAlt' | translate }}" />
               </span>
               } @else {
               {{ 'contact.send' | translate }}
-              <img src="assets/icons/white/svg/logo_arrow.svg" alt="Send Icon" />
+              <img src="assets/icons/white/svg/logo_arrow.svg" alt="{{ 'contact.sendIconAlt' | translate }}" />
               }
             </button>
 

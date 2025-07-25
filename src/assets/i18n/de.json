@@ -92,11 +92,11 @@
   "contact": {
     "title": "Kontakt",
     "introHeadline": "Lass uns gemeinsam etwas aufbauen",
-    "subHeadline": "Ein Problem zu lösen?",
+    "subHeadline": "Ein digitales Problem, das gelöst werden will?",
     "introText": "Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.<br /><br />Du suchst einen Frontend Developer?<br /><span>Melde dich!</span>",
     "nameError": "Bitte gib deinen Namen ein!",
     "emailError": "Bitte gib eine gültige E-Mail-Adresse ein.",
-    "messageError": "Ups, da fehlt noch was!",
+    "messageError": "Ups, da fehlt noch eine Nachricht.",
     "privacyText": "Ich habe die",
     "privacyLink": "Datenschutzerklärung",
     "privacyTextEnd": "gelesen und stimme der darin beschriebenen Verarbeitung meiner Daten zu.",
@@ -106,7 +106,12 @@
     "send": "Senden",
     "namePlaceholder": "Dein Name",
     "emailPlaceholder": "Deine Mail",
-    "messagePlaceholder": "Deine Nachricht..."
+    "messagePlaceholder": "Deine Nachricht...",
+    "nameLabel": "Dein vollständiger Name",
+    "emailLabel": "Deine E-Mail-Adresse",
+    "messageLabel": "Deine Nachricht",
+    "sendIconAlt": "Senden-Symbol",
+    "sendAriaLabel": "Nachricht absenden"
   },
   "tools": {
     "headline": "Tools",

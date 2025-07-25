@@ -106,7 +106,12 @@
     "send": "Send",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "Your email",
-    "messagePlaceholder": "Your message..."
+    "messagePlaceholder": "Your message...",
+    "nameLabel": "Your full name",
+    "emailLabel": "Your email address",
+    "messageLabel": "Your message",
+    "sendIconAlt": "Send icon",
+    "sendAriaLabel": "Send message"
   },
   "tools": {
     "headline": "Skills",

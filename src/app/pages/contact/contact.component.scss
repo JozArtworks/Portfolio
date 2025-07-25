@@ -2,6 +2,18 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .contact-page {
   display: flex;
   flex-direction: column;
@@ -150,6 +162,7 @@
   input.form-field.invalid::-webkit-input-placeholder {
     color: white;
   }
+
   input.form-field.invalid::-moz-placeholder {
     color: white;
   }
