@@ -1,13 +1,26 @@
-<footer class="footer" [class.visible]="isVisible" #footerElement>
+<footer class="footer" role="contentinfo" [class.visible]="isVisible" #footerElement>
   <div class="footer-content">
     <div class="info-box">
-      <span><img src="assets/icons/white/svg/logo_jm.svg">{{ 'footer.copyright' | translate }}</span>
+      <span>
+<img src="assets/icons/white/svg/logo_jm.svg"
+     [attr.alt]="'logo.alt' | translate"
+     [attr.aria-label]="'logo.homeLabel' | translate" />
+
+        {{ 'footer.copyright' | translate }}
+      </span>
+
       <div class="data-box">
-        <div class="footer-links">
-          <a [routerLink]="['/imprint']">{{ 'footer.imprint' | translate }}</a>
-          <a [routerLink]="['/privacy-policy']">{{ 'footer.privacy' | translate }}</a>
+        <div class="footer-links" role="navigation" aria-label="Footer Navigation">
+          <a [routerLink]="['/imprint']" [attr.aria-label]="'footer.imprint' | translate">
+            {{ 'footer.imprint' | translate }}
+          </a>
+          <a [routerLink]="['/privacy-policy']" [attr.aria-label]="'footer.privacy' | translate">
+            {{ 'footer.privacy' | translate }}
+          </a>
+
         </div>
       </div>
+
       <div class="box-link dNone">
         <app-links-img context="contact" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog"
           (mailClicked)="toggleEmail()"></app-links-img>
@@ -15,23 +28,30 @@
     </div>
   </div>
 </footer>
-<div class="dialog-copy" [class.visible]="showCopyDialog">
+
+<div class="dialog-copy" [class.visible]="showCopyDialog" role="status" aria-live="polite">
   <span>{{ 'footer.copied' | translate }}</span>
-  <svg class="check-icon" viewBox="0 0 24 24">
+  <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
       stroke-linejoin="round" />
   </svg>
 </div>
+
 <div #mailWrapper class="mail-wrapper" [class.visible]="showEmail">
-  <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>
+  <a class="mail-text" [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
+    [attr.aria-label]="'landing.mailLabel' | translate" href="mailto:front-dev@jonathan-michutta.de">
+    front-dev&#64;jonathan-michutta.de
+  </a>
+
   <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">
-    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
+    <button class="copy-btn" [attr.aria-describedby]="'copyTooltipFooter'" (click)="copyEmail()" [class.clicked]="emailCopied"
+      [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
       [attr.aria-label]="'landing.copyAria' | translate">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
         <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
         <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
       </svg>
     </button>
-    <span class="tooltip-text">{{ 'landing.copyTooltip' | translate }}</span>
+    <span class="tooltip-text" id="copyTooltipFooter">{{ 'landing.copyTooltip' | translate }}</span>
   </div>
 </div>

@@ -177,7 +177,8 @@
     "copyAria": "E-Mail-Adresse in Zwischenablage kopieren",
     "copyTooltip": "E-Mail-Adresse kopieren",
     "mailLabel": "E-Mail senden an Jonathan",
-    "toolsLabel": "Technologien, die ich verwende"
+    "toolsLabel": "Technologien, die ich verwende",
+    "menuToggleAria": "Menü anzeigen oder ausblenden"
   },
   "tools-alt-landing": {
     "api": {

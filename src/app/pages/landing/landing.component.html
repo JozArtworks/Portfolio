@@ -32,7 +32,7 @@
       [attr.aria-label]="'landing.mailLabel' | translate" href="mailto:front-dev@jonathan-michutta.de">
       front-dev&#64;jonathan-michutta.de
     </a>
-    <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">
+    <div class="tooltip-container" aria-describedby="copyTooltip" [class.tooltip-disabled]="showCopyDialog">
       <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
         [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
         [attr.aria-label]="'landing.copyAria' | translate">
@@ -41,7 +41,7 @@
           <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
         </svg>
       </button>
-      <span class="tooltip-text">{{ 'landing.copyTooltip' | translate }}</span>
+      <span id="copyTooltip" class="tooltip-text" role="tooltip">{{ 'landing.copyTooltip' | translate }}</span>
     </div>
   </div>
 </section>

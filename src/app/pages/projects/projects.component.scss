@@ -18,7 +18,7 @@
   }
 
   .project-headline {
-    margin: 10px 0 0 20px;
+    margin-left: 5px;
     color: #3DCFB6;
     text-shadow: 0 0 10px black;
     width: 100%;
@@ -37,13 +37,13 @@
       border-radius: 30px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
     }
   }
 }
 
 .subtitle-project {
-  margin: 20px;
+  margin: 12px;
 }
 
 .project-text {
@@ -63,8 +63,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  border-radius: 35px;
+  padding: 10px 15px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);

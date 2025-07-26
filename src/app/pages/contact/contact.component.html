@@ -53,12 +53,14 @@
               <p id="messageError" class="form-warning" aria-live="polite">{{ 'contact.messageError' | translate }}</p>
               }
             </div>
-            <div class="privacy-check">
-              <label for="privacyCheckbox" [class.invalid]="!formData.privacyAccepted && privacyTouched">
+            <div class="privacy-check" role="group" aria-labelledby="privacyText">
+              <label [class.invalid]="!formData.privacyAccepted && privacyTouched">
                 <input id="privacyCheckbox" type="checkbox" name="privacy" aria-required="true" required
-                  [(ngModel)]="formData.privacyAccepted" #privacyInput="ngModel" (change)="onPrivacyChange()" />
+                  aria-labelledby="privacyText" [(ngModel)]="formData.privacyAccepted" #privacyInput="ngModel"
+                  (change)="onPrivacyChange()" />
                 <span class="custom-checkbox" aria-hidden="true"></span>
               </label>
+
               <div class="input-wrapper">
                 <p id="privacyText">
                   {{ 'contact.privacyText' | translate }}
@@ -99,5 +101,5 @@
       </div>
     </div>
   </div>
-  <app-footer class="footer-section" [scrolledAway]="sectionObserver.currentSection() !== 'contact'"></app-footer>
+  <app-footer class="footer-section"></app-footer>
 </section>
