@@ -254,5 +254,9 @@
   "logo": {
     "alt": "Logo von Jonathan Michutta – Frontend Developer",
     "homeLabel": "Zur Startseite"
+  },
+    "orientation": {
+    "warning": "Bitte drehe dein Gerät ins Hochformat, um die App zu nutzen."
   }
+
 }

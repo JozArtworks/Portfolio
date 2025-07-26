@@ -1,10 +1,16 @@
 <section [class]="['background-pic', getBackgroundClass()]">
   <div class="background-fader" [class.active]="isFading"></div>
+
+
   <div class="background-gradient">
     <div class="glass-background-style">
+
+
+      @if (!isOrientationLocked()) {
+
       @if (shouldShowHeader()) {
       <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()"
-        (forceCloseMenu)="mobileMenuOpen = false"></app-header>
+        (forceCloseMenu)="mobileMenuOpen = false" />
       <main class="main-content scrollable" [class.blur-scroll]="projectDialog.dialogOpen()">
         <app-scroll-page></app-scroll-page>
       </main>
@@ -13,11 +19,26 @@
         <router-outlet></router-outlet>
       </main>
       }
+      } @else {
+      <div class="orientation-lock">
+        <img src="./../assets/icons/white/svg/logo_jm.svg" class="logo-lock" alt="Logo" />
+        <p>{{ 'orientation.warning' | translate }}</p>
+        <img src="./../assets/icons/green/svg/mobile.svg" class="rotate-phone" alt="Rotate your device" />
+      </div>
+      }
     </div>
+
+
+
+
+
+
+
   </div>
+
   @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
-  <app-mobile-popout [mobileMenuOpen]="mobileMenuOpen" [translate]="translations[language]" [language]="language"
-    [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  <app-mobile-popout [mobileMenuOpen]="mobileMenuOpen" [animationState]="animationState"
+    (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
   @if (projectDialog.dialogOpen()) {

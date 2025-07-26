@@ -13,7 +13,6 @@ import { TranslateModule } from '@ngx-translate/core';
 export class MobilePopoutComponent implements OnChanges {
 
   @Input() mobileMenuOpen = false;
-  @Input() translate!: any;
   @Input() language: 'de' | 'en' = 'de';
   @Input() animationState: 'open' | 'closing' | '' = '';
 

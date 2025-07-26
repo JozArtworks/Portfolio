@@ -6,6 +6,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-popout.component';
 import { HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ScrollPageComponent } from './scroll-page/scroll-page.component';
 import { SectionObserverService } from './../assets/services/section-observer.service';
@@ -14,32 +15,15 @@ import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.c
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent, ProjectDialogComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent, ProjectDialogComponent, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
 
-  language: 'de' | 'en' = 'de';
-  translations = {
-    de: {
-      home: 'Home',
-      about: 'Über mich',
-      skills: 'Tools',
-      projects: 'Projekte',
-      feedbacks: 'Referenzen',
-      contact: 'Kontakt'
-    },
-    en: {
-      home: 'Home',
-      about: 'About me',
-      skills: 'Skills',
-      projects: 'Projects',
-      feedbacks: 'References',
-      contact: 'Contact'
-    }
-  };
+  orientationLocked = false;
+
 
   isMobileView = true;
   mobileMenuOpen = false;
@@ -64,15 +48,32 @@ export class AppComponent {
     ).subscribe((event: any) => {
       this.currentRoute = event.urlAfterRedirects;
     });
-    this.translate.setDefaultLang(this.language);
-    this.translate.use(this.language);
   }
 
   ngOnInit() {
     this.checkViewport();
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
+
+    this.checkOrientation();
+
+    window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
+      this.checkOrientation();
+    });
   }
+
+checkOrientation() {
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+
+  const newLockState = isTouchDevice && isLandscape;
+  if (newLockState !== this.orientationLocked) {
+    this.orientationLocked = newLockState;
+    this.cdr.detectChanges();
+  }
+}
+
+
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
@@ -104,7 +105,6 @@ export class AppComponent {
   }
 
   setLanguage(lang: 'de' | 'en') {
-    this.language = lang;
     this.translate.use(lang);
     this.cdr.detectChanges();
   }
@@ -176,5 +176,13 @@ export class AppComponent {
     this.projectDialog.open();
     document.body.style.overflow = 'hidden';
   }
+
+  isOrientationLocked(): boolean {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    return isTouchDevice && isLandscape;
+  }
+
+
 
 }

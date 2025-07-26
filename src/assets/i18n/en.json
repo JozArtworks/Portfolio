@@ -251,5 +251,8 @@
   "logo": {
     "alt": "Logo of Jonathan Michutta – Frontend Developer",
     "homeLabel": "Back to homepage"
+  },
+  "orientation": {
+    "warning": "Please rotate your device into portrait mode to use the app."
   }
 }
