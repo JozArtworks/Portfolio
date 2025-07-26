@@ -62,7 +62,7 @@
               <div class="input-wrapper">
                 <p id="privacyText">
                   {{ 'contact.privacyText' | translate }}
-                  <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a>
+                  <a [routerLink]="['/privacy-policy']">{{ 'contact.privacyLink' | translate }}</a>
                   {{ 'contact.privacyTextEnd' | translate }}
                 </p>
                 @if (!formData.privacyAccepted && privacyTouched) {

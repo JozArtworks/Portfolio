@@ -1,7 +1,8 @@
 <section>
   <header>
-    <a href="#" (click)="scrollToHome($event)" aria-label="Zur Startseite">
-      <img src="assets/icons/white/svg/logo_jm.svg" alt="Logo Jonathan Michutta" />
+    <a href="#" (click)="scrollToHome($event)" [attr.aria-label]="'logo.homeLabel' | translate">
+      <img src="./../../../assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
+        [attr.aria-label]="'logo.alt' | translate" role="img" class="your-logo-class" />
     </a>
     <app-navbar (forceCloseMenu)="onForceCloseMenu()" (mailClicked)="onMailClicked()" [mobileMenuOpen]="mobileMenuOpen"
       [isMobileView]="isMobileView" (toggleMenu)="onToggleMenu()" [currentSection]="currentSection">

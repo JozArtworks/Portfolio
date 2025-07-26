@@ -247,5 +247,9 @@
       "icon": "Icon for project {{project}}",
       "live": "Open live demo of project"
     }
+  },
+  "logo": {
+    "alt": "Logo of Jonathan Michutta – Frontend Developer",
+    "homeLabel": "Back to homepage"
   }
 }
