@@ -1,34 +1,21 @@
-
-  <div
-    class="mobile-popout"
-    role="dialog"
-    aria-modal="true"
-    [class]="{
+<div class="mobile-popout" role="dialog" aria-modal="true" [class]="{
       'open': animationState === 'open',
       'closing': animationState === 'closing'
-    }"
-  >
-    <ul class="mobile-popout-list" role="navigation" aria-label="Mobile Navigation">
-      @for (item of navItems; track item.path) {
-        <li>
-          <a
-            href="#"
-            (click)="onNavClick(item.path, $event)"
-            [class.contact-btn-mobile]="item.isContact"
-            [attr.aria-label]="item.key | translate"
-          >
-            {{ item.key | translate }}
-          </a>
-        </li>
-      }
-    </ul>
+    }">
+  <ul class="mobile-popout-list" role="navigation" aria-label="Mobile Navigation">
+    @for (item of navItems; track item.path) {
+    <li>
+      <a href="#" (click)="onNavClick(item.path, $event)" [class.contact-btn-mobile]="item.isContact"
+        [class.active]="item.path === currentSection" [attr.aria-label]="item.key | translate">
+        {{ item.key | translate }}
+      </a>
+    </li>
+    }
+  </ul>
 
-    <div class="mobile-lang-switch">
-      <app-lang-switch
-        [currentLanguage]="language"
-        (languageChanged)="changeLanguage($event)"
-        aria-label="Sprache ändern"
-      >
-      </app-lang-switch>
-    </div>
+  <div class="mobile-lang-switch">
+    <app-lang-switch [currentLanguage]="language" (languageChanged)="changeLanguage($event)"
+      aria-label="Sprache ändern">
+    </app-lang-switch>
   </div>
+</div>

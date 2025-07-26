@@ -23,16 +23,12 @@ import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.c
 export class AppComponent {
 
   orientationLocked = false;
-
-
   isMobileView = true;
   mobileMenuOpen = false;
   animationState: 'open' | 'closing' | '' = '';
-
   currentRoute = '';
   lastSection = '';
   isFading = false;
-
   title = 'portfolio';
 
   private boundCheckViewport: () => void = () => { };
@@ -41,7 +37,7 @@ export class AppComponent {
     private router: Router,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private sectionObserver: SectionObserverService,
+    public sectionObserver: SectionObserverService,
     public projectDialog: ProjectDialogService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -54,26 +50,21 @@ export class AppComponent {
     this.checkViewport();
     this.boundCheckViewport = this.checkViewport.bind(this);
     window.addEventListener('resize', this.boundCheckViewport);
-
     this.checkOrientation();
-
     window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
       this.checkOrientation();
     });
   }
 
-checkOrientation() {
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-
-  const newLockState = isTouchDevice && isLandscape;
-  if (newLockState !== this.orientationLocked) {
-    this.orientationLocked = newLockState;
-    this.cdr.detectChanges();
+  checkOrientation() {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    const newLockState = isTouchDevice && isLandscape;
+    if (newLockState !== this.orientationLocked) {
+      this.orientationLocked = newLockState;
+      this.cdr.detectChanges();
+    }
   }
-}
-
-
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
@@ -182,7 +173,5 @@ checkOrientation() {
     const isLandscape = window.matchMedia('(orientation: landscape)').matches;
     return isTouchDevice && isLandscape;
   }
-
-
 
 }

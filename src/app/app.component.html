@@ -37,7 +37,7 @@
   </div>
 
   @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
-  <app-mobile-popout [mobileMenuOpen]="mobileMenuOpen" [animationState]="animationState"
+  <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen" [animationState]="animationState"
     (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }

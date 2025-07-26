@@ -136,26 +136,6 @@ showIndicator = computed(() => {
     { path: 'contact', key: 'nav.contact', isContact: true }
   ];
 
-  linksIcons = [
-    {
-      name: 'GitHub',
-      icon: 'assets/icons/white/github_white.png',
-      link: 'https://github.com/JozArtworks',
-      interactive: false,
-    },
-    {
-      name: 'Mail',
-      icon: 'assets/icons/white/mail_white.png',
-      interactive: true,
-    },
-    {
-      name: 'Linkedin',
-      icon: 'assets/icons/white/linkedin_white.png',
-      link: 'https://www.linkedin.com/in/jonathan-michutta-527722210/',
-      interactive: false,
-    },
-  ];
-
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
     if (this.justToggledViaIcon) {

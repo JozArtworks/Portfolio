@@ -74,25 +74,24 @@
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-
   z-index: -1;
   pointer-events: none;
 }
 
 .bg-home {
-  background-image: url('../assets/images/BlackWhitePortfolioHeaderPics.png');
+  background-image: url('./../assets/images/BlackWhitePortfolioHeaderPics.webp');
 }
 
 .bg-about {
-  background-image: url('../assets/images/blackWhitePicGlass.png');
+  background-image: url('./../assets/images/blackWhitePicGlass.webp');
 }
 
 .bg-skills {
-  background-image: url('../assets/images/BlackWhiteMouse.png');
+  background-image: url('./../assets/images/BlackWhiteMouse.webp');
 }
 
 .bg-projects {
-  background-image: url('../assets/images/BlackwhiteCodeWhitoutFace.png');
+  background-image: url('./../assets/images/BlackwhiteCodeWhitoutFace.webp');
 }
 
 .bg-feedbacks {
