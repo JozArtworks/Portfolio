@@ -7,6 +7,8 @@ import { ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SectionObserverService } from './../../../assets/services/section-observer.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -16,7 +18,7 @@ import { SectionObserverService } from './../../../assets/services/section-obser
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
-  constructor(private translate: TranslateService, public sectionObserver: SectionObserverService) { }
+  constructor(private translate: TranslateService, public sectionObserver: SectionObserverService, private cd: ChangeDetectorRef) { }
 
   formData = {
     name: '',
@@ -29,7 +31,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   success = false;
   error = false;
   isSending = false;
-  markTouched = false;
   nameValid = false;
   emailValid = false;
   messageValid = false;
@@ -60,16 +61,16 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   isValidName(name: string): boolean {
     const parts = name.trim().split(' ');
-    return parts.length >= 2 && parts.every(part => part.length >= 3);
+    return parts.length >= 2 && parts.every(part => part.length >= 2);
   }
 
   isValidEmail(email: string): boolean {
-    return /\S+@\S+\.\S+/.test(email.trim());
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
   get currentSection() {
-  return this.sectionObserver.currentSection();
-}
+    return this.sectionObserver.currentSection();
+  }
 
   isValidMessage(message: string): boolean {
     return message.trim().length >= 50;
@@ -80,6 +81,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   onInputChange(): void {
+    const rawName = this.formData.name.trim();
+    const parts = rawName.split(' ').filter(p => p.length >= 3);
     this.nameValid = this.isValidName(this.formData.name);
     this.emailValid = this.isValidEmail(this.formData.email);
     this.messageValid = this.isValidMessage(this.formData.message);
@@ -87,21 +90,36 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   validateAndSubmit(): void {
-    this.markTouched = true;
     this.onInputChange();
     if (!this.isFormValid) {
+      this.privacyTouched = true;
+      this.nameInput.control.markAsTouched();
+      this.emailInput.control.markAsTouched();
+      this.messageInput.control.markAsTouched();
+      this.cd.detectChanges();
+
+      const firstInvalid = document.querySelector('.form-field.invalid') as HTMLElement;
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
       return;
     }
+
     this.submitForm();
+  }
+
+  private getFormData(): FormData {
+    const fd = new FormData();
+    fd.append('name', this.formData.name);
+    fd.append('email', this.formData.email);
+    fd.append('message', this.formData.message);
+    fd.append('honeypot', this.formData.honeypot);
+    return fd;
   }
 
   submitForm(): void {
     this.isSending = true;
-    const formData = new FormData();
-    formData.append('name', this.formData.name);
-    formData.append('email', this.formData.email);
-    formData.append('message', this.formData.message);
-    formData.append('honeypot', this.formData.honeypot);
+    const formData = this.getFormData();
     fetch('/mail.php', {
       method: 'POST',
       body: formData
@@ -141,7 +159,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.emailValid = false;
     this.messageValid = false;
     this.privacyValid = false;
-    this.markTouched = false;
     this.privacyTouched = false;
     this.formRef.resetForm();
     setTimeout(() => this.success = false, 4000);
@@ -154,27 +171,53 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   get namePlaceholder(): string {
-    if (!this.isMobileView) return this.translate.instant('contact.namePlaceholder');
-    if (!this.nameValid && (this.markTouched || this.nameInput?.touched)) {
-      return this.translate.instant('contact.nameError');
-    }
     return this.translate.instant('contact.namePlaceholder');
   }
 
   get emailPlaceholder(): string {
-    if (!this.isMobileView) return this.translate.instant('contact.emailPlaceholder');
-    if (!this.emailValid && (this.markTouched || this.emailInput?.touched)) {
-      return this.translate.instant('contact.emailError');
-    }
     return this.translate.instant('contact.emailPlaceholder');
   }
 
   get messagePlaceholder(): string {
-    if (!this.isMobileView) return this.translate.instant('contact.messagePlaceholder');
-    if (!this.messageValid && (this.markTouched || this.messageInput?.touched)) {
-      return this.translate.instant('contact.messageError');
-    }
     return this.translate.instant('contact.messagePlaceholder');
+  }
+
+  onBlurDelayed() {
+    setTimeout(() => {
+      const inputEl = document.getElementById('nameInputId') as HTMLInputElement;
+      if (inputEl) {
+        this.formData.name = inputEl.value;
+        this.onInputChange();
+        this.cd.detectChanges();
+      }
+    }, 200);
+  }
+
+  onEmailBlurDelayed() {
+    setTimeout(() => {
+      const emailEl = document.getElementById('emailInputId') as HTMLInputElement;
+      if (emailEl) {
+        this.formData.email = emailEl.value;
+        this.onInputChange();
+        this.cd.detectChanges();
+      }
+    }, 200);
+  }
+
+  onMessageBlurDelayed() {
+    setTimeout(() => {
+      const msgEl = document.getElementById('messageInputId') as HTMLTextAreaElement;
+      if (msgEl) {
+        this.formData.message = msgEl.value;
+        this.onInputChange();
+        this.cd.detectChanges();
+      }
+    }, 200);
+  }
+
+  onPrivacyChange(): void {
+    this.privacyTouched = true;
+    this.onInputChange();
   }
 
 }

@@ -17,8 +17,8 @@
       flex-direction: column;
       gap: 5px;
 
-      .box-left,
-      .box-right {
+      .contact-info,
+      .form-wrapper {
         width: 100%;
         padding: 10px !important;
         max-width: 100% !important;
@@ -27,7 +27,7 @@
         border-radius: 20px;
       }
 
-      .box-left {
+      .contact-info {
         .intro-headline {
           margin-bottom: 5px;
         }

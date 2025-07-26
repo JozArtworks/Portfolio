@@ -3,113 +3,84 @@
     <div class="contact-window">
       <h2 id="contactFormTitle" class="visually-hidden">{{ 'contact.title' | translate }}</h2>
       <div class="contact-body">
-        <div class="box-left">
-          <h3 class="intro-headline">{{ 'contact.introHeadline' | translate }}</h3>
-          <h4 class="sub-headline">{{ 'contact.subHeadline' | translate }}</h4>
-          <p [innerHTML]="'contact.introText' | translate"></p>
+        <div class="contact-info">
+          <h3 tabindex="0" class="intro-headline">{{ 'contact.introHeadline' | translate }}</h3>
+          <h4 tabindex="0" class="sub-headline">{{ 'contact.subHeadline' | translate }}</h4>
+          <p tabindex="0" [innerHTML]="'contact.introText' | translate"></p>
         </div>
-        <div class="box-right">
-          <form (ngSubmit)="validateAndSubmit()" class="contact-form" #form="ngForm" novalidate role="form" aria-labelledby="contactFormTitle">
-            <input
-            type="text"
-            name="honeypot"
-            tabindex="-1"
-            autocomplete="off"
-            class="honeypot"
-            [(ngModel)]="formData.honeypot" />
+        <div class="form-wrapper">
+          <p id="formIntro" class="visually-hidden">
+            {{ 'contact.formDescription' | translate }}
+          </p>
+          <form aria-describedby="formIntro" (ngSubmit)="validateAndSubmit()" class="contact-form" #form="ngForm"
+            novalidate role="form" aria-labelledby="contactFormTitle">
+            <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
+              [(ngModel)]="formData.honeypot" />
             <div class="input-wrapper">
-              <label
-              for="nameInputId"
-              class="visually-hidden">{{ 'contact.nameLabel' | translate }}
-            </label>
-              <input
-              id="nameInputId"
-              type="text"
-              name="name"
-              [placeholder]="namePlaceholder"
-              required
-              aria-required="true"
-              [attr.aria-invalid]="!nameValid && (markTouched || nameInput.touched)"
-              [attr.aria-describedby]="!nameValid && (markTouched || nameInput.touched) ? 'nameError' : null"
-              [(ngModel)]="formData.name"
-              (ngModelChange)="onInputChange()"
-              class="form-field name"
-              #nameInput="ngModel"
-              [class.invalid]="!nameValid && (markTouched || nameInput.touched)" />
-              @if (!nameValid && (markTouched || nameInput.touched)) {
+              <label for="nameInputId" class="visually-hidden">{{ 'contact.nameLabel' | translate }}
+              </label>
+              <input id="nameInputId" type="text" name="name" [placeholder]="namePlaceholder" required
+                aria-required="true" [(ngModel)]="formData.name" autocomplete="on" class="form-field name"
+                #nameInput="ngModel" [class.invalid]="!nameValid && nameInput.touched" (blur)="onBlurDelayed()"
+                (input)="onInputChange()" [attr.aria-invalid]="!nameValid && nameInput.touched"
+                [attr.aria-describedby]="!nameValid && nameInput.touched ? 'nameError' : null" />
+              @if (!nameValid && nameInput.touched) {
               <p id="nameError" class="form-warning" aria-live="polite">{{ 'contact.nameError' | translate }}</p>
               }
             </div>
             <div class="input-wrapper">
               <label for="emailInputId" class="visually-hidden">{{ 'contact.emailLabel' | translate }}</label>
-              <input
-              id="emailInputId"
-              type="email"
-              name="email"
-              aria-required="true"
-              [attr.aria-invalid]="!emailValid && (markTouched || emailInput.touched)"
-              [attr.aria-describedby]="!emailValid && (markTouched || emailInput.touched) ? 'emailError' : null"
-              class="form-field email"
-              [placeholder]="emailPlaceholder"
-              [(ngModel)]="formData.email" (ngModelChange)="onInputChange()" #emailInput="ngModel"
-              [class.invalid]="!emailValid && (markTouched || emailInput.touched)"
-              required />
-              @if (!emailValid && (markTouched || emailInput.touched)) {
+              <input id="emailInputId" type="email" name="email" aria-required="true" class="form-field email"
+                [placeholder]="emailPlaceholder" [(ngModel)]="formData.email" #emailInput="ngModel" required
+                [class.invalid]="!emailValid && emailInput.touched" (input)="onInputChange()"
+                (blur)="onEmailBlurDelayed()"
+                [attr.aria-describedby]="!emailValid && emailInput.touched ? 'emailError' : null"
+                [attr.aria-invalid]="!emailValid && emailInput.touched" />
+              @if (!emailValid && emailInput.touched) {
               <p id="emailError" class="form-warning" aria-live="polite">{{ 'contact.emailError' | translate }}</p>
               }
             </div>
             <div class="input-wrapper">
               <label for="messageInputId" class="visually-hidden">{{ 'contact.messageLabel' | translate }}</label>
-              <textarea
-              id="messageInputId"
-              aria-required="true"
-              [attr.aria-invalid]="!messageValid && (markTouched || messageInput.touched)"
-              [attr.aria-describedby]="!messageValid && (markTouched || messageInput.touched) ? 'messageError' : null"
-              name="message"
-              [placeholder]="messagePlaceholder"
-              required
-              [(ngModel)]="formData.message"
-              (ngModelChange)="onInputChange()"
-              class="form-field message"
-              rows="5"
-              maxlength="250"
-              #messageInput="ngModel"
-              [class.invalid]="!messageValid && (markTouched || messageInput.touched)"></textarea>
-              @if (!messageValid && (markTouched || messageInput.touched)) {
+              <textarea id="messageInputId" aria-required="true" name="message" [placeholder]="messagePlaceholder"
+                required [(ngModel)]="formData.message" class="form-field message" rows="5" maxlength="250"
+                #messageInput="ngModel" [class.invalid]="!messageValid && messageInput.touched"
+                (input)="onInputChange()" (blur)="onMessageBlurDelayed()"
+                [attr.aria-describedby]="!messageValid && messageInput.touched ? 'messageError' : null"
+                [attr.aria-invalid]="!messageValid && messageInput.touched">
+            </textarea>
+              @if (!messageValid && messageInput.touched) {
               <p id="messageError" class="form-warning" aria-live="polite">{{ 'contact.messageError' | translate }}</p>
               }
             </div>
             <div class="privacy-check">
               <label for="privacyCheckbox" [class.invalid]="!formData.privacyAccepted && privacyTouched">
-                <input
-                id="privacyCheckbox"
-                type="checkbox"
-                name="privacy"
-                aria-required="true"
-                [attr.aria-invalid]="!formData.privacyAccepted && privacyTouched"
-                [attr.aria-describedby]="!formData.privacyAccepted && privacyTouched ? 'privacyError' : null"
-                required
-                [(ngModel)]="formData.privacyAccepted"
-                (change)="onInputChange()" (blur)="privacyTouched = true" #privacyInput="ngModel" />
+                <input id="privacyCheckbox" type="checkbox" name="privacy" aria-required="true" required
+                  [(ngModel)]="formData.privacyAccepted" #privacyInput="ngModel" (change)="onPrivacyChange()" />
                 <span class="custom-checkbox" aria-hidden="true"></span>
               </label>
               <div class="input-wrapper">
                 <p id="privacyText">
                   {{ 'contact.privacyText' | translate }}
-                <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a>
-                {{ 'contact.privacyTextEnd' | translate }}
+                  <a routerLink="/legal/privacy-policy">{{ 'contact.privacyLink' | translate }}</a>
+                  {{ 'contact.privacyTextEnd' | translate }}
                 </p>
                 @if (!formData.privacyAccepted && privacyTouched) {
-                <p id="privacyError" class="form-warning" aria-live="polite">{{ 'contact.privacyWarning' | translate }}</p>
+                <p id="privacyError" class="form-warning" aria-live="polite">{{ 'contact.privacyWarning' | translate }}
+                </p>
                 }
               </div>
             </div>
-            <button
-            type="submit"
-            [attr.aria-label]="'contact.sendAriaLabel' | translate"
-            class="btn-send"
-            [disabled]="isSending || !isFormValid || flyAnimation"
-            [class]="{ active: isFormValid }">
+            <p class="visually-hidden" aria-live="assertive" role="status">
+              @if (isSending) {
+              {{ 'contact.sending' | translate }}
+              } @else if (success) {
+              {{ 'contact.sent' | translate }}
+              }
+            </p>
+            <button type="submit" class="btn-send" [disabled]="isSending || !isFormValid || flyAnimation"
+              [class]="{ active: isFormValid }"
+              [attr.aria-label]="isSending ? ('contact.sending' | translate) : success ? ('contact.sent' | translate) : ('contact.sendAriaLabel' | translate)">
               @if (isSending) {
               {{ 'contact.sending' | translate }}
               <img src="assets/icons/white/svg/logo_arrow.svg" alt="{{ 'contact.sendIconAlt' | translate }}" />
@@ -123,7 +94,6 @@
               <img src="assets/icons/white/svg/logo_arrow.svg" alt="{{ 'contact.sendIconAlt' | translate }}" />
               }
             </button>
-
           </form>
         </div>
       </div>

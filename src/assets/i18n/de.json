@@ -111,7 +111,8 @@
     "emailLabel": "Deine E-Mail-Adresse",
     "messageLabel": "Deine Nachricht",
     "sendIconAlt": "Senden-Symbol",
-    "sendAriaLabel": "Nachricht absenden"
+    "sendAriaLabel": "Nachricht absenden",
+    "formDescription": "Kontaktformular zum Versenden einer Nachricht. Alle Felder sind erforderlich."
   },
   "tools": {
     "headline": "Tools",

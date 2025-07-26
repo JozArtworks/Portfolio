@@ -111,7 +111,8 @@
     "emailLabel": "Your email address",
     "messageLabel": "Your message",
     "sendIconAlt": "Send icon",
-    "sendAriaLabel": "Send message"
+    "sendAriaLabel": "Send message",
+    "formDescription": "Contact form to send a message. All fields are required."
   },
   "tools": {
     "headline": "Skills",
