@@ -65,6 +65,11 @@ export const toolsIcons: ToolIcon[] = [
     alt: 'tools-alt-landing.oop.alt',
     icon: 'assets/icons/white/svg/logo_oop.svg'
   },
+    {
+    name: 'accessibility',
+    alt: 'tools-alt-landing.acces.alt',
+    icon: 'assets/icons/white/svg/icon_accessibility.svg'
+  },
 ];
 
 export const extraTools: ToolIcon[] = [

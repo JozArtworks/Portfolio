@@ -66,7 +66,7 @@ export class LandingComponent implements OnChanges {
   }
 
   get filteredToolsIcons(): ToolIcon[] {
-    return this.toolsIcons.filter((_, i) => i !== this.toolsIcons.length - 2);
+    return this.toolsIcons.filter((_, i) => i !== this.toolsIcons.length - 3);
   }
 
   copyEmail() {

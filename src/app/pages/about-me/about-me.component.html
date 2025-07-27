@@ -5,8 +5,9 @@
       <div class="about-body">
         <div class="box-left dNone">
           <div class="text-with-image">
-            <img src="./../../../assets/images/pic_about_me.webp" [alt]="'about.alt' | translate "
-              class="about-me-image inline-image" />
+            <img loading="lazy" src="./../../../assets/images/pic_about_me_270.webp"
+              srcset="./../../../assets/images/pic_about_me_540.webp 2x" sizes="(max-width: 820px) 270px, 270px"
+              [alt]="'about.alt' | translate" class="about-me-image inline-image" />
             <p class="dNone" tabindex="0">
               {{ 'about.intro1' | translate }}
             </p>
