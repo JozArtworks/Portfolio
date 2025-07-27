@@ -16,11 +16,11 @@ import {
   styleUrl: './skills.component.scss'
 })
 export class SkillsComponent {
+
   toolIcons = toolsIcons;
   extraTools = extraTools;
   toolIconsDesign = toolsIconsDesign;
   showExtraTools = false;
-
   hoveredTooltipText = '';
   tooltipX = 0;
   tooltipY = 0;
@@ -53,27 +53,16 @@ export class SkillsComponent {
     }
   }
 
-
-
-
-
   cursorX = 0;
   cursorY = 0;
   showQuestionCursor = false;
 
   onTooltipEnter(event: MouseEvent, key: string, iconName: string): void {
     this.hoveredTooltipText = this.translate.instant(key);
-
-
     this.showQuestionCursor = iconName === 'school';
-
-
-
     this.cursorX = event.clientX;
     this.cursorY = event.clientY;
   }
-
-
 
   onMouseMove(event: MouseEvent): void {
     if (this.showQuestionCursor) {

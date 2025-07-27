@@ -158,8 +158,8 @@
     },
     "portfolio": {
       "title": "Portfolio",
-      "description": "UI design & animation",
-      "dialogDescription": "Personal portfolio focused on UI design and smooth animations. Structure, style and motion ensure a clear user experience."
+      "description": "UI design & accessible web",
+      "dialogDescription": "Modern UI design meets accessible code – with focus on screen readers, keyboard navigation, and clear structure."
     }
   },
   "footer": {

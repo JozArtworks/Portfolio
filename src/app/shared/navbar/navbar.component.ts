@@ -74,22 +74,21 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isScrollPage.set(isScroll);
       }
     });
-this.router.events.subscribe((event) => {
-  if (event instanceof NavigationEnd) {
-    const url = event.urlAfterRedirects || event.url;
-    const isScroll = url === '/' || url.startsWith('/#');
-    this.isScrollPage.set(isScroll);
-    if (isScroll) {
-      setTimeout(() => {
-        this.sectionObserver.observeSections(this.sectionIds);
-      }, 0);
-    } else {
-      const cleanPath = url.split('/')[1];
-      this.sectionObserver.setCurrentSection(cleanPath);
-    }
-  }
-});
-
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects || event.url;
+        const isScroll = url === '/' || url.startsWith('/#');
+        this.isScrollPage.set(isScroll);
+        if (isScroll) {
+          setTimeout(() => {
+            this.sectionObserver.observeSections(this.sectionIds);
+          }, 0);
+        } else {
+          const cleanPath = url.split('/')[1];
+          this.sectionObserver.setCurrentSection(cleanPath);
+        }
+      }
+    });
   }
 
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
@@ -118,12 +117,10 @@ this.router.events.subscribe((event) => {
   sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
   isScrollPage = signal(false);
   injector = inject(EnvironmentInjector);
-showIndicator = computed(() => {
-  const url = this.currentUrl();
-  return ['home', 'about', 'skills', 'projects', 'feedbacks'].includes(url);
-});
-
-
+  showIndicator = computed(() => {
+    const url = this.currentUrl();
+    return ['home', 'about', 'skills', 'projects', 'feedbacks'].includes(url);
+  });
 
   readonly EMAIL_ANIMATION_DURATION = 250;
 
@@ -163,11 +160,10 @@ showIndicator = computed(() => {
     this.ifMobileOpenToggle();
   }
 
-isLinkActive(path: string): boolean {
-  const current = this.sectionObserver.currentSection();
-  return current === path;
-}
-
+  isLinkActive(path: string): boolean {
+    const current = this.sectionObserver.currentSection();
+    return current === path;
+  }
 
   setLanguage(lang: 'de' | 'en') {
     this.language.set(lang);
@@ -284,5 +280,6 @@ isLinkActive(path: string): boolean {
       this.showEmail = false;
     }
   }
+
 }
 

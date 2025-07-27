@@ -80,14 +80,18 @@ a {
 
 @media (hover: none) and (pointer: coarse),
 screen and (max-width: 870px) {
+
   .tooltip-container .tooltip-text {
     display: none !important;
   }
+  
 }
 
 @media screen and (max-width: 390px) {
+
   img {
     width: 25px;
     height: 25px;
   }
+
 }

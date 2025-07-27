@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-lang-switch',
   standalone: true,

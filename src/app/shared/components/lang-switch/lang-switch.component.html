@@ -1,21 +1,11 @@
 <div class="lang-switch" role="group" aria-label="Sprachauswahl">
   <div class="lang-indicator" [class.move-right]="!isGerman()"></div>
-  <button
-    class="lang"
-    [class.active]="isGerman()"
-    (click)="setLanguage('de')"
-    [attr.aria-pressed]="isGerman()"
-    aria-label="Sprache Deutsch auswählen"
-  >
+  <button class="lang" [class.active]="isGerman()" (click)="setLanguage('de')" [attr.aria-pressed]="isGerman()"
+    aria-label="Sprache Deutsch auswählen">
     DE
   </button>
-  <button
-    class="lang"
-    [class.active]="!isGerman()"
-    (click)="setLanguage('en')"
-    [attr.aria-pressed]="!isGerman()"
-    aria-label="Sprache Englisch auswählen"
-  >
+  <button class="lang" [class.active]="!isGerman()" (click)="setLanguage('en')" [attr.aria-pressed]="!isGerman()"
+    aria-label="Sprache Englisch auswählen">
     EN
   </button>
 </div>

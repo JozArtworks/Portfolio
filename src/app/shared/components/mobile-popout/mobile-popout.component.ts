@@ -17,7 +17,6 @@ export class MobilePopoutComponent implements OnChanges {
   @Input() animationState: 'open' | 'closing' | '' = '';
   @Input() currentSection = '';
 
-
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() setLanguage = new EventEmitter<'de' | 'en'>();
   @Output() navClicked = new EventEmitter<string>();
@@ -56,4 +55,5 @@ export class MobilePopoutComponent implements OnChanges {
   changeLanguage(lang: 'de' | 'en') {
     this.setLanguage.emit(lang);
   }
+
 }

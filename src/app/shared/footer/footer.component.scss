@@ -23,7 +23,6 @@
 
   @media screen and (max-width: 768px) {
 
-    &,
     &.visible {
       opacity: 1 !important;
       transform: none !important;
@@ -200,7 +199,6 @@
   }
 
   .mail-text {
-
     all: unset;
     all: unset;
     display: inline-block;
@@ -300,7 +298,6 @@
 
   .footer {
     padding: 10px 15px;
-
   }
 
   .dNone {

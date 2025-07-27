@@ -2,13 +2,10 @@
   <div class="footer-content">
     <div class="info-box">
       <span>
-<img src="assets/icons/white/svg/logo_jm.svg"
-     [attr.alt]="'logo.alt' | translate"
-     [attr.aria-label]="'logo.homeLabel' | translate" />
-
+        <img src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
+          [attr.aria-label]="'logo.homeLabel' | translate" />
         {{ 'footer.copyright' | translate }}
       </span>
-
       <div class="data-box">
         <div class="footer-links" role="navigation" aria-label="Footer Navigation">
           <a [routerLink]="['/imprint']" [attr.aria-label]="'footer.imprint' | translate">
@@ -17,10 +14,8 @@
           <a [routerLink]="['/privacy-policy']" [attr.aria-label]="'footer.privacy' | translate">
             {{ 'footer.privacy' | translate }}
           </a>
-
         </div>
       </div>
-
       <div class="box-link dNone">
         <app-links-img context="contact" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog"
           (mailClicked)="toggleEmail()"></app-links-img>
@@ -28,7 +23,6 @@
     </div>
   </div>
 </footer>
-
 <div class="dialog-copy" [class.visible]="showCopyDialog" role="status" aria-live="polite">
   <span>{{ 'footer.copied' | translate }}</span>
   <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -36,16 +30,14 @@
       stroke-linejoin="round" />
   </svg>
 </div>
-
 <div #mailWrapper class="mail-wrapper" [class.visible]="showEmail">
   <a class="mail-text" [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
     [attr.aria-label]="'landing.mailLabel' | translate" href="mailto:front-dev@jonathan-michutta.de">
     front-dev&#64;jonathan-michutta.de
   </a>
-
   <div class="tooltip-container" [class.tooltip-disabled]="showCopyDialog">
-    <button class="copy-btn" [attr.aria-describedby]="'copyTooltipFooter'" (click)="copyEmail()" [class.clicked]="emailCopied"
-      [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
+    <button class="copy-btn" [attr.aria-describedby]="'copyTooltipFooter'" (click)="copyEmail()"
+      [class.clicked]="emailCopied" [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
       [attr.aria-label]="'landing.copyAria' | translate">
       <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
         <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />

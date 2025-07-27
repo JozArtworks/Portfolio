@@ -1,37 +1,30 @@
 @if (!isMobileView) {
-  <nav class="navbar" role="navigation" aria-label="Hauptnavigation">
-    <ul class="nav-list">
-      @if (showIndicator()) {
-        <div class="active-indicator"
-             [style.transform]="'translateX(' + activePos().left + 'px)'"
-             [style.width.px]="activePos().width"
-             aria-hidden="true">
-        </div>
-      }
-      @for (item of navItems; track item.path) {
-        <li>
-          <a href="#"
-             [attr.data-section-id]="item.path"
-             (click)="onNavClick(item.path, $event)"
-             [class.active]="isLinkActive(item.path)"
-             [class.contact-btn]="item.isContact"
-             [attr.aria-current]="isLinkActive(item.path) ? 'page' : null"
-             #navLink>
-            {{ item.key | translate }}
-          </a>
-        </li>
-      }
-    </ul>
-    <app-lang-switch
-      [currentLanguage]="language()"
-      (languageChanged)="setLanguage($event)">
-    </app-lang-switch>
-  </nav>
+<nav class="navbar" role="navigation" aria-label="Hauptnavigation">
+  <ul class="nav-list">
+    @if (showIndicator()) {
+    <div class="active-indicator" [style.transform]="'translateX(' + activePos().left + 'px)'"
+      [style.width.px]="activePos().width" aria-hidden="true">
+    </div>
+    }
+    @for (item of navItems; track item.path) {
+    <li>
+      <a href="#" [attr.data-section-id]="item.path" (click)="onNavClick(item.path, $event)"
+        [class.active]="isLinkActive(item.path)" [class.contact-btn]="item.isContact"
+        [attr.aria-current]="isLinkActive(item.path) ? 'page' : null" #navLink>
+        {{ item.key | translate }}
+      </a>
+    </li>
+    }
+  </ul>
+  <app-lang-switch [currentLanguage]="language()" (languageChanged)="setLanguage($event)">
+  </app-lang-switch>
+</nav>
 }
 @if (isMobileView) {
 <div class="box-link-nav-mobile">
   <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
-  <button [attr.aria-label]="'landing.menuToggleAria' | translate" class="burger-menu" [class.open]="mobileMenuOpen" (click)="emitToggleMenu()">
+  <button [attr.aria-label]="'landing.menuToggleAria' | translate" class="burger-menu" [class.open]="mobileMenuOpen"
+    (click)="emitToggleMenu()">
     <span></span>
   </button>
 </div>

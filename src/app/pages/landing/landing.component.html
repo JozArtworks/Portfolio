@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="about-foot">
-      <div class="box-tools" role="region" tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate"
+      <div class="box-tools" role="region" [attr.aria-label]="'landing.toolsLabel' | translate"
         [class.slide-out]="scrolledAway">
         @for (icon of filteredToolsIcons; track icon.name) {
         <img [src]="icon.icon" [alt]="icon.alt | translate" class="tool-icon" />
@@ -20,6 +20,11 @@
       </div>
     </div>
   </div>
+
+
+
+
+
   <div class="dialog-copy" [class.visible]="showCopyDialog" aria-live="polite" role="status">
     <span>{{ 'landing.copied' | translate }}</span>
     <svg class="check-icon" viewBox="0 0 24 24">

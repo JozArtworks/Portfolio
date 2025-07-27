@@ -1,7 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { linksIcons, LinkIcon } from '../../../shared/data/links-icons.data';
 import { TranslateModule } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-links-img',
   standalone: true,
@@ -55,4 +54,5 @@ export class LinksImgComponent {
     }
     this.clearHoveredIcon();
   }
+
 }

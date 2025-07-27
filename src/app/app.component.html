@@ -1,13 +1,8 @@
 <section [class]="['background-pic', getBackgroundClass()]">
   <div class="background-fader" [class.active]="isFading"></div>
-
-
   <div class="background-gradient">
     <div class="glass-background-style">
-
-
       @if (!isOrientationLocked()) {
-
       @if (shouldShowHeader()) {
       <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()"
         (forceCloseMenu)="mobileMenuOpen = false" />
@@ -27,18 +22,10 @@
       </div>
       }
     </div>
-
-
-
-
-
-
-
   </div>
-
   @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
-  <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen" [animationState]="animationState"
-    (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
+    [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
   @if (projectDialog.dialogOpen()) {

@@ -52,8 +52,6 @@ export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
     this.checkViewport();
   }
 
-
-
   checkViewport() {
     const isMobile = window.innerWidth <= 870;
     if (!isMobile && this.showEmail) {
@@ -61,36 +59,31 @@ export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
     }
   }
 
-ngAfterViewInit() {
-  if (!this.footerElementRef) return;
-
-  this.observer = new IntersectionObserver(
-    ([entry]) => {
-      this.isVisible = entry.isIntersecting;
-    },
-    { threshold: 0.2 }
-  );
-
-  this.observer.observe(this.footerElementRef.nativeElement);
-}
-
-
-ngOnDestroy() {
-  window.removeEventListener('resize', this.boundCheckViewport);
-
-  if (this.observer) {
-    this.observer.disconnect();
+  ngAfterViewInit() {
+    if (!this.footerElementRef) return;
+    this.observer = new IntersectionObserver(
+      ([entry]) => {
+        this.isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.2 }
+    );
+    this.observer.observe(this.footerElementRef.nativeElement);
   }
-}
+
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-  if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
-    this.showEmail = false;
-    this.showCopyDialog = false;
+    if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
+      this.showEmail = false;
+      this.showCopyDialog = false;
+    }
   }
-}
-
-
 
   copyEmail() {
     const email = 'front-dev@jonathan-michutta.de';
@@ -111,4 +104,5 @@ ngOnDestroy() {
     }
     this.showEmail = !this.showEmail;
   }
+
 }

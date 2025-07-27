@@ -1,4 +1,4 @@
-import { Component, HostListener, AfterViewInit, Signal, signal } from '@angular/core';
+import { Component, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutMeComponent } from '../pages/about-me/about-me.component';
 import { SkillsComponent } from '../pages/skills/skills.component';
@@ -23,8 +23,8 @@ import { SectionObserverService } from './../../assets/services/section-observer
   templateUrl: './scroll-page.component.html',
   styleUrls: ['./scroll-page.component.scss']
 })
-export class ScrollPageComponent implements AfterViewInit {
 
+export class ScrollPageComponent implements AfterViewInit {
 
   constructor(public sectionObserver: SectionObserverService) { }
 
@@ -50,6 +50,5 @@ export class ScrollPageComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.sectionObserver.observeSections(this.sectionIds);
   }
-
 
 }

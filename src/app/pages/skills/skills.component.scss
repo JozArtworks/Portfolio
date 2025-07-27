@@ -37,7 +37,6 @@
 
 @keyframes pulse {
 
-  0%,
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
@@ -247,6 +246,7 @@
 }
 
 @media screen and (max-width: 820px) {
+
   .img-extra {
     gap: 5px;
   }
@@ -308,11 +308,14 @@
     border-radius: 20px;
     margin: 0 10px;
   }
+
 }
 
 @media screen and (max-width: 500px) {
+
   .tools-window {
     padding: 10px !important;
     border-radius: 20px;
   }
+  
 }

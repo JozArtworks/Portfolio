@@ -106,7 +106,6 @@ export class AppComponent {
 
   checkViewport() {
     this.isMobileView = window.innerWidth <= 870;
-
     if (!this.isMobileView && this.mobileMenuOpen) {
       this.mobileMenuOpen = false;
     }
