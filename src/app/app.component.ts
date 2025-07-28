@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
@@ -21,6 +21,13 @@ import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.c
 })
 
 export class AppComponent {
+
+@Input() isAppReadyForTransition = false;
+
+
+  isAppLoaded = false;
+  showHeader = false;
+
 
   orientationLocked = false;
   isMobileView = true;
@@ -54,6 +61,20 @@ export class AppComponent {
     window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
       this.checkOrientation();
     });
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    this.isAppLoaded = true;
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.showHeader = true;
+      this.cdr.detectChanges();
+    }, 50);
+  }, 3000);
+});
+
+
   }
 
   checkOrientation() {
@@ -172,5 +193,7 @@ export class AppComponent {
     const isLandscape = window.matchMedia('(orientation: landscape)').matches;
     return isTouchDevice && isLandscape;
   }
+
+
 
 }

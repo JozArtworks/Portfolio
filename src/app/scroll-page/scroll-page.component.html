@@ -3,7 +3,10 @@
   <div class="section-inner" [class.in-view]="sectionObserver.currentSection() === id">
     @switch (id) {
     @case ('home') {
-    <app-landing [scrolledAway]="sectionObserver.currentSection() !== 'home'" />
+    <app-landing
+  [scrolledAway]="sectionObserver.currentSection() !== 'home'"
+  [isAppReadyForTransition]="isAppReadyForTransition" />
+
     }
     @case ('about') {
     <app-about-me />

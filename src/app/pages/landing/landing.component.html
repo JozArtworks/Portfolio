@@ -1,4 +1,4 @@
-<section class="main-landing">
+<section class="main-landing" [class.animate-in]="isAppReadyForTransition">
   <div class="main">
     <div class="title">
       <h1 tabindex="0" aria-label="Jonathan Michutta – Frontend Developer & Mediengestalter">JONATHAN MICHUTTA</h1>
@@ -8,13 +8,21 @@
       </div>
     </div>
     <div class="about-foot">
-      <div class="box-tools" role="region" tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate"
-        [class.slide-out]="scrolledAway">
+
+      <div class="box-tools" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition"
+
+ role="region" tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate"
+        [class.slide-out]="scrolledAway || !isAppReadyForTransition">
+
         @for (icon of filteredToolsIcons; track icon.name) {
         <img [src]="icon.icon" [alt]="icon.alt | translate" class="tool-icon" />
         }
       </div>
-      <div class="box-link dNone" [class.slide-in]="scrolledAway">
+
+      <div class="box-link dNone" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition"
+
+ [class.slide-out]="scrolledAway || !isAppReadyForTransition">
+
         <app-links-img context="home" [isEmailVisible]="showEmail" [showCopyDialog]="showCopyDialog"
           (mailClicked)="toggleEmail()"></app-links-img>
       </div>

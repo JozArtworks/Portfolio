@@ -1,4 +1,4 @@
-import { Component, HostListener, AfterViewInit } from '@angular/core';
+import { Component, HostListener, AfterViewInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutMeComponent } from '../pages/about-me/about-me.component';
 import { SkillsComponent } from '../pages/skills/skills.component';
@@ -26,11 +26,13 @@ import { SectionObserverService } from './../../assets/services/section-observer
 
 export class ScrollPageComponent implements AfterViewInit {
 
+@Input() isAppReadyForTransition = false;
+@Output() sectionChanged = new EventEmitter<string>();
+sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
+
+
   constructor(public sectionObserver: SectionObserverService) { }
 
-  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
-
-  @Output() sectionChanged = new EventEmitter<string>();
 
   @HostListener('window:scroll', [])
   onScroll() {
@@ -47,8 +49,23 @@ export class ScrollPageComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    this.sectionObserver.observeSections(this.sectionIds);
+ngAfterViewInit(): void {
+  this.sectionObserver.observeSections(this.sectionIds);
+
+  const homeEl = document.getElementById('home');
+  if (homeEl) {
+    const rect = homeEl.getBoundingClientRect();
+    if (rect.top <= 200 && rect.bottom > 200) {
+      this.sectionObserver.currentSection.set('home');
+      this.sectionChanged.emit('home');
+    }
   }
+
+  setTimeout(() => {
+    this.isAppReadyForTransition = true;
+  }, 100);
+}
+
+
 
 }

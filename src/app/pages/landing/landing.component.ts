@@ -11,6 +11,10 @@ import { toolsIcons, ToolIcon } from '../../shared/data/tools-icons.data';
 })
 export class LandingComponent implements OnChanges {
 
+  @Input() isAppReadyForTransition = false;
+
+  showBoxes = false;
+
   @Input() scrolledAway = false;
 
   @ViewChild('mailWrapper') mailWrapperRef?: ElementRef;
@@ -33,12 +37,18 @@ export class LandingComponent implements OnChanges {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
-      this.showEmail = false;
-      this.showCopyDialog = false;
-    }
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['isAppReadyForTransition']?.currentValue) {
+    setTimeout(() => {
+      this.showBoxes = true;
+    }, 400);
   }
+
+  if (changes['scrolledAway']?.currentValue === true) {
+    this.showEmail = false;
+    this.showCopyDialog = false;
+  }
+}
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {
@@ -88,5 +98,7 @@ export class LandingComponent implements OnChanges {
       this.showEmail = false;
     }
   }
+
+
 
 }

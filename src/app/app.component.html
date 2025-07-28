@@ -2,32 +2,56 @@
   <div class="background-fader" [class.active]="isFading"></div>
   <div class="background-gradient">
     <div class="glass-background-style">
+
+
+      @if (!isAppLoaded) {
+      <div class="preloader">
+        <div class="loader-ring">
+          <div class="spinner"></div>
+          <img src="assets/icons/white/svg/logo_jm.svg" alt="Loading Logo" class="preloader-logo" />
+        </div>
+      </div>
+      }
+
+      @if (isAppLoaded) {
       @if (!isOrientationLocked()) {
       @if (shouldShowHeader()) {
-      <app-header [mobileMenuOpen]="mobileMenuOpen" [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()"
-        (forceCloseMenu)="mobileMenuOpen = false" />
+
+      <app-header class="animate-header" [class.header-visible]="showHeader" [mobileMenuOpen]="mobileMenuOpen"
+        [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()" (forceCloseMenu)="mobileMenuOpen = false">
+      </app-header>
+
+
       <main class="main-content scrollable" [class.blur-scroll]="projectDialog.dialogOpen()">
-        <app-scroll-page></app-scroll-page>
+        <app-scroll-page [isAppReadyForTransition]="isAppLoaded" />
+
       </main>
+
       } @else {
       <main class="main-content no-scroll">
         <router-outlet></router-outlet>
       </main>
       }
       } @else {
-      <div class="orientation-lock">
+      <div class="orientation-lock" aria-live="assertive">
         <img src="./../assets/icons/white/svg/logo_jm.svg" class="logo-lock" alt="Logo" />
         <p>{{ 'orientation.warning' | translate }}</p>
         <img src="./../assets/icons/green/svg/mobile.svg" class="rotate-phone" alt="Rotate your device" />
       </div>
       }
+      }
+
     </div>
   </div>
+
+
   @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
   <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
     [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
+
+
   @if (projectDialog.dialogOpen()) {
   <app-project-dialog [project]="projectDialog.currentProject()!" [allProjects]="projectDialog.allProjects()"
     [show]="true" (close)="closeGlobalDialog()" />

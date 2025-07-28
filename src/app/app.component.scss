@@ -222,3 +222,71 @@
     opacity: 0;
   }
 }
+
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.loader-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.preloader-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spinner {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border: 6px solid rgba(61, 207, 182, 0.2);
+  border-top-color: rgba(61, 207, 182, 1);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+.animate-header {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.header-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
