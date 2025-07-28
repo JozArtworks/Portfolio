@@ -23,7 +23,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-image 0.6s ease-in-out, background-color 0.6s ease-in-out, opacity 0.4s ease;
+  filter: brightness(0.3) blur(4px);
+  transition: filter 0.8s ease-in-out;
+}
+
+.bg-fade-in {
+  filter: brightness(1) blur(0);
 }
 
 .background-gradient {
@@ -77,12 +82,6 @@
   z-index: -1;
   pointer-events: none;
 }
-
-.hide-bg {
-  background-image: none !important;
-  background-color: black !important;
-}
-
 
 .bg-home {
   background-image: url('./../assets/images/BlackWhitePortfolioHeaderPics.webp');
@@ -230,12 +229,27 @@
 }
 
 .preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100dvh;
-  animation: fadeIn 0.3s ease-in-out;
+  background-color: black; // oder semi-transparent
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
 }
+
+.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 
 .loader-ring {
   position: relative;

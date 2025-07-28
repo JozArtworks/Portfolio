@@ -93,6 +93,10 @@
 .img-extra {
   display: flex;
   gap: 15px;
+
+  &:hover {
+    cursor: url('./../../../assets/icons/cursor/cursor_standard_question.cur') 0 0, pointer;
+  }
 }
 
 .extra-tool-wrapper {
@@ -108,6 +112,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: fit-content;
   aspect-ratio: 2 / 1;
+
+  &:hover {
+    cursor: url('./../../../assets/icons/cursor/cursor_standard_question.cur') 0 0, pointer;
+  }
 }
 
 .extra-icon {
@@ -183,6 +191,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  &:hover {
+    cursor: url('./../../../assets/icons/cursor/cursor_standard_question.cur') 0 0, pointer;
+  }
 }
 
 .tool-box-design {
@@ -213,6 +225,28 @@
   span {
     color: #3DCFB6;
     font-weight: 400;
+  }
+
+
+}
+
+.missing {
+
+  span {
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+  }
+
+  p {
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+  }
+
+  &:hover {
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    border: 1px solid #3DCFB6;
   }
 }
 

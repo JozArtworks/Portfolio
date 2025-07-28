@@ -13,6 +13,7 @@ import { SectionObserverService } from './../assets/services/section-observer.se
 import { ProjectDialogService } from './../assets/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 import { NgZone } from '@angular/core';
+import { AppSettings } from './app.config';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,7 +25,6 @@ import { NgZone } from '@angular/core';
 export class AppComponent {
 
   @Input() isAppReadyForTransition = false;
-
 
   isAppLoaded = false;
   showHeader = false;
@@ -55,37 +55,38 @@ export class AppComponent {
     });
   }
 
-ngOnInit() {
-  this.checkViewport();
-  this.boundCheckViewport = this.checkViewport.bind(this);
-  window.addEventListener('resize', this.boundCheckViewport);
-  this.checkOrientation();
-
-  window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
+  ngOnInit() {
+    this.checkViewport();
+    this.boundCheckViewport = this.checkViewport.bind(this);
+    window.addEventListener('resize', this.boundCheckViewport);
     this.checkOrientation();
-  });
+
+    window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
+      this.checkOrientation();
+    });
 
 
-  window.addEventListener('load', () => {
-    this.ngZone.runOutsideAngular(() => {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.ngZone.run(() => {
-            this.isAppLoaded = true;
-            this.cdr.detectChanges();
-
-            setTimeout(() => {
-              this.showHeader = true;
+    window.addEventListener('load', () => {
+      this.ngZone.runOutsideAngular(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            this.ngZone.run(() => {
+              this.isAppLoaded = true;
               this.cdr.detectChanges();
-            }, 50);
-          });
-        }, 1000);
+
+              setTimeout(() => {
+                this.showHeader = true;
+                this.cdr.detectChanges();
+              }, 50);
+            });
+          }, AppSettings.loaderDelayMs);
+        });
       });
     });
-  });
 
-  
-}
+
+
+  }
 
   checkOrientation() {
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;

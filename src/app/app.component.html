@@ -1,17 +1,19 @@
-<section [class]="['background-pic', getBackgroundClass(), !isAppLoaded ? 'hide-bg' : '']">
+<section
+  [class]="[
+    'background-pic',
+    getBackgroundClass(),
+     'bg-fade-in'
+  ]"
+>
+
+
   <div class="background-fader" [class.active]="isFading"></div>
   <div class="background-gradient">
     <div class="glass-background-style">
 
 
-      @if (!isAppLoaded) {
-      <div class="preloader">
-        <div class="loader-ring">
-          <div class="spinner"></div>
-          <img src="assets/icons/white/svg/logo_jm.svg" alt="Loading Logo" class="preloader-logo" />
-        </div>
-      </div>
-      }
+
+
 
       @if (isAppLoaded) {
       @if (!isOrientationLocked()) {
@@ -57,3 +59,10 @@
     [show]="true" (close)="closeGlobalDialog()" />
   }
 </section>
+
+<div class="preloader" [class.preloader-hidden]="isAppLoaded">
+  <div class="loader-ring">
+    <div class="spinner"></div>
+    <img src="assets/icons/white/svg/logo_jm.svg" alt="Loading Logo" class="preloader-logo" />
+  </div>
+</div>

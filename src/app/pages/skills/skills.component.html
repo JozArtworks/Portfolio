@@ -72,7 +72,7 @@
           <div class="box" aria-labelledby="tools-box1">
             <p tabindex="0" id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
-          <div class="box" aria-labelledby="tools-box2">
+          <div (click)="scrollToContact($event)" class="box missing" aria-labelledby="tools-box2">
             <span tabindex="0" id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
             <p tabindex="0">{{ 'tools.missingText' | translate }}</p>
           </div>

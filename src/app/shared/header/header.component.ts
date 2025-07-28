@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router,) { }
+  constructor(private router: Router) { }
 
   @Input() currentSection = 'home';
   @Input() isMobileView = false;

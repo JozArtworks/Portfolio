@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 import {
   toolsIcons,
   extraTools,
@@ -27,7 +28,7 @@ export class SkillsComponent {
   tooltipX = 0;
   tooltipY = 0;
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService, private router: Router) { }
 
   isMobileView = false;
 
@@ -96,6 +97,16 @@ export class SkillsComponent {
     this.showQuestionCursor = false;
   }
 
-
+  scrollToContact(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/']).then(() => {
+      setTimeout(() => {
+        const el = document.getElementById('contact');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    });
+  }
 
 }
