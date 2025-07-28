@@ -72,9 +72,11 @@
   transition: transform 0.2s ease;
   outline: none;
 
+
+
   &:hover {
     background: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
   &:focus {
@@ -86,12 +88,21 @@
     margin: 0;
     font-weight: 600;
     text-shadow: 0 0 10px black;
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+
   }
 
   p {
     font-size: clamp(0.8rem, 1.5vw, 1rem);
     color: #ccc;
     margin: 0;
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
   }
 }
 
@@ -106,6 +117,10 @@
   align-items: center;
   gap: 12px;
 
+  &:hover {
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+  }
+
   .project-small-icons {
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(0, 0, 0, 0.2);
@@ -115,12 +130,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
   }
 
   img {
     width: 25px;
     height: 25px;
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+
   }
 }
 

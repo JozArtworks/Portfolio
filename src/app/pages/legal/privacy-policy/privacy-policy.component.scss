@@ -41,7 +41,11 @@
   img {
     width: 30px;
     height: 30px;
-    margin-right: 15px;
+
+    &:hover {
+      cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+
   }
 }
 

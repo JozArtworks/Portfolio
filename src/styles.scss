@@ -3,6 +3,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  cursor: url('assets/icons/cursor/cursor_standard.cur') 0 0, auto;
 }
 
 html, body {
@@ -11,4 +12,5 @@ html, body {
   font-family: 'Inter', sans-serif;
   font-weight: 100;
   overflow-x: hidden !important;
+
 }

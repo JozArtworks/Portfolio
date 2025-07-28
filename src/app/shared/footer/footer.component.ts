@@ -4,15 +4,12 @@ import {
   ViewChild,
   AfterViewInit,
   OnDestroy,
-  HostListener,
-  OnChanges,
-  SimpleChanges
+  HostListener
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Input } from '@angular/core';
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -20,20 +17,18 @@ import { Input } from '@angular/core';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
-
-  @Input() scrolledAway = false;
-
+export class FooterComponent implements AfterViewInit, OnDestroy {
   private boundCheckViewport!: () => void;
   private observer!: IntersectionObserver;
 
   showEmail = false;
   showCopyDialog = false;
   emailCopied = false;
-  @ViewChild('footerElement') footerElementRef!: ElementRef;
-  isVisible = false;
 
+  @ViewChild('contactSection', { static: false }) contactSectionRef!: ElementRef;
+  @ViewChild('footerElement') footerElementRef!: ElementRef;
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
+  isVisible = false;
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
@@ -60,6 +55,18 @@ export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   ngAfterViewInit() {
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      const contactObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting && this.showEmail) {
+            this.showEmail = false;
+          }
+        },
+        { threshold: 0.4 }
+      );
+      contactObserver.observe(contactEl);
+    }
     if (!this.footerElementRef) return;
     this.observer = new IntersectionObserver(
       ([entry]) => {
@@ -70,18 +77,10 @@ export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
     this.observer.observe(this.footerElementRef.nativeElement);
   }
 
-
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
     if (this.observer) {
       this.observer.disconnect();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['scrolledAway'] && changes['scrolledAway'].currentValue === true) {
-      this.showEmail = false;
-      this.showCopyDialog = false;
     }
   }
 
@@ -99,10 +98,7 @@ export class FooterComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   toggleEmail() {
-    if (this.showCopyDialog) {
-      return;
-    }
+    if (this.showCopyDialog) return;
     this.showEmail = !this.showEmail;
   }
-
 }

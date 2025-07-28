@@ -54,7 +54,7 @@
 .contact-info {
   max-width: 350px;
   min-width: 150px;
-  height: 420px;
+  height: 445px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@
 }
 
 .form-wrapper {
-  max-width: 800px;
+  max-width: 450px;
   min-width: 450px;
   padding: 10px;
   display: flex;
@@ -187,6 +187,7 @@
     height: 45px;
     font-family: 'inter', sans-serif;
     font-weight: 100;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
   .email {
@@ -195,6 +196,7 @@
     height: 45px;
     font-family: 'inter', sans-serif;
     font-weight: 200;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
   .message {
@@ -204,6 +206,7 @@
     overflow-y: auto;
     font-family: 'inter', sans-serif;
     font-weight: 200;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
   .honeypot {
@@ -229,6 +232,7 @@
 
     &:hover {
       color: aquamarine;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     }
   }
 
@@ -273,7 +277,7 @@
     transition: all 0.2s ease;
 
     &:hover {
-      cursor: pointer;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     }
 
     &::after {
@@ -325,7 +329,7 @@
   &.active {
     background: transparent;
     border: 2px solid #3DCFB6;
-    cursor: pointer;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
 
     &:hover {
       background: rgba(61, 207, 182, 0.2);

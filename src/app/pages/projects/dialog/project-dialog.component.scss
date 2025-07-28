@@ -94,10 +94,14 @@ button {
   all: unset;
   background-color: transparent;
   padding: 5px;
-  cursor: pointer;
+  cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
 
   img {
     width: 20px;
+
+    &:hover {
+      cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
   }
 }
 
@@ -195,14 +199,23 @@ button {
     img {
       margin-left: 5px;
       width: 15px;
+
+      &:hover {
+        cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      }
     }
   }
 
   &:hover {
     border-color: #3DCFB6;
+    cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
 
     a {
       color: #3DCFB6;
+
+      &:hover {
+        cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      }
     }
   }
 }

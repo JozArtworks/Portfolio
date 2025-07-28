@@ -33,14 +33,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   max-width: 800px;
   width: 100%;
   padding: 20px;
   gap: 15px;
   width: 100%;
   border-radius: 32px;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.20);
   overflow-y: auto;
   max-height: 420px;
 }
@@ -66,9 +67,9 @@
 }
 
 .box-content {
-  background-color: rgba(255, 255, 255, 0.312);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 32px;
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -94,10 +95,30 @@
   justify-content: flex-start;
   gap: 10px;
 
+  img {
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      content: url('./../../../assets/icons/green/svg/logo_linkedin_green.svg');
+    }
+  }
+
   a {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    img {
+
+      &:hover {
+        height: 30px;
+        width: auto;
+        cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+        content: url('./../../../assets/icons/green/svg/logo_linkedin_green.svg');
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+      }
+    }
+
   }
 }
 

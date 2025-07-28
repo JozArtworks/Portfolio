@@ -17,6 +17,8 @@ import {
 })
 export class SkillsComponent {
 
+  observer: IntersectionObserver | null = null;
+
   toolIcons = toolsIcons;
   extraTools = extraTools;
   toolIconsDesign = toolsIconsDesign;
@@ -28,6 +30,24 @@ export class SkillsComponent {
   constructor(private translate: TranslateService) { }
 
   isMobileView = false;
+
+  ngAfterViewInit(): void {
+    const toolsSection = document.querySelector('.tools-page');
+    if (toolsSection) {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting && this.showExtraTools) {
+              this.showExtraTools = false;
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      this.observer.observe(toolsSection);
+    }
+  }
+
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth > 1000;

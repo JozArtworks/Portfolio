@@ -238,7 +238,7 @@ screen and (max-width: 870px) {
     margin-right: 7px;
 
     &:hover {
-      cursor: pointer;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
       color: #3DCFB6;
     }
   }
@@ -246,12 +246,13 @@ screen and (max-width: 870px) {
   .mail-text:focus-visible {
     outline: 2px solid #3DCFB6;
     outline-offset: 4px;
+    border-radius: 12px;
+    padding: 2px 5px;
   }
 
   .copy-btn {
     background: none;
     border: none;
-    cursor: pointer;
     padding: 6px;
     border-radius: 50%;
     display: flex;
@@ -260,16 +261,17 @@ screen and (max-width: 870px) {
     transition: background 0.3s ease;
 
     svg {
-      stroke: white;
+
+      &:hover {
+        cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      }
     }
 
     &:hover {
       background: rgba(255, 255, 255, 0.1);
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     }
 
-    &.clicked svg {
-      stroke: #3DCFB6;
-    }
   }
 }
 

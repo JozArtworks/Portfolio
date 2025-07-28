@@ -21,7 +21,7 @@
     animation: slideUpFade 0.6s ease-out both;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 821px) {
 
     &,
     &.visible {
@@ -105,7 +105,7 @@
 
       &:hover {
         color: #3DCFB6;
-        cursor: pointer;
+        cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
       }
     }
   }
@@ -187,7 +187,7 @@
   white-space: nowrap;
   opacity: 0;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-  transform: translateX(100%);
+  transform: translateX(0%);
   z-index: 5;
   display: flex;
   justify-content: center;
@@ -201,7 +201,6 @@
 
   .mail-text {
     all: unset;
-    all: unset;
     display: inline-block;
     color: white;
     text-decoration: none;
@@ -209,32 +208,39 @@
     margin-right: 7px;
 
     &:hover {
-      cursor: pointer;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
       color: #3DCFB6;
     }
+  }
+
+  .mail-text:focus-visible {
+    outline: 2px solid #3DCFB6;
+    outline-offset: 2px;
+    border-radius: 12px;
+    padding: 2px 5px;
   }
 
   .copy-btn {
     background: none;
     border: none;
-    cursor: pointer;
     padding: 6px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
 
     svg {
-      stroke: white;
+
+      &:hover {
+        cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      }
     }
 
     &:hover {
       background: rgba(255, 255, 255, 0.1);
-    }
-
-    &.clicked svg {
-      stroke: #3DCFB6;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     }
   }
 }

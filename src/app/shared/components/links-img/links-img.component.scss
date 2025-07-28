@@ -10,10 +10,6 @@ img {
   width: 30px;
   object-fit: contain;
   vertical-align: middle;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 a {
@@ -27,7 +23,8 @@ a {
   display: inline-block;
 
   .tool-icon {
-    cursor: pointer;
+    cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
   }
 
   .tooltip-text {
@@ -84,7 +81,7 @@ screen and (max-width: 870px) {
   .tooltip-container .tooltip-text {
     display: none !important;
   }
-  
+
 }
 
 @media screen and (max-width: 390px) {

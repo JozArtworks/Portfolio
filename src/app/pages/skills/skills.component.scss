@@ -12,40 +12,11 @@
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 14px;
+  font-weight: 300;
   pointer-events: none;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: opacity 0.2s ease;
-}
-
-.fixed-mark {
-  position: fixed;
-  bottom: -7px;
-  right: 3px;
-}
-
-.cursor-questionmark {
-  position: fixed;
-  pointer-events: none;
-  font-size: 18px;
-  font-weight: bold;
-  color: #3DCFB6;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  animation: pulse 1.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  50% {
-    opacity: 0.4;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
 }
 
 .tools-page {
@@ -102,11 +73,11 @@
 .school-box {
   border: 2px solid #3DCFB6 !important;
   box-shadow: 0 0 12px rgba(61, 207, 182, 0.4);
-  cursor: pointer !important;
   transition: box-shadow 0.4s ease-in-out, transform 0.4s ease;
 
   &:hover {
     box-shadow: inset 0 0 8px rgba(61, 207, 182, 0.5);
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer_question.cur') 0 0, pointer !important;
   }
 
   img {
@@ -115,6 +86,7 @@
 
   &:hover img {
     transform: scale(0.9);
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer_question.cur') 0 0, pointer !important;
   }
 }
 
@@ -147,6 +119,10 @@
   img {
     width: clamp(20px, 4vw, 35px);
     height: auto;
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_standard_question.cur') 0 0, pointer;
+    }
   }
 
   p {
@@ -171,7 +147,6 @@
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
-  cursor: help;
 
   .hover-label {
     position: absolute;
@@ -193,6 +168,10 @@
     height: auto;
     position: relative;
     z-index: 1;
+
+    &:hover {
+      cursor: url('./../../../assets/icons/cursor/cursor_standard_question.cur') 0 0, pointer;
+    }
   }
 
   p {
@@ -228,6 +207,8 @@
   border-radius: 32px;
   background: rgba(0, 0, 0, 0.35);
   overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   span {
     color: #3DCFB6;
@@ -317,5 +298,5 @@
     padding: 10px !important;
     border-radius: 20px;
   }
-  
+
 }

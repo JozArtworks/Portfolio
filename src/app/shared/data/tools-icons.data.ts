@@ -67,7 +67,7 @@ export const toolsIcons: ToolIcon[] = [
   },
     {
     name: 'accessibility',
-    alt: 'tools-alt-landing.acces.alt',
+    alt: 'tools-alt-landing.access.alt',
     icon: 'assets/icons/white/svg/icon_accessibility.svg'
   },
 ];

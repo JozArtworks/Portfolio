@@ -41,7 +41,7 @@
     justify-content: center;
     font-size: 12px;
     font-weight: 400;
-    cursor: pointer;
+    cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     transition: color 0.3s ease;
 
     &:hover {

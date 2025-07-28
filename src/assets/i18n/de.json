@@ -159,8 +159,7 @@
     "portfolio": {
       "title": "Portfolio",
       "description": "UI-Design & barrierefreies Web",
-"dialogDescription": "Modernes UI-Design trifft auf barrierefreien Code – mit Fokus auf Screenreader, Tastaturnavigation und klaren Strukturen."
-
+      "dialogDescription": "Modernes UI-Design trifft auf barrierefreien Code – mit Fokus auf Screenreader, Tastaturnavigation und klaren Strukturen."
     }
   },
   "footer": {
@@ -235,6 +234,9 @@
     },
     "indesign": {
       "alt": "Adobe InDesign – Layout für Print und Digital"
+    },
+    "access": {
+      "alt": "Barrierefreie Webentwicklung"
     }
   },
   "links": {
