@@ -78,6 +78,12 @@
   pointer-events: none;
 }
 
+.hide-bg {
+  background-image: none !important;
+  background-color: black !important;
+}
+
+
 .bg-home {
   background-image: url('./../assets/images/BlackWhitePortfolioHeaderPics.webp');
 }

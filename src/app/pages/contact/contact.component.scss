@@ -338,7 +338,7 @@
 
   &:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+    cursor: url('./../../../assets/icons/cursor/cursor_stop.cur') 0 0, pointer;
   }
 }
 

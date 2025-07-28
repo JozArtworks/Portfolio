@@ -1,7 +1,7 @@
 <section>
   <header>
-    <a href="#" (click)="scrollToHome($event)" [attr.aria-label]="'logo.homeLabel' | translate">
-      <img src="./../../../assets/icons/white/svg/LogoJM_white.svg" [attr.alt]="'logo.alt' | translate"
+    <a href="#" tabindex="-1" [attr.aria-label]="'logo.homeLabel' | translate">
+      <img tabindex="0" (click)="scrollToHome($event)" src="./../../../assets/icons/white/svg/LogoJM_white.svg" [attr.alt]="'logo.alt' | translate"
         [attr.aria-label]="'logo.alt' | translate" role="img" class="your-logo-class" />
     </a>
     <app-navbar (forceCloseMenu)="onForceCloseMenu()" (mailClicked)="onMailClicked()" [mobileMenuOpen]="mobileMenuOpen"

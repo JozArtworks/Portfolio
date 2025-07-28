@@ -1,4 +1,4 @@
-<section [class]="['background-pic', getBackgroundClass()]">
+<section [class]="['background-pic', getBackgroundClass(), !isAppLoaded ? 'hide-bg' : '']">
   <div class="background-fader" [class.active]="isFading"></div>
   <div class="background-gradient">
     <div class="glass-background-style">

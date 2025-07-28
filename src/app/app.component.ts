@@ -12,6 +12,7 @@ import { ScrollPageComponent } from './scroll-page/scroll-page.component';
 import { SectionObserverService } from './../assets/services/section-observer.service';
 import { ProjectDialogService } from './../assets/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
+import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,7 +23,7 @@ import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.c
 
 export class AppComponent {
 
-@Input() isAppReadyForTransition = false;
+  @Input() isAppReadyForTransition = false;
 
 
   isAppLoaded = false;
@@ -41,6 +42,7 @@ export class AppComponent {
   private boundCheckViewport: () => void = () => { };
 
   constructor(
+    private ngZone: NgZone,
     private router: Router,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -53,29 +55,37 @@ export class AppComponent {
     });
   }
 
-  ngOnInit() {
-    this.checkViewport();
-    this.boundCheckViewport = this.checkViewport.bind(this);
-    window.addEventListener('resize', this.boundCheckViewport);
+ngOnInit() {
+  this.checkViewport();
+  this.boundCheckViewport = this.checkViewport.bind(this);
+  window.addEventListener('resize', this.boundCheckViewport);
+  this.checkOrientation();
+
+  window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
     this.checkOrientation();
-    window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
-      this.checkOrientation();
+  });
+
+
+  window.addEventListener('load', () => {
+    this.ngZone.runOutsideAngular(() => {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          this.ngZone.run(() => {
+            this.isAppLoaded = true;
+            this.cdr.detectChanges();
+
+            setTimeout(() => {
+              this.showHeader = true;
+              this.cdr.detectChanges();
+            }, 50);
+          });
+        }, 1000);
+      });
     });
+  });
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    this.isAppLoaded = true;
-    this.cdr.detectChanges();
-
-    setTimeout(() => {
-      this.showHeader = true;
-      this.cdr.detectChanges();
-    }, 50);
-  }, 3000);
-});
-
-
-  }
+  
+}
 
   checkOrientation() {
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
@@ -193,7 +203,5 @@ window.addEventListener('load', () => {
     const isLandscape = window.matchMedia('(orientation: landscape)').matches;
     return isTouchDevice && isLandscape;
   }
-
-
 
 }
