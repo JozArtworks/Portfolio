@@ -1,73 +1,65 @@
 @import "../assets/styles/mixins.scss";
 @import "../assets/styles/variables.scss";
 
-.blur-scroll {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  overflow: hidden;
-}
-
-// .background-fader {
-//   background: rgba(0, 0, 0, 0.3);
-//   backdrop-filter: blur(2px);
-// }
-
-// .background-pic {
-//   position: relative;
-//   min-height: 100dvh;
-//   height: 100dvh;
-//   width: 100%;
-//   background-size: cover;
-//   background-position: center bottom;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   filter: brightness(0.3) blur(4px);
-//   transition: filter 0.8s ease-in-out;
-// }
-
-// .bg-fade-in {
-//   filter: brightness(1) blur(0);
-// }
-
 .background-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-.background-pic {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-fader {
+  position: absolute;
+  inset: 0;
   background-size: cover;
-  background-position: center bottom;
-  filter: brightness(0.3) blur(4px);
-  transition: opacity 0.6s ease-in-out;
-  pointer-events: none;
+  background-position: center;
+  transition: opacity 0.6s ease;
+  z-index: -1;
+}
 
-  &.fade-in {
-    opacity: 1;
-    z-index: 2;
-  }
-
-  &.fade-out {
-    opacity: 0;
-    z-index: 1;
-  }
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in 0.1s forwards;
+  z-index: -2;
 }
 
 
+.fade-out {
+  animation: fadeOut 0.6s ease-out forwards;
+  z-index: -1;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+section {
+  min-height: 100dvh;
+  height: 100dvh;
+  width: 100%;
+}
 
 .background-gradient {
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom,
-      rgba(4, 74, 72, 0.8) 25%,
-      rgba(53, 57, 63, 0.8) 100%);
+  background: linear-gradient(to bottom, rgba(4, 74, 72, 0.8) 25%, rgba(53, 57, 63, 0.8) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,21 +68,21 @@
 }
 
 .glass-background-style {
-  max-width: 1900px;
   position: relative;
-  height: 100%;
-  min-height: 100%;
+  max-width: 1900px;
   width: 100%;
+  height: 100%;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.25);
-  padding: 10px;
-  padding-top: 5px;
-  overflow: visible;
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.25);
+  padding: 10px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: visible;
 }
 
 .glass-background-style::before {
@@ -99,61 +91,60 @@
   inset: 0;
   border-radius: 32px;
   padding: 1px;
-  background: linear-gradient(to bottom,
-      rgba(117, 117, 117, 0.2),
-      rgba(255, 255, 255, 0.2));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+  background: linear-gradient(to bottom, rgba(117, 117, 117, 0.2), rgba(255, 255, 255, 0.2));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   z-index: -1;
   pointer-events: none;
 }
 
-.bg-home {
+.blur-scroll {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.background-fader.bg-home {
   background-image: url('./../assets/images/BlackWhitePortfolioHeaderPics.webp');
 }
 
-.bg-about {
+.background-fader.bg-about {
   background-image: url('./../assets/images/blackWhitePicGlass.webp');
 }
 
-.bg-skills {
+.background-fader.bg-skills {
   background-image: url('./../assets/images/BlackWhiteMouse.webp');
 }
 
-.bg-projects {
+.background-fader.bg-projects {
   background-image: url('./../assets/images/BlackwhiteCodeWhitoutFace.webp');
 }
 
-.bg-feedbacks {
+.background-fader.bg-feedbacks,
+.background-fader.bg-contact,
+.background-fader.bg-imprint-policy {
   background: linear-gradient(to bottom right, #096b68, #222831);
 }
 
-.bg-contact {
-  background: linear-gradient(to bottom right, #096b68, #222831);
-}
-
-.bg-imprint-policy {
-  background: linear-gradient(to bottom right, #096b68, #222831);
+.delayed-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in 0.2s forwards;
 }
 
 .main-content {
-  -webkit-overflow-scrolling: touch;
   width: 100%;
   flex: 1;
   height: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-  overflow-y: hidden;
-  overflow-x: hidden;
 
   &.scrollable {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -185,43 +176,22 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-
-  .background-gradient {
-    padding: 15px;
-  }
-
-  .glass-background-style {
-    padding: 5px;
-    padding-top: 0px;
-  }
-
-}
-
-@media screen and (max-width: 420px) {
-
-  .background-gradient {
-    padding: 5px;
-  }
-
-}
-
 .orientation-lock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
   position: fixed;
-  flex-direction: column;
+  top: 0;
+  left: 0;
+  z-index: 98;
+  width: 100%;
+  height: 100%;
   padding: 20px;
   text-align: center;
   color: white;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 98;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
 
   .logo-lock {
     max-width: 80px;
@@ -236,7 +206,6 @@
   >img:last-child {
     animation: rotateImage 4s infinite ease-in-out;
   }
-
 }
 
 @keyframes rotateImage {
@@ -266,10 +235,10 @@
   z-index: 9999;
   width: 100%;
   height: 100dvh;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black; // oder semi-transparent
   transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
   opacity: 1;
   visibility: visible;
@@ -281,22 +250,10 @@
   visibility: hidden;
 }
 
-
 .loader-ring {
   position: relative;
   width: 120px;
   height: 120px;
-}
-
-.preloader-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  animation: pulse 1.5s ease-in-out infinite;
 }
 
 .spinner {
@@ -314,18 +271,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1);
+  0% {
+    transform: rotate(0deg);
   }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 
@@ -355,9 +306,19 @@
   opacity: 0;
 }
 
+@media screen and (max-width: 800px) {
+  .background-gradient {
+    padding: 15px;
+  }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  .glass-background-style {
+    padding: 5px;
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .background-gradient {
+    padding: 5px;
   }
 }

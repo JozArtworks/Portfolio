@@ -3,7 +3,14 @@
 <div tabindex="0" (focus)="focusLast()" class="focus-trap-start"></div>
 <div class="dialog-window" role="dialog" aria-modal="true" tabindex="-1" #dialogRef
   [attr.aria-labelledby]="'dialog-title' + project.title" [attr.aria-describedby]="'dialog-desc' + project.title">
-  <div class="box">
+  <div class="box"
+  [class.swipe-left]="swipeDirection === 'left'"
+  [class.swipe-right]="swipeDirection === 'right'"
+  [class.enter-left]="enterDirection === 'left'"
+  [class.enter-right]="enterDirection === 'right'"
+    (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)"
+  (touchend)="onTouchEnd()">
     <div class="box-header">
       <button tabindex="0" class="close-button" [attr.aria-label]="'dialog.alt.close' | translate"
         (mouseenter)="onHoverClose(true)" (mouseleave)="onHoverClose(false)" (click)="onClose()">

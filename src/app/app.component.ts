@@ -21,29 +21,33 @@ import { AppSettings } from './app.config';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-
 export class AppComponent {
-
   @Input() isAppReadyForTransition = false;
 
+  title = 'portfolio';
+
   isAppLoaded = false;
+  preloaderDone = false;
   showHeader = false;
   showReloadHint = false;
 
-  lastBackgroundClass = 'bg-home';
+  exitPhase = false;
 
-
-
-  orientationLocked = false;
   isMobileView = true;
+  orientationLocked = false;
+
   mobileMenuOpen = false;
   animationState: 'open' | 'closing' | '' = '';
+
   currentRoute = '';
   lastSection = '';
-  isFading = false;
-  title = 'portfolio';
 
-  private boundCheckViewport: () => void = () => { };
+  isFading = false;
+  didInitialFade = false;
+  backgroundClassPrevious = '';
+  backgroundClassCurrent = 'bg-home';
+
+  private boundCheckViewport = () => { };
 
   constructor(
     private ngZone: NgZone,
@@ -51,188 +55,104 @@ export class AppComponent {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public sectionObserver: SectionObserverService,
-    public projectDialog: ProjectDialogService) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.currentRoute = event.urlAfterRedirects;
+    public projectDialog: ProjectDialogService
+  ) {
+    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((e: any) => {
+      this.currentRoute = e.urlAfterRedirects;
     });
   }
 
-  exitPhase = false;
-  preloaderDone = false;
-
-ngOnInit() {
-  this.checkViewport();
-  this.boundCheckViewport = this.checkViewport.bind(this);
-  window.addEventListener('resize', this.boundCheckViewport);
-  this.checkOrientation();
-
-  window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
+  ngOnInit() {
+    this.boundCheckViewport = this.checkViewport.bind(this);
+    window.addEventListener('resize', this.boundCheckViewport);
+    this.checkViewport();
     this.checkOrientation();
-  });
 
-  setTimeout(() => {
-    if (!this.isAppLoaded) {
-      this.showReloadHint = true;
-      this.cdr.detectChanges();
-    }
-  }, 2000);
+    window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
+      this.checkOrientation();
+    });
 
-  window.addEventListener('load', () => {
-    this.ngZone.runOutsideAngular(() => {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.ngZone.run(() => {
-            this.isAppLoaded = true;
-            this.cdr.detectChanges();
-            this.exitPhase = true;
+    setTimeout(() => {
+      if (!this.isAppLoaded) {
+        this.showReloadHint = true;
+        this.cdr.detectChanges();
+      }
+    }, 2000);
 
-            setTimeout(() => {
-              this.preloaderDone = true;
-            }, 800);
+    window.addEventListener('load', () => {
+      this.ngZone.runOutsideAngular(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            this.ngZone.run(() => {
+              this.isAppLoaded = true;
 
-            setTimeout(() => {
-              this.showHeader = true;
+              const logo = document.querySelector('.lcp-logo') as HTMLElement;
+              if (logo) logo.classList.add('fade-out'); // 🟢 sauberes CSS-Fade-out
+
+              this.exitPhase = true;
+              this.didInitialFade = true;
               this.cdr.detectChanges();
-            }, 50);
-          });
-        }, AppSettings.loaderDelayMs);
+
+              setTimeout(() => this.preloaderDone = true, 800);
+              setTimeout(() => {
+                this.showHeader = true;
+                this.cdr.detectChanges();
+              }, 50);
+            });
+          }, AppSettings.loaderDelayMs);
+        });
       });
     });
-  });
-}
 
-
-  checkOrientation() {
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-    const newLockState = isTouchDevice && isLandscape;
-    if (newLockState !== this.orientationLocked) {
-      this.orientationLocked = newLockState;
-      this.cdr.detectChanges();
-    }
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.boundCheckViewport);
   }
 
   ngAfterViewInit() {
     this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
-    if (this.mobileMenuOpen && clickedOutsideMenu) {
-      this.animationState = 'closing';
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundCheckViewport);
+  }
+
+  updateBackgroundOnSectionChange(sectionId: string) {
+    const newClass = this.mapSectionToBg(sectionId);
+
+    if (newClass !== this.backgroundClassCurrent) {
+      this.backgroundClassPrevious = this.backgroundClassCurrent;
+      this.isFading = true;
+
       setTimeout(() => {
-        this.mobileMenuOpen = false;
-        this.animationState = '';
-      }, 100);
+        this.backgroundClassCurrent = newClass;
+        this.cdr.detectChanges();
+      }, 40);
+
+      setTimeout(() => {
+        this.isFading = false;
+        this.cdr.detectChanges();
+      }, 600);
     }
   }
 
-  handleMobileNavClick(sectionId: string) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    this.toggleMobileMenu();
-  }
 
-  setLanguage(lang: 'de' | 'en') {
-    this.translate.use(lang);
-    this.cdr.detectChanges();
-  }
-
-  shouldScroll(): boolean {
-    return this.currentRoute === '/';
-  }
-
-  checkViewport() {
-    this.isMobileView = window.innerWidth <= 870;
-    if (!this.isMobileView && this.mobileMenuOpen) {
-      this.mobileMenuOpen = false;
+  mapSectionToBg(section: string): string {
+    switch (section) {
+      case 'about': return 'bg-about';
+      case 'skills': return 'bg-skills';
+      case 'projects': return 'bg-projects';
+      case 'feedbacks': return 'bg-feedbacks';
+      case 'contact': return 'bg-contact';
+      case 'imprint':
+      case 'privacy-policy':
+        return 'bg-imprint-policy';
+      default: return 'bg-home';
     }
   }
 
-  // getBackgroundClass() {
-  //   if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
-  //     return 'bg-imprint-policy';
-  //   }
-  //   if (this.currentRoute === '/') {
-  //     const section = this.sectionObserver.currentSection();
-  //     if (section !== this.lastSection) {
-  //       this.triggerFade();
-  //       this.lastSection = section;
-  //     }
-  //     switch (section) {
-  //       case 'about': return 'bg-about';
-  //       case 'skills': return 'bg-skills';
-  //       case 'projects': return 'bg-projects';
-  //       case 'feedbacks': return 'bg-feedbacks';
-  //       case 'contact': return 'bg-contact';
-  //       default: return 'bg-home';
-  //     }
-  //   }
-  //   return 'bg-home';
-  // }
 
-getBackgroundClass(): string {
-  if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
-    return 'bg-imprint-policy';
+  triggerFade() {
+    this.isFading = true;
+    setTimeout(() => this.isFading = false, 400);
   }
-
-  if (this.currentRoute === '/') {
-    const section = this.sectionObserver.currentSection();
-    const newClass = this.mapSectionToBg(section);
-
-    if (section !== this.lastSection) {
-      this.lastBackgroundClass = this.mapSectionToBg(this.lastSection);
-      this.lastSection = section;
-      this.triggerFade();
-    }
-
-    return newClass;
-  }
-
-  return 'bg-home';
-}
-
-//new
-private mapSectionToBg(section: string): string {
-  switch (section) {
-    case 'about': return 'bg-about';
-    case 'skills': return 'bg-skills';
-    case 'projects': return 'bg-projects';
-    case 'feedbacks': return 'bg-feedbacks';
-    case 'contact': return 'bg-contact';
-    default: return 'bg-home';
-  }
-}
-
-triggerFade() {
-  this.isFading = true;
-
-
-  setTimeout(() => {
-    this.isFading = false;
-
-  }, 600);
-}
-
-
-
-
-  // triggerFade() {
-  //   this.isFading = true;
-  //   setTimeout(() => {
-  //     this.isFading = false;
-  //   }, 400);
-  // }
 
   toggleMobileMenu() {
     if (this.mobileMenuOpen) {
@@ -247,8 +167,49 @@ triggerFade() {
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickedOutsideMenu = !target.closest('app-mobile-popout') && !target.closest('.burger-menu');
+    if (this.mobileMenuOpen && clickedOutsideMenu) {
+      this.toggleMobileMenu();
+    }
+  }
+
+  setLanguage(lang: 'de' | 'en') {
+    this.translate.use(lang);
+    this.cdr.detectChanges();
+  }
+
+  shouldScroll(): boolean {
+    return this.currentRoute === '/';
+  }
+
   shouldShowHeader(): boolean {
     return !['/imprint', '/privacy-policy'].includes(this.currentRoute);
+  }
+
+  checkViewport() {
+    this.isMobileView = window.innerWidth <= 870;
+    if (!this.isMobileView && this.mobileMenuOpen) {
+      this.mobileMenuOpen = false;
+    }
+  }
+
+  checkOrientation() {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    const newLockState = isTouchDevice && isLandscape;
+    if (newLockState !== this.orientationLocked) {
+      this.orientationLocked = newLockState;
+      this.cdr.detectChanges();
+    }
+  }
+
+  isOrientationLocked(): boolean {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    return isTouchDevice && isLandscape;
   }
 
   closeGlobalDialog() {
@@ -260,11 +221,4 @@ triggerFade() {
     this.projectDialog.open();
     document.body.style.overflow = 'hidden';
   }
-
-  isOrientationLocked(): boolean {
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-    return isTouchDevice && isLandscape;
-  }
-
 }

@@ -8,6 +8,7 @@ import { ContactComponent } from '../pages/contact/contact.component';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { Output, EventEmitter } from '@angular/core';
 import { SectionObserverService } from './../../assets/services/section-observer.service';
+import { effect } from '@angular/core';
 @Component({
   selector: 'app-scroll-page',
   standalone: true,
@@ -24,47 +25,39 @@ import { SectionObserverService } from './../../assets/services/section-observer
   styleUrls: ['./scroll-page.component.scss']
 })
 
+
+
 export class ScrollPageComponent implements AfterViewInit {
 
-@Input() isAppReadyForTransition = false;
-@Output() sectionChanged = new EventEmitter<string>();
-sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
+  @Input() isAppReadyForTransition = false;
+  @Output() sectionChanged = new EventEmitter<string>();
+  sectionIds = ['home', 'about', 'skills', 'projects', 'feedbacks', 'contact'];
 
 
-  constructor(public sectionObserver: SectionObserverService) { }
+  constructor(public sectionObserver: SectionObserverService) {
+    effect(() => {
+      const current = this.sectionObserver.currentSection();
+      this.sectionChanged.emit(current);
+    });
+  }
 
 
-  @HostListener('window:scroll', [])
-  onScroll() {
-    for (const id of this.sectionIds) {
-      const el = document.getElementById(id);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 200 && rect.bottom > 200) {
-          this.sectionObserver.currentSection.set(id);
-          this.sectionChanged.emit(id);
-          break;
-        }
+  ngAfterViewInit(): void {
+    this.sectionObserver.observeSections(this.sectionIds);
+
+    const homeEl = document.getElementById('home');
+    if (homeEl) {
+      const rect = homeEl.getBoundingClientRect();
+      if (rect.top <= 200 && rect.bottom > 200) {
+        this.sectionObserver.currentSection.set('home');
+        this.sectionChanged.emit('home');
       }
     }
+
+    setTimeout(() => {
+      this.isAppReadyForTransition = true;
+    }, 100);
   }
-
-ngAfterViewInit(): void {
-  this.sectionObserver.observeSections(this.sectionIds);
-
-  const homeEl = document.getElementById('home');
-  if (homeEl) {
-    const rect = homeEl.getBoundingClientRect();
-    if (rect.top <= 200 && rect.bottom > 200) {
-      this.sectionObserver.currentSection.set('home');
-      this.sectionChanged.emit('home');
-    }
-  }
-
-  setTimeout(() => {
-    this.isAppReadyForTransition = true;
-  }, 100);
-}
 
 
 

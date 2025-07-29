@@ -22,19 +22,21 @@ export class ProjectDialogComponent {
     this.previouslyFocusedElement = document.activeElement as HTMLElement;
     if (this.dialogRef?.nativeElement) {
       this.dialogRef.nativeElement.focus();
+      const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
+      if (box) {
+        box.style.transform = '';
+        box.classList.remove('rebound');
+      }
     }
   }
-
-onClose() {
-  const lastProject = this.dialog.currentProject(); // hole das aktuelle
-  this.dialog.close(lastProject); // jetzt erlaubt
-  if (this.previouslyFocusedElement) {
-    this.previouslyFocusedElement.blur(); // optional
+  
+  onClose() {
+    const lastProject = this.dialog.currentProject();
+    this.dialog.close(lastProject);
+    if (this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.blur();
+    }
   }
-}
-
-
-
 
   @ViewChild('dialogRef') dialogRef!: ElementRef;
 
@@ -60,21 +62,21 @@ onClose() {
     return this.currentIndex === this.dialog.allProjects().length - 1;
   }
 
-previousProject() {
-  if (!this.isFirst) {
-    const prev = this.dialog.allProjects()[this.currentIndex - 1];
-    this.dialog.change(prev);
-    this.resetNavHoverIcons();
+  previousProject() {
+    if (!this.isFirst) {
+      const prev = this.dialog.allProjects()[this.currentIndex - 1];
+      this.dialog.change(prev);
+      this.resetNavHoverIcons();
+    }
   }
-}
 
-nextProject() {
-  if (!this.isLast) {
-    const next = this.dialog.allProjects()[this.currentIndex + 1];
-    this.dialog.change(next);
-    this.resetNavHoverIcons();
+  nextProject() {
+    if (!this.isLast) {
+      const next = this.dialog.allProjects()[this.currentIndex + 1];
+      this.dialog.change(next);
+      this.resetNavHoverIcons();
+    }
   }
-}
 
   onHoverClose(hovered: boolean) {
     this.iconClose = hovered
@@ -140,9 +142,87 @@ nextProject() {
   }
 
   private resetNavHoverIcons() {
-  this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
-  this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
-}
+    this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+    this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
+  }
 
+  private touchEndX = 0;
+  swipeDirection: 'left' | 'right' | null = null;
+  enterDirection: 'left' | 'right' | null = null;
+
+  private handleSwipeGesture() {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (Math.abs(swipeDistance) < 50) return;
+    if (swipeDistance < 0 && !this.isLast) {
+      this.swipeDirection = 'left';
+      setTimeout(() => {
+        this.nextProject();
+        this.swipeDirection = null;
+        this.enterDirection = 'right';
+        setTimeout(() => this.enterDirection = null, 150);
+      }, 250);
+    } else if (swipeDistance > 0 && !this.isFirst) {
+      this.swipeDirection = 'right';
+      setTimeout(() => {
+        this.previousProject();
+        this.swipeDirection = null;
+        this.enterDirection = 'left';
+        setTimeout(() => this.enterDirection = null, 150);
+      }, 250);
+    }
+  }
+
+  touchStartX = 0;
+  currentTranslateX = 0;
+  dragging = false;
+
+  onTouchStart(event: TouchEvent) {
+    this.touchStartX = event.touches[0].clientX;
+    this.dragging = true;
+  }
+
+  onTouchMove(event: TouchEvent) {
+    if (!this.dragging) return;
+    const currentX = event.touches[0].clientX;
+    this.currentTranslateX = currentX - this.touchStartX;
+    const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
+    if (box) {
+      box.style.transform = `translateX(${this.currentTranslateX}px)`;
+      box.classList.remove('rebound');
+    }
+  }
+
+  onTouchEnd() {
+    this.dragging = false;
+    const threshold = 80;
+    const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
+    if (this.currentTranslateX < -threshold && !this.isLast) {
+      this.currentTranslateX = 0;
+      box.style.transform = '';
+      this.swipeDirection = 'left';
+      setTimeout(() => {
+        this.nextProject();
+        this.swipeDirection = null;
+        this.enterDirection = 'right';
+        setTimeout(() => this.enterDirection = null, 300);
+      }, 250);
+    } else if (this.currentTranslateX > threshold && !this.isFirst) {
+      this.currentTranslateX = 0;
+      box.style.transform = '';
+      this.swipeDirection = 'right';
+      setTimeout(() => {
+        this.previousProject();
+        this.swipeDirection = null;
+        this.enterDirection = 'left';
+        setTimeout(() => this.enterDirection = null, 300);
+      }, 250);
+    } else {
+      if (box) {
+        box.classList.add('rebound');
+        box.style.transform = `translateX(0)`;
+      }
+    }
+    this.currentTranslateX = 0;
+  }
 
 }
