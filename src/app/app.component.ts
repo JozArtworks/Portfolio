@@ -28,6 +28,10 @@ export class AppComponent {
 
   isAppLoaded = false;
   showHeader = false;
+  showReloadHint = false;
+
+  lastBackgroundClass = 'bg-home';
+
 
 
   orientationLocked = false;
@@ -55,38 +59,50 @@ export class AppComponent {
     });
   }
 
-  ngOnInit() {
-    this.checkViewport();
-    this.boundCheckViewport = this.checkViewport.bind(this);
-    window.addEventListener('resize', this.boundCheckViewport);
+  exitPhase = false;
+  preloaderDone = false;
+
+ngOnInit() {
+  this.checkViewport();
+  this.boundCheckViewport = this.checkViewport.bind(this);
+  window.addEventListener('resize', this.boundCheckViewport);
+  this.checkOrientation();
+
+  window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
     this.checkOrientation();
+  });
 
-    window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
-      this.checkOrientation();
-    });
+  setTimeout(() => {
+    if (!this.isAppLoaded) {
+      this.showReloadHint = true;
+      this.cdr.detectChanges();
+    }
+  }, 2000);
 
+  window.addEventListener('load', () => {
+    this.ngZone.runOutsideAngular(() => {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          this.ngZone.run(() => {
+            this.isAppLoaded = true;
+            this.cdr.detectChanges();
+            this.exitPhase = true;
 
-    window.addEventListener('load', () => {
-      this.ngZone.runOutsideAngular(() => {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            this.ngZone.run(() => {
-              this.isAppLoaded = true;
+            setTimeout(() => {
+              this.preloaderDone = true;
+            }, 800);
+
+            setTimeout(() => {
+              this.showHeader = true;
               this.cdr.detectChanges();
-
-              setTimeout(() => {
-                this.showHeader = true;
-                this.cdr.detectChanges();
-              }, 50);
-            });
-          }, AppSettings.loaderDelayMs);
-        });
+            }, 50);
+          });
+        }, AppSettings.loaderDelayMs);
       });
     });
+  });
+}
 
-
-
-  }
 
   checkOrientation() {
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
@@ -143,34 +159,80 @@ export class AppComponent {
     }
   }
 
-  getBackgroundClass() {
-    if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
-      return 'bg-imprint-policy';
-    }
-    if (this.currentRoute === '/') {
-      const section = this.sectionObserver.currentSection();
-      if (section !== this.lastSection) {
-        this.triggerFade();
-        this.lastSection = section;
-      }
-      switch (section) {
-        case 'about': return 'bg-about';
-        case 'skills': return 'bg-skills';
-        case 'projects': return 'bg-projects';
-        case 'feedbacks': return 'bg-feedbacks';
-        case 'contact': return 'bg-contact';
-        default: return 'bg-home';
-      }
-    }
-    return 'bg-home';
+  // getBackgroundClass() {
+  //   if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
+  //     return 'bg-imprint-policy';
+  //   }
+  //   if (this.currentRoute === '/') {
+  //     const section = this.sectionObserver.currentSection();
+  //     if (section !== this.lastSection) {
+  //       this.triggerFade();
+  //       this.lastSection = section;
+  //     }
+  //     switch (section) {
+  //       case 'about': return 'bg-about';
+  //       case 'skills': return 'bg-skills';
+  //       case 'projects': return 'bg-projects';
+  //       case 'feedbacks': return 'bg-feedbacks';
+  //       case 'contact': return 'bg-contact';
+  //       default: return 'bg-home';
+  //     }
+  //   }
+  //   return 'bg-home';
+  // }
+
+getBackgroundClass(): string {
+  if (this.currentRoute === '/imprint' || this.currentRoute === '/privacy-policy') {
+    return 'bg-imprint-policy';
   }
 
-  triggerFade() {
-    this.isFading = true;
-    setTimeout(() => {
-      this.isFading = false;
-    }, 400);
+  if (this.currentRoute === '/') {
+    const section = this.sectionObserver.currentSection();
+    const newClass = this.mapSectionToBg(section);
+
+    if (section !== this.lastSection) {
+      this.lastBackgroundClass = this.mapSectionToBg(this.lastSection);
+      this.lastSection = section;
+      this.triggerFade();
+    }
+
+    return newClass;
   }
+
+  return 'bg-home';
+}
+
+//new
+private mapSectionToBg(section: string): string {
+  switch (section) {
+    case 'about': return 'bg-about';
+    case 'skills': return 'bg-skills';
+    case 'projects': return 'bg-projects';
+    case 'feedbacks': return 'bg-feedbacks';
+    case 'contact': return 'bg-contact';
+    default: return 'bg-home';
+  }
+}
+
+triggerFade() {
+  this.isFading = true;
+
+
+  setTimeout(() => {
+    this.isFading = false;
+
+  }, 600);
+}
+
+
+
+
+  // triggerFade() {
+  //   this.isFading = true;
+  //   setTimeout(() => {
+  //     this.isFading = false;
+  //   }, 400);
+  // }
 
   toggleMobileMenu() {
     if (this.mobileMenuOpen) {

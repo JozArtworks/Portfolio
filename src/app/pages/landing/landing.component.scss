@@ -182,13 +182,11 @@ screen and (max-width: 870px) {
   h2 {
     font-family: 'Inter', sans-serif;
     font-weight: 100;
-    opacity: 0.5;
   }
 
   h3 {
     font-family: 'Amatica SC', sans-serif;
     font-weight: 100;
-    opacity: 0.5;
   }
 }
 
@@ -369,3 +367,27 @@ screen and (max-width: 870px) {
   transform: translateX(150%);
 }
 
+.fade-title {
+  opacity: 0;
+  transform: translateY(-150px);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-subtitle {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+h2.fade-subtitle { transition-delay: 0.1s; }
+h3.fade-subtitle { transition-delay: 0.2s; }

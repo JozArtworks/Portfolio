@@ -260,5 +260,8 @@
   },
   "orientation": {
     "warning": "Bitte drehe dein Gerät ins Hochformat, um die App zu nutzen."
-  }
+  },
+  "preloader": {
+  "reloadHint": "Lädt länger als erwartet... Seite ggf. aktualisieren."
+}
 }

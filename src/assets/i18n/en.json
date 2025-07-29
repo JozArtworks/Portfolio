@@ -257,5 +257,8 @@
   },
   "orientation": {
     "warning": "Please rotate your device into portrait mode to use the app."
-  }
+  },
+  "preloader": {
+  "reloadHint": "Taking longer than expected... try refreshing."
+}
 }

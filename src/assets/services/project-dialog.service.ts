@@ -1,8 +1,12 @@
 import { Injectable, signal } from '@angular/core';
 import { Project } from './../../app/pages/projects/project.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectDialogService {
+
+  private closedSubject = new Subject<void>();
+  closedDialog = this.closedSubject.asObservable();
 
   private dialogOpenSignal = signal(false);
   private allProjectsSignal = signal<Project[]>([]);
@@ -19,9 +23,18 @@ export class ProjectDialogService {
     this.dialogOpenSignal.set(true);
   }
 
-  close() {
-    this.dialogOpenSignal.set(false);
+close(lastProject?: Project | null) {
+  if (lastProject) {
+    this.currentProjectSignal.set(lastProject);
+  } else {
+    this.currentProjectSignal.set(null);
   }
+  this.dialogOpenSignal.set(false);
+  this.closedSubject.next();
+}
+
+
+
 
   change(project: Project) {
     this.currentProjectSignal.set(project);

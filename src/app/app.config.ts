@@ -6,7 +6,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const AppSettings = {
-  loaderDelayMs: 1000,
+  loaderDelayMs: 1200,
 };
 
 export function HttpLoaderFactory(http: HttpClient) {

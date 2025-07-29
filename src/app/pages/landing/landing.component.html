@@ -1,10 +1,10 @@
 <section class="main-landing" [class.animate-in]="isAppReadyForTransition">
   <div class="main">
     <div class="title">
-      <h1 tabindex="0" aria-label="Jonathan Michutta – Frontend Developer & Mediengestalter">JONATHAN MICHUTTA</h1>
+      <h1 class="fade-title" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" tabindex="0" aria-label="Jonathan Michutta – Frontend Developer & Mediengestalter">JONATHAN MICHUTTA</h1>
       <div class="subtitle">
-        <h2><span class="code-angle" aria-hidden="true">&lt;</span> {{ 'landing.title' | translate }} /></h2>
-        <h3>{{ 'landing.subtitle' | translate }}</h3>
+        <h2 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition"><span class="code-angle" aria-hidden="true">&lt;</span> {{ 'landing.title' | translate }} /></h2>
+        <h3 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">{{ 'landing.subtitle' | translate }}</h3>
       </div>
     </div>
     <div class="about-foot">

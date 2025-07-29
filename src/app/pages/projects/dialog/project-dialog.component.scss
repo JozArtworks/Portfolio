@@ -67,6 +67,8 @@
   z-index: 20;
   animation: zoomFadeIn 0.3s ease-out;
   transform-origin: center center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .box {
@@ -102,6 +104,12 @@ button {
     &:hover {
       cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
     }
+  }
+
+  &:focus-visible {
+    outline: 2px solid #3DCFB6;
+    border-radius: 50%;
+    outline-offset: 1px;
   }
 }
 
@@ -196,6 +204,11 @@ button {
     align-items: center;
     padding: 10px 20px;
 
+    &:focus {
+      outline: none;
+    }
+
+
     img {
       margin-left: 5px;
       width: 15px;
@@ -216,6 +229,14 @@ button {
       &:hover {
         cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
       }
+    }
+  }
+
+  &:focus-within {
+    border-color: #3DCFB6;
+
+    a {
+      color: #3DCFB6;
     }
   }
 }
@@ -245,6 +266,8 @@ button {
 
   .project-icons img {
     width: 35px;
+    height: auto;
+    border-radius: 10px;
   }
 
   .project-image img {
@@ -258,7 +281,21 @@ button {
 }
 
 @media screen and (max-width: 410px) {
+
+  .border-git,
+  .border-live {
+    border: 2px solid rgba(255, 255, 255, 0.289);
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.348);
+
+    a {
+
+      padding: 8px 13px;
+    }
+  }
+
   .project-buttons {
     gap: 5px;
   }
+
 }

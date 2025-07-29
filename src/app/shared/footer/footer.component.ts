@@ -101,4 +101,10 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
     if (this.showCopyDialog) return;
     this.showEmail = !this.showEmail;
   }
+
+  @HostListener('document:keydown.escape')
+  closeEmail() {
+    if (this.showEmail) this.showEmail = false;
+  }
+
 }

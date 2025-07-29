@@ -25,12 +25,15 @@ export class ProjectDialogComponent {
     }
   }
 
-  onClose() {
-    this.dialog.close();
-    if (this.previouslyFocusedElement) {
-      this.previouslyFocusedElement.blur();
-    }
+onClose() {
+  const lastProject = this.dialog.currentProject(); // hole das aktuelle
+  this.dialog.close(lastProject); // jetzt erlaubt
+  if (this.previouslyFocusedElement) {
+    this.previouslyFocusedElement.blur(); // optional
   }
+}
+
+
 
 
   @ViewChild('dialogRef') dialogRef!: ElementRef;
@@ -57,19 +60,21 @@ export class ProjectDialogComponent {
     return this.currentIndex === this.dialog.allProjects().length - 1;
   }
 
-  previousProject() {
-    if (!this.isFirst) {
-      const prev = this.dialog.allProjects()[this.currentIndex - 1];
-      this.dialog.change(prev);
-    }
+previousProject() {
+  if (!this.isFirst) {
+    const prev = this.dialog.allProjects()[this.currentIndex - 1];
+    this.dialog.change(prev);
+    this.resetNavHoverIcons();
   }
+}
 
-  nextProject() {
-    if (!this.isLast) {
-      const next = this.dialog.allProjects()[this.currentIndex + 1];
-      this.dialog.change(next);
-    }
+nextProject() {
+  if (!this.isLast) {
+    const next = this.dialog.allProjects()[this.currentIndex + 1];
+    this.dialog.change(next);
+    this.resetNavHoverIcons();
   }
+}
 
   onHoverClose(hovered: boolean) {
     this.iconClose = hovered
@@ -133,6 +138,11 @@ export class ProjectDialogComponent {
       'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
     ));
   }
+
+  private resetNavHoverIcons() {
+  this.iconLeft = 'assets/icons/white/svg/icon_left_white.svg';
+  this.iconRight = 'assets/icons/white/svg/icon_right_white.svg';
+}
 
 
 }

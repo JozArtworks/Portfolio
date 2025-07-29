@@ -12,7 +12,7 @@
           <ul class="project-list box" role="list">
             @for (project of projects; track project.title) {
             <li>
-              <div role="button" class="projects-list" tabindex="0"
+              <div #projectItem role="button" class="projects-list" tabindex="0"
                 [attr.aria-labelledby]="'project-title' + project.title"
                 [attr.aria-label]="('projects.title' | translate) + ': ' + (project.title | translate)"
                 (click)="openDialog(project)" (keydown.enter)="openDialog(project)"

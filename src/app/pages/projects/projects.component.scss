@@ -79,7 +79,7 @@
     cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: 2px solid #3DCFB6;
     outline-offset: 4px;
   }

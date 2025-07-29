@@ -1,18 +1,24 @@
-<section
+<!-- <section
   [class]="[
     'background-pic',
     getBackgroundClass(),
      'bg-fade-in'
   ]"
->
+> -->
 
+<section class="background-wrapper">
 
-  <div class="background-fader" [class.active]="isFading"></div>
+  <div
+    class="background-pic previous"
+    [ngClass]="[lastBackgroundClass, isFading ? 'fade-out' : '']"
+  ></div>
+  <div
+    class="background-pic current"
+    [ngClass]="[getBackgroundClass(), 'fade-in']"
+  ></div>
+  <!-- <div class="background-fader" [class.active]="isFading"></div> -->
   <div class="background-gradient">
     <div class="glass-background-style">
-
-
-
 
 
       @if (isAppLoaded) {
@@ -64,5 +70,12 @@
   <div class="loader-ring">
     <div class="spinner"></div>
     <img src="assets/icons/white/svg/logo_jm.svg" alt="Loading Logo" class="preloader-logo" />
+
+    @if (showReloadHint) {
+    <div class="reload-hint">
+      {{ 'preloader.reloadHint' | translate }}
+    </div>
+    }
+
   </div>
 </div>
