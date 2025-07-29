@@ -77,7 +77,7 @@ export class AppComponent {
         this.showReloadHint = true;
         this.cdr.detectChanges();
       }
-    }, 2000);
+    }, 3000);
 
     window.addEventListener('load', () => {
       this.ngZone.runOutsideAngular(() => {
@@ -85,14 +85,9 @@ export class AppComponent {
           setTimeout(() => {
             this.ngZone.run(() => {
               this.isAppLoaded = true;
-
-              const logo = document.querySelector('.lcp-logo') as HTMLElement;
-              if (logo) logo.classList.add('fade-out'); // 🟢 sauberes CSS-Fade-out
-
               this.exitPhase = true;
               this.didInitialFade = true;
               this.cdr.detectChanges();
-
               setTimeout(() => this.preloaderDone = true, 800);
               setTimeout(() => {
                 this.showHeader = true;
@@ -103,7 +98,6 @@ export class AppComponent {
         });
       });
     });
-
   }
 
   ngAfterViewInit() {
@@ -120,19 +114,16 @@ export class AppComponent {
     if (newClass !== this.backgroundClassCurrent) {
       this.backgroundClassPrevious = this.backgroundClassCurrent;
       this.isFading = true;
-
       setTimeout(() => {
         this.backgroundClassCurrent = newClass;
         this.cdr.detectChanges();
-      }, 40);
-
+      }, 100);
       setTimeout(() => {
         this.isFading = false;
         this.cdr.detectChanges();
       }, 600);
     }
   }
-
 
   mapSectionToBg(section: string): string {
     switch (section) {
@@ -147,7 +138,6 @@ export class AppComponent {
       default: return 'bg-home';
     }
   }
-
 
   triggerFade() {
     this.isFading = true;

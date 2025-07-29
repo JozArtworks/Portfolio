@@ -30,11 +30,6 @@
     padding: 5px 32px;
   }
 
-  .contact-headline {
-    margin: 0 0 15px 15px;
-    color: #3DCFB6;
-    text-shadow: 0 0 10px black;
-  }
 }
 
 .contact-body {
@@ -60,13 +55,6 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-
-  .intro-headline,
-  .sub-headline {
-    color: #3DCFB6;
-    text-shadow: 0 0 10px black;
-    margin-bottom: 15px;
-  }
 
   p {
     color: white;

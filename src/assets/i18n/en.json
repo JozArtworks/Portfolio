@@ -259,6 +259,6 @@
     "warning": "Please rotate your device into portrait mode to use the app."
   },
   "preloader": {
-  "reloadHint": "Taking longer than expected... try refreshing."
-}
+    "reloadHint": "The ether is taking a moment – please refresh if nothing happens."
+  }
 }

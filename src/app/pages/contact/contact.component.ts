@@ -8,6 +8,7 @@ import { NgModel } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SectionObserverService } from './../../../assets/services/section-observer.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -44,6 +45,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   @ViewChild('nameInput') nameInput!: NgModel;
   @ViewChild('emailInput') emailInput!: NgModel;
   @ViewChild('messageInput') messageInput!: NgModel;
+  @ViewChild('nameInput') nameInputRef!: ElementRef;
 
   ngOnInit() {
     this.checkViewport();

@@ -16,12 +16,6 @@
     justify-content: center;
     padding: 32px;
   }
-
-  .feedback-headline {
-    margin: 0 0 10px 10px;
-    color: #3DCFB6;
-    text-shadow: 0 0 10px black;
-  }
 }
 
 .feedback-body {
@@ -67,7 +61,7 @@
 }
 
 .box-content {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.25);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   display: flex;
@@ -140,12 +134,6 @@
 
     .feedback-content {
       padding: 0;
-    }
-
-    .feedback-headline {
-      margin-bottom: 5px;
-      margin-top: 5px;
-      font-size: 24px;
     }
 
     .feedback-body {

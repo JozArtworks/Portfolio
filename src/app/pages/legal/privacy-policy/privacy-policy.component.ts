@@ -4,6 +4,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { signal } from '@angular/core';
 import { LangSwitchComponent } from '../../../shared/components/lang-switch/lang-switch.component';
 import { Router } from '@angular/router';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -32,8 +33,8 @@ export class PrivacyPolicyComponent {
       : 'assets/icons/white/svg/icon_left_white.svg';
   }
 
-    scrollToContact(event: Event) {
-    event.preventDefault();
+  scrollToContact(event?: Event) {
+    event?.preventDefault();
     this.router.navigate(['/']).then(() => {
       setTimeout(() => {
         const el = document.getElementById('contact');
@@ -42,6 +43,11 @@ export class PrivacyPolicyComponent {
         }
       }, 100);
     });
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    this.scrollToContact();
   }
 
 }
