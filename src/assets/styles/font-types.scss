@@ -2,12 +2,19 @@ h1 {
   font-size: clamp(1.68rem, 7vw, 10rem);
   margin: 0;
   text-shadow: 0 0 7px black;
+  color: #FFFFFF;
+
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  font-family: 'Exo 2', sans-serif;
 }
 
 h2 {
   font-size: clamp(1.2rem, 4vw, 4rem);
   margin-top: 20px;
   text-shadow: 0 0 7px black;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
 }
 
 @media screen and (max-width: 500px) {
@@ -20,6 +27,8 @@ h3 {
   font-size: clamp(1.3rem, 4vw, 3rem);
   margin: 0;
   text-shadow: 0 2px 3px black;
+  font-family: 'Amatica SC', sans-serif;
+  font-weight: 100;
 }
 
 h4 {
@@ -50,5 +59,7 @@ h6 {
 
 p {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
-  font-weight: 400;
+  font-weight: 300;
+  color: white;
+  margin: 0;
 }
