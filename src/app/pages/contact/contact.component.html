@@ -1,19 +1,19 @@
-<section class="contact-page">
-  <div class="contact-content">
-    <div class="contact-window">
-      <h5 id="contactFormTitle" class="visually-hidden">{{ 'contact.title' | translate }}</h5>
+<section tabindex="-1" class="contact-page">
+  <div tabindex="-1" class="contact-content">
+    <div tabindex="-1" class="contact-window">
+      <h5 id="contactFormTitle">{{ 'contact.title' | translate }}</h5>
       <div class="contact-body">
-        <div class="contact-info">
-          <h5 tabindex="0" class="intro-headline">{{ 'contact.introHeadline' | translate }}</h5>
-          <h6 tabindex="0" class="sub-headline">{{ 'contact.subHeadline' | translate }}</h6>
-          <p tabindex="0" [innerHTML]="'contact.introText' | translate"></p>
+        <div tabindex="0" class="contact-info" aria-labelledby="contactFormTitle introHeadlineId introSubHeadlineId introTextId">
+          <h5 id="introHeadlineId" class="intro-headline">{{ 'contact.introHeadline' | translate }}</h5>
+          <h6 id="introSubHeadlineId"  class="sub-headline">{{ 'contact.subHeadline' | translate }}</h6>
+          <p id="introTextId" [innerHTML]="'contact.introText' | translate"></p>
         </div>
         <div class="form-wrapper">
           <p id="formIntro" class="visually-hidden">
             {{ 'contact.formDescription' | translate }}
           </p>
           <form aria-describedby="formIntro" (ngSubmit)="validateAndSubmit()" class="contact-form" #form="ngForm"
-            novalidate role="form" aria-labelledby="contactFormTitle">
+            novalidate role="form">
             <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
               [(ngModel)]="formData.honeypot" />
             <div class="input-wrapper">

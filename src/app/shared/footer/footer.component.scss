@@ -102,6 +102,14 @@
       text-decoration: none;
       font-weight: 400;
       font-size: 12px;
+      padding: 2px 5px;
+
+      &:focus-visible {
+        outline: 2px solid #3DCFB6;
+        box-shadow: 0 0 5px #3DCFB6;
+        border-radius: 25px;
+        padding: 2px 5px;
+      }
 
       &:hover {
         color: #3DCFB6;
@@ -206,6 +214,7 @@
     text-decoration: none;
     cursor: pointer;
     margin-right: 7px;
+    padding: 2px 5px;
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
@@ -230,6 +239,11 @@
     justify-content: center;
     transition: background 0.3s ease;
     cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+
+    &:focus-visible {
+      outline: 2px solid #3DCFB6;
+      box-shadow: 0 0 5px #3DCFB6;
+    }
 
     svg {
 
