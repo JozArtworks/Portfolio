@@ -1,8 +1,8 @@
 <footer class="footer" role="contentinfo" [class.visible]="isVisible" #footerElement>
   <div class="footer-content">
     <div class="info-box">
-      <span>
-        <img src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
+      <span tabindex="0">
+        <img role="img" src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
           [attr.aria-label]="'logo.homeLabel' | translate" />
         {{ 'footer.copyright' | translate }}
       </span>
@@ -23,6 +23,9 @@
     </div>
   </div>
 </footer>
+
+
+
 
 <div class="dialog-copy" tabindex="0" [class.visible]="showCopyDialog" role="status" aria-live="polite">
   <span>{{ 'footer.copied' | translate }}</span>
@@ -47,6 +50,4 @@
     </button>
     <span class="tooltip-text" id="copyTooltipFooter">{{ 'landing.copyTooltip' | translate }}</span>
   </div>
-
-
 </div>

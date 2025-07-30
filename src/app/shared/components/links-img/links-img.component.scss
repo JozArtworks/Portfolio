@@ -10,12 +10,25 @@ img {
   width: 30px;
   object-fit: contain;
   vertical-align: middle;
+
+  &:focus-visible {
+    outline: 3px solid #3DCFB6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #3DCFB6;
+  }
 }
 
 a {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:focus-visible {
+    outline: 3px solid #3DCFB6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #3DCFB6;
+  }
+
 }
 
 .tooltip-container {

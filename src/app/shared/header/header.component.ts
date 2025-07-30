@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, HostListener } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-header',
   standalone: true,

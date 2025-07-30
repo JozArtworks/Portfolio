@@ -109,4 +109,14 @@ export class SkillsComponent {
     });
   }
 
+  onBoxKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.scrollToContact(event);
+      event.preventDefault();
+    }
+  }
+
+
+
+
 }

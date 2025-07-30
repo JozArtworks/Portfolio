@@ -18,18 +18,23 @@ export class ProjectDialogComponent {
 
   private previouslyFocusedElement: HTMLElement | null = null;
 
-  ngAfterViewInit() {
-    this.previouslyFocusedElement = document.activeElement as HTMLElement;
-    if (this.dialogRef?.nativeElement) {
-      this.dialogRef.nativeElement.focus();
+ngAfterViewInit() {
+  this.previouslyFocusedElement = document.activeElement as HTMLElement;
+
+  if (this.dialogRef?.nativeElement) {
+    setTimeout(() => {
+      this.dialogRef?.nativeElement?.focus();
+
       const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
       if (box) {
         box.style.transform = '';
         box.classList.remove('rebound');
       }
-    }
+    }, 0);
   }
-  
+}
+
+
   onClose() {
     const lastProject = this.dialog.currentProject();
     this.dialog.close(lastProject);

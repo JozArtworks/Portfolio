@@ -15,16 +15,16 @@
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(0, 5); track icon.icon) {
               <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
-                (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+                >
+                <img (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
             </div>
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(5, 10); track icon.icon) {
               <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
-                (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+                >
+                <img (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
             </div>
@@ -34,8 +34,8 @@
                 <div class="img-extra">
                   @for (extra of extraTools; track extra.icon) {
                   <div class="extra-icon" tabindex="0" role="img" [attr.aria-label]="extra.alt | translate"
-                    (mouseenter)="onTooltipEnter($event, extra.alt, '')" (mouseleave)="onMouseLeaveTooltip()">
-                    <img [src]="extra.icon" [attr.alt]="extra.alt | translate" />
+                    >
+                    <img (mouseenter)="onTooltipEnter($event, extra.alt, '')" (mouseleave)="onMouseLeaveTooltip()" [src]="extra.icon" [attr.alt]="extra.alt | translate" />
                   </div>
                   }
                 </div>
@@ -50,9 +50,9 @@
               </div>
               } @else {
               <div class="tool-box" role="img" tabindex="0" [attr.aria-label]="icon.alt | translate"
-                (click)="onIconClick(icon)" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
-                (mouseleave)="onMouseLeaveTooltip()">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+                >
+                <img (click)="onIconClick(icon)" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
+                (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
               </div>
               }
               }
@@ -68,13 +68,14 @@
             </div>
           </div>
         </div>
-        <div class="tools-text" tabindex="0">
-          <div class="box" aria-labelledby="tools-box1">
-            <p tabindex="0" id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
+        <div class="tools-text">
+          <div tabindex="0" class="box" aria-labelledby="tools-box1">
+            <p tabindex="-1" id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
-          <div (click)="scrollToContact($event)" class="box missing" aria-labelledby="tools-box2">
-            <span tabindex="0" id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
-            <p tabindex="0">{{ 'tools.missingText' | translate }}</p>
+          <div role="button" (keydown)="onBoxKeyDown($event)" tabindex="0" (click)="scrollToContact($event)"
+            class="box missing" aria-labelledby="tools-box2" aria-describedby="tools-box2-desc">
+            <span tabindex="-1" id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
+            <p tabindex="-1" id="tools-box2-desc">{{ 'tools.missingText' | translate }}</p>
           </div>
         </div>
       </div>

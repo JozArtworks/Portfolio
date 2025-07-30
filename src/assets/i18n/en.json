@@ -24,7 +24,8 @@
     "skills": "Skills",
     "projects": "Projects",
     "feedbacks": "References",
-    "contact": "Contact"
+    "contact": "Contact",
+    "roleNavigation": "Main navigation"
   },
   "imprint": {
     "title": "Imprint",
@@ -260,5 +261,9 @@
   },
   "preloader": {
     "reloadHint": "The ether is taking a moment – please refresh if nothing happens."
+  },
+  "lang": {
+    "enSelected": "English – selected",
+    "deSwitch": "Switch to German"
   }
 }

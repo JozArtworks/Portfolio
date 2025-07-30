@@ -7,18 +7,36 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
 
-  img {
-    height: 55px;
-    width: auto;
-    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
-    margin-top: 15px;
-    margin-left: 10px;
-    transition: 0.3s ease-in-out;
+.logo-link {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%;
+  outline: none;
 
-    &:hover {
-      content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
-      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+  &:focus-visible {
+    outline: 2px solid #3DCFB6;
+    outline-offset: 2px;
+  }
+
+  .logo-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+      }
     }
   }
 }

@@ -205,6 +205,7 @@ screen and (max-width: 870px) {
     text-decoration: none;
     cursor: pointer;
     margin-right: 7px;
+    padding: 2px 5px;
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
@@ -228,6 +229,11 @@ screen and (max-width: 870px) {
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
+
+    &:focus-visible {
+      outline: 2px solid #3DCFB6;
+      box-shadow: 0 0 5px #3DCFB6;
+    }
 
     svg {
 

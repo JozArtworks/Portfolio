@@ -24,7 +24,8 @@
     "skills": "Tools",
     "projects": "Projekte",
     "feedbacks": "Referenzen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "roleNavigation": "Hauptnavigation"
   },
   "imprint": {
     "title": "Impressum",
@@ -263,5 +264,10 @@
   },
   "preloader": {
     "reloadHint": "Der Äther braucht kurz – bitte aktualisiere, wenn nichts passiert!"
-  }
+  },
+  "lang": {
+  "deSelected": "Deutsch – ausgewählt",
+  "enSwitch": "Zu Englisch wechseln"
+}
+
 }

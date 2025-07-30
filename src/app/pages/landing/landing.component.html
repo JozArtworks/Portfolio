@@ -13,7 +13,6 @@
     <div class="about-foot">
 
       <div class="box-tools" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" role="region"
-        tabindex="0" [attr.aria-label]="'landing.toolsLabel' | translate"
         [class.slide-out]="scrolledAway || !isAppReadyForTransition">
 
         @for (icon of filteredToolsIcons; track icon.name) {
@@ -34,28 +33,32 @@
 
 
 
-  <div class="dialog-copy" [class.visible]="showCopyDialog" aria-live="polite" role="status">
-    <span>{{ 'landing.copied' | translate }}</span>
-    <svg class="check-icon" viewBox="0 0 24 24">
-      <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
-        stroke-linejoin="round" />
-    </svg>
-  </div>
-  <div #mailWrapper class="mail-wrapper" [class.visible]="showEmail">
-    <a class="mail-text" [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
-      [attr.aria-label]="'landing.mailLabel' | translate" href="mailto:front-dev@jonathan-michutta.de">
-      front-dev&#64;jonathan-michutta.de
-    </a>
-    <div class="tooltip-container" aria-describedby="copyTooltip" [class.tooltip-disabled]="showCopyDialog">
-      <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
-        [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
-        [attr.aria-label]="'landing.copyAria' | translate">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
-          <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
-        </svg>
-      </button>
-      <span id="copyTooltip" class="tooltip-text" role="tooltip">{{ 'landing.copyTooltip' | translate }}</span>
-    </div>
-  </div>
+
+
 </section>
+
+
+<div class="dialog-copy" [class.visible]="showCopyDialog" aria-live="polite" role="status">
+  <span>{{ 'landing.copied' | translate }}</span>
+  <svg class="check-icon" viewBox="0 0 24 24">
+    <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
+      stroke-linejoin="round" />
+  </svg>
+</div>
+<div #mailWrapper class="mail-wrapper" [class.visible]="showEmail">
+  <a class="mail-text" [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
+    [attr.aria-label]="'landing.mailLabel' | translate" href="mailto:front-dev@jonathan-michutta.de">
+    front-dev&#64;jonathan-michutta.de
+  </a>
+  <div class="tooltip-container" aria-describedby="copyTooltip" [class.tooltip-disabled]="showCopyDialog">
+    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
+      [attr.tabindex]="showEmail ? '0' : '-1'" [attr.aria-hidden]="!showEmail"
+      [attr.aria-label]="'landing.copyAria' | translate">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
+        <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
+      </svg>
+    </button>
+    <span id="copyTooltip" class="tooltip-text" role="tooltip">{{ 'landing.copyTooltip' | translate }}</span>
+  </div>
+</div>

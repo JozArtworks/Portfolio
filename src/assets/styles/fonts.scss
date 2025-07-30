@@ -1,22 +1,6 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('/assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/assets/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype');
-  font-weight: 200 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Amatica SC';
-  src: url('/assets/fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
+  font-family: 'Amatic SC';
+  src: url('/assets/fonts/Amatic_SC/AmaticSC-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -24,11 +8,38 @@
 
 @font-face {
   font-family: 'Exo 2';
-  src: url('/assets/fonts/Exo_2/static/Exo2-Light.ttf') format('truetype');
+  src: url('/assets/fonts/Exo_2/Exo2-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-Variable.woff2') format('woff2');
+  font-weight: 100 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter24pt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/assets/fonts/Oswald/Oswald-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 .code-angle {
   font-family: 'Inter', sans-serif;
