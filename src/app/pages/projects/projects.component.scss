@@ -144,6 +144,11 @@
   max-height: calc(100dvh - 64px);
   max-width: 700px;
   width: 100%;
+
+  &:focus-visible {
+    outline: 2px solid #3DCFB6;
+    outline-offset: 3px;
+  }
 }
 
 .mobileOnly {
@@ -208,6 +213,6 @@
   }
 
   .project-icons {
-  gap: 5px;
+    gap: 5px;
   }
 }

@@ -270,10 +270,6 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
     height: 0;
   }
 
-
-
-
-
   .custom-checkbox {
     width: 20px;
     height: 20px;
@@ -284,8 +280,6 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
     justify-content: center;
     aspect-ratio: 1;
     transition: all 0.2s ease;
-
-
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
@@ -350,6 +344,11 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
   &:disabled {
     opacity: 0.5;
     cursor: url('./../../../assets/icons/cursor/cursor_stop.cur') 0 0, pointer;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #35ae9a;
+    outline-offset: 3px;
   }
 }
 

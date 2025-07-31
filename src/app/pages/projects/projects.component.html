@@ -1,31 +1,45 @@
-<section class="project-page" aria-labelledby="projects-heading">
-  <div class="project-content">
-    <div class="project-window">
+<section tabindex="-1" class="project-page" aria-labelledby="projects-heading">
+  <div tabindex="-1" class="project-content">
+    <div tabindex="0" class="project-window" aria-labelledby="projects-heading" aria-describedby="projectsDescription">
       <header>
-        <h4 tabindex="0" id="projects-heading" class="project-headline">
+        <h4 id="projects-heading" class="project-headline">
           {{ 'projects.title' | translate }}
         </h4>
-        <p tabindex="0" class="subtitle-project">{{ 'projects.subtitle' | translate }}</p>
+        <p id="projectsDescription" class="subtitle-project">{{ 'projects.subtitle' | translate }}</p>
       </header>
       <div class="project-body">
         <div class="project-text">
           <ul class="project-list box" role="list">
             @for (project of projects; track project.title) {
             <li>
+
               <div #projectItem role="button" class="projects-list" tabindex="0"
                 [attr.aria-labelledby]="'project-title' + project.title"
-                [attr.aria-label]="('projects.title' | translate) + ': ' + (project.title | translate)"
-                (click)="openDialog(project)" (keydown.enter)="openDialog(project)"
-                (keydown.space)="openDialog(project)">
+                [attr.aria-describedby]="'project-desc' + project.title" (click)="openDialog(project)"
+                (keydown.enter)="openDialog(project)" (keydown.space)="openDialog(project)">
+
                 <div class="project-info">
+
                   <span [attr.id]="'project-title' + project.title">{{ project.title | translate }}</span>
+
                   <div class="mobileOnly">
-                    <p>{{ project.description | translate }}</p>
+                    @if (isMobileView) {
+                    <p [attr.id]="'project-desc-' + project.title">{{ project.description | translate }}</p>
+                    } @else {
+                    <p aria-hidden="true">{{ project.description | translate }}</p>
+                    }
                   </div>
+
+
                 </div>
+
                 <div class="project-icons" aria-hidden="true">
                   <div class="desktopOnly">
-                    <p>{{ project.description | translate }}</p>
+                    @if (!isMobileView) {
+                    <p [attr.id]="'project-desc-' + project.title">{{ project.description | translate }}</p>
+                    } @else {
+                    <p aria-hidden="true">{{ project.description | translate }}</p>
+                    }
                   </div>
                   @for (icon of project.icons; track icon) {
                   <div class="project-small-icons">
@@ -33,7 +47,9 @@
                   </div>
                   }
                 </div>
+
               </div>
+
             </li>
             }
           </ul>

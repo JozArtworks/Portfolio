@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PROJECTS } from './project-data';
 import { Project } from './project.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProjectDialogService } from './../../../assets/services/project-dialog.service';
-import { ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
@@ -13,18 +12,22 @@ import { ViewChildren, QueryList, ElementRef } from '@angular/core';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit, OnDestroy {
   @ViewChildren('projectItem') projectItems!: QueryList<ElementRef<HTMLDivElement>>;
 
   projects = PROJECTS;
+  isMobileView = false;
+
+  private resizeListener = () => {
+    this.isMobileView = window.innerWidth <= 565;
+  };
 
   constructor(private dialog: ProjectDialogService) { }
 
-  openDialog(project: Project) {
-    this.dialog.open(project, this.projects);
-  }
+  ngOnInit(): void {
+    this.resizeListener();
+    window.addEventListener('resize', this.resizeListener);
 
-  ngOnInit() {
     this.dialog.closedDialog.subscribe(() => {
       const project = this.dialog.currentProject();
       if (!project) return;
@@ -37,7 +40,11 @@ export class ProjectsComponent {
     });
   }
 
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.resizeListener);
+  }
 
-
-
+  openDialog(project: Project): void {
+    this.dialog.open(project, this.projects);
+  }
 }

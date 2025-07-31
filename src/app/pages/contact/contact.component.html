@@ -3,9 +3,10 @@
     <div tabindex="-1" class="contact-window">
       <h5 id="contactFormTitle">{{ 'contact.title' | translate }}</h5>
       <div class="contact-body">
-        <div tabindex="0" class="contact-info" aria-labelledby="contactFormTitle introHeadlineId introSubHeadlineId introTextId">
+        <div tabindex="0" class="contact-info"
+          aria-labelledby="contactFormTitle introHeadlineId introSubHeadlineId introTextId">
           <h5 id="introHeadlineId" class="intro-headline">{{ 'contact.introHeadline' | translate }}</h5>
-          <h6 id="introSubHeadlineId"  class="sub-headline">{{ 'contact.subHeadline' | translate }}</h6>
+          <h6 id="introSubHeadlineId" class="sub-headline">{{ 'contact.subHeadline' | translate }}</h6>
           <p id="introTextId" [innerHTML]="'contact.introText' | translate"></p>
         </div>
         <div class="form-wrapper">
