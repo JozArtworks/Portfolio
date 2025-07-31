@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -18,6 +19,9 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements AfterViewInit, OnDestroy {
+
+  constructor(private router: Router) { }
+
   private boundCheckViewport!: () => void;
   private observer!: IntersectionObserver;
 
@@ -105,6 +109,18 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   @HostListener('document:keydown.escape')
   closeEmail() {
     if (this.showEmail) this.showEmail = false;
+  }
+
+  scrollToHome(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/']).then(() => {
+      setTimeout(() => {
+        const el = document.getElementById('home');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    });
   }
 
 }

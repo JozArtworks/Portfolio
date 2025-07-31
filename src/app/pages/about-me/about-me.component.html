@@ -1,10 +1,11 @@
 <section tabindex="-1" class="about-page">
   <div tabindex="-1" class="about-content">
-    <div tabindex="-1" class="about-window">
-      <h4 tabindex="-1" class="about-headline">{{ 'about.title' | translate }}</h4>
+    <div tabindex="0" class="about-window" aria-labelledby="about-heading"
+      aria-describedby="about-intro1 about-intro2 about-intro3 about-intro4 blockquote ">
+      <h4 id="about-heading" tabindex="-1" class="about-headline">{{ 'about.title' | translate }}</h4>
       <div tabindex="-1" class="about-body">
         <div tabindex="-1" class="box-left dNone">
-          <div tabindex="-1" role="region" aria-labelledby="about-heading" class="text-with-image">
+          <div tabindex="-1" role="region" class="text-with-image">
             <img tabindex="-1" loading="lazy" src="./../../../assets/images/pic_about_me_270.webp"
               srcset="./../../../assets/images/pic_about_me_540.webp 2x" sizes="(max-width: 820px) 270px, 270px"
               [alt]="'about.alt' | translate" class="about-me-image inline-image" />
@@ -25,14 +26,14 @@
             </blockquote>
           </div>
         </div>
-        <div tabindex="0" role="region" class="box-right">
-          <p>{{ 'about.intro1' | translate }}</p>
-          <p>{{ 'about.intro2' | translate }}</p>
-          <p>{{ 'about.intro3' | translate }}</p>
-          <p class="tech-claim">
+        <div tabindex="-1" role="region" class="box-right">
+          <p id="about-intro1">{{ 'about.intro1' | translate }}</p>
+          <p id="about-intro2">{{ 'about.intro2' | translate }}</p>
+          <p id="about-intro3">{{ 'about.intro3' | translate }}</p>
+          <p id="about-intro4" class="tech-claim">
             {{ 'about.claim' | translate }}
           </p>
-          <blockquote [class]="animationState" aria-live="polite">
+          <blockquote id="blockquote" [class]="animationState" aria-live="polite">
             {{ currentSlogan }}
           </blockquote>
         </div>

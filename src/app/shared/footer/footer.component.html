@@ -1,8 +1,13 @@
-<footer class="footer" role="contentinfo" [class.visible]="isVisible" #footerElement>
+<footer aria-describedby="footer-desc" tabindex="0" class="footer" role="contentinfo" [class.visible]="isVisible"
+  #footerElement>
+  <p id="footer-desc" class="visually-hidden">
+    {{ 'footer.ariaDescription' | translate }}
+  </p>
   <div class="footer-content">
     <div class="info-box">
-      <span tabindex="0">
-        <img role="img" src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
+      <span>
+        <img tabindex="0" (click)="scrollToHome($event)" (keydown.enter)="scrollToHome($event)" role="img"
+          src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
           [attr.aria-label]="'logo.homeLabel' | translate" />
         {{ 'footer.copyright' | translate }}
       </span>

@@ -169,7 +169,8 @@
     "privacy": "Datenschutzerklärung",
     "copied": "Kopiert",
     "email": "front-dev@jonathan-michutta.de",
-    "copyAria": "E-Mail kopieren"
+    "copyAria": "E-Mail kopieren",
+    "ariaDescription": "Footer-Bereich mit Link zur Startseite, Copyright, Impressum und Datenschutz."
   },
   "landing": {
     "title": "Webentwickler (Frontend)",
@@ -257,7 +258,7 @@
   },
   "logo": {
     "alt": "Logo von Jonathan Michutta – Frontend Developer",
-    "homeLabel": "Zur Startseite"
+    "homeLabel": "Zurück zur Startseite, Bild. (drücke Enter)"
   },
   "orientation": {
     "warning": "Bitte drehe dein Gerät ins Hochformat, um die App zu nutzen."
@@ -266,8 +267,7 @@
     "reloadHint": "Der Äther braucht kurz – bitte aktualisiere, wenn nichts passiert!"
   },
   "lang": {
-  "deSelected": "Deutsch – ausgewählt",
-  "enSwitch": "Zu Englisch wechseln"
-}
-
+    "deSelected": "Deutsch – ausgewählt",
+    "enSwitch": "Zu Englisch wechseln"
+  }
 }

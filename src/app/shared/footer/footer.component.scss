@@ -10,10 +10,28 @@
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .footer {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  margin: 0 5px;
+
+  &:focus-visible {
+    outline-offset: 1px;
+    outline: 2px solid #3dcfb6;
+  }
 
   &.visible {
     opacity: 1;
@@ -311,6 +329,19 @@
       width: 40px;
       height: auto;
       margin-right: 10px;
+      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+
+      &:hover {
+        content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+      }
+
+      &:focus-visible {
+        outline: none;
+        content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
+      }
+
+
     }
   }
 }

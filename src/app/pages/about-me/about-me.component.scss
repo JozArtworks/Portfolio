@@ -80,11 +80,6 @@
   align-items: center;
   max-width: 700px;
 
-  &:focus-visible {
-    outline: none;
-    border: 1px solid #3DCFB6;
-  }
-
   p {
     color: white;
     padding: 0 30px;
@@ -100,6 +95,11 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: calc(100dvh - 64px);
+
+  &:focus-visible {
+    outline-offset: 3px;
+    outline: 2px solid #3DCFB6;
+  }
 }
 
 blockquote {
