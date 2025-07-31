@@ -119,7 +119,12 @@
     "headline": "Skills",
     "textBox1": "I work with modern frontend technologies to build performant and maintainable applications.<br><br>My focus is on clean code and a UI that feels intuitive.<br><br>I continuously expand my knowledge – because for me, good web development means thinking ahead, growing with it, and shaping it.",
     "missingHeadline": "Missing a tool?",
-    "missingText": "Feel free to reach out – I'm always happy to expand my skillset."
+    "missingText": "Feel free to reach out – I'm always happy to expand my skillset.",
+    "toolsDescription": "This section contains a set of tools represented by icons.",
+    "extraToolsOn": "More tools are now visible.",
+    "extraToolsOff": "The extra tools have been hidden.",
+    "toolsExtraOnState": "active",
+    "toolsExtraOffState": "inactive"
   },
   "feedback": {
     "title": "References",

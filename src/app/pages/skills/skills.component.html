@@ -1,6 +1,6 @@
-<section class="tools-page" aria-labelledby="tools-heading">
-  <div class="tools-content">
-    <div class="tools-window">
+<section tabindex="-1" class="tools-page">
+  <div tabindex="-1" class="tools-content">
+    <div tabindex="0" class="tools-window" aria-labelledby="tools-heading" aria-describedby="tools-description">
       @if (hoveredTooltipText && isMobileView) {
       <div class="floating-tooltip fixed-tooltip" role="tooltip">
         {{ hoveredTooltipText }}
@@ -9,22 +9,25 @@
       <h4 class="tools-headline" id="tools-heading">
         {{ 'tools.headline' | translate }}
       </h4>
+      <p id="tools-description" class="visually-hidden">
+        {{ 'tools.toolsDescription' | translate }}
+      </p>
       <div class="tools-body">
         <div class="box-left-icons">
           <div class="tools-icon-groups">
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(0, 5); track icon.icon) {
-              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
-                >
-                <img (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate">
+                <img aria-hidden="true" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
+                  (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" alt="" />
               </div>
               }
             </div>
             <div class="tools-icon-line">
               @for (icon of toolIcons.slice(5, 10); track icon.icon) {
-              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate"
-                >
-                <img (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+              <div class="tool-box" tabindex="0" role="img" [attr.aria-label]="icon.alt | translate">
+                <img aria-hidden="true" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
+                  (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" alt="" />
               </div>
               }
             </div>
@@ -33,9 +36,9 @@
               <div class="extra-tool-wrapper" aria-label="Extra Tools">
                 <div class="img-extra">
                   @for (extra of extraTools; track extra.icon) {
-                  <div class="extra-icon" tabindex="0" role="img" [attr.aria-label]="extra.alt | translate"
-                    >
-                    <img (mouseenter)="onTooltipEnter($event, extra.alt, '')" (mouseleave)="onMouseLeaveTooltip()" [src]="extra.icon" [attr.alt]="extra.alt | translate" />
+                  <div class="extra-icon" tabindex="0" role="img" [attr.aria-label]="extra.alt | translate">
+                    <img aria-hidden="true" (mouseenter)="onTooltipEnter($event, extra.alt, '')"
+                      (mouseleave)="onMouseLeaveTooltip()" [src]="extra.icon" alt="" />
                   </div>
                   }
                 </div>
@@ -44,15 +47,19 @@
               @for (icon of toolIcons.slice(10); track icon.icon) {
               @if (icon.name === 'school') {
               <div class="tool-box school-box" role="button" tabindex="0" [attr.aria-pressed]="showExtraTools"
-                [attr.aria-label]="icon.alt | translate" (click)="onIconClick(icon)" (keydown)="onKeyDown($event, icon)"
+                [attr.aria-label]="(icon.alt | translate) + ', ' + (showExtraTools ? ('tools.toolsExtraOnState' | translate) : ('tools.toolsExtraOffState' | translate))"
+                (click)="onIconClick(icon)" (keydown)="onKeyDown($event, icon)"
                 (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()">
-                <img [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+                <p class="visually-hidden" aria-live="polite">
+                  {{ showExtraTools ? ('tools.extraToolsOn' | translate) : ('tools.extraToolsOff' | translate) }}
+                </p>
+                <img aria-hidden="true" [src]="icon.icon" alt="" />
               </div>
               } @else {
-              <div class="tool-box" role="img" tabindex="0" [attr.aria-label]="icon.alt | translate"
-                >
-                <img (click)="onIconClick(icon)" (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)"
-                (mouseleave)="onMouseLeaveTooltip()" [src]="icon.icon" [attr.alt]="icon.alt | translate" />
+              <div class="tool-box" role="img" tabindex="0" [attr.aria-label]="icon.alt | translate">
+                <img aria-hidden="true" (click)="onIconClick(icon)"
+                  (mouseenter)="onTooltipEnter($event, icon.alt, icon.name)" (mouseleave)="onMouseLeaveTooltip()"
+                  [src]="icon.icon" alt="" />
               </div>
               }
               }
@@ -62,7 +69,7 @@
               <div class="tool-box tool-box-design" tabindex="0" role="img"
                 [attr.aria-label]="icondesign.alt | translate" (mouseenter)="onTooltipEnter($event, icondesign.alt, '')"
                 (mouseleave)="onMouseLeaveTooltip()">
-                <img [src]="icondesign.icon" [attr.alt]="icondesign.alt | translate" />
+                <img aria-hidden="true" [src]="icondesign.icon" alt="" />
               </div>
               }
             </div>
@@ -70,12 +77,12 @@
         </div>
         <div class="tools-text">
           <div tabindex="0" class="box" aria-labelledby="tools-box1">
-            <p tabindex="-1" id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
+            <p id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
           <div role="button" (keydown)="onBoxKeyDown($event)" tabindex="0" (click)="scrollToContact($event)"
             class="box missing" aria-labelledby="tools-box2" aria-describedby="tools-box2-desc">
-            <span tabindex="-1" id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
-            <p tabindex="-1" id="tools-box2-desc">{{ 'tools.missingText' | translate }}</p>
+            <span id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
+            <p id="tools-box2-desc">{{ 'tools.missingText' | translate }}</p>
           </div>
         </div>
       </div>

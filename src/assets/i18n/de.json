@@ -119,7 +119,12 @@
     "headline": "Tools",
     "textBox1": "Ich arbeite mit modernen Frontend-Technologien, um performante und wartbare Anwendungen zu entwickeln.<br><br>Mein Fokus liegt auf sauberem Code und einem UI, das sich intuitiv anfühlt.<br><br>Ich bilde mich regelmäßig weiter – denn gute Webentwicklung heißt für mich: mitdenken, mitwachsen und mitgestalten.",
     "missingHeadline": "Fehlt ein Tool?",
-    "missingText": "Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern."
+    "missingText": "Melde dich gern – ich freue mich darauf, mein Wissen gezielt zu erweitern.",
+    "toolsDescription": "Hier findest du eine Auswahl an Tools mit Icons zum Erkunden.",
+    "extraToolsOn": "Zusätzliche Tools sind nun eingeblendet.",
+    "extraToolsOff": "Zusätzliche Tools wurden ausgeblendet.",
+    "toolsExtraOnState": "aktiviert",
+    "toolsExtraOffState": "deaktiviert"
   },
   "feedback": {
     "title": "Referenzen",
