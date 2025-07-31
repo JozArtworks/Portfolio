@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.2rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 4vw, 4rem);
   margin-top: 20px;
   color: rgb(212, 212, 212);
   text-shadow:
@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.3rem, 4vw, 3rem);
+  font-size: clamp(1.3rem, 3vw, 3rem);
   margin: 0;
   text-shadow:
     0 2px 0 #000,

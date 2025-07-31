@@ -10,25 +10,13 @@ header {
 }
 
 .logo-link {
-  display: inline-block;
-  padding: 5px;
-  border-radius: 50%;
   outline: none;
-
-  &:focus-visible {
-    outline: 2px solid #3DCFB6;
-    outline-offset: 2px;
-  }
-
-  .logo-wrapper {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
+  margin-top: 15px;
+  margin-left: 10px;
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 80px;
+      height: auto;
       object-fit: contain;
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
       transition: 0.3s ease-in-out;
@@ -39,16 +27,19 @@ header {
       }
     }
   }
-}
+
 
 @media screen and (max-width: 870px) {
 
-  header {
-    align-items: flex-start;
+.logo-link {
+  margin-top: 15px;
+  margin-left: 10px;
 
     img {
-      height: 35px;
+      width: 50px;
     }
   }
+
+
 
 }

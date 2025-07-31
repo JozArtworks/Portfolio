@@ -75,6 +75,11 @@
   min-width: 0px;
   height: auto !important;
 
+  &:focus-visible {
+    outline-offset: 3px;
+    outline: 2px solid #3dcfb6;
+  }
+
   p {
     color: white;
     line-height: 1.5;
@@ -102,6 +107,12 @@
     justify-content: center;
     align-items: center;
 
+    &:focus-visible {
+      outline-offset: 3px;
+      outline: 2px solid #3dcfb6;
+      border-radius: 50%;
+    }
+
     img {
 
       &:hover {
@@ -124,6 +135,11 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: calc(100dvh - 64px);
+
+  &:focus-visible {
+    outline-offset: 3px;
+    outline: 2px solid #3dcfb6;
+  }
 }
 
 @media screen and (max-width: 820px) {

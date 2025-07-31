@@ -1,19 +1,22 @@
-<section class="feedback-page">
-  <div class="feedback-content">
-    <div class="feedback-window">
-      <h4 class="feedback-headline" tabindex="0">{{ 'feedback.title' | translate }}</h4>
-      <div class="feedback-body">
-        <div class="box">
+<section tabindex="-1" class="feedback-page">
+  <div tabindex="-1" class="feedback-content">
+    <div tabindex="0" role="article" class="feedback-window" aria-labelledby="feedbackHeadInfo">
+      <h4 id="feedbackHeadInfo" class="feedback-headline">{{ 'feedback.title' | translate }}</h4>
+      <div tabindex="-1" class="feedback-body">
+        <div tabindex="-1" class="box">
           @for (entry of feedbacks; track entry.key) {
-          <div class="box-content" tabindex="0">
-            <p tabindex="0">{{ 'feedback.' + entry.key + '.text' | translate }}</p>
-            <div class="feedback-author-box">
+          <div tabindex="0" class="box-content" [attr.aria-labelledby]="'ref' + entry.key + ' author' + entry.key">
+            <p [id]="'ref' + entry.key">{{ 'feedback.' + entry.key + '.text' | translate }}</p>
+            <div tabindex="-1" class="feedback-author-box">
               @if (entry.linkedin) {
-              <a [href]="entry.linkedin" target="_blank" rel="noopener noreferrer">
-                <img src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="linkedin" />
+              <a [href]="entry.linkedin" target="_blank" rel="noopener noreferrer"
+                [attr.aria-label]="'LinkedIn-Profil von ' + entry.name">
+                <img src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="" aria-hidden="true" />
               </a>
               }
-              <p class="feedback-author" tabindex="0">{{ entry.name }} – {{ entry.source }}</p>
+              <p [id]="'author' + entry.key" class="feedback-author">
+                {{ entry.name }} – {{ entry.source }}
+              </p>
             </div>
           </div>
           }
