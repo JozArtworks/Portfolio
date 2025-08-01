@@ -18,21 +18,21 @@ export class ProjectDialogComponent {
 
   private previouslyFocusedElement: HTMLElement | null = null;
 
-ngAfterViewInit() {
-  this.previouslyFocusedElement = document.activeElement as HTMLElement;
+  ngAfterViewInit() {
+    this.previouslyFocusedElement = document.activeElement as HTMLElement;
 
-  if (this.dialogRef?.nativeElement) {
-    setTimeout(() => {
-      this.dialogRef?.nativeElement?.focus();
+    if (this.dialogRef?.nativeElement) {
+      setTimeout(() => {
+        this.dialogRef?.nativeElement?.focus();
 
-      const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
-      if (box) {
-        box.style.transform = '';
-        box.classList.remove('rebound');
-      }
-    }, 0);
+        const box = this.dialogRef.nativeElement.querySelector('.box') as HTMLElement;
+        if (box) {
+          box.style.transform = '';
+          box.classList.remove('rebound');
+        }
+      }, 0);
+    }
   }
-}
 
 
   onClose() {
@@ -54,6 +54,7 @@ ngAfterViewInit() {
   iconClose = 'assets/icons/white/svg/icon_close_white.svg';
 
   isGitHovered = false;
+  isGitFocused = false;
 
   get currentIndex(): number {
     return this.dialog.allProjects().findIndex(p => p.title === this.project.title);

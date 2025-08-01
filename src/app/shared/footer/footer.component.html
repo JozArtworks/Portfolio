@@ -6,8 +6,11 @@
   <div class="footer-content">
     <div class="info-box">
       <span>
-        <img tabindex="0" (click)="scrollToHome($event)" (keydown.enter)="scrollToHome($event)" role="img"
-          src="assets/icons/white/svg/logo_jm.svg" [attr.alt]="'logo.alt' | translate"
+        <img tabindex="0" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false"
+          (touchstart)="isHovered = true" (touchend)="isHovered = false" (click)="scrollToHome($event)"
+          (touchend)="onTouchScrollToHome($event)" (keydown.enter)="scrollToHome($event)" role="img" [src]="isHovered
+      ? './../../../assets/icons/green/svg/LogoJM_green.svg'
+      : './../../../assets/icons/white/svg/LogoJM_white.svg'" [attr.alt]="'logo.alt' | translate"
           [attr.aria-label]="'logo.homeLabel' | translate" />
         {{ 'footer.copyright' | translate }}
       </span>

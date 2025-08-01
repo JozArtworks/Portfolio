@@ -28,9 +28,26 @@ export class SkillsComponent {
   tooltipX = 0;
   tooltipY = 0;
 
+  isHovered = false;
+
   constructor(private translate: TranslateService, private router: Router) { }
 
   isMobileView = false;
+
+boxTouched = false;
+
+onBoxTouchStart(): void {
+  this.isHovered = true;
+  this.boxTouched = true;
+}
+
+onBoxTouchEnd(event: TouchEvent): void {
+  this.isHovered = false;
+  this.scrollToContact(event);
+  setTimeout(() => {
+    this.boxTouched = false;
+  }, 300);
+}
 
   ngAfterViewInit(): void {
     const toolsSection = document.querySelector('.tools-page');
@@ -48,7 +65,6 @@ export class SkillsComponent {
       this.observer.observe(toolsSection);
     }
   }
-
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth > 1000;
@@ -115,8 +131,5 @@ export class SkillsComponent {
       event.preventDefault();
     }
   }
-
-
-
 
 }

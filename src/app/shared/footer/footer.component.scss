@@ -324,9 +324,10 @@
       height: auto;
       margin-right: 10px;
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      transition: transform 0.3s ease-in-out;
 
       &:hover {
-        content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
+        scale: (0.95);
         filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
       }
 

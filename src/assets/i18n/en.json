@@ -124,7 +124,8 @@
     "extraToolsOn": "More tools are now visible.",
     "extraToolsOff": "The extra tools have been hidden.",
     "toolsExtraOnState": "active",
-    "toolsExtraOffState": "inactive"
+    "toolsExtraOffState": "inactive",
+    "scrollToContactLabel": "Click here to jump to the contact section."
   },
   "feedback": {
     "title": "References",

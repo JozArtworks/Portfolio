@@ -93,6 +93,19 @@
   }
 }
 
+.missing.touched {
+  border: 1px solid #3DCFB6;
+  box-shadow: none;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    border: 1px solid #3DCFB6;
+    box-shadow: none;
+    cursor: default;
+  }
+}
+
 .img-extra {
   display: flex;
   gap: 15px;

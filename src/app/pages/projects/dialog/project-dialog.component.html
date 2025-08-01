@@ -38,11 +38,11 @@
     }
     <div class="project-buttons">
       @if (project.github) {
-      <div class="border-git" (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
+      <div class="border-git" (focusin)="isGitFocused = true" (focusout)="isGitFocused = false" (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
         <a [href]="project.github" target="_blank" rel="noopener noreferrer"
           [attr.aria-label]="'dialog.alt.github' | translate">
           Github
-          <img [src]="isGitHovered
+          <img [src]="(isGitHovered || isGitFocused)
   ? 'assets/icons/green/svg/logo_github_green.svg'
   : 'assets/icons/white/svg/logo_github_white.svg'" [alt]="'dialog.alt.github' | translate" />
         </a>

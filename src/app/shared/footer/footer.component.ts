@@ -29,6 +29,9 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   showCopyDialog = false;
   emailCopied = false;
 
+isHovered = false;
+
+
   @ViewChild('contactSection', { static: false }) contactSectionRef!: ElementRef;
   @ViewChild('footerElement') footerElementRef!: ElementRef;
   @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
@@ -109,6 +112,11 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   @HostListener('document:keydown.escape')
   closeEmail() {
     if (this.showEmail) this.showEmail = false;
+  }
+
+    onTouchScrollToHome(event: TouchEvent) {
+    event.preventDefault();
+    this.scrollToHome(event);
   }
 
   scrollToHome(event: Event) {

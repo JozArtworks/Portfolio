@@ -124,7 +124,8 @@
     "extraToolsOn": "Zusätzliche Tools sind nun eingeblendet.",
     "extraToolsOff": "Zusätzliche Tools wurden ausgeblendet.",
     "toolsExtraOnState": "aktiviert",
-    "toolsExtraOffState": "deaktiviert"
+    "toolsExtraOffState": "deaktiviert",
+    "scrollToContactLabel": "Klicke hier, um zur Kontakt-Sektion zu gelangen."
   },
   "feedback": {
     "title": "Referenzen",

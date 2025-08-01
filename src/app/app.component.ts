@@ -59,7 +59,29 @@ export class AppComponent {
   ) {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((e: any) => {
       this.currentRoute = e.urlAfterRedirects;
+
+      const mappedBackground = this.mapSectionToBg(this.currentRoute.replace('/', ''));
+
+      if (mappedBackground !== this.backgroundClassCurrent) {
+        this.setStaticBackground(mappedBackground);
+      }
     });
+  }
+
+  setStaticBackground(newClass: string) {
+    this.backgroundClassPrevious = this.backgroundClassCurrent;
+    this.isFading = true;
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.backgroundClassCurrent = newClass;
+      this.cdr.detectChanges();
+    }, 100);
+
+    setTimeout(() => {
+      this.isFading = false;
+      this.cdr.detectChanges();
+    }, 600);
   }
 
   ngOnInit() {
@@ -67,11 +89,9 @@ export class AppComponent {
     window.addEventListener('resize', this.boundCheckViewport);
     this.checkViewport();
     this.checkOrientation();
-
     window.matchMedia('(orientation: landscape)').addEventListener('change', () => {
       this.checkOrientation();
     });
-
     setTimeout(() => {
       if (!this.isAppLoaded) {
         this.showReloadHint = true;
@@ -110,7 +130,6 @@ export class AppComponent {
 
   updateBackgroundOnSectionChange(sectionId: string) {
     const newClass = this.mapSectionToBg(sectionId);
-
     if (newClass !== this.backgroundClassCurrent) {
       this.backgroundClassPrevious = this.backgroundClassCurrent;
       this.isFading = true;

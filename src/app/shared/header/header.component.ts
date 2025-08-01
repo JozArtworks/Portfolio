@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, HostListener } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -14,6 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class HeaderComponent {
 
   constructor(private router: Router) { }
+
+  isLogoHovered = false;
 
   @Input() currentSection = 'home';
   @Input() isMobileView = false;
@@ -32,6 +34,11 @@ export class HeaderComponent {
 
   onForceCloseMenu() {
     this.forceCloseMenu.emit();
+  }
+
+  onTouchScrollToHome(event: TouchEvent) {
+    event.preventDefault();
+    this.scrollToHome(event);
   }
 
   scrollToHome(event: Event) {

@@ -10,30 +10,31 @@ header {
 }
 
 .logo-link {
-  outline: none;
   margin-top: 15px;
   margin-left: 10px;
 
-    img {
-      width: 80px;
-      height: auto;
-      object-fit: contain;
-      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
-      transition: 0.3s ease-in-out;
+  img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    transition: transform 0.3s ease-in-out;
 
-      &:hover {
-        content: url('./../../../assets/icons/green/svg/LogoJM_green.svg');
-        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-      }
+    &:hover {
+      transform: scale(0.95);
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
     }
   }
+}
+
+
 
 
 @media screen and (max-width: 870px) {
 
-.logo-link {
-  margin-top: 15px;
-  margin-left: 10px;
+  .logo-link {
+    margin-top: 15px;
+    margin-left: 10px;
 
     img {
       width: 50px;
