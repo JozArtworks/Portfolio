@@ -1,3 +1,5 @@
+@import "../../../../assets/styles/mixins.scss";
+
 :host {
   position: fixed;
   top: 60px;
@@ -6,10 +8,8 @@
   pointer-events: auto;
 }
 
-a.contact-btn-mobile {
-  text-decoration: none;
-  text-align: center;
-  margin: 0;
+.visually-hidden {
+  @include visuallyHidden();
 }
 
 .mobile-popout {
@@ -17,47 +17,45 @@ a.contact-btn-mobile {
   top: 80px;
   right: 33px;
   width: 164px;
-  background: rgba(0, 0, 0, 0.9);
-  border-radius: 28px;
   padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   z-index: 9999;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 
   &.open {
     animation: slideDownBounce 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     pointer-events: auto;
   }
 
-  &.closing {
-    animation: slideUpFast 0.4s ease forwards;
-    pointer-events: none;
-  }
-
   .mobile-popout-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 10px 0;
+    @include reset-list;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 10px;
 
-    li a {
-      color: white;
-      font-size: 14px;
-      font-weight: 300;
-      text-decoration: none;
-      padding: 4px 8px;
-      border-radius: 24px;
+    a {
       display: block;
       text-align: center;
+      padding: 4px 8px;
+      font-size: 14px;
+      font-weight: 300;
+      color: white;
+      text-decoration: none;
+      border-radius: 24px;
       cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+
+      &:focus-visible {
+        outline: 3px solid #3DCFB6;
+        border-radius: 15px;
+      }
 
       &.active {
         background-color: #3dcfb7;
         color: #06403e;
         font-weight: 500;
-        border-radius: 24px;
         transition: all 0.3s ease;
       }
 
@@ -65,8 +63,8 @@ a.contact-btn-mobile {
         background: #7b7b7b95;
 
         &.contact-btn-mobile {
-          color: #06403e;
           background: #3dcfb7;
+          color: #06403e;
         }
       }
     }
@@ -75,13 +73,13 @@ a.contact-btn-mobile {
   .contact-btn-mobile {
     display: block;
     width: 100%;
-    text-align: center;
-    background-color: #129990;
-    color: white;
-    font-weight: 500;
     padding: 6px 0;
-    border-radius: 32px;
+    text-align: center;
+    font-weight: 500;
+    color: white;
+    background-color: #129990;
     border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 32px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
 
@@ -100,6 +98,7 @@ a.contact-btn-mobile {
 }
 
 @keyframes slideDownBounce {
+
   0% {
     transform: translateY(-100%);
   }
@@ -111,19 +110,10 @@ a.contact-btn-mobile {
   100% {
     transform: translateY(0);
   }
+
 }
 
-@keyframes slideUpFast {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-200%);
-  }
-}
-
-@media screen and (max-width: 870px) {
+@media (max-width: 870px) {
 
   .mobile-popout {
     top: 95px;
@@ -133,7 +123,7 @@ a.contact-btn-mobile {
 
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
 
   .mobile-popout {
     top: 75px;
@@ -142,7 +132,7 @@ a.contact-btn-mobile {
 
 }
 
-@media screen and (max-width: 420px) {
+@media (max-width: 420px) {
 
   .mobile-popout {
     top: 65px;
@@ -151,7 +141,7 @@ a.contact-btn-mobile {
 
 }
 
-@media screen and (max-width: 390px) {
+@media (max-width: 390px) {
 
   .mobile-popout {
     top: 60px;

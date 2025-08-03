@@ -272,5 +272,11 @@
   "lang": {
     "enSelected": "English – selected",
     "deSwitch": "Switch to German"
+  },
+  "mobileMenu": {
+    "escHint": "Drücke ESC, um das mobile Menü zu schließen.",
+    "languageLabel": "Change language",
+    "dialogLabel": "Mobile menu",
+    "navLabel": "Mobile navigation"
   }
 }

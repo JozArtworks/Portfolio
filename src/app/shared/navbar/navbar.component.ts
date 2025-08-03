@@ -38,6 +38,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   mailToastService = inject(MailToastService);
 
+  @ViewChild('toggleBtn') toggleBtn?: ElementRef;
+
+
 
   constructor(
     private router: Router,

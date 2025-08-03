@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -25,6 +25,9 @@ export class HeaderComponent {
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
+
+@ViewChild(NavbarComponent) navbarComp!: NavbarComponent;
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['isMobileView']) {

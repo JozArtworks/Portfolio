@@ -42,9 +42,9 @@
     </div>
   </div>
   }
-  @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
-  <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
-    [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  @if (isMobileView && (mobileMenuOpen) && shouldShowHeader()) {
+  <app-mobile-popout [focusTarget]="navbar?.toggleBtn" [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
+     (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
   @if (projectDialog.dialogOpen()) {

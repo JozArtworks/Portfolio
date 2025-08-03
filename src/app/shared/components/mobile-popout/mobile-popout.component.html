@@ -1,21 +1,22 @@
-<div class="mobile-popout" role="dialog" aria-modal="true" [class]="{
-      'open': animationState === 'open',
-      'closing': animationState === 'closing'
-    }">
-  <ul class="mobile-popout-list" role="navigation" aria-label="Mobile Navigation">
+<div tabindex="0" aria-describedby="mobileMenuDescription" class="mobile-popout" #popoutContainer role="dialog"
+  aria-modal="true" [attr.aria-label]="'mobileMenu.dialogLabel' | translate" [class.open]="mobileMenuOpen">
+  <ul class="mobile-popout-list" role="navigation" [attr.aria-label]="'mobileMenu.navLabel' | translate">
     @for (item of navItems; track item.path) {
     <li>
-      <a href="#" (click)="onNavClick(item.path, $event)" [class.contact-btn-mobile]="item.isContact"
-        [class.active]="item.path === currentSection" [attr.aria-label]="item.key | translate">
+      <a #navLink tabindex="0" href="#" (click)="onNavClick(item.path, $event)"
+        [class.contact-btn-mobile]="item.isContact" [class.active]="item.path === currentSection"
+        [attr.aria-label]="item.key | translate">
         {{ item.key | translate }}
       </a>
     </li>
     }
   </ul>
-
   <div class="mobile-lang-switch">
     <app-lang-switch [currentLanguage]="language" (languageChanged)="changeLanguage($event)"
-      aria-label="Sprache ändern">
+      [attr.aria-label]="'mobileMenu.languageLabel' | translate">
     </app-lang-switch>
   </div>
 </div>
+<span id="mobileMenuDescription" class="visually-hidden">
+  {{ 'mobileMenu.escHint' | translate }}
+</span>
