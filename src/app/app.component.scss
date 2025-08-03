@@ -356,3 +356,76 @@ section {
     transform: translate(-50%, -50%) scale(1.08);
   }
 }
+
+.quantum-dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease forwards;
+  z-index: 1000;
+}
+
+.quantum-dialog {
+  background: #101010;
+  border: 1px solid #3DCFB6;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 16px;
+  text-align: center;
+  animation: scaleIn 0.3s ease forwards;
+  max-width: 300px;
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #3DCFB6;
+    color: #096B68;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: url('./../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+  }
+
+  button:hover {
+    background: #5fe0c9;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

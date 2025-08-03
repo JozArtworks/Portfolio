@@ -6,9 +6,9 @@ import { NgForm } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { SectionObserverService } from './../../../assets/services/section-observer.service';
+import { SectionObserverService } from '../../shared/services/section-observer.service';
 import { ChangeDetectorRef } from '@angular/core';
-import { ElementRef } from '@angular/core';
+import { ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -18,6 +18,12 @@ import { ElementRef } from '@angular/core';
   styleUrls: ['./contact.component.scss', './contact-media.component.scss'],
 })
 export class ContactComponent implements OnInit, OnDestroy {
+
+  @Output() quantumPingTriggered = new EventEmitter<void>();
+
+triggerQuantumPingFromContact(): void {
+  this.quantumPingTriggered.emit();
+}
 
   constructor(private translate: TranslateService, public sectionObserver: SectionObserverService, private cd: ChangeDetectorRef) { }
 

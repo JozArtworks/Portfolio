@@ -3,6 +3,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { signal } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +25,21 @@ export class HeaderComponent {
   @Output() toggleMenu = new EventEmitter<void>();
   @Output() mailClicked = new EventEmitter<void>();
   @Output() forceCloseMenu = new EventEmitter<void>();
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isMobileView']) {
+      const newVal = changes['isMobileView'].currentValue;
+      if (newVal !== this.previousMobileState) {
+        this.softReloadNavbar();
+        this.previousMobileState = newVal;
+      }
+    }
+  }
+
+  softReloadNavbar() {
+    this.showNavbar.set(false);
+    setTimeout(() => this.showNavbar.set(true), 0);
+  }
 
   onToggleMenu() {
     this.toggleMenu.emit();
@@ -52,5 +69,8 @@ export class HeaderComponent {
       }, 100);
     });
   }
+
+  private previousMobileState = window.innerWidth <= 870;
+  showNavbar = signal(true);
 
 }

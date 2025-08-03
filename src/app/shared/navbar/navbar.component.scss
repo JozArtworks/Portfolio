@@ -138,7 +138,7 @@ a.contact-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   padding: 0;
 
   span {
@@ -152,6 +152,7 @@ a.contact-btn {
       0 8px 0 0 white;
     transition: all 0.3s ease;
     position: relative;
+    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
   }
 
   &.open span {

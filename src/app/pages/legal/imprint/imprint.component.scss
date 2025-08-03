@@ -35,6 +35,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:focus-visible {
+      outline-offset: 3px;
+      outline: 2px solid #3DCFB6;
+      box-shadow: 0 0 5px #3DCFB6;
+      border-radius: 50%;
+    }
   }
 
   img {

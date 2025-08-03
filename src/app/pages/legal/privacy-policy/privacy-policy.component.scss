@@ -36,6 +36,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:focus-visible {
+      outline-offset: 3px;
+      outline: 2px solid #3DCFB6;
+      box-shadow: 0 0 5px #3DCFB6;
+      border-radius: 50%;
+    }
   }
 
   img {
@@ -61,7 +68,7 @@
 }
 
 .privacy-box ul {
-  padding-left: 20px; // Abstand vom linken Rand
+  padding-left: 20px;
   margin: 10px 0;
   color: white;
 }
@@ -69,7 +76,7 @@
 .privacy-box li {
   margin-bottom: 8px;
   line-height: 1.5;
-  list-style-type: disc; // der klassische Punkt
+  list-style-type: disc;
 }
 
 @media screen and (max-width: 1024px) {

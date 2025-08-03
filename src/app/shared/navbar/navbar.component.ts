@@ -22,16 +22,22 @@ import { TranslateService } from '@ngx-translate/core';
 import { signal, effect } from '@angular/core';
 import { inject, runInInjectionContext } from '@angular/core';
 import { EnvironmentInjector } from '@angular/core';
-import { SectionObserverService } from '../../../assets/services/section-observer.service';
+import { SectionObserverService } from '../services/section-observer.service';
+import { MailToastService } from '../services/mail-toast.service';
+import { MailToastComponent } from '../components/mail-toast/mail-toast.component';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule, LangSwitchComponent, LinksImgComponent, TranslateModule],
+  imports: [RouterModule, LangSwitchComponent, LinksImgComponent, TranslateModule, MailToastComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  mailToastService = inject(MailToastService);
+
 
   constructor(
     private router: Router,
@@ -179,6 +185,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   emitToggleMenu() {
+    if (this.mailToastService.showEmail()) {
+      this.mailToastService.closeEmail();
+    }
     this.toggleMenu.emit();
   }
 
@@ -243,19 +252,20 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleEmail() {
-    if (this.showCopyDialog) {
-      return;
-    }
     this.justToggledViaIcon = true;
-    if (this.showEmail) {
-      this.hidingEmail = true;
-      setTimeout(() => {
-        this.showEmail = false;
-        this.hidingEmail = false;
-      }, this.EMAIL_ANIMATION_DURATION);
-    } else {
-      this.showEmail = true;
+    if (this.mobileMenuOpen) {
+      this.closeMobileMenu();
     }
+
+    this.mailToastService.toggleEmail('navbar');
+  }
+
+  onEmailCopied() {
+    this.mailToastService.triggerCopySuccess();
+  }
+
+  onEmailClosed() {
+    this.mailToastService.closeEmail();
   }
 
   copyEmail() {
@@ -281,5 +291,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-}
+  showNavbarToast = computed(() =>
+    (this.mailToastService.showEmail() || this.mailToastService.showCopyDialog()) &&
+    this.mailToastService.currentContext() === 'navbar'
+  );
 
+}

@@ -11,7 +11,11 @@
               @if (entry.linkedin) {
               <a [href]="entry.linkedin" target="_blank" rel="noopener noreferrer"
                 [attr.aria-label]="'LinkedIn-Profil von ' + entry.name">
-                <img src="./../../../assets/icons/white/svg/logo_linkedin.svg" alt="" aria-hidden="true" />
+                <img [src]="hoveredEntryKey === entry.key
+      ? './../../../assets/icons/green/svg/logo_linkedin_green.svg'
+      : './../../../assets/icons/white/svg/logo_linkedin.svg'" alt="" aria-hidden="true"
+                  (mouseenter)="setHover(entry.key)" (mouseleave)="clearHover()" (focus)="setHover(entry.key)"
+                  (blur)="clearHover()" (touchstart)="setHover(entry.key)" (touchend)="onTouchEnd()" />
               </a>
               }
               <p [id]="'author' + entry.key" class="feedback-author">

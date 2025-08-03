@@ -34,20 +34,27 @@ export class SkillsComponent {
 
   isMobileView = false;
 
-boxTouched = false;
+  boxTouched = false;
 
-onBoxTouchStart(): void {
-  this.isHovered = true;
-  this.boxTouched = true;
-}
+  onBoxTouchStart(): void {
+    this.isHovered = true;
+    this.boxTouched = true;
+  }
 
 onBoxTouchEnd(event: TouchEvent): void {
-  this.isHovered = false;
-  this.scrollToContact(event);
+  event.preventDefault();
+
+  const box = (event.currentTarget as HTMLElement);
+  box.classList.add('touch-feedback');
+
   setTimeout(() => {
-    this.boxTouched = false;
-  }, 300);
+    box.classList.remove('touch-feedback');
+  }, 100);
+
+  this.scrollToContact(event);
 }
+
+
 
   ngAfterViewInit(): void {
     const toolsSection = document.querySelector('.tools-page');

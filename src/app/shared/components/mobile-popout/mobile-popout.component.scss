@@ -51,15 +51,23 @@ a.contact-btn-mobile {
       border-radius: 24px;
       display: block;
       text-align: center;
-
-      &:hover {
-        color: #3DCFB6;
-        background: rgba(255, 255, 255, 0.1);
-      }
+      cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
 
       &.active {
-        color: #3DCFB6;
-        background: rgba(255, 255, 255, 0.1);
+        background-color: #3dcfb7;
+        color: #06403e;
+        font-weight: 500;
+        border-radius: 24px;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        background: #7b7b7b95;
+
+        &.contact-btn-mobile {
+          color: #06403e;
+          background: #3dcfb7;
+        }
       }
     }
   }
@@ -78,8 +86,8 @@ a.contact-btn-mobile {
     transition: all 0.3s ease;
 
     &.active {
-      color: #096B68 !important;
-      background-color: #3DCFB6;
+      background-color: #3dcfb7;
+      color: #06403e !important;
     }
   }
 }

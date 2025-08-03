@@ -1,18 +1,19 @@
 <div class="links-img">
   @for (icon of linksIcons; track icon.name) {
-  <div class="tooltip-container" [class]="context" [class.tooltip-disabled]="isEmailVisible || showCopyDialog">
+  <div class="tooltip-container" [class.tooltip-disabled]="isEmailVisible || showCopyDialog"
+    [class.footer]="context === 'footer'" [class.landing]="context === 'landing'" [class.navbar]="context === 'navbar'">
     @if (icon.link) {
     <a [href]="icon.link" target="_blank" rel="noopener noreferrer" [attr.aria-label]="icon.altKey | translate"
       [attr.aria-describedby]="'tooltip' + context + icon.name">
       <img class="tool-icon" [src]="getIconSrc(icon)" [alt]="icon.altKey | translate" [attr.data-icon]="icon.name"
         (mouseenter)="setHoveredIcon(icon.name)" (mouseleave)="clearHoveredIcon()" />
     </a>
-
     } @else {
-    <img tabindex="0" class="tool-icon" [src]="getIconSrc(icon)" [alt]="icon.altKey | translate" [attr.data-icon]="icon.name"
-      role="button" (click)="handleIconClick(icon.name)" (mouseenter)="setHoveredIcon(icon.name)"
-      (mouseleave)="clearHoveredIcon()" [attr.aria-label]="icon.altKey | translate"
-      [attr.aria-describedby]="'tooltip' + context + icon.name" (keydown.enter)="handleIconClick(icon.name)" />
+    <img tabindex="0" class="tool-icon" [src]="getIconSrc(icon)" [alt]="icon.altKey | translate"
+      [attr.data-icon]="icon.name" role="button" (click)="handleIconClick(icon.name)"
+      (mouseenter)="setHoveredIcon(icon.name)" (mouseleave)="clearHoveredIcon()"
+      [attr.aria-label]="icon.altKey | translate" [attr.aria-describedby]="'tooltip' + context + icon.name"
+      (keydown.enter)="handleIconClick(icon.name)" />
     }
     <span class="tooltip-text" role="tooltip" [id]="'tooltip' + context + icon.name">
       {{ icon.altKey | translate }}

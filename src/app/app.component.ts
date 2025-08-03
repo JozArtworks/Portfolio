@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ScrollPageComponent } from './scroll-page/scroll-page.component';
-import { SectionObserverService } from './../assets/services/section-observer.service';
-import { ProjectDialogService } from './../assets/services/project-dialog.service';
+import { SectionObserverService } from './shared/services/section-observer.service';
+import { ProjectDialogService } from './shared/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 import { NgZone } from '@angular/core';
 import { AppSettings } from './app.config';
@@ -230,4 +230,15 @@ export class AppComponent {
     this.projectDialog.open();
     document.body.style.overflow = 'hidden';
   }
+
+  quantumPingVisible = false;
+
+  toggleQuantumPing(): void {
+    this.quantumPingVisible = !this.quantumPingVisible;
+  }
+
+  close(): void {
+    this.quantumPingVisible = false;
+  }
+
 }

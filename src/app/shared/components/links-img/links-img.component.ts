@@ -1,10 +1,11 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { linksIcons, LinkIcon } from '../../../shared/data/links-icons.data';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-links-img',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './links-img.component.html',
   styleUrl: './links-img.component.scss'
 })
@@ -14,7 +15,8 @@ export class LinksImgComponent {
 
   @Input() isEmailVisible = false;
   @Input() showCopyDialog = false;
-  @Input() context: 'home' | 'contact' = 'home';
+
+  @Input() context: 'landing' | 'footer' | 'navbar' = 'landing';
 
   hoveredIconName = '';
   isMobileView = false;

@@ -7,7 +7,7 @@ import { FeedbacksComponent } from '../pages/feedbacks/feedbacks.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { Output, EventEmitter } from '@angular/core';
-import { SectionObserverService } from './../../assets/services/section-observer.service';
+import { SectionObserverService } from '../shared/services/section-observer.service';
 import { effect } from '@angular/core';
 @Component({
   selector: 'app-scroll-page',
@@ -25,9 +25,14 @@ import { effect } from '@angular/core';
   styleUrls: ['./scroll-page.component.scss']
 })
 
-
-
 export class ScrollPageComponent implements AfterViewInit {
+
+  @Output() quantumPingTriggered = new EventEmitter<void>();
+
+  triggerQuantumPingFromScrollPage(): void {
+    this.quantumPingTriggered.emit();
+  }
+
 
   @Input() isAppReadyForTransition = false;
   @Output() sectionChanged = new EventEmitter<string>();

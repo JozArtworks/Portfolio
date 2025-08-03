@@ -4,49 +4,57 @@ import {
   ViewChild,
   AfterViewInit,
   OnDestroy,
-  HostListener
+  Input, Output, EventEmitter
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LinksImgComponent } from "../components/links-img/links-img.component";
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { MailToastComponent } from '../../shared/components/mail-toast/mail-toast.component';
+import { inject, HostListener, computed } from '@angular/core';
+import { MailToastService } from '../../shared/services/mail-toast.service';
+
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, LinksImgComponent, RouterModule, TranslateModule],
+  imports: [CommonModule, LinksImgComponent, RouterModule, TranslateModule, MailToastComponent],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements AfterViewInit, OnDestroy {
+
+  @Input() context: 'landing' | 'footer' | 'navbar' = 'landing';
+  @Output() quantumPingTriggered = new EventEmitter<void>();
+
+  toggleQuantumPingExtern(): void {
+    this.quantumPingTriggered.emit();
+  }
+
+
+  public mailToastService = inject(MailToastService);
+
+  showEmail = this.mailToastService.showEmail;
+  emailCopied = this.mailToastService.emailCopied;
+  showCopyDialog = this.mailToastService.showCopyDialog;
+
+
+
 
   constructor(private router: Router) { }
 
   private boundCheckViewport!: () => void;
   private observer!: IntersectionObserver;
 
-  showEmail = false;
-  showCopyDialog = false;
-  emailCopied = false;
-
-isHovered = false;
 
 
-  @ViewChild('contactSection', { static: false }) contactSectionRef!: ElementRef;
+  isHovered = false;
+
+
   @ViewChild('footerElement') footerElementRef!: ElementRef;
-  @ViewChild('mailWrapper') mailWrapperRef!: ElementRef;
   isVisible = false;
 
-  @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent) {
-    const mailWrapperEl = this.mailWrapperRef?.nativeElement;
-    const target = event.target as HTMLElement;
-    const clickedMailIcon = target.closest('.tool-icon[data-icon="Mail"]');
-    const clickedInsideWrapper = mailWrapperEl?.contains(target);
-    if (!clickedInsideWrapper && !clickedMailIcon && this.showEmail) {
-      this.showEmail = false;
-    }
-  }
+
 
   ngOnInit() {
     this.boundCheckViewport = this.checkViewport.bind(this);
@@ -56,8 +64,8 @@ isHovered = false;
 
   checkViewport() {
     const isMobile = window.innerWidth <= 870;
-    if (!isMobile && this.showEmail) {
-      this.showEmail = false;
+    if (isMobile && this.showEmail()) {
+      this.onEmailClosed();
     }
   }
 
@@ -66,8 +74,8 @@ isHovered = false;
     if (contactEl) {
       const contactObserver = new IntersectionObserver(
         ([entry]) => {
-          if (!entry.isIntersecting && this.showEmail) {
-            this.showEmail = false;
+          if (!entry.isIntersecting && this.showEmail()) {
+            this.mailToastService.closeEmail();
           }
         },
         { threshold: 0.4 }
@@ -91,30 +99,23 @@ isHovered = false;
     }
   }
 
-  copyEmail() {
-    const email = 'front-dev@jonathan-michutta.de';
-    navigator.clipboard.writeText(email).then(() => {
-      this.emailCopied = true;
-      this.showEmail = false;
-      this.showCopyDialog = true;
-      setTimeout(() => {
-        this.showCopyDialog = false;
-        this.emailCopied = false;
-      }, 1000);
-    });
-  }
 
   toggleEmail() {
-    if (this.showCopyDialog) return;
-    this.showEmail = !this.showEmail;
+    this.justToggledViaIcon = true;
+    this.mailToastService.toggleEmail('footer');
   }
 
-  @HostListener('document:keydown.escape')
-  closeEmail() {
-    if (this.showEmail) this.showEmail = false;
+  onEmailCopied() {
+    this.mailToastService.triggerCopySuccess();
   }
 
-    onTouchScrollToHome(event: TouchEvent) {
+  onEmailClosed() {
+    this.mailToastService.closeEmail();
+  }
+
+
+
+  onTouchScrollToHome(event: TouchEvent) {
     event.preventDefault();
     this.scrollToHome(event);
   }
@@ -130,5 +131,22 @@ isHovered = false;
       }, 100);
     });
   }
+
+  private justToggledViaIcon = false;
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: MouseEvent) {
+    if (this.justToggledViaIcon) {
+      this.justToggledViaIcon = false;
+      return;
+    }
+  }
+
+  showFooterToast = computed(() =>
+    (this.mailToastService.showEmail() || this.mailToastService.showCopyDialog()) &&
+    this.mailToastService.currentContext() === 'footer'
+  );
+
+
 
 }

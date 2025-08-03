@@ -245,14 +245,23 @@ blockquote {
 }
 
 @media screen and (max-width: 500px) {
+
   .about-window {
     padding: 10px !important;
     border-radius: 20px;
   }
 
-
   .tech-claim,
   blockquote {
     display: none;
   }
+
+}
+
+@media screen and (max-width: 330px) {
+
+  .about-window {
+    margin: 0px 0px;
+  }
+
 }

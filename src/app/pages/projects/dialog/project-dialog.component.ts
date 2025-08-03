@@ -2,7 +2,7 @@ import { Component, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Project } from '../project.interface';
-import { ProjectDialogService } from './../../../../assets/services/project-dialog.service';
+import { ProjectDialogService } from '../../../shared/services/project-dialog.service';
 import { ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-project-dialog',

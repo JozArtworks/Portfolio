@@ -263,6 +263,7 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
   }
 
   .custom-checkbox {
+    position: relative;
     width: 20px;
     height: 20px;
     border: 1.5px solid #3DCFB6;
@@ -272,6 +273,7 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
     justify-content: center;
     aspect-ratio: 1;
     transition: all 0.2s ease;
+    transform: translateY(0);
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
@@ -279,11 +281,16 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
 
     &::after {
       content: '';
+      position: relative;
       width: 10px;
       height: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: #3DCFB6;
       border-radius: 50%;
       opacity: 0;
+      aspect-ratio: 1;
       transition: opacity 0.2s ease;
     }
   }

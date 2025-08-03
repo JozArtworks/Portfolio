@@ -1,0 +1,233 @@
+.mail-wrapper {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.607);
+  border: 1px solid #129990;
+  color: white;
+  padding: 5px 8px 5px 20px;
+  pointer-events: none;
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(0%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateX(-30px);
+    pointer-events: auto;
+  }
+
+  &.visible {
+    pointer-events: auto;
+  }
+
+  &.landing {
+    bottom: 70px;
+    right: 0;
+  }
+
+  &.navbar {
+    top: 75px;
+    right: 0px;
+  }
+
+  &.footer {
+    bottom: 82px;
+    right: 0px;
+  }
+
+  .mail-text {
+    all: unset;
+    color: white;
+    cursor: pointer;
+    margin-right: 7px;
+    padding: 2px 5px;
+
+    &:hover {
+      cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      color: #3DCFB6;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #3DCFB6;
+      outline-offset: 2px;
+      border-radius: 12px;
+    }
+  }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #3DCFB6;
+      box-shadow: 0 0 5px #3DCFB6;
+    }
+
+    svg {
+      cursor: url('./../../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    }
+  }
+}
+
+
+@media (hover: none) and (pointer: coarse),
+screen and (max-width: 870px) {
+
+  .tooltip-container .tooltip-text {
+    display: none !important;
+  }
+
+}
+
+
+.dialog-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 76px;
+  right: 20px;
+  background: #3dcfb6;
+  color: #096B68;
+  padding: 8px 12px;
+  padding-left: 17px;
+  border-radius: 32px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(10px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    right 0.4s ease;
+
+  span {
+    pointer-events: none;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+    right: 35px;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.landing {
+    bottom: 75px;
+  }
+
+  &.navbar {
+    top: 75px;
+    right: 17px;
+  }
+
+  &.footer {
+    bottom: 87px;
+  }
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+
+  .tool-icon {
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: right;
+    border-radius: 12px;
+    padding: 4px 8px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    font-size: 12px;
+    font-weight: 300;
+    transform: translateX(0);
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    bottom: 47px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 12px;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.2) transparent transparent transparent;
+    }
+  }
+
+  &:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 870px) {
+
+  .mail-wrapper {
+    border-radius: 32px;
+    font-size: 13px;
+    transform: translateY(0%);
+
+    &.animate-in {
+      transform: translateY(30px);
+    }
+
+    &.navbar {
+      position: fixed;
+      top: 32px;
+      right: 15px;
+    }
+
+  }
+
+  .dialog-copy {
+    height: 35px;
+    gap: 8px;
+    padding: 8px 12px;
+    padding-left: 17px;
+    border-radius: 32px;
+    font-size: 14px;
+
+    &.navbar {
+      top: 68px;
+      right: 20px;
+    }
+  }
+}

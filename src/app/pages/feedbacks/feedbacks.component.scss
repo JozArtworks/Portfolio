@@ -95,10 +95,11 @@
   gap: 10px;
 
   img {
+    width: 30px;
+    height: auto;
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
-      content: url('./../../../assets/icons/green/svg/logo_linkedin_green.svg');
     }
   }
 
@@ -111,17 +112,6 @@
       outline-offset: 3px;
       outline: 2px solid #3dcfb6;
       border-radius: 50%;
-    }
-
-    img {
-
-      &:hover {
-        height: 30px;
-        width: auto;
-        cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
-        content: url('./../../../assets/icons/green/svg/logo_linkedin_green.svg');
-        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-      }
     }
 
   }

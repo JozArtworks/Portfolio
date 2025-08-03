@@ -12,7 +12,6 @@
           <ul class="project-list box" role="list">
             @for (project of projects; track project.title) {
             <li>
-
               <div #projectItem role="button" class="projects-list" tabindex="0"
                 [attr.aria-labelledby]="'project-title' + project.title"
                 [attr.aria-describedby]="'project-desc' + project.title" (click)="openDialog(project)"
@@ -29,10 +28,7 @@
                     <p aria-hidden="true">{{ project.description | translate }}</p>
                     }
                   </div>
-
-
                 </div>
-
                 <div class="project-icons" aria-hidden="true">
                   <div class="desktopOnly">
                     @if (!isMobileView) {
@@ -47,9 +43,7 @@
                   </div>
                   }
                 </div>
-
               </div>
-
             </li>
             }
           </ul>

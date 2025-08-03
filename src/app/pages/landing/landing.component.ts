@@ -2,31 +2,35 @@ import { Component, Input, HostListener, ViewChild, ElementRef, OnChanges, Simpl
 import { LinksImgComponent } from "../../shared/components/links-img/links-img.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { toolsIcons, ToolIcon } from '../../shared/data/tools-icons.data';
+import { MailToastComponent } from '../../shared/components/mail-toast/mail-toast.component';
+import { inject, computed } from '@angular/core';
+import { MailToastService } from '../../shared/services/mail-toast.service';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [LinksImgComponent, TranslateModule],
+  imports: [LinksImgComponent, TranslateModule, MailToastComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent implements OnChanges {
 
-  @Input() isAppReadyForTransition = false;
+  private boundCheckViewport = this.checkViewport.bind(this);
+  public mailToastService = inject(MailToastService);
+  private justToggledViaIcon = false;
+
+  context: 'landing' = 'landing';
+
 
   showBoxes = false;
+  toolsIcons: ToolIcon[] = toolsIcons;
+  showEmail = this.mailToastService.showEmail;
+  emailCopied = this.mailToastService.emailCopied;
+  showCopyDialog = this.mailToastService.showCopyDialog;
 
+  @Input() isAppReadyForTransition = false;
   @Input() scrolledAway = false;
 
   @ViewChild('mailWrapper') mailWrapperRef?: ElementRef;
-
-  toolsIcons: ToolIcon[] = toolsIcons;
-  showEmail = false;
-  emailCopied = false;
-  showCopyDialog = false;
-
-  private isMobileView = false;
-  private justToggledViaIcon = false;
-  private boundCheckViewport = this.checkViewport.bind(this);
 
   ngOnInit() {
     this.checkViewport();
@@ -37,68 +41,53 @@ export class LandingComponent implements OnChanges {
     window.removeEventListener('resize', this.boundCheckViewport);
   }
 
-ngOnChanges(changes: SimpleChanges): void {
-  if (changes['isAppReadyForTransition']?.currentValue) {
-    setTimeout(() => {
-      this.showBoxes = true;
-    }, 400);
+  checkViewport() {
+    const isMobile = window.innerWidth <= 870;
+    if (isMobile && this.showEmail()) {
+      this.onEmailClosed();
+    }
   }
 
-  if (changes['scrolledAway']?.currentValue === true) {
-    this.showEmail = false;
-    this.showCopyDialog = false;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isAppReadyForTransition']?.currentValue) {
+      setTimeout(() => {
+        this.showBoxes = true;
+      }, 400);
+    }
+    if (changes['scrolledAway']?.currentValue === true) {
+      this.onEmailClosed();
+    }
   }
-}
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {
-    const clickedInsideMail = this.mailWrapperRef?.nativeElement.contains(event.target);
     if (this.justToggledViaIcon) {
       this.justToggledViaIcon = false;
       return;
     }
-    if (this.showEmail && !clickedInsideMail) {
-      this.showEmail = false;
-    }
-  }
-
-  @HostListener('document:keydown.escape')
-  closeEmail() {
-    if (this.showEmail) this.showEmail = false;
   }
 
   toggleEmail() {
-    if (this.showCopyDialog) {
-      return;
-    }
     this.justToggledViaIcon = true;
-    this.showEmail = !this.showEmail;
+    this.mailToastService.toggleEmail('landing');
+  }
+
+
+  onEmailCopied() {
+    this.mailToastService.triggerCopySuccess();
+  }
+
+  onEmailClosed() {
+    this.mailToastService.closeEmail();
   }
 
   get filteredToolsIcons(): ToolIcon[] {
     return this.toolsIcons.filter((_, i) => i !== this.toolsIcons.length - 3);
   }
 
-  copyEmail() {
-    const email = 'front-dev@jonathan-michutta.de';
-    navigator.clipboard.writeText(email).then(() => {
-      this.emailCopied = true;
-      this.showEmail = false;
-      this.showCopyDialog = true;
-      setTimeout(() => {
-        this.emailCopied = false;
-        this.showCopyDialog = false;
-      }, 2000);
-    });
-  }
-
-  checkViewport() {
-    this.isMobileView = window.innerWidth <= 870;
-    if (!this.isMobileView && this.showEmail) {
-      this.showEmail = false;
-    }
-  }
-
-
+  showLandingToast = computed(() =>
+    (this.mailToastService.showEmail() || this.mailToastService.showCopyDialog()) &&
+    this.mailToastService.currentContext() === 'landing'
+  );
 
 }

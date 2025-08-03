@@ -1,32 +1,17 @@
 <section>
   <header>
-<a
-  href="#"
-  tabindex="-1"
-  (click)="scrollToHome($event)"
-
-  (keydown.enter)="scrollToHome($event)"
-  class="logo-link"
-  [attr.aria-label]="'logo.homeLabel' | translate"
-  (mouseenter)="isLogoHovered = true"
-  (mouseleave)="isLogoHovered = false"
-  (blur)="isLogoHovered = false"
-  (touchstart)="isLogoHovered = true"
-  (touchend)="isLogoHovered = false"
-  (touchend)="onTouchScrollToHome($event)"
-  (focus)="isLogoHovered = true"
->
-  <img
-    [src]="isLogoHovered
+    <a href="#" tabindex="-1" (click)="scrollToHome($event)" (keydown.enter)="scrollToHome($event)" class="logo-link"
+      [attr.aria-label]="'logo.homeLabel' | translate" (mouseenter)="isLogoHovered = true"
+      (mouseleave)="isLogoHovered = false" (blur)="isLogoHovered = false" (touchstart)="isLogoHovered = true"
+      (touchend)="isLogoHovered = false" (touchend)="onTouchScrollToHome($event)" (focus)="isLogoHovered = true">
+      <img [src]="isLogoHovered
       ? './../../../assets/icons/green/svg/LogoJM_green.svg'
-      : './../../../assets/icons/white/svg/LogoJM_white.svg'"
-    [attr.alt]="'logo.alt' | translate"
-    role="img"
-  />
-</a>
-
+      : './../../../assets/icons/white/svg/LogoJM_white.svg'" [attr.alt]="'logo.alt' | translate" role="img" />
+    </a>
+    @if (showNavbar()) {
     <app-navbar (forceCloseMenu)="onForceCloseMenu()" (mailClicked)="onMailClicked()" [mobileMenuOpen]="mobileMenuOpen"
       [isMobileView]="isMobileView" (toggleMenu)="onToggleMenu()" [currentSection]="currentSection">
     </app-navbar>
+    }
   </header>
 </section>

@@ -20,33 +20,18 @@
   </app-lang-switch>
 </nav>
 }
-
 @if (isMobileView) {
 <div class="box-link-nav-mobile">
-  <app-links-img [isEmailVisible]="showEmail" (mailClicked)="toggleEmail()"></app-links-img>
+  <app-links-img [context]="'navbar'" [isEmailVisible]="mailToastService.showEmail()"
+    [showCopyDialog]="mailToastService.showCopyDialog()" (mailClicked)="toggleEmail()"></app-links-img>
   <button [attr.aria-label]="'landing.menuToggleAria' | translate" class="burger-menu" [class.open]="mobileMenuOpen"
     (click)="emitToggleMenu()">
     <span></span>
   </button>
 </div>
 }
-<div class="dialog-copy" [class.visible]="showCopyDialog">
-  <span>{{ 'landing.copied' | translate }}</span>
-  <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M5 13l4 4L19 7" stroke="#096B68" stroke-width="4" fill="none" stroke-linecap="round"
-      stroke-linejoin="round" />
-  </svg>
-</div>
-<div #mailWrapper class="mail-wrapper" [class]="{
-  'visible': showEmail && !hidingEmail,
-  'hiding': hidingEmail
-}">
-  <span class="mail-text">{{ 'front-dev@jonathan-michutta.de' }}</span>
-  <button tabindex="-1" type="button" class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied"
-    [attr.aria-label]="'landing.copyAria' | translate">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" />
-      <rect x="3" y="3" width="13" height="13" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
-    </svg>
-  </button>
-</div>
+@if (showNavbarToast()) {
+<app-mail-toast [context]="'navbar'" [showEmail]="mailToastService.showEmail"
+  [emailCopied]="mailToastService.emailCopied" [showCopyDialog]="mailToastService.showCopyDialog"
+  (emailClosed)="onEmailClosed()" (emailCopiedSuccess)="onEmailCopied()" />
+}
