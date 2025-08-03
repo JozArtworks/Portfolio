@@ -1,3 +1,9 @@
+@mixin dFlex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin visuallyHidden() {
   position: absolute;
   width: 1px;

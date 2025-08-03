@@ -18,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './mobile-popout.component.html',
   styleUrl: './mobile-popout.component.scss',
 })
+
 export class MobilePopoutComponent {
 
   /** Controls the visibility of the mobile menu */

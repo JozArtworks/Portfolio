@@ -4,8 +4,9 @@
     href="mailto:front-dev@jonathan-michutta.de">
     front-dev&#64;jonathan-michutta.de
   </a>
-  <div class="tooltip-container" aria-describedby="copyTooltip" [class.tooltip-disabled]="showCopyDialog()">
-    <button class="copy-btn tooltip-container" (click)="copyEmail()" [class.clicked]="emailCopied()"
+  <div class="tooltip-container" type="button" aria-describedby="copyTooltip"
+    [class.tooltip-disabled]="showCopyDialog()">
+    <button class="copy-btn" (click)="copyEmail()" [class.clicked]="emailCopied()"
       aria-label="'landing.copyAria' | translate">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="9" y="9" width="13" height="13" rx="2" stroke="white" stroke-width="2" />
