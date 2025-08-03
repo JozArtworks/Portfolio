@@ -176,7 +176,8 @@
     "copied": "Copied",
     "email": "front-dev@jonathan-michutta.de",
     "copyAria": "Copy email",
-    "ariaDescription": "Footer area with link to homepage, copyright, imprint and privacy policy."
+    "ariaDescription": "Footer area with link to homepage, copyright, imprint and privacy policy.",
+    "navLabel": "Footer navigation"
   },
   "landing": {
     "title": "Frontend Developer",
