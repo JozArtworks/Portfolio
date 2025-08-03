@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
@@ -241,10 +241,5 @@ export class AppComponent {
     this.quantumPingVisible = false;
   }
 
-@ViewChild(HeaderComponent) header?: HeaderComponent;
-
-get navbar() {
-  return this.header?.navbarComp;
-}
 
 }

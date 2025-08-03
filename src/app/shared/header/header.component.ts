@@ -1,7 +1,10 @@
-import { Component, Input, Output, EventEmitter, ViewChild, SimpleChanges, signal } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { signal } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 /**
  * The HeaderComponent is responsible for rendering the application's header section,
  * including the logo and the navigation bar (navbar).
@@ -15,14 +18,13 @@ import { NavbarComponent } from '../navbar/navbar.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-
 export class HeaderComponent {
 
   /**
    * Creates an instance of HeaderComponent and injects Angular Router.
    * @param router Angular Router used for navigating to the home section.
    */
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   /**
    * Determines whether the logo is currently hovered (used for switching logo image).
@@ -121,5 +123,4 @@ export class HeaderComponent {
       }, 100);
     });
   }
-
 }

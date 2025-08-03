@@ -11,11 +11,10 @@
       @if (!isOrientationLocked()) {
       @if (shouldShowHeader()) {
       <app-header class="animate-header" [class.header-visible]="showHeader" [mobileMenuOpen]="mobileMenuOpen"
-        [isMobileView]="isMobileView" (toggleMenu)="toggleMobileMenu()" (forceCloseMenu)="mobileMenuOpen = false">
+         (toggleMenu)="toggleMobileMenu()" (forceCloseMenu)="mobileMenuOpen = false">
       </app-header>
       <main class="main-content scrollable" [class.blur-scroll]="projectDialog.dialogOpen()">
-        <app-scroll-page (quantumPingTriggered)="toggleQuantumPing()"
-          (sectionChanged)="updateBackgroundOnSectionChange($event)"
+        <app-scroll-page (quantumPingTriggered)="toggleQuantumPing()" (sectionChanged)="updateBackgroundOnSectionChange($event)"
           (sectionChanged)="updateBackgroundOnSectionChange($event)" [isAppReadyForTransition]="isAppLoaded" />
       </main>
       } @else {
@@ -42,9 +41,9 @@
     </div>
   </div>
   }
-  @if (isMobileView && (mobileMenuOpen) && shouldShowHeader()) {
-  <app-mobile-popout [focusTarget]="navbar?.toggleBtn" [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
-     (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
+  @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
+  <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
+    [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>
   }
   @if (projectDialog.dialogOpen()) {
@@ -52,6 +51,7 @@
     [show]="true" (close)="closeGlobalDialog()" />
   }
 </section>
+
 <div class="preloader" [class.preloader-hidden]="isAppLoaded">
   <div class="loader-ring">
     <img src="assets/icons/white/svg/logo_jm.svg" alt="Loading Logo" fetchpriority="high" class="lcp-logo" />

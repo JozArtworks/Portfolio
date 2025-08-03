@@ -21,6 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 export class MobilePopoutComponent {
 
+  @Input() animationState: 'open' | 'closing' | '' = '';
+
   /** Controls the visibility of the mobile menu */
   @Input() mobileMenuOpen = false;
 

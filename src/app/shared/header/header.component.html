@@ -9,7 +9,8 @@
       : './../../../assets/icons/white/svg/LogoJM_white.svg'" [attr.alt]="'logo.alt' | translate" role="img" />
     </a>
     @if (showNavbar()) {
-    <app-navbar (toggleMenu)="onToggleMenu()">
+    <app-navbar [mobileMenuOpen]="mobileMenuOpen"
+       (toggleMenu)="onToggleMenu()" >
     </app-navbar>
     }
   </header>

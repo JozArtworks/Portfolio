@@ -24,8 +24,8 @@
 <div class="box-link-nav-mobile">
   <app-links-img [context]="'navbar'" [isEmailVisible]="mailToastService.showEmail()"
     [showCopyDialog]="mailToastService.showCopyDialog()" (mailClicked)="toggleEmail()"></app-links-img>
-  <button #toggleBtn [attr.aria-label]="'landing.menuToggleAria' | translate" class="burger-menu" [class.open]="mobileMenuOpen"
-    (click)="emitToggleMenu()">
+  <button #toggleBtn [attr.aria-label]="'landing.menuToggleAria' | translate" class="burger-menu"
+    [class.open]="mobileMenuOpen" (click)="emitToggleMenu()">
     <span></span>
   </button>
 </div>
