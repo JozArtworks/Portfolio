@@ -1,9 +1,28 @@
+/**
+ * Represents a single tool icon used in the portfolio.
+ * Displayed on the landing page under "Tools & Skills".
+ */
 export interface ToolIcon {
+  /**
+   * Internal name of the tool (used for identification, not shown in UI).
+   */
   name: string;
+
+  /**
+   * Translation key for the `alt` attribute (accessibility and screenreader).
+   */
   alt: string;
+
+  /**
+   * Path to the icon image (usually an SVG in the assets folder).
+   */
   icon: string;
 }
 
+/**
+ * Core development tools and technologies.
+ * Shown in the main skills section on the landing page.
+ */
 export const toolsIcons: ToolIcon[] = [
   {
     name: 'Api',
@@ -65,13 +84,17 @@ export const toolsIcons: ToolIcon[] = [
     alt: 'tools-alt-landing.oop.alt',
     icon: 'assets/icons/white/svg/logo_oop.svg'
   },
-    {
+  {
     name: 'accessibility',
     alt: 'tools-alt-landing.access.alt',
     icon: 'assets/icons/white/svg/icon_accessibility.svg'
   },
 ];
 
+/**
+ * Additional tools and frameworks not part of the main stack.
+ * Currently hidden or placed in optional areas of the UI.
+ */
 export const extraTools: ToolIcon[] = [
   {
     name: 'React',
@@ -85,6 +108,9 @@ export const extraTools: ToolIcon[] = [
   },
 ];
 
+/**
+ * Design-related tools shown in a separate section of the landing page.
+ */
 export const toolsIconsDesign: ToolIcon[] = [
   {
     name: 'Figma',

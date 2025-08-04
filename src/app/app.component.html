@@ -8,13 +8,13 @@
   <div class="background-gradient">
     <div class="glass-background-style">
       @if (isAppLoaded) {
-      @if (!isOrientationLocked()) {
+      @if (!orientationIsLocked()) {
       @if (shouldShowHeader()) {
       <app-header class="animate-header" [class.header-visible]="showHeader" [mobileMenuOpen]="mobileMenuOpen"
-         (toggleMenu)="toggleMobileMenu()" (forceCloseMenu)="mobileMenuOpen = false">
+        (toggleMenu)="toggleMobileMenu()" (forceCloseMenu)="mobileMenuOpen = false">
       </app-header>
       <main class="main-content scrollable" [class.blur-scroll]="projectDialog.dialogOpen()">
-        <app-scroll-page (quantumPingTriggered)="toggleQuantumPing()" (sectionChanged)="updateBackgroundOnSectionChange($event)"
+        <app-scroll-page (quantumPingTriggered)="toggleQuantumPing()"
           (sectionChanged)="updateBackgroundOnSectionChange($event)" [isAppReadyForTransition]="isAppLoaded" />
       </main>
       } @else {
@@ -34,14 +34,14 @@
   </div>
   @if (quantumPingVisible) {
   <div class="quantum-dialog-backdrop" (click)="close()">
-    <div class="quantum-dialog" (click)="$event.stopPropagation()" role="dialog" aria-label="Quantum Ping Dialog">
-      <h3>Quantum Signal erkannt</h3>
-      <p>Du hast einen versteckten Ping im Quantenäther gefunden.</p>
-      <button (click)="close()" aria-label="Schließen">Schließen</button>
+    <div class="quantum-dialog" (click)="$event.stopPropagation()">
+      <h3>{{ 'quantum.title' | translate }}</h3>
+      <p>{{ 'quantum.message' | translate }}</p>
+      <button (click)="close()">Schließen</button>
     </div>
   </div>
   }
-  @if (isMobileView && (mobileMenuOpen || animationState === 'closing') && shouldShowHeader()) {
+  @if (shouldShowMobilePopout()) {
   <app-mobile-popout [currentSection]="sectionObserver.currentSection()" [mobileMenuOpen]="mobileMenuOpen"
     [animationState]="animationState" (toggleMenu)="toggleMobileMenu()" (setLanguage)="setLanguage($event)">
   </app-mobile-popout>

@@ -1,10 +1,32 @@
+/**
+ * Represents a single feedback entry from a team member or colleague.
+ */
 export interface FeedbackEntry {
+  /**
+   * Unique key used for translation or identification.
+   */
   key: string;
+
+  /**
+   * Full name of the person giving the feedback.
+   */
   name: string;
+
+  /**
+   * Source project or context in which the person worked with you.
+   */
   source: string;
+
+  /**
+   * Optional LinkedIn profile URL of the person.
+   */
   linkedin?: string;
 }
 
+/**
+ * Static list of feedback entries displayed in the portfolio.
+ * Used to showcase testimonials and recommendations from past projects.
+ */
 export const FEEDBACKS: FeedbackEntry[] = [
   {
     key: 'patrick',

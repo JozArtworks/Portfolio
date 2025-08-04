@@ -27,6 +27,10 @@
     "contact": "Contact",
     "roleNavigation": "Main navigation"
   },
+  "quantum": {
+    "title": "Quantum Signal detected",
+    "message": "You discovered a hidden ping in the quantum ether."
+  },
   "imprint": {
     "title": "Imprint",
     "subtitle": "Information according to §5 TMG",

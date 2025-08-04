@@ -27,6 +27,10 @@
     "contact": "Kontakt",
     "roleNavigation": "Hauptnavigation"
   },
+  "quantum": {
+    "title": "Quantum Signal erkannt",
+    "message": "Du hast einen versteckten Ping im Quantenäther gefunden."
+  },
   "imprint": {
     "title": "Impressum",
     "subtitle": "Angaben gemäß §5 TMG",

@@ -1,11 +1,38 @@
+/**
+ * Represents an icon element used for external links (e.g., GitHub, LinkedIn, Email).
+ * Used in footer, navbar and landing page to display consistent social/media icons.
+ */
 export interface LinkIcon {
+  /**
+   * Display name of the icon (for identification, not shown in UI).
+   */
   name: string;
+
+  /**
+   * Path to the default icon SVG.
+   */
   icon: string;
+
+  /**
+   * Optional path to the hover state icon SVG.
+   */
   hoverIcon?: string;
+
+  /**
+   * Optional external URL the icon links to (mailto, LinkedIn, GitHub, etc.).
+   */
   link?: string;
+
+  /**
+   * Translation key used for the `alt` attribute (accessibility / screenreader).
+   */
   altKey: string;
 }
 
+/**
+ * Static array of link icons used across the portfolio (landing, navbar, footer).
+ * Includes icon paths, alt translation keys and optional links.
+ */
 export const linksIcons: LinkIcon[] = [
   {
     name: 'GitHub',
