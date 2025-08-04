@@ -6,9 +6,21 @@
       <div tabindex="-1" class="about-body">
         <div tabindex="-1" class="box-left dNone">
           <div tabindex="-1" role="region" class="text-with-image">
-            <img tabindex="-1" loading="lazy" src="./../../../assets/images/pic_about_me_270.webp"
-              srcset="./../../../assets/images/pic_about_me_540.webp 2x" sizes="(max-width: 820px) 270px, 270px"
-              [alt]="'about.alt' | translate" class="about-me-image inline-image" />
+            <picture>
+              <source type="image/webp" srcset="
+      ./../../../assets/images/webp/pic_about_me_135.webp 135w,
+      ./../../../assets/images/webp/pic_about_me_270.webp 270w,
+      ./../../../assets/images/webp/pic_about_me_540.webp 540w,
+      ./../../../assets/images/webp/pic_about_me_720.webp 720w,
+      ./../../../assets/images/webp/pic_about_me_1080.webp 1080w" sizes="(max-width: 820px) 100vw, 270px" />
+              <source type="image/jpeg" srcset="
+      ./../../../assets/images/jpg/pic_about_me_135.jpg 135w,
+      ./../../../assets/images/jpg/pic_about_me_270.jpg 270w,
+      ./../../../assets/images/jpg/pic_about_me_540.jpg 540w" sizes="(max-width: 820px) 100vw, 270px" />
+              <img src="./../../../assets/images/jpg/pic_about_me_270.jpg" alt="{{ 'about.alt' | translate }}"
+                class="about-me-image inline-image" loading="lazy" fetchpriority="auto" decoding="async" width="270"
+                height="161" />
+            </picture>
             <p class="dNone">
               {{ 'about.intro1' | translate }}
             </p>

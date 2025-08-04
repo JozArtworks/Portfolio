@@ -2,6 +2,34 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
+@keyframes slideFadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideFadeOut {
+
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+}
+
 .inline-image {
   float: left;
   width: 120px;
@@ -38,11 +66,9 @@
   overflow-x: hidden;
 
   .about-content {
+    @include dFlex-center();
     flex: 1 1 auto;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 32px;
   }
 }
@@ -122,34 +148,6 @@ blockquote {
 
 .fade-out {
   animation: slideFadeOut 0.4s ease-in-out;
-}
-
-@keyframes slideFadeIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-@keyframes slideFadeOut {
-
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
 }
 
 @media screen and (max-width: 820px) {
