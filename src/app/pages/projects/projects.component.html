@@ -16,14 +16,11 @@
                 [attr.aria-labelledby]="'project-title' + project.title"
                 [attr.aria-describedby]="'project-desc' + project.title" (click)="openDialog(project)"
                 (keydown.enter)="openDialog(project)" (keydown.space)="openDialog(project)">
-
                 <div class="project-info">
-
                   <span [attr.id]="'project-title' + project.title">{{ project.title | translate }}</span>
-
                   <div class="mobileOnly">
                     @if (isMobileView) {
-                    <p [attr.id]="'project-desc-' + project.title">{{ project.description | translate }}</p>
+                    <p [attr.id]="'project-desc' + project.title">{{ project.description | translate }}</p>
                     } @else {
                     <p aria-hidden="true">{{ project.description | translate }}</p>
                     }
@@ -32,7 +29,7 @@
                 <div class="project-icons" aria-hidden="true">
                   <div class="desktopOnly">
                     @if (!isMobileView) {
-                    <p [attr.id]="'project-desc-' + project.title">{{ project.description | translate }}</p>
+                    <p [attr.id]="'project-desc' + project.title">{{ project.description | translate }}</p>
                     } @else {
                     <p aria-hidden="true">{{ project.description | translate }}</p>
                     }

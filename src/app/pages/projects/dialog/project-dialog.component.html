@@ -38,7 +38,8 @@
     }
     <div class="project-buttons">
       @if (project.github) {
-      <div class="border-git" (focusin)="isGitFocused = true" (focusout)="isGitFocused = false" (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
+      <div class="project-button border-git" (focusin)="isGitFocused = true" (focusout)="isGitFocused = false"
+        (mouseenter)="isGitHovered = true" (mouseleave)="isGitHovered = false">
         <a [href]="project.github" target="_blank" rel="noopener noreferrer"
           [attr.aria-label]="'dialog.alt.github' | translate">
           Github
@@ -49,7 +50,7 @@
       </div>
       }
       @if (project.live && project.title !== 'Portfolio') {
-      <div class="border-live">
+      <div class="project-button border-live">
         <a [href]="project.live" target="_blank" rel="noopener noreferrer"
           [attr.aria-label]="'dialog.alt.live' | translate">
           Live Test

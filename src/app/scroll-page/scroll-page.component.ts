@@ -21,7 +21,7 @@ import { SectionObserverService } from '../shared/services/section-observer.serv
  * - Feedbacks
  * - Contact
  *
- * Also handles quantum Easter Egg trigger from Contact section.
+ * Also handles quantum Ping trigger from Contact section.
  */
 @Component({
   selector: 'app-scroll-page',
@@ -54,7 +54,7 @@ export class ScrollPageComponent implements AfterViewInit {
   @Output() sectionChanged = new EventEmitter<string>();
 
   /**
-   * Emits an event when the Contact section triggers the Easter Egg.
+   * Emits an event when the Contact section triggers the Ping.
    */
   @Output() quantumPingTriggered = new EventEmitter<void>();
 
@@ -77,7 +77,7 @@ export class ScrollPageComponent implements AfterViewInit {
 
   /**
    * Triggers the quantum ping from inside the Contact section.
-   * Emits an event to be handled by the parent component (e.g. AppComponent).
+   * Emits an event to be handled by the parent component (Ping AppComponent).
    */
   triggerQuantumPingFromScrollPage(): void {
     this.quantumPingTriggered.emit();

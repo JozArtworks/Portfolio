@@ -1,5 +1,21 @@
 import { Project } from './project.interface';
 
+/**
+ * An array of portfolio projects used to populate the Projects section of the app.
+ * Each project includes localized text keys, image paths, icon paths, and optional links.
+ *
+ * @type {Project[]}
+ *
+ * @property {string} title - i18n translation key for the project title (e.g. `'projects.join.title'`).
+ * @property {string} description - i18n translation key for the short description shown in the list view.
+ * @property {string} dialogDescription - i18n key for the detailed description shown in the project dialog.
+ * @property {string} image - Path to the project preview image (WebP format recommended).
+ * @property {string[]} icons - Icon paths for the main list view.
+ * @property {string[]} iconsDialoge - Icon paths for the detailed dialog view.
+ * @property {string} [github] - Optional GitHub repository link.
+ * @property {string} [live] - Optional live deployment link.
+ * @property {string} [key] - Optional internal identifier (e.g. `'portfolio'`).
+ */
 export const PROJECTS: Project[] = [
   {
     title: 'projects.join.title',

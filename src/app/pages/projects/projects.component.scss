@@ -9,18 +9,14 @@
   height: 100%;
 
   .project-content {
+    @include dFlex-center();
     flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 32px;
     width: 100%;
   }
 
   .project-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include dFlex-center();
 
     .box {
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -99,9 +95,7 @@
 }
 
 .project-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dFlex-center();
   gap: 12px;
 
   &:hover {
@@ -109,14 +103,12 @@
   }
 
   .project-small-icons {
+    @include dFlex-center();
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     aspect-ratio: 1;
     padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &:hover {
       cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
@@ -184,9 +176,11 @@
     border-radius: 20px;
     margin: 0 10px;
   }
+
 }
 
 @media screen and (max-width: 565px) {
+
   .mobileOnly {
     display: block;
   }
@@ -199,6 +193,7 @@
     padding: 10px !important;
     border-radius: 20px;
   }
+
 }
 
 @media screen and (max-width: 455px) {
@@ -215,4 +210,5 @@
   .project-icons {
     gap: 5px;
   }
+
 }
