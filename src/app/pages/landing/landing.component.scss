@@ -7,13 +7,25 @@
   text-shadow: 4px 4px 14px rgba(0, 0, 0, 0.5);
 }
 
+// Keeping them separated ensures consistent animation behavior across browsers.
 .main-landing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // first step! ☺
+  @include dFlex-center();
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+.main-landing {
+  // secound step! ☺
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .main {
@@ -38,7 +50,6 @@
   transform: translateX(-150%);
 }
 
-
 .box-tools {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 32px;
@@ -60,9 +71,7 @@
 }
 
 .box-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dFlex-center();
   gap: 10px;
   width: 130px;
   height: 48px;
@@ -102,10 +111,8 @@
 }
 
 .title {
-  display: flex;
+  @include dFlex-center();
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding-top: 25vh;
   color: #FFFFFF;
   margin-bottom: 20px;
@@ -117,44 +124,6 @@
   flex-direction: column;
   gap: 0;
   text-align: center;
-}
-
-@media screen and (max-width: 870px) {
-
-  .dNone {
-    display: none;
-  }
-
-  .about-foot {
-    justify-content: center;
-    margin: 0;
-  }
-
-  .box-tools {
-    padding-left: 5px;
-    padding-right: 5px;
-    height: 45px;
-    width: 100%;
-    max-width: 455px;
-    margin-bottom: 11px;
-    margin-left: 5px;
-
-    img {
-      width: 17px;
-      height: 17px;
-    }
-  }
-}
-
-.main-landing {
-  opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-
-  &.animate-in {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 .box-tools,
@@ -183,10 +152,13 @@
   transform: translateX(0);
 }
 
+// Intentional reuse of .slide-out – different X translations per element for animation load and scroll:
+// .box-tools - slide out to the left
 .box-tools.slide-out {
   transform: translateX(-150%);
 }
 
+// .box-link - slide out to the right
 .box-link.slide-out {
   transform: translateX(150%);
 }
@@ -219,4 +191,32 @@ h2.fade-subtitle {
 
 h3.fade-subtitle {
   transition-delay: 0.2s;
+}
+
+@media screen and (max-width: 870px) {
+
+  .dNone {
+    display: none;
+  }
+
+  .about-foot {
+    justify-content: center;
+    margin: 0;
+  }
+
+  .box-tools {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 45px;
+    width: 100%;
+    max-width: 455px;
+    margin-bottom: 11px;
+    margin-left: 5px;
+
+    img {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
 }
