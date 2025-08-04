@@ -21,6 +21,17 @@ import { TranslateModule } from '@ngx-translate/core';
 
 export class MobilePopoutComponent {
 
+  /**
+   * Controls the animation state of the mobile popout.
+   *
+   * This input receives values to trigger entry and exit animations.
+   *
+   * - `'open'`: Triggers the popout opening animation
+   * - `'closing'`: Triggers the popout closing animation
+   * - `''`: Default/idle state with no animation
+   *
+   * Typically bound by the parent `NavbarComponent` or `AppComponent` to coordinate transitions.
+   */
   @Input() animationState: 'open' | 'closing' | '' = '';
 
   /** Controls the visibility of the mobile menu */
