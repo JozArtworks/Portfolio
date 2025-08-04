@@ -5,6 +5,7 @@ import { signal } from '@angular/core';
 import { LangSwitchComponent } from '../../../shared/components/lang-switch/lang-switch.component';
 import { Router } from '@angular/router';
 import { HostListener } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -15,7 +16,13 @@ import { HostListener } from '@angular/core';
 })
 export class PrivacyPolicyComponent {
 
-  constructor(private translate: TranslateService, private router: Router) { }
+  constructor(private translate: TranslateService, private router: Router, private title: Title) { this.setTranslatedTitle() }
+
+  setTranslatedTitle() {
+    this.translate.get('titles.privacy').subscribe((translatedTitle: string) => {
+      this.title.setTitle(translatedTitle);
+    });
+  }
 
   language = signal<'de' | 'en'>('de');
 

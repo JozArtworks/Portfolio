@@ -188,7 +188,11 @@
     "subtitle": "& Media Designer",
     "copied": "Copied",
     "copyAria": "Copy email",
-    "copyTooltip": "Copy e-mail address"
+    "copyTooltip": "Copy e-mail address",
+    "mailLabel": "Send email to Jonathan",
+    "toolsLabel": "Technologies I use",
+    "menuToggleAria": "Toggle menu visibility",
+    "accessibilityNote": "*Beta phase active: We're currently updating screen reader support and mobile UX."
   },
   "tools-alt-landing": {
     "api": {
@@ -283,5 +287,15 @@
     "languageLabel": "Change language",
     "dialogLabel": "Mobile menu",
     "navLabel": "Mobile navigation"
+  },
+  "titles": {
+    "home": "JM – Frontend Developer",
+    "about": "JM – About Me",
+    "skills": "JM – Skills",
+    "projects": "JM – Projects",
+    "feedbacks": "JM – Feedbacks",
+    "contact": "JM – Contact",
+    "imprint": "JM – Imprint",
+    "privacy": "JM - Privacy Policy"
   }
 }

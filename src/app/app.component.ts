@@ -1,4 +1,4 @@
-import { Component, Input, signal, NgZone, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, Input, signal, NgZone, ChangeDetectorRef, HostListener, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
@@ -10,13 +10,14 @@ import { SectionObserverService } from './shared/services/section-observer.servi
 import { ProjectDialogService } from './shared/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 import { AppSettings } from './app.config';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, MobilePopoutComponent, ScrollPageComponent, ProjectDialogComponent, TranslateModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 
 /**
@@ -25,6 +26,8 @@ import { AppSettings } from './app.config';
  * viewport/orientation handling, language switching, and modal dialogs.
  */
 export class AppComponent {
+
+  title = 'portfolio';
 
   /**
    * Stores the bound resize listener for later removal.
@@ -87,7 +90,18 @@ export class AppComponent {
   @Input() isAppReadyForTransition = false;
 
   /**
-   * Creates the AppComponent and sets up route background logic.
+   * Creates the AppComponent and initializes core app logic:
+   *
+   * - Subscribes to route changes to update background class transitions
+   * - Observes section changes to dynamically update the browser tab title
+   *
+   * @param ngZone - Angular zone for controlling change detection and event scheduling
+   * @param router - Angular router for observing navigation events
+   * @param translate - Translation service for i18n support
+   * @param cdr - Change detector for manual view updates
+   * @param sectionObserver - Shared service for tracking the currently visible section
+   * @param projectDialog - Shared service for managing the project dialog state
+   * @param titleService - Angular Title service for updating the browser tab title
    */
   constructor(
     private ngZone: NgZone,
@@ -95,7 +109,8 @@ export class AppComponent {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public sectionObserver: SectionObserverService,
-    public projectDialog: ProjectDialogService
+    public projectDialog: ProjectDialogService,
+    private titleService: Title
   ) {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((e: any) => {
       this.currentRoute = e.urlAfterRedirects;
@@ -103,6 +118,10 @@ export class AppComponent {
       if (mappedBackground !== this.backgroundClassCurrent) {
         this.setStaticBackground(mappedBackground);
       }
+    });
+    effect(() => {
+      const section = this.sectionObserver.currentSection();
+      this.updateDocumentTitle(section);
     });
   }
 
@@ -214,6 +233,31 @@ export class AppComponent {
         this.isFading = false;
         this.cdr.detectChanges();
       }, 600);
+    }
+  }
+
+  /**
+ * Updates the document title (browser tab) based on the currently visible section.
+ *
+ * Uses a mapping from section IDs to translation keys (e.g. 'home' → 'titles.home'),
+ * retrieves the translated title via `TranslateService`, and sets it using `TitleService`.
+ *
+ * @param section - The ID of the currently active section (e.g. 'home', 'skills', 'contact')
+ */
+  private updateDocumentTitle(section: string) {
+    const keyMap: Record<string, string> = {
+      home: 'titles.home',
+      about: 'titles.about',
+      skills: 'titles.skills',
+      projects: 'titles.projects',
+      feedbacks: 'titles.feedbacks',
+      contact: 'titles.contact',
+    };
+    const translationKey = keyMap[section];
+    if (translationKey) {
+      this.translate.get(translationKey).subscribe((translated) => {
+        this.titleService.setTitle(translated);
+      });
     }
   }
 

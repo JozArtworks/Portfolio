@@ -169,7 +169,7 @@
     },
     "portfolio": {
       "title": "Portfolio",
-      "description": "UI-Design & barrierefreies Web",
+      "description": "*UI-Design & barrierefreies Web",
       "dialogDescription": "Modernes UI-Design trifft auf barrierefreien Code – mit Fokus auf Screenreader, Tastaturnavigation und klaren Strukturen."
     }
   },
@@ -191,7 +191,8 @@
     "copyTooltip": "E-Mail-Adresse kopieren",
     "mailLabel": "E-Mail senden an Jonathan",
     "toolsLabel": "Technologien, die ich verwende",
-    "menuToggleAria": "Menü anzeigen oder ausblenden"
+    "menuToggleAria": "Menü anzeigen oder ausblenden",
+    "accessibilityNote": "*Beta-Phase aktiv: Screenreader-Unterstützung und Mobile-UX werden aktuell verbessert."
   },
   "tools-alt-landing": {
     "api": {
@@ -286,5 +287,15 @@
     "languageLabel": "Sprache ändern",
     "dialogLabel": "Mobiles Menü",
     "navLabel": "Mobile Navigation"
+  },
+  "titles": {
+    "home": "JM – Webentwickler (Frontend)",
+    "about": "JM – Über mich",
+    "skills": "JM – Tools",
+    "projects": "JM – Projekte",
+    "feedbacks": "JM – Referenzen",
+    "contact": "JM – Kontakt",
+    "imprint": "JM – Impressum",
+    "privacy": "JM - Datenschutzerklärung"
   }
 }
