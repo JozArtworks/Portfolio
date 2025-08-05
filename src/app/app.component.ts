@@ -2,6 +2,7 @@ import { Component, Input, signal, NgZone, ChangeDetectorRef, HostListener, effe
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { HeaderComponent } from './shared/header/header.component';
 import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-popout.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -33,6 +34,8 @@ export class AppComponent {
    * Stores the bound resize listener for later removal.
    */
   private boundCheckViewport = () => { };
+
+  private ngZoneTimeoutFallback: any;
 
   /**
    * Reactive signal to determine whether orientation lock should be shown.
@@ -125,28 +128,30 @@ export class AppComponent {
     });
   }
 
-  /**
-   * Initializes app-wide listeners and preloader logic.
-   */
+
   ngOnInit() {
     this.initViewportListeners();
-    this.initPreloaderSequence();
+    this.runPreloaderSequence();
     this.setupReloadHintFallback();
   }
 
-  /**
-   * Starts section observer for scroll tracking after view init.
-   */
+
   ngAfterViewInit() {
+    this.ngZoneTimeoutFallback = setTimeout(() => {
+      this.runPreloaderSequence();
+    }, 3000);
+    this.ngZone.onStable.pipe(take(1)).subscribe(() => {
+      clearTimeout(this.ngZoneTimeoutFallback);
+      this.runPreloaderSequence();
+    });
     this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
   }
 
-  /**
-   * Cleans up global event listeners on destroy.
-   */
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
+    clearTimeout(this.ngZoneTimeoutFallback);
   }
+
 
   /**
    * Adds listeners for viewport resize and orientation changes.
@@ -161,30 +166,27 @@ export class AppComponent {
     });
   }
 
-  /**
-   * Handles the preloader and startup transition sequence.
-   */
-  private initPreloaderSequence(): void {
-    window.addEventListener('load', () => {
-      this.ngZone.runOutsideAngular(() => {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            this.ngZone.run(() => {
-              this.isAppLoaded = true;
-              this.exitPhase = true;
-              this.didInitialFade = true;
+
+  private runPreloaderSequence(): void {
+    this.ngZone.runOutsideAngular(() => {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          this.ngZone.run(() => {
+            this.isAppLoaded = true;
+            this.exitPhase = true;
+            this.didInitialFade = true;
+            this.cdr.detectChanges();
+            setTimeout(() => this.preloaderDone = true, 800);
+            setTimeout(() => {
+              this.showHeader = true;
               this.cdr.detectChanges();
-              setTimeout(() => this.preloaderDone = true, 800);
-              setTimeout(() => {
-                this.showHeader = true;
-                this.cdr.detectChanges();
-              }, 50);
-            });
-          }, AppSettings.loaderDelayMs);
-        });
+            }, 50);
+          });
+        }, AppSettings.loaderDelayMs);
       });
     });
   }
+
 
   /**
    * Triggers a fallback hint if the app doesn't load within 3s.
