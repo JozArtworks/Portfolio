@@ -2,6 +2,49 @@
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/font-types.scss";
 
+@keyframes fly-out {
+
+  0% {
+    transform: translate(0, -50%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(40px, -50%) scale(1.2);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(80px, -50%) scale(1.4);
+    opacity: 0;
+  }
+
+}
+
+@keyframes shake {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-3px);
+  }
+
+  50% {
+    transform: translateX(3px);
+  }
+
+  75% {
+    transform: translateX(-3px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
 .visually-hidden {
   @include visuallyHidden();
 }
@@ -14,11 +57,9 @@
   height: 100%;
 
   .contact-content {
+    @include dFlex-center();
     flex: 1;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 5px 32px;
   }
 }
@@ -169,7 +210,7 @@
     height: 45px;
     font-family: 'inter', sans-serif;
     font-weight: 100;
-    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    cursor: $cursor-pointer;
   }
 
   .email {
@@ -178,7 +219,7 @@
     height: 45px;
     font-family: 'inter', sans-serif;
     font-weight: 200;
-    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    cursor: $cursor-pointer;
   }
 
   .message {
@@ -188,7 +229,7 @@
     overflow-y: auto;
     font-family: 'inter', sans-serif;
     font-weight: 200;
-    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    cursor: $cursor-pointer;
   }
 
   .honeypot {
@@ -222,7 +263,7 @@
 
     &:hover {
       color: aquamarine;
-      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      cursor: $cursor-pointer;
     }
   }
 
@@ -262,30 +303,26 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
   }
 
   .custom-checkbox {
+    @include dFlex-center();
     position: relative;
     width: 20px;
     height: 20px;
     border: 1.5px solid #3DCFB6;
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     aspect-ratio: 1;
     transition: all 0.2s ease;
     transform: translateY(0);
 
     &:hover {
-      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      cursor: $cursor-pointer;
     }
 
     &::after {
       content: '';
+      @include dFlex-center();
       position: relative;
       width: 10px;
       height: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background-color: #3DCFB6;
       border-radius: 50%;
       opacity: 0;
@@ -305,6 +342,7 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
 }
 
 .btn-send {
+  @include dFlex-center();
   background: rgba(255, 255, 255, 0.233);
   border: 2px solid transparent;
   color: white;
@@ -313,9 +351,6 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
   border-radius: 32px;
   padding: 8px 0;
   max-width: 145px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 8px;
   font-family: 'Inter', sans-serif;
   cursor: not-allowed;
@@ -332,7 +367,7 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
   &.active {
     background: transparent;
     border: 2px solid #3DCFB6;
-    cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+    cursor: $cursor-pointer;
 
     &:hover {
       background: rgba(61, 207, 182, 0.2);
@@ -341,7 +376,7 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
 
   &:disabled {
     opacity: 0.5;
-    cursor: url('./../../../assets/icons/cursor/cursor_stop.cur') 0 0, pointer;
+    cursor: $cursor-stop;
   }
 
   &:focus-visible {
@@ -363,44 +398,5 @@ input[type="checkbox"]:focus-visible+.custom-checkbox {
     height: 15px;
     filter: brightness(0) invert(1);
     pointer-events: none;
-  }
-}
-
-@keyframes fly-out {
-  0% {
-    transform: translate(0, -50%) scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translate(40px, -50%) scale(1.2);
-    opacity: 0.9;
-  }
-
-  100% {
-    transform: translate(80px, -50%) scale(1.4);
-    opacity: 0;
-  }
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(-3px);
-  }
-
-  50% {
-    transform: translateX(3px);
-  }
-
-  75% {
-    transform: translateX(-3px);
-  }
-
-  100% {
-    transform: translateX(0);
   }
 }

@@ -8,7 +8,6 @@
       padding: 0;
     }
 
-
     .contact-body {
       flex-direction: column;
       gap: 5px;
@@ -104,11 +103,14 @@
       display: none !important;
     }
   }
+
 }
 
 @media screen and (max-width: 500px) {
+
   .contact-window {
     padding: 3px !important;
     border-radius: 20px;
   }
+
 }

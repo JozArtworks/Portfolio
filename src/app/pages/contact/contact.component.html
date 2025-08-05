@@ -20,10 +20,10 @@
             <div class="input-wrapper">
               <label for="nameInputId" class="visually-hidden">{{ 'contact.nameLabel' | translate }}
               </label>
-              <input id="nameInputId" type="text" name="name" [placeholder]="namePlaceholder" required
-                aria-required="true" [(ngModel)]="formData.name" autocomplete="on" class="form-field name"
-                #nameInput="ngModel" [class.invalid]="!nameValid && nameInput.touched" (blur)="onBlurDelayed()"
-                (input)="onInputChange()" [attr.aria-invalid]="!nameValid && nameInput.touched"
+              <input id="nameInputId" #nameInput="ngModel" #nameInputEl type="text" name="name"
+                [placeholder]="namePlaceholder" required aria-required="true" [(ngModel)]="formData.name"
+                autocomplete="on" class="form-field name" [class.invalid]="!nameValid && nameInput.touched"
+                (blur)="onBlurDelayed()" (input)="onInputChange()" [attr.aria-invalid]="!nameValid && nameInput.touched"
                 [attr.aria-describedby]="!nameValid && nameInput.touched ? 'nameError' : null" />
               @if (!nameValid && nameInput.touched) {
               <p id="nameError" class="form-warning" aria-live="polite">{{ 'contact.nameError' | translate }}</p>
@@ -31,10 +31,10 @@
             </div>
             <div class="input-wrapper">
               <label for="emailInputId" class="visually-hidden">{{ 'contact.emailLabel' | translate }}</label>
-              <input id="emailInputId" type="email" name="email" aria-required="true" class="form-field email"
-                [placeholder]="emailPlaceholder" [(ngModel)]="formData.email" #emailInput="ngModel" required
-                [class.invalid]="!emailValid && emailInput.touched" (input)="onInputChange()"
-                (blur)="onEmailBlurDelayed()"
+              <input id="emailInputId" #emailInput="ngModel" #emailInputEl type="email" name="email"
+                aria-required="true" class="form-field email" [placeholder]="emailPlaceholder"
+                [(ngModel)]="formData.email" required [class.invalid]="!emailValid && emailInput.touched"
+                (input)="onInputChange()" (blur)="onEmailBlurDelayed()"
                 [attr.aria-describedby]="!emailValid && emailInput.touched ? 'emailError' : null"
                 [attr.aria-invalid]="!emailValid && emailInput.touched" />
               @if (!emailValid && emailInput.touched) {
@@ -43,9 +43,9 @@
             </div>
             <div class="input-wrapper">
               <label for="messageInputId" class="visually-hidden">{{ 'contact.messageLabel' | translate }}</label>
-              <textarea id="messageInputId" aria-required="true" name="message" [placeholder]="messagePlaceholder"
-                required [(ngModel)]="formData.message" class="form-field message" rows="5" maxlength="250"
-                #messageInput="ngModel" [class.invalid]="!messageValid && messageInput.touched"
+              <textarea id="messageInputId" #messageInput="ngModel" #messageInputEl aria-required="true" name="message"
+                [placeholder]="messagePlaceholder" required [(ngModel)]="formData.message" class="form-field message"
+                rows="5" maxlength="250" [class.invalid]="!messageValid && messageInput.touched"
                 (input)="onInputChange()" (blur)="onMessageBlurDelayed()"
                 [attr.aria-describedby]="!messageValid && messageInput.touched ? 'messageError' : null"
                 [attr.aria-invalid]="!messageValid && messageInput.touched">

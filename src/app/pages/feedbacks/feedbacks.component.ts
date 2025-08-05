@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class FeedbacksComponent {
+  
   /**
    * List of feedback entries imported from shared data file.
    * Each entry contains a translated text, author name, source, and optional LinkedIn URL.
@@ -66,4 +67,5 @@ export class FeedbacksComponent {
       this.clearHover();
     }, 100);
   }
+
 }
