@@ -1,8 +1,8 @@
-import { Component, Input, signal, NgZone, ChangeDetectorRef, HostListener, effect } from '@angular/core';
+import { Component, Input, signal, NgZone, ChangeDetectorRef, HostListener, effect, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { filter, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { HeaderComponent } from './shared/header/header.component';
 import { MobilePopoutComponent } from './shared/components/mobile-popout/mobile-popout.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,6 @@ import { ProjectDialogService } from './shared/services/project-dialog.service';
 import { ProjectDialogComponent } from './pages/projects/dialog/project-dialog.component';
 import { AppSettings } from './app.config';
 import { Title } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,12 +20,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './app.component.scss',
 })
 
-/**
- * Root component of the portfolio application.
- * Manages global app behavior including background transitions, mobile menu,
- * viewport/orientation handling, language switching, and modal dialogs.
- */
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   title = 'portfolio';
 
@@ -35,7 +29,15 @@ export class AppComponent {
    */
   private boundCheckViewport = () => { };
 
+  /**
+   * Holds a fallback timeout for the preloader in case Angular’s zone stabilization takes too long.
+   */
   private ngZoneTimeoutFallback: any;
+
+  /**
+   * Emits when the component is destroyed to clean up RxJS subscriptions.
+   */
+  private destroy = new Subject<void>();
 
   /**
    * Reactive signal to determine whether orientation lock should be shown.
@@ -106,36 +108,37 @@ export class AppComponent {
    * @param projectDialog - Shared service for managing the project dialog state
    * @param titleService - Angular Title service for updating the browser tab title
    */
-  constructor(
-    private ngZone: NgZone,
-    private router: Router,
-    private translate: TranslateService,
-    private cdr: ChangeDetectorRef,
-    public sectionObserver: SectionObserverService,
-    public projectDialog: ProjectDialogService,
-    private titleService: Title
-  ) {
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((e: any) => {
-      this.currentRoute = e.urlAfterRedirects;
-      const mappedBackground = this.mapSectionToBg(this.currentRoute.replace('/', ''));
-      if (mappedBackground !== this.backgroundClassCurrent) {
-        this.setStaticBackground(mappedBackground);
-      }
-    });
+  constructor(private ngZone: NgZone, private router: Router, private translate: TranslateService, private cdr: ChangeDetectorRef, public sectionObserver: SectionObserverService, public projectDialog: ProjectDialogService, private titleService: Title) {
+    this.router.events
+      .pipe(
+        filter(e => e instanceof NavigationEnd),
+        takeUntil(this.destroy)
+      )
+      .subscribe((e: any) => {
+        this.currentRoute = e.urlAfterRedirects;
+        const mappedBackground = this.mapSectionToBg(this.currentRoute.replace('/', ''));
+        if (mappedBackground !== this.backgroundClassCurrent) {
+          this.setStaticBackground(mappedBackground);
+        }
+      });
     effect(() => {
       const section = this.sectionObserver.currentSection();
       this.updateDocumentTitle(section);
     });
   }
 
-
+  /**
+   * Lifecycle hook: Initializes core behavior such as viewport/orientation listeners and starts preloader sequence.
+   */
   ngOnInit() {
     this.initViewportListeners();
     this.runPreloaderSequence();
     this.setupReloadHintFallback();
   }
 
-
+  /**
+   * Lifecycle hook: After the view has been initialized, this ensures the preloader runs even if zone stabilization is delayed.
+   */
   ngAfterViewInit() {
     this.ngZoneTimeoutFallback = setTimeout(() => {
       this.runPreloaderSequence();
@@ -147,11 +150,22 @@ export class AppComponent {
     this.sectionObserver.observeSections(['home', 'about', 'skills', 'projects', 'feedbacks', 'contact']);
   }
 
+  /**
+ * Lifecycle hook: Cleans up all event listeners and subscriptions when the component is destroyed.
+ */
   ngOnDestroy() {
     window.removeEventListener('resize', this.boundCheckViewport);
     clearTimeout(this.ngZoneTimeoutFallback);
+    this.destroy.next();
+    this.destroy.complete();
   }
 
+  /**
+ * Event handler for orientation change events. Triggers re-evaluation of orientation lock logic.
+ */
+  private handleOrientationChange = () => {
+    this.checkOrientation();
+  };
 
   /**
    * Adds listeners for viewport resize and orientation changes.
@@ -166,8 +180,17 @@ export class AppComponent {
     });
   }
 
-
+  /**
+   * Initiates the app preloader sequence with timed transitions.
+   *
+   * - Guards against multiple calls via `isAppLoaded`
+   * - Runs outside Angular to optimize performance during delays
+   * - Triggers state flags (`exitPhase`, `didInitialFade`, `preloaderDone`)
+   * - Shows the header shortly after preloader fade-out
+   * - Uses manual change detection via `ChangeDetectorRef`
+   */
   private runPreloaderSequence(): void {
+    if (this.isAppLoaded) return;
     this.ngZone.runOutsideAngular(() => {
       requestAnimationFrame(() => {
         setTimeout(() => {
@@ -186,7 +209,6 @@ export class AppComponent {
       });
     });
   }
-
 
   /**
    * Triggers a fallback hint if the app doesn't load within 3s.
@@ -240,10 +262,6 @@ export class AppComponent {
 
   /**
  * Updates the document title (browser tab) based on the currently visible section.
- *
- * Uses a mapping from section IDs to translation keys (e.g. 'home' → 'titles.home'),
- * retrieves the translated title via `TranslateService`, and sets it using `TitleService`.
- *
  * @param section - The ID of the currently active section (e.g. 'home', 'skills', 'contact')
  */
   private updateDocumentTitle(section: string) {
