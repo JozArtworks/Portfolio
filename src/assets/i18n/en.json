@@ -28,8 +28,9 @@
     "roleNavigation": "Main navigation"
   },
   "quantum": {
-    "title": "Quantum Signal detected",
-    "message": "You discovered a hidden ping in the quantum ether."
+    "title": "Quantum Signal Egg 2 detected",
+    "message": "You discovered a hidden ping in the quantum ether.",
+    "close": "close"
   },
   "imprint": {
     "title": "Imprint",
@@ -186,14 +187,15 @@
   },
   "landing": {
     "title": "Frontend Developer",
-    "subtitle": "& Media Designer",
+    "subtitle": " & Media Designer",
     "copied": "Copied",
     "copyAria": "Copy email",
     "copyTooltip": "Copy e-mail address",
     "mailLabel": "Send email to Jonathan",
     "toolsLabel": "Technologies I use",
     "menuToggleAria": "Toggle menu visibility",
-    "accessibilityNote": "*Beta phase active: We're currently updating screen reader support and mobile UX."
+    "accessibilityNote": "*Beta phase active: We're currently updating screen reader support and mobile UX.",
+    "egg": "You've uncovered the first Easter Egg. But where is the second...?"
   },
   "tools-alt-landing": {
     "api": {

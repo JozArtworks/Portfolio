@@ -3,13 +3,15 @@
     <div class="title">
       <h1 class="fade-title" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" tabindex="0"
         aria-label="Jonathan Michutta – Frontend Developer & Mediengestalter">JONATHAN MICHUTTA</h1>
+      <div class="easter-egg-hint" aria-hidden="true">{{ 'landing.egg' | translate }}</div>
       <div class="subtitle">
-        <h2 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition"><span
-            class="code-angle" aria-hidden="true">&lt;</span> {{ 'landing.title' | translate }} /></h2>
+        <h2 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">
+          {{ 'landing.title' | translate }}
+        </h2>
         <h3 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">{{
           'landing.subtitle' | translate }}</h3>
-        <p class="info-process">{{ 'landing.accessibilityNote' | translate }}</p>
       </div>
+      <p class="info-process">{{ 'landing.accessibilityNote' | translate }}</p>
     </div>
     <div class="about-foot">
       <div class="box-tools" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" role="region"

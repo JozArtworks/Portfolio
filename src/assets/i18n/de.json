@@ -28,8 +28,9 @@
     "roleNavigation": "Hauptnavigation"
   },
   "quantum": {
-    "title": "Quantum Signal erkannt",
-    "message": "Du hast einen versteckten Ping im Quantenäther gefunden."
+    "title": "Quantum Signal Egg 2 erkannt",
+    "message": "Du hast einen versteckten Ping im Quantenäther gefunden.",
+    "close": "Schließen"
   },
   "imprint": {
     "title": "Impressum",
@@ -185,7 +186,7 @@
     "navLabel": "Navigation im Footer"
   },
   "landing": {
-    "title": "Webentwickler (Frontend)",
+    "title": "Webentwickler",
     "subtitle": "& Mediengestalter",
     "copied": "Kopiert",
     "copyAria": "E-Mail-Adresse in Zwischenablage kopieren",
@@ -193,7 +194,8 @@
     "mailLabel": "E-Mail senden an Jonathan",
     "toolsLabel": "Technologien, die ich verwende",
     "menuToggleAria": "Menü anzeigen oder ausblenden",
-    "accessibilityNote": "*Beta-Phase aktiv: Screenreader-Unterstützung und Mobile-UX werden aktuell verbessert."
+    "accessibilityNote": "*Beta-Phase aktiv: Screenreader-Unterstützung und Mobile-UX werden aktuell verbessert.",
+    "egg": "Das erste Easter Egg hast du gefunden. Das zweite wartet noch…"
   },
   "tools-alt-landing": {
     "api": {
