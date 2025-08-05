@@ -80,7 +80,7 @@
             <p id="tools-box1" [innerHTML]="'tools.textBox1' | translate"></p>
           </div>
           <div role="button" (keydown)="onBoxKeyDown($event)" tabindex="0" (click)="scrollToContact($event)"
-            (focus)="isHovered = true" (touchstart)="onBoxTouchStart()" (touchend)="onBoxTouchEnd($event)"
+            (focus)="boxFocused = true" (touchstart)="onBoxTouchStart()" (touchend)="onBoxTouchEnd($event)"
             class="box missing" [attr.aria-label]="'tools.scrollToContactLabel' | translate"
             aria-labelledby="tools-box2" aria-describedby="tools-box2-desc">
             <span id="tools-box2">{{ 'tools.missingHeadline' | translate }}</span>
