@@ -147,7 +147,8 @@
     },
     "taher": {
       "text": "Ich hatte das Vergnügen, mit Jonathan an einem Website-Projekt zu arbeiten, und war beeindruckt von seiner Begeisterung fürs Coden. Er hat neue Konzepte schnell verstanden und sie zielsicher ins Projekt eingebracht. Ruhig, fokussiert und immer mit dem Ziel, gemeinsam gute Lösungen zu finden."
-    }
+    },
+    "linkedinLabel": "LinkedIn-Profil von {{name}}"
   },
   "projects": {
     "title": "Projekte",

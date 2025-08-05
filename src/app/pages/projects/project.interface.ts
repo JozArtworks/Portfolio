@@ -48,3 +48,5 @@ export interface Project {
    */
   key?: string;
 }
+
+// @todo: Move to shared/data if needed elsewhere in the app?

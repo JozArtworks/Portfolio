@@ -92,3 +92,5 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/JozArtworks/Portfolio',
   }
 ];
+
+// @todo: Move to shared/data if needed elsewhere in the app?

@@ -9,11 +9,9 @@
   height: 100%;
 
   .feedback-content {
+    @include dFlex-center();
     flex: 1 1 auto;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 32px;
   }
 }
@@ -33,7 +31,6 @@
   width: 100%;
   padding: 20px;
   gap: 15px;
-  width: 100%;
   border-radius: 32px;
   background: rgba(0, 0, 0, 0.20);
   overflow-y: auto;
@@ -44,12 +41,10 @@
   width: 10px;
 }
 
-
 .box::-webkit-scrollbar-track {
   background: transparent;
   margin: 40px;
   border-radius: 10px;
-  ;
 }
 
 .box::-webkit-scrollbar-thumb {
@@ -72,7 +67,7 @@
   max-width: 100%;
   width: 100%;
   padding: 20px !important;
-  min-width: 0px;
+  min-width: 0;
   height: auto !important;
 
   &:focus-visible {
@@ -99,21 +94,18 @@
     height: auto;
 
     &:hover {
-      cursor: url('./../../../assets/icons/cursor/cursor_pointer.cur') 0 0, pointer;
+      cursor: $cursor-pointer;
     }
   }
 
   a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@include dFlex-center();
 
     &:focus-visible {
       outline-offset: 3px;
       outline: 2px solid #3dcfb6;
       border-radius: 50%;
     }
-
   }
 }
 
@@ -148,30 +140,20 @@
       gap: 10px;
 
       .box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         gap: 10px;
         max-width: 600px;
-        width: 100%;
-        padding: 10px !important;
+        padding: 10px;
         min-width: 0 !important;
-        height: auto !important;
+        height: auto;
         border-radius: 20px;
       }
     }
   }
 
   .feedback-window {
-    padding: 10px !important;
+    padding: 10px;
     border-radius: 20px;
     margin: 0px 10px;
   }
-}
 
-@media screen and (max-width: 500px) {
-  .feedback-window {
-    padding: 10px !important;
-    border-radius: 20px;
-  }
 }

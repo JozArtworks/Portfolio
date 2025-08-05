@@ -5,12 +5,13 @@
       <div tabindex="-1" class="feedback-body">
         <div tabindex="-1" class="box">
           @for (entry of feedbacks; track entry.key) {
-          <div tabindex="0" class="box-content" [attr.aria-labelledby]="'ref' + entry.key + ' author' + entry.key">
+          <div tabindex="0" class="box-content" [attr.aria-labelledby]="'ref' + entry.key + ' author' + entry.key"
+            [attr.aria-describedby]="'ref' + entry.key">
             <p [id]="'ref' + entry.key">{{ 'feedback.' + entry.key + '.text' | translate }}</p>
             <div tabindex="-1" class="feedback-author-box">
               @if (entry.linkedin) {
               <a [href]="entry.linkedin" target="_blank" rel="noopener noreferrer"
-                [attr.aria-label]="'LinkedIn-Profil von ' + entry.name">
+                [attr.aria-label]="'feedback.linkedinLabel' | translate: { name: entry.name }">
                 <img [src]="hoveredEntryKey === entry.key
       ? './../../../assets/icons/green/svg/logo_linkedin_green.svg'
       : './../../../assets/icons/white/svg/logo_linkedin.svg'" alt="" aria-hidden="true"

@@ -147,7 +147,8 @@
     },
     "taher": {
       "text": "I had the pleasure of working with Jonathan on a website project and was impressed by his enthusiasm for coding. He quickly understood new concepts and purposefully integrated them into the project. Calm, focused, and always aiming to find good solutions together."
-    }
+    },
+    "linkedinLabel": "LinkedIn profile of {{name}}"
   },
   "projects": {
     "title": "Projects",
