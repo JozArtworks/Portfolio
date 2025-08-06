@@ -28,9 +28,9 @@
     "roleNavigation": "Hauptnavigation"
   },
   "quantum": {
-    "title": "Quantum Egg 2 erkannt",
-    "message": "Du hast einen versteckten Ping im Quantenäther gefunden.",
-    "close": "Schließen"
+    "title": "Egg 2 Modul QX-492",
+    "message": "Dein Signal hat das verborgene Modul QX-492 im consol.log aktiviert. Nicht durch Zufall – sondern durch Frequenzkongruenz.",
+    "close": "Verbindung trennen"
   },
   "imprint": {
     "title": "Impressum",
@@ -100,9 +100,9 @@
     "introHeadline": "Lass uns gemeinsam etwas aufbauen",
     "subHeadline": "Ein digitales Problem, das gelöst werden will?",
     "introText": "Ich freue mich über Anfragen – erzähl mir einfach, in welchem Bereich du Unterstützung brauchst.<br />Zeig mir dein Vorhaben – und ich zeige dir, wie ich mit klarem Code echten Mehrwert schaffen kann.<br /><br />Du suchst einen Frontend Developer?<br /><span>Melde dich!</span>",
-    "nameError": "Bitte gib deinen Namen ein!",
-    "emailError": "Bitte gib eine gültige E-Mail-Adresse ein.",
-    "messageError": "Ups, da fehlt noch eine Nachricht.",
+    "nameError": "Bitte gib deinen Vor- und Nachnamen ein!",
+    "emailError": "Bitte gib eine gültige E-Mail-Adresse ein!",
+    "messageError": "Ups, da fehlt noch was!",
     "privacyText": "Ich habe die",
     "privacyLink": "Datenschutzerklärung",
     "privacyTextEnd": "gelesen und stimme der darin beschriebenen Verarbeitung meiner Daten zu.",
@@ -118,7 +118,9 @@
     "messageLabel": "Deine Nachricht",
     "sendIconAlt": "Senden-Symbol",
     "sendAriaLabel": "Nachricht absenden",
-    "formDescription": "Kontaktformular zum Versenden einer Nachricht. Alle Felder sind erforderlich."
+    "formDescription": "Kontaktformular zum Versenden einer Nachricht. Alle Felder sind erforderlich.",
+    "successOverlayTitle": "Nachricht erfolgreich gesendet!",
+    "successOverlayBtn": "Noch eine Nachricht senden?"
   },
   "tools": {
     "headline": "Tools",

@@ -13,8 +13,9 @@
           <p id="formIntro" class="visually-hidden">
             {{ 'contact.formDescription' | translate }}
           </p>
-          <form aria-describedby="formIntro" (ngSubmit)="validateAndSubmit()" class="contact-form" #form="ngForm"
-            novalidate role="form">
+          @if (formVisible) {
+          <form [class.dimmed]="showSuccessDialog" aria-describedby="formIntro" (ngSubmit)="validateAndSubmit()"
+            class="contact-form" #form="ngForm" novalidate role="form">
             <input type="text" name="honeypot" tabindex="-1" autocomplete="off" class="honeypot"
               [(ngModel)]="formData.honeypot" />
             <div class="input-wrapper">
@@ -61,7 +62,6 @@
                   (change)="onPrivacyChange()" />
                 <span class="custom-checkbox" aria-hidden="true"></span>
               </label>
-
               <div class="input-wrapper">
                 <p id="privacyText">
                   {{ 'contact.privacyText' | translate }}
@@ -98,6 +98,15 @@
               }
             </button>
           </form>
+          }
+          @if (showSuccessDialog) {
+          <div class="form-success-dialog" role="dialog" aria-modal="true" aria-labelledby="successMsg">
+            <h6 id="successMsg">{{ 'contact.successOverlayTitle' | translate }}</h6>
+            <button type="button" (click)="onStartNewMessage()">
+              {{ 'contact.successOverlayBtn' | translate }}
+            </button>
+          </div>
+          }
         </div>
       </div>
     </div>

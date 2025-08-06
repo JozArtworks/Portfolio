@@ -28,9 +28,9 @@
     "roleNavigation": "Main navigation"
   },
   "quantum": {
-    "title": "Quantum Egg 2 detected",
-    "message": "You discovered a hidden ping in the quantum ether.",
-    "close": "close"
+    "title": "Egg 2 Module QX-492",
+    "message": "Your signal has activated the hidden QX-492 module in the console.log. Not by chance – but by frequency alignment.",
+    "close": "Disconnect"
   },
   "imprint": {
     "title": "Legal Notice",
@@ -99,10 +99,10 @@
     "title": "Contact",
     "introHeadline": "Let’s build something together",
     "subHeadline": "A problem to solve?",
-    "introText": "I’m happy to receive inquiries – just tell me which area you need support in.<br />Show me your project – and I’ll show you how I can create real value with clean code.<br /><br />Looking for a Frontend Developer?<br /><span>Get in touch!</span>",
-    "nameError": "Please enter your name!",
+    "introText": "I’m happy to receive inquiries – just tell me which area you need support in.<br />Show me your project – and I’ll show you how I can create real value with clean code.<br /><br />Looking for a Frontend Developer?<br/><span>Get in touch!</span>",
+    "nameError": "Please enter your first and last name!",
     "emailError": "Please enter a valid email address.",
-    "messageError": "Oops, something is missing!",
+    "messageError": "Oops, something's missing!",
     "privacyText": "I have read the",
     "privacyTextEnd": "and I agree to the data processing described therein.",
     "privacyLink": "privacy policy",
@@ -118,7 +118,9 @@
     "messageLabel": "Your message",
     "sendIconAlt": "Send icon",
     "sendAriaLabel": "Send message",
-    "formDescription": "Contact form to send a message. All fields are required."
+    "formDescription": "Contact form to send a message. All fields are required.",
+    "successOverlayTitle": "Message sent successfully!",
+    "successOverlayBtn": "Send another message?"
   },
   "tools": {
     "headline": "Skills",
@@ -298,7 +300,7 @@
     "projects": "JM – Projects",
     "feedbacks": "JM – Feedbacks",
     "contact": "JM – Contact",
-    "imprint": "JM – Imprint",
+    "imprint": "JM – Legal Notice",
     "privacy": "JM - Privacy Policy"
   }
 }

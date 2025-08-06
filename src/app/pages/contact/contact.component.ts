@@ -41,6 +41,14 @@ export class ContactComponent implements OnInit, OnDestroy {
     honeypot: ''
   };
 
+  /**
+ * Enables soft-reset rendering after a successful transmission sequence.
+ */
+  formVisible = true;
+
+  /** Controls the visibility of the success dialog */
+  showSuccessDialog = false;
+
   /** Indicates if the form submission was successful. */
   success = false;
 
@@ -129,8 +137,9 @@ export class ContactComponent implements OnInit, OnDestroy {
  * @returns Whether the name is considered valid
  */
   isValidName(name: string): boolean {
+    if (!name) return false;
     const parts = name.trim().split(' ');
-    return parts.length >= 2 && parts.every(part => part.length >= 2);
+    return parts.length >= 2 && parts.filter(p => p.trim().length >= 2).length >= 2;
   }
 
   /**
@@ -139,24 +148,23 @@ export class ContactComponent implements OnInit, OnDestroy {
  * @returns Whether the email is valid
  */
   isValidEmail(email: string): boolean {
+    if (!email) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
   /**
- * Validates the message content (minimum 50 characters).
+ * Validates the message content (minimum 10 characters).
  * @param message - The raw message string
  * @returns Whether the message is valid
  */
-  isValidMessage(message: string): boolean {
-    return message.trim().length >= 50;
+  isValidMessage(message: string | null | undefined): boolean {
+    return !!message && message.trim().length >= 10;
   }
 
   /**
  * Updates all field validation flags based on the current formData.
  */
   onInputChange(): void {
-    const rawName = this.formData.name.trim();
-    const parts = rawName.split(' ').filter(p => p.length >= 3);
     this.nameValid = this.isValidName(this.formData.name);
     this.emailValid = this.isValidEmail(this.formData.email);
     this.messageValid = this.isValidMessage(this.formData.message);
@@ -188,6 +196,45 @@ export class ContactComponent implements OnInit, OnDestroy {
    */
   triggerQuantumPingFromContact(): void {
     this.quantumPingTriggered.emit();
+    console.clear();
+    console.log('%c☲ QX-492 // INITIERE PROTOKOLL …', 'color:#00ffe1; font-weight:bold;');
+    setTimeout(() => {
+      console.log('%cLade Erinnerungskern… █▒▒▒▒▒▒▒▒▒ 10%', 'color:#8afff1');
+    }, 600);
+    setTimeout(() => {
+      console.log('%cLade Erinnerungskern… ██████▒▒▒▒ 65%', 'color:#8afff1');
+    }, 1200);
+    setTimeout(() => {
+      console.log('%cLade Erinnerungskern… ██████████ 100%', 'color:#8afff1');
+    }, 1800);
+    setTimeout(() => {
+      console.log('%cVerbindung zu Äther-Kanal #7.42 aufgebaut.', 'color:#fbbf24');
+    }, 2400);
+    setTimeout(() => {
+      console.log('%cSynchronisation abgeschlossen.', 'color:#34d399');
+    }, 3000);
+    this.selfDestroy();
+  }
+
+  /**
+ * Destroy the log in the dev-tool.
+ */
+  selfDestroy() {
+    setTimeout(() => {
+      let countdown = 10;
+      const interval = setInterval(() => {
+        if (countdown > 0) {
+          console.log(`%c╳ Rückzug in ${countdown}…`, 'color:#7dd3fc');
+          countdown--;
+        } else {
+          console.log('%c╳ QX-492 verschwindet im Äther…', 'color:#a78bfa');
+          clearInterval(interval);
+          setTimeout(() => {
+            console.clear();
+          }, 1000);
+        }
+      }, 600);
+    }, 5800);
   }
 
   /**
@@ -227,19 +274,39 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   /**
- * Handles successful form submission: triggers animation, resets form, and reloads page.
- */
+   * Handles a successful form submission:
+   * - Ends the sending state
+   * - Triggers fly-out animation for the send button
+   * - After animation, displays the success dialog
+   */
   private handleSuccess(): void {
+    this.isSending = false;
     this.success = true;
-    this.error = false;
     this.flyAnimation = true;
     setTimeout(() => {
       this.flyAnimation = false;
-      this.resetForm();
-      setTimeout(() => {
-        location.reload();
-      }, 2000);
+      this.showSuccessDialog = true;
     }, 1000);
+  }
+
+  /**
+   * Resets the form after closing the success dialog:
+   * - Hides the form to allow a visual reset
+   * - Clears success state
+   * - Re-displays the form and resets input fields
+   */
+  onStartNewMessage(): void {
+    this.showSuccessDialog = false;
+    this.success = false;
+    this.formVisible = false;
+    setTimeout(() => {
+      this.formVisible = true;
+      setTimeout(() => {
+        if (this.formRef) {
+          this.resetForm();
+        }
+      }, 500);
+    });
   }
 
   /**
@@ -304,13 +371,30 @@ export class ContactComponent implements OnInit, OnDestroy {
       privacyAccepted: false,
       honeypot: ''
     };
+    this.resetProcess();
+    this.cd.detectChanges();
+    setTimeout(() => {
+      this.nameInputRef.nativeElement.focus();
+    });
+    setTimeout(() => this.success = false, 4000);
+  }
+
+  /**
+ * Resets the entire form state and clears all validation and animations part 2.
+ */
+  resetProcess() {
     this.nameValid = false;
     this.emailValid = false;
     this.messageValid = false;
     this.privacyValid = false;
     this.privacyTouched = false;
     this.formRef.resetForm();
-    setTimeout(() => this.success = false, 4000);
+    this.nameInput.control.markAsPristine();
+    this.nameInput.control.markAsUntouched();
+    this.emailInput.control.markAsPristine();
+    this.emailInput.control.markAsUntouched();
+    this.messageInput.control.markAsPristine();
+    this.messageInput.control.markAsUntouched();
   }
 
   /**
@@ -322,7 +406,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     fd.append('name', this.formData.name);
     fd.append('email', this.formData.email);
     fd.append('message', this.formData.message);
-    fd.append('honeypot', this.formData.honeypot);
+    fd.append('honeypot', this.formData.honeypot ?? '');
     return fd;
   }
 
