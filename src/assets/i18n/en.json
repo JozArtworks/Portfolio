@@ -33,11 +33,11 @@
     "close": "close"
   },
   "imprint": {
-    "title": "Imprint",
+    "title": "Legal Notice",
     "subtitle": "Information according to §5 TMG",
     "name": "Jonathan Michutta",
     "role": "Frontend Developer & Media Designer",
-    "address": "(Munich – address on request)",
+    "address": "München 81477 - Drygalski-Allee 181",
     "contactHeader": "Contact:",
     "email": "front-dev@jonathan-michutta.de",
     "website": "https://www.jonathan-michutta.de",
@@ -177,7 +177,7 @@
   },
   "footer": {
     "copyright": "Code & Design by Jonathan Michutta 2025",
-    "imprint": "Imprint",
+    "imprint": "Legal Notice",
     "privacy": "Privacy Policy",
     "copied": "Copied",
     "email": "front-dev@jonathan-michutta.de",

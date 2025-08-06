@@ -97,6 +97,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Creates the AppComponent and initializes core app logic:
    *
+   * - Initializes the app language
    * - Subscribes to route changes to update background class transitions
    * - Observes section changes to dynamically update the browser tab title
    *
@@ -109,6 +110,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param titleService - Angular Title service for updating the browser tab title
    */
   constructor(private ngZone: NgZone, private router: Router, private translate: TranslateService, private cdr: ChangeDetectorRef, public sectionObserver: SectionObserverService, public projectDialog: ProjectDialogService, private titleService: Title) {
+    this.initLanguage();
     this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),
@@ -125,6 +127,24 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       const section = this.sectionObserver.currentSection();
       this.updateDocumentTitle(section);
     });
+  }
+
+  /**
+ * Initializes the app language by checking localStorage or browser language.
+ * Defaults to English if no preference is found.
+ * Saves the selected language for future visits and applies it via ngx-translate.
+ */
+  private initLanguage(): void {
+    const savedLang = localStorage.getItem('lang');
+    let langToUse: 'de' | 'en';
+    if (savedLang === 'de' || savedLang === 'en') {
+      langToUse = savedLang;
+    } else {
+      langToUse = navigator.language.startsWith('de') ? 'de' : 'en';
+      localStorage.setItem('lang', langToUse);
+    }
+    this.translate.setDefaultLang('en');
+    this.translate.use(langToUse);
   }
 
   /**
@@ -324,11 +344,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   /**
-   * Sets the active language for translations.
+   * Sets the active language for translations & check the local store.
    * @param lang The language code ('de' or 'en').
    */
   setLanguage(lang: 'de' | 'en') {
     this.translate.use(lang);
+    localStorage.setItem('lang', lang);
     this.cdr.detectChanges();
   }
 
