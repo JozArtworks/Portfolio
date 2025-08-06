@@ -212,7 +212,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     }, 2400);
     setTimeout(() => {
       console.log('%cSynchronisation abgeschlossen.', 'color:#34d399');
-    }, 3000);
+    }, 2000);
     this.selfDestroy();
   }
 
@@ -229,9 +229,11 @@ export class ContactComponent implements OnInit, OnDestroy {
         } else {
           console.log('%c╳ QX-492 verschwindet im Äther…', 'color:#a78bfa');
           clearInterval(interval);
+          console.log('%c⟳ Ätherresonanz vollständig – Synchronisiere neue Realität …', 'color:#10b981');
+          console.warn('%cGameOver', 'color: #ff1a1a; font-weight: bold; text-shadow: 0 0 4px #ff1a1a;');
           setTimeout(() => {
-            console.clear();
-          }, 1000);
+            location.reload();
+          }, 3000);
         }
       }, 600);
     }, 5800);
