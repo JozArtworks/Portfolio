@@ -90,4 +90,5 @@ export class SectionObserverService {
       this.setCurrentSection(sectionId);
     }, duration);
   }
+  
 }

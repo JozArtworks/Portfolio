@@ -1,17 +1,21 @@
 <section class="main-landing" [class.animate-in]="isAppReadyForTransition">
   <div class="main">
     <div class="title">
+      <h2 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">
+        {{ 'landing.title' | translate }}
+      </h2>
+      <div class="title-sep" aria-hidden="true"
+        [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition"></div>
+      <div class="subtitle">
+        <h3 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">
+          {{ 'landing.subtitle' | translate }}</h3>
+      </div>
+
       <h1 class="fade-title" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" tabindex="0"
         aria-label="Jonathan Michutta – Frontend Developer">JONATHAN MICHUTTA</h1>
+
       <div class="easter-egg-hint" aria-hidden="true">{{ 'landing.egg' | translate }}</div>
-      <div class="subtitle">
-        <h2 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">
-          {{ 'landing.title' | translate }}
-        </h2>
-        <!-- <h3 class="fade-subtitle" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition">{{
-          'landing.subtitle' | translate }}</h3> -->
-      </div>
-      <p class="info-process">{{ 'landing.accessibilityNote' | translate }}</p>
+      <!-- <p class="info-process">{{ 'landing.accessibilityNote' | translate }}</p> -->
     </div>
     <div class="about-foot">
       <div class="box-tools" [class.animate-in]="showBoxes && !scrolledAway && isAppReadyForTransition" role="region"
