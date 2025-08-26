@@ -131,7 +131,7 @@ h1:hover+.easter-egg-hint {
   @include dFlex-center();
   flex-direction: column;
   position: relative;
-  padding-top: 22vh;
+  padding-top: clamp(10vw, 15vh, 52vw);
   color: #FFFFFF;
   margin-bottom: 20px;
   gap: 5px;
